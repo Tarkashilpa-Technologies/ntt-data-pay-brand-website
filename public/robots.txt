@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap:https://www.nttdatapay.com/sitemap.xml
+Sitemap:https://www.nttdatapay.com/blog/sitemap.xml
