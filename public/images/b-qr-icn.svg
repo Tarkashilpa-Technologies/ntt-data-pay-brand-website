@@ -1,0 +1,16 @@
+<svg width="82" height="51" viewBox="0 0 82 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_114_5" fill="white">
+<rect width="41" height="45" rx="0.5"/>
+</mask>
+<rect width="41" height="45" rx="0.5" stroke="white" stroke-width="4" mask="url(#path-1-inside-1_114_5)"/>
+<path d="M49 2H82" stroke="white" stroke-width="2"/>
+<path d="M62.1511 2C69.2746 5.14286 77.8662 16.6667 62.1511 24H49" stroke="white" stroke-width="2"/>
+<path d="M71 47L55 24" stroke="white" stroke-width="2"/>
+<path d="M49 11H82" stroke="white" stroke-width="2"/>
+<path d="M16.1765 11H20.3595V30.7403H16.1765V31.3636H20.3595V31.5714H21.451V22.2208H35V20.3507H21.451V11M15 29.2857V35" stroke="white" stroke-width="2"/>
+<path d="M14 20H9V24" stroke="white" stroke-width="2"/>
+<path d="M36.5 38L35 38L42.5 50L44 50L36.5 38Z" fill="white" stroke="white" stroke-width="2"/>
+<rect width="4" height="5" transform="matrix(1 0 0 -1 8 11)" fill="white"/>
+<rect width="4" height="4" transform="matrix(1 0 0 -1 8 36)" fill="white"/>
+<rect width="5" height="4" transform="matrix(1 0 0 -1 27 15)" fill="white"/>
+</svg>
