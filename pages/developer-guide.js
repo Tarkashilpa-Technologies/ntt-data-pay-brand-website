@@ -150,7 +150,7 @@ Guides</p>
   <div className='desc-hldr'>
     <p>API <br/>
 Reference</p>
-<Link href="/">
+<Link href="/api-reference">
        <a href=""  className='btn_style1'>Know More</a>
        </Link>
   </div>
