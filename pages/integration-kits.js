@@ -106,7 +106,7 @@ export default function product1() {
 <div className="container_1300 d-block">
   <ol className="breadcrumb">
   <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
-    <li className="breadcrumb-item"><a href="#">Developers</a></li>
+    <li className="breadcrumb-item"><a href="/developer-guide">Developers</a></li>
     <li className="breadcrumb-item active" aria-current="page">Integration Kits</li>
   </ol>
 </div>
@@ -140,65 +140,104 @@ export default function product1() {
  <div className="row">
 
 <div className="col-md-3 col-6">
-<Link href="/webkits/PHP.zip">
+<Link href="/webkits/Website/ASP.NET FORWARD SLASH C SHARP.zip">
 <a  className="spg-box">
-<i className="fab fa-php fa-3x text-grad"></i>
-<p>PHP</p>
+<span><img src="/images/asp.net.png" alt="" width={50} className="img-fluid" /></span>
+<p>ASP.NET</p>
 </a>
 </Link>     
 </div>
 
 <div className="col-md-3 col-6">
-<Link href="/webkits/">
+<Link href="/webkits/Website/CAKE PHP.zip">
 <a  className="spg-box">
-<i className="fab fa-joomla fa-3x text-grad"></i>
-<p>JOOMLA</p>
+<span><img src="/images/cake.png" alt="" width={30} className="img-fluid" /></span>
+<p>CAKE PHP</p>
 </a>
 </Link>  
 </div>
+                  
 <div className="col-md-3 col-6">
-<Link href="/webkits/">
+<Link href="/webkits/Website/CODE IGNITER 3.zip">
 <a  className="spg-box">
-<i className="fab fa-drupal fa-3x text-grad"></i>
-<p>DRUPAL</p>
+<span><img src="/images/codeigniter.png" width={30} alt="" className="img-fluid" /></span>
+<p>CODE IGNITER</p>
 </a>
 </Link>  
 </div>
+                  
 <div className="col-md-3 col-6">
-<Link href="/webkits/Java.zip">
+<Link href="/webkits/Website/CORE PHP.zip">
+<a className="spg-box">
+<span><img src="/images/php.png" alt="" width={50} className="img-fluid" /></span>
+<p>CORE PHP</p>
+</a>
+</Link>  
+</div>
+                  
+<div className="col-md-3 col-6">
+<Link href="/webkits/Website/DJANGO.zip">
 <a  className="spg-box">
-<i className="fab fa-java fa-3x text-grad"></i>
+<span><img src="/images/django.png" alt="" width={100} className="img-fluid" /></span>
+<p>DJANGO</p>
+</a>
+</Link>  
+</div>
+
+<div className="col-md-3 col-6">
+<Link href="/webkits/Website/FRONTEND ANGULAR BACKEND LARAVEL.zip">
+<a  className="spg-box">
+<span><img src="/images/angular.png" alt="" width={30} className="img-fluid" /></span>
+<p>FRONTEND ANGULAR BACKEND LARAVEL</p>
+</a>
+</Link>  
+</div>
+
+<div className="col-md-3 col-6">
+<Link href="/webkits/Website/JAVA.zip">
+<a  className="spg-box">
+<span><img src="/images/java.png" alt="" width={30} className="img-fluid" /></span>
 <p>JAVA</p>
 </a>
 </Link>  
 </div>  
 
-
 <div className="col-md-3 col-6">
-<Link href="/webkits/NodeJS.zip">
+<Link href="/webkits/Website/LARAVEL.zip">
 <a  className="spg-box">
-<i className="fab fa-node  fa-3x text-grad"></i>
+<span><img src="/images/laravel.png" alt="" width={40} className="img-fluid" /></span>
+<p>LARAVEL</p>
+</a>
+</Link>  
+</div> 
+                  
+<div className="col-md-3 col-6">
+<Link href="/webkits/Website/NODE JS.zip">
+<a  className="spg-box">
+<span><img src="/images/nodejs.png" alt="" width={40} className="img-fluid" /></span>
 <p>NODE JS</p>
 </a>
 </Link>     
 </div>
 <div className="col-md-3 col-6">
-<Link href="/webkits/">
+<Link href="/webkits/Website/PYTHON 3.zip">
 <a  className="spg-box">
-<i className="fab fa-angular  fa-3x text-grad"></i>
-<p>ANGULAR JS</p>
+<span><img src="/images/python.png" alt="" width={30} className="img-fluid" /></span>
+<p>PYTHON 3</p>
 </a>
 </Link>  
 </div>
 <div className="col-md-3 col-6">
-<Link href="/webkits/WHMCS AES Kit.zip">
+<Link href="/webkits/Website/RUBY ON RAIL.zip">
 <a  className="spg-box">
 <span><img src="/images/whmcs.png" alt="" className="img-fluid" /></span>
-<p>WHMCS</p>
+<p>RUBY ON RAIL</p>
 </a>
 </Link>  
 </div>
-<div className="col-md-3 col-6">
+                  
+
+{/* <div className="col-md-3 col-6">
 <Link href="/webkits/Odoo_13.zip">
 <a  className="spg-box">
 <span><img src="/images/odoo.png" alt="" className="img-fluid" /></span>
@@ -269,7 +308,7 @@ export default function product1() {
 <p>C SHARP</p>
 </a>
 </Link>  
-</div>
+</div> */}
 
 
 
@@ -283,10 +322,10 @@ export default function product1() {
  <div className="row">
 
 <div className="col-md-3 col-6">
-<Link href="/webkits/Android_Encrytion_Kit.zip">
+<Link href="/webkits/Mobile App/ANDROID/REACT NATIVE.zip">
 <a  className="spg-box">
 <i className="fab fa-android fa-3x text-grad"></i>
-<p>ANDROID</p>
+<p>REACT NATIVE</p>
 </a>
 </Link>     
 </div>
@@ -327,18 +366,18 @@ export default function product1() {
 
 
   <div className="spg-cvr">
- <div className="row">
+ <div className="row justify-content-center">
 
-<div className="col-md-3 col-6">
+{/* <div className="col-md-3 col-6">
 <Link href="/webkits/Magento.zip">
 <a  className="spg-box">
 <i className="fab fa-magento fa-3x text-grad"></i>
 <p>MAGENTO 2.x</p>
 </a>
 </Link>     
-</div>
+</div> */}
 
-<div className="col-md-3 col-6">
+{/* <div className="col-md-3 col-6">
 <Link href="/webkits/Magento.zip">
 <a  className="spg-box">
 <i className="fab fa-magento fa-3x text-grad"></i>
@@ -363,14 +402,14 @@ export default function product1() {
 <p>OPENCART 2.x.x</p>
 </a>
 </Link>     
-</div>
+</div> */}
 
 
 <div className="col-md-3 col-6">
 <Link href="/webkits/WordPress.zip">
 <a  className="spg-box">
-<span><img src="/images/woo.png" alt="" width={35} className="img-fluid" /></span>
-<p>WOO COMMERCE</p>
+<span><img src="/images/opencart.png" alt="" width={35} className="img-fluid" /></span>
+<p>OPENCART</p>
 </a>
 </Link>     
 </div>
@@ -388,8 +427,8 @@ export default function product1() {
 <div className="col-md-3 col-6">
 <Link href="/webkits/">
 <a  className="spg-box">
-<span><img src="/images/jigoshop.png" alt="" width={35} className="img-fluid" /></span>
-<p>JIGOSHOP</p>
+<span><img src="/images/woo.png" alt="" width={35} className="img-fluid" /></span>
+<p>WORDPRESS WOO COMMERCE</p>
 </a>
 </Link>     
 </div>
@@ -417,7 +456,7 @@ export default function product1() {
 <div className="col-md-7">
  <div className="wch-lhs">
 <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-<a href="" className="btn_style1">Contact Us</a>  
+<a href="mailto:ndps.integrationgrp@nttdata.com&subject=Integration Assistance" className="btn_style1">Contact Us</a>  
 </div>   
 </div>
 <div className="col-md-5">
