@@ -156,7 +156,7 @@ export default function product1() {
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
     <div className='d-flex justify-content-end'>
-      <a href='/API/Integration Guides/Invoice Payment Link API/Link Based Payment_API Document_V1.2.pdf' className='btn_style1' download={"Invoice Payment Link API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Invoice Payment Link API/Link Based Payment_API Document_V1.2.pdf' className='btn_style1' download={"Invoice Payment Link API.pdf"}>Download</a>
     </div>
   </div>
     
@@ -176,7 +176,7 @@ export default function product1() {
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
     <div className='d-flex justify-content-end'>
-      <a href='/API/Integration Guides/Penny Drop (Bank Account Verification) API/PennyDrop_ProcessNote - API.pdf' className='btn_style1' download={"PennyDrop_ProcessNote - API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Penny Drop (Bank Account Verification) API/PennyDrop_ProcessNote - API.pdf' className='btn_style1' download={"PennyDrop_ProcessNote - API.pdf"}>Download</a>
     </div>
   </div>
                 
@@ -196,7 +196,7 @@ export default function product1() {
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
     <div className='d-flex justify-content-end'>
-      <a href='/API/Integration Guides/Single _ Multi Product API/01. AIPay API_NDPS_V1.5.pdf' className='btn_style1' download={"Single _ Multi Product API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Single _ Multi Product API/01. AIPay API_NDPS_V1.5.pdf' className='btn_style1' download={"Single _ Multi Product API.pdf"}>Download</a>
     </div>
   </div>
                 
@@ -217,7 +217,7 @@ export default function product1() {
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
     <div className='d-flex justify-content-end'>
-      <a href='/API/Integration Guides/Vendor Payment API/VendorPaymentSolution- API.pdf' className='btn_style1' download={"Vendor Payment API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Vendor Payment API/VendorPaymentSolution- API.pdf' className='btn_style1' download={"Vendor Payment API.pdf"}>Download</a>
     </div>               
   </div>
 
