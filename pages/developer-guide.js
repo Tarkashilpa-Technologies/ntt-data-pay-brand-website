@@ -149,7 +149,7 @@ Guides</p>
   </div>
   <div className='desc-hldr'>
     <p>API <br/>
-Reference</p>
+      Reference</p>
 <Link href="/api-reference">
        <a href=""  className='btn_style1'>Know More</a>
        </Link>
@@ -232,7 +232,7 @@ forward and easy API.</p>
 <div className="col-md-7">
  <div className="wch-lhs">
 <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-<a href="" className="btn_style1">Sign Up Now</a>  
+<a href="/contact-us" className="btn_style1">Contact Us</a>  
 </div>   
 </div>
 <div className="col-md-5">

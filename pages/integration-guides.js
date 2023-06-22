@@ -106,7 +106,7 @@ export default function product1() {
 <div className="container_1300 d-block">
   <ol className="breadcrumb">
   <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
-    <li className="breadcrumb-item"><a href="#">Developers</a></li>
+    <li className="breadcrumb-item"><a href="/developer-guide">Developers</a></li>
     <li className="breadcrumb-item active" aria-current="page">Integration Guides</li>
   </ol>
 </div>
@@ -131,42 +131,36 @@ export default function product1() {
 <div className="col-md-6">
 <div className="ig-f2-lhs">
 <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <button className="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Merchant Integration API</button>
-    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Merchant Multi Product Integration API</button>
-    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Broker Netbanking Integration API</button>
-    <button className="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">Broker UPI Integration API</button>
-    <button className="nav-link" id="v-pills-5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-5" type="button" role="tab" aria-controls="v-pills-5" aria-selected="false">Merchant Payment Module Link API</button>
-
-    <button className="nav-link" id="v-pills-6-tab" data-bs-toggle="pill" data-bs-target="#v-pills-6" type="button" role="tab" aria-controls="v-pills-6" aria-selected="false">Merchant Invoice Base Module Link API</button>
-    <button className="nav-link" id="v-pills-7-tab" data-bs-toggle="pill" data-bs-target="#v-pills-7" type="button" role="tab" aria-controls="v-pills-7" aria-selected="false">Merchant Seamless Integration API</button>
-    <button className="nav-link" id="v-pills-8-tab" data-bs-toggle="pill" data-bs-target="#v-pills-8" type="button" role="tab" aria-controls="v-pills-8" aria-selected="false">Other APIs if any</button>
-
+    <button className="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Invoice Payment Link API</button>
+    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Penny Drop (Bank Account Verification) API</button>
+    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Single _ Multi Product API</button>
+    <button className="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">Vendor Payment API</button>
   </div>  
 </div>    
 </div>
 <div className="col-md-6">
 <div className="ig-f2-rhs">
 <div className="tab-content" id="v-pills-tabContent">
-    <div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+<div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
     
     <h3>Background:</h3>
     <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
     <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
+    <p>This document will provide overview of call-back API process flow. Callback API is an API in 
+      which NTT Data payment services system posts transaction response through server-to-server mode in name value pair format on configured merchant’s URL in NTT Data payment 
+      services system.</p>
     <h3>Process Flow</h3>
     <p>This section briefly details the overall customer transaction flow.</p>
     <h3>Transaction Process</h3>
     <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-
-
+    <div className='d-flex justify-content-end'>
+      <a href='/API/Integration Guides/Invoice Payment Link API/Link Based Payment_API Document_V1.2.pdf' className='btn_style1' download={"Invoice Payment Link API.pdf"}>Download</a>
     </div>
-    <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+  </div>
+    
+  <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
      <h3>Background:</h3>
     <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
     <h3>1. Electronic Payment Interface</h3>
@@ -181,9 +175,12 @@ export default function product1() {
     <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-  
+    <div className='d-flex justify-content-end'>
+      <a href='/API/Integration Guides/Penny Drop (Bank Account Verification) API/PennyDrop_ProcessNote - API.pdf' className='btn_style1' download={"PennyDrop_ProcessNote - API.pdf"}>Download</a>
     </div>
-    <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+  </div>
+                
+  <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
     <h3>Background:</h3>
     <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
     <h3>1. Electronic Payment Interface</h3>
@@ -198,25 +195,13 @@ export default function product1() {
     <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+    <div className='d-flex justify-content-end'>
+      <a href='/API/Integration Guides/Single _ Multi Product API/01. AIPay API_NDPS_V1.5.pdf' className='btn_style1' download={"Single _ Multi Product API.pdf"}>Download</a>
     </div>
-    <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-    </div>
+  </div>
+                
 
-    <div className="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+  <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
     <h3>Background:</h3>
     <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
     <h3>1. Electronic Payment Interface</h3>
@@ -231,59 +216,12 @@ export default function product1() {
     <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
     <p>Customer then decides to make payment at merchant website.</p>
     <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-    </div>
+    <div className='d-flex justify-content-end'>
+      <a href='/API/Integration Guides/Vendor Payment API/VendorPaymentSolution- API.pdf' className='btn_style1' download={"Vendor Payment API.pdf"}>Download</a>
+    </div>               
+  </div>
 
-    <div className="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-    </div>
-
-    <div className="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-7-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-    </div>
-
-    <div className="tab-pane fade" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-8-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-    </div>
-
+    
 
   </div>    
 </div>      
@@ -298,7 +236,7 @@ export default function product1() {
 <div className="col-md-7">
  <div className="wch-lhs">
 <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-<a href="" className="btn_style1">Contact Us</a>  
+<a href="/contact-us" className="btn_style1">Contact Us</a>  
 </div>   
 </div>
 <div className="col-md-5">
