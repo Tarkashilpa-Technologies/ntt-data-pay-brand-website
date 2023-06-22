@@ -157,7 +157,7 @@ export default function product1() {
       <p>Customer then decides to make payment at merchant website.</p>
       <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
       <div className='d-flex justify-content-end'>
-        <a href='/API/API References/Call Back API/Callback API.pdf' className='btn_style1' download={"Callback API.pdf"}>Download</a>
+        <a href='/pdf/API/API References/Call Back API/Callback API.pdf' className='btn_style1' download={"Callback API.pdf"}>Download</a>
       </div>
     </div>
                 
@@ -175,7 +175,7 @@ export default function product1() {
       <p>Customer then decides to make payment at merchant website.</p>
       <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
       <div className='d-flex justify-content-end'>
-        <a href='/API/API References/Refund API/Refund API V1.01.pdf' className='btn_style1' download={"Refund API.pdf"} >Download</a>
+        <a href='/pdf/API/API References/Refund API/Refund API V1.01.pdf' className='btn_style1' download={"Refund API.pdf"} >Download</a>
       </div>
     </div>
                 
@@ -195,7 +195,7 @@ export default function product1() {
       <p>Customer then decides to make payment at merchant website.</p>
       <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
       <div className='d-flex justify-content-end'>
-        <a href='/API/API References/Refund Status API/Refund Status API_V1.01.pdf' className='btn_style1' download={"Refund Status API.pdf"}>Download</a>
+        <a href='/pdf/API/API References/Refund Status API/Refund Status API_V1.01.pdf' className='btn_style1' download={"Refund Status API.pdf"}>Download</a>
       </div>
     </div>
                 
@@ -216,7 +216,7 @@ export default function product1() {
       <p>Customer then decides to make payment at merchant website.</p>
       <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
       <div className='d-flex justify-content-end'>
-        <a href='/API/API References/Settlement API/Settlement API.pdf' className='btn_style1' download={"Settlement API.pdf"}>Download</a>
+        <a href='/pdf/API/API References/Settlement API/Settlement API.pdf' className='btn_style1' download={"Settlement API.pdf"}>Download</a>
       </div>
     </div>
 
@@ -236,7 +236,7 @@ export default function product1() {
       <p>Customer then decides to make payment at merchant website.</p>
       <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
       <div className='d-flex justify-content-end'>
-        <a href='/API/API References/Transaction Status API/Transaction Status (Requery) API.pdf' className='btn_style1' download={"Transaction Status API.pdf"}>Download</a>
+        <a href='/pdf/API/API References/Transaction Status API/Transaction Status (Requery) API.pdf' className='btn_style1' download={"Transaction Status API.pdf"}>Download</a>
       </div>
     </div>
 
