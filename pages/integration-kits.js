@@ -22,7 +22,7 @@ const [selectedHref,setSelectedHref]= useState(null)
       name: 'ASP.NET',
       url: "/images/asp.net.png",
       href: "/webkits/Website/ASP.NET FORWARD SLASH C SHARP.zip",
-      width: true,
+      width: 50,
     },
     {
       id: 'CAKEPHP',
@@ -41,32 +41,35 @@ const [selectedHref,setSelectedHref]= useState(null)
       name: 'CORE PHP',
       url: "/images/php.png",
       href: "/webkits/Website/CORE PHP.zip",
-      width: true,
+      width: 50,
     },
     {
       id: 'DJANGO',
       name: 'DJANGO',
       url: "/images/django.png",
       href: "/webkits/Website/DJANGO.zip",
-      width: true,
+      width: 60,
     },
     {
       id: 'ANGULARLARAVEL',
       name: 'FRONTEND ANGULAR BACKEND LARAVEL',
       url: "/images/angular.png",
       href: "/webkits/Website/FRONTEND ANGULAR BACKEND LARAVEL.zip",
+      width: 35,
     },
     {
       id: 'JAVA',
       name: 'JAVA',
       url: "/images/java.png",
       href: "/webkits/Website/JAVA.zip",
+      width: 35,
     },
     {
       id: 'LARAVEL',
       name: 'LARAVEL',
       url: "/images/laravel.png",
       href: "/webkits/Website/LARAVEL.zip",
+      width: 45,
       
     },
     {
@@ -74,12 +77,14 @@ const [selectedHref,setSelectedHref]= useState(null)
       name: 'NODE JS',
       url: "/images/nodejs.png",
       href: "/webkits/Website/NODE JS.zip",
+      width: 35,
     },
     {
       id: 'PYTHON',
       name: 'PYTHON 3',
       url: "/images/python.png",
       href: "/webkits/Website/PYTHON 3.zip",
+      width: 40,
       
     },
     {
@@ -87,7 +92,7 @@ const [selectedHref,setSelectedHref]= useState(null)
       name: 'RUBY ON RAIL',
       url: "/images/whmcs.png",
       href: "/webkits/Website/RUBY ON RAIL.zip",
-      width: true,
+      width: 60,
     },
   ];
 
@@ -344,7 +349,7 @@ const [selectedHref,setSelectedHref]= useState(null)
                     <div className="col-md-3 col-6" key={index}>
                     <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
                       <a className="spg-box">
-                        <span><img src={data.url} alt="" width={data.width ? 50: 30} className="img-fluid" /></span>
+                        <span><img src={data.url} alt="" width={data.width ? data.width: 30} className="img-fluid" /></span>
                           <p>{data?.name}</p>
                       </a>
                     </a>
