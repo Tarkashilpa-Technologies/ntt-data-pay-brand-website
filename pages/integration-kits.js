@@ -456,7 +456,7 @@ export default function product1() {
 <div className="col-md-7">
  <div className="wch-lhs">
 <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-<a href="mailto:ndps.integrationgrp@nttdata.com&subject=Integration Assistance" className="btn_style1">Contact Us</a>  
+<a href="/contact-us" className="btn_style1">Contact Us</a>  
 </div>   
 </div>
 <div className="col-md-5">
