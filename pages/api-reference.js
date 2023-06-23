@@ -252,7 +252,7 @@ export default function product1() {
  <div className="container_1300 d-block">
 <div className="row">
 <div className="col-md-7">
- <div className="wch-lhs">
+<div className="wch-lhs">
 <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
 <a href="/contact-us" className="btn_style1">Contact Us</a>  
 </div>   
