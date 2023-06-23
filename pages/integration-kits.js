@@ -450,9 +450,6 @@ const [selectedHref,setSelectedHref]= useState(null)
                                   <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                                   <input type="email" className="form-control" required id="email" />    
                                 </div> 
-                                {/* <div className="col-md-12 mb-10">
-                                <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
-                                </div> */}
                               <div className='d-flex justify-content-end mt-3'>
                                 <div className='d-flex flex-column justify-content-center align-items-center'>
                                   <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(true)}> Download</button>
@@ -461,11 +458,8 @@ const [selectedHref,setSelectedHref]= useState(null)
                                 {data.href2 && <div className='d-flex flex-column justify-content-center align-items-center ms-2'>
                                     <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(false)}> Download</button>
                                     <p>({data.text2})</p>
-                                </div>}
-                                
-                                  {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white' onClick={() => setSelectedHref(true)}> Download</button> </a> */}
-                                
-                                </div>
+                                </div>}                              
+                              </div>
                             </form>
                           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
                           </div>
