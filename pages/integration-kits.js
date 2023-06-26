@@ -12,10 +12,10 @@ import 'swiper/css/pagination';
 import "swiper/css/autoplay";
 import { useSSRSafeId } from '@react-aria/ssr';
 //import {Tabs, Tab, Nav} from "bootstrap";  
+import { Modal } from 'bootstrap';
 
 
 export default function product1() {
-const [selectedHref,setSelectedHref]= useState(null)
   const WebsiteData = [
     {
       id: 'ASPNET',
@@ -149,23 +149,23 @@ const [selectedHref,setSelectedHref]= useState(null)
       href: "/webkits/Mobile App/IOS/NATIVE MULTI PRODUCT.zip",
       href2: "/webkits/Mobile App/IOS/NATIVE SINGLE PRODUCT.zip",
       text: 'NATIVE MULTI PRODUCT',
-      text2: 'WITH WEBVIEW',
+      text2: 'NATIVE SINGLE PRODUCT',
     },
   ];
 
 
-  const handleDownload =  async (event,url) => {
-    console.log(url);
+  const handleDownload =  async (event,data) => {
       // Stop the form from submitting and refreshing the page.
     event.preventDefault();
       // Get data from the form.
-       let new_contact = {
-        first_name: event.target.first_name.value,
-        last_name: event.target.last_name.value,
-        mobile: event.target.mobile.value,
-        email: event.target.email.value,
-        products_required: 'Integration Assistance',
-      
+    let new_contact = {
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
+      mobile: event.target.mobile.value,
+      email: event.target.email.value,
+      products_required: 'Integration Assistance',
+      subject: data?.name + " Integration Kit Downloded",
+      mail: 'ndps.integrationgrp@nttdata.com',
     }
     
      let email=event.target.email.value;
@@ -181,7 +181,11 @@ const [selectedHref,setSelectedHref]= useState(null)
       }).then((res) => {
         if (res.status === 200) {  
           console.log('download the file');
-          download(url);
+          download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
+          // var modal = Modal.getInstance(document.getElementById(data?.id));
+          setTimeout(() => {
+            location.reload();
+        }, 2000)
         }
       }) 
   }
@@ -303,10 +307,6 @@ const [selectedHref,setSelectedHref]= useState(null)
      </div>
     </div>
 
-  
-
-
-
 <nav className='bread-wrp minus-top-40' aria-label="breadcrumb">
 <div className="container_1300 d-block">
   <ol className="breadcrumb">
@@ -324,9 +324,6 @@ const [selectedHref,setSelectedHref]= useState(null)
 <div className="ig-input-bx">
 <input type="text" placeholder="Search docs for payments, API and more" />
 </div>
-
-
-
 <ul className="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
   <li className="nav-item" role="presentation">
     <button className="nav-link active btn1" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Website</button>
@@ -364,7 +361,7 @@ const [selectedHref,setSelectedHref]= useState(null)
                         <div className="modal-body p-4">
                         
                             <form onSubmit={(e) => {
-                              handleDownload(e,data.href);
+                              handleDownload(e,data);
                               }}>
                               <div className='row'>
                                 <div className="col-md-6 mb-10">
@@ -435,7 +432,7 @@ const [selectedHref,setSelectedHref]= useState(null)
                           </div>
                           <div className="modal-body p-4">
                             <form onSubmit={(e) => {
-                                handleDownload(e,selectedHref ? data.href : data.href2);
+                                handleDownload(e,data);
                                 }}>
                                 <div className='row'>
                                   <div className="col-md-6 mb-10">
@@ -454,16 +451,18 @@ const [selectedHref,setSelectedHref]= useState(null)
                                 <div className="col-md-12 mb-10">
                                   <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                                   <input type="email" className="form-control" required id="email" />    
-                                </div> 
-                              <div className='d-flex justify-content-end mt-3'>
-                                <div className='d-flex flex-column justify-content-center align-items-center'>
-                                  <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(true)}> Download</button>
-                                  {data.href2 && <p>({data.text})</p>}
+                              </div> 
+                              {data?.href2 &&
+                                <div className="col-md-12 mb-10 mt-1">
+                                  <label htmlFor="exampleFormControlInput1" className="form-label">Which Kit to download ? </label>
+                                  <select className="form-control" id="kits" >
+                                    <option value={data?.text}>{data?.text}</option>
+                                    <option value={data?.text2}>{data?.text2}</option>
+                                  </select>
                                 </div>
-                                {data.href2 && <div className='d-flex flex-column justify-content-center align-items-center ms-2'>
-                                    <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(false)}> Download</button>
-                                    <p>({data.text2})</p>
-                                </div>}                              
+                              }
+                              <div className='d-flex justify-content-end mt-3'>
+                                <button type="submit" className='btn text-white btn_style1' > Download</button>                           
                               </div>
                             </form>
                           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
@@ -504,7 +503,7 @@ const [selectedHref,setSelectedHref]= useState(null)
                       <div className="modal-body p-4">
                       
                           <form onSubmit={(e) => {
-                            handleDownload(e,data.href);
+                            handleDownload(e,data.name);
                             }}>
                             <div className='row'>
                               <div className="col-md-6 mb-10">
