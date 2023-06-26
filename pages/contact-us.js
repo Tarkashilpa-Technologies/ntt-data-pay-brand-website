@@ -83,8 +83,15 @@ export default function Contact() {
      
 
       </div> 
-      
+                  
+      <div className="col-md-6">
+      <p className="smll-ttle">Integration Assistance </p>
+      <Link href="mailto:ndps.integrationgrp@nttdata.com&subject=Integration Assistance">
+      <a>NDPS.integrationgrp@nttdata.com</a>
+      </Link>
+     
 
+      </div> 
 
      </div>
 

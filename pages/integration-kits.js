@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from "next/link";
 import Script from "next/script";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 //import styles from "../styles/Home.module.scss";
 import { Navigation,Pagination,Autoplay} from "swiper";
 import { Swiper, SwiperSlide} from 'swiper/react';
@@ -10,11 +10,187 @@ import 'swiper/css';
 import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/autoplay";
+import { useSSRSafeId } from '@react-aria/ssr';
 //import {Tabs, Tab, Nav} from "bootstrap";  
 
 
 export default function product1() {
+const [selectedHref,setSelectedHref]= useState(null)
+  const WebsiteData = [
+    {
+      id: 'ASPNET',
+      name: 'ASP.NET',
+      url: "/images/asp.net.png",
+      href: "/webkits/Website/ASP.NET FORWARD SLASH C SHARP.zip",
+      width: 50,
+    },
+    {
+      id: 'CAKEPHP',
+      name: 'CAKE PHP',
+      url: "/images/cake.png",
+      href: "/webkits/Website/CAKE PHP.zip",
+    },
+    {
+      id: 'CODEIGNITER',
+      name: 'CODE IGNITER',
+      url: "/images/codeigniter.png",
+      href: "/webkits/Website/CODE IGNITER 3.zip",
+    },
+    {
+      id: 'COREPHP',
+      name: 'CORE PHP',
+      url: "/images/php.png",
+      href: "/webkits/Website/CORE PHP.zip",
+      width: 50,
+    },
+    {
+      id: 'DJANGO',
+      name: 'DJANGO',
+      url: "/images/django.png",
+      href: "/webkits/Website/DJANGO.zip",
+      width: 60,
+    },
+    {
+      id: 'ANGULARLARAVEL',
+      name: 'FRONTEND ANGULAR BACKEND LARAVEL',
+      url: "/images/angular.png",
+      href: "/webkits/Website/FRONTEND ANGULAR BACKEND LARAVEL.zip",
+      width: 35,
+    },
+    {
+      id: 'JAVA',
+      name: 'JAVA',
+      url: "/images/java.png",
+      href: "/webkits/Website/JAVA.zip",
+      width: 35,
+    },
+    {
+      id: 'LARAVEL',
+      name: 'LARAVEL',
+      url: "/images/laravel.png",
+      href: "/webkits/Website/LARAVEL.zip",
+      width: 45,
+      
+    },
+    {
+      id: 'NODEJS',
+      name: 'NODE JS',
+      url: "/images/nodejs.png",
+      href: "/webkits/Website/NODE JS.zip",
+      width: 35,
+    },
+    {
+      id: 'PYTHON',
+      name: 'PYTHON 3',
+      url: "/images/python.png",
+      href: "/webkits/Website/PYTHON 3.zip",
+      width: 40,
+      
+    },
+    {
+      id: 'RUBY',
+      name: 'RUBY ON RAIL',
+      url: "/images/whmcs.png",
+      href: "/webkits/Website/RUBY ON RAIL.zip",
+      width: 60,
+    },
+  ];
 
+  const EcomData = [
+    {
+      id: 'OPENCART',
+      name: 'OPENCART',
+      url: "/images/opencart.png",
+      href: "/webkits/E-Commerce/OPENCART 3.0.3.8.zip",
+      width: true,
+    },
+    {
+      id: 'PRESTASHOP',
+      name: 'PRESTASHOP',
+      url: "/images/presta.png",
+      href: "/webkits/E-Commerce/PRESTASHOP 1.7.8.1.zip",
+    },
+    {
+      id: 'WORDPRESS',
+      name: 'WORDPRESS WOO COMMERCE',
+      url: "/images/woo.png",
+      href: "/webkits/E-Commerce/WORDPRESS WOO COMMERCE.zip",
+      width: true,
+    },
+  ];
+
+  const MobileData = [
+    {
+      id: 'ANDROID',
+      name: 'ANDROID',
+      url: "/images/android.png",
+      href: "/webkits/Mobile App/ANDROID/NATIVE.zip",
+    },
+    {
+      id: 'REACTNATIVE',
+      name: 'REACT NATIVE',
+      url: "/images/reactnative.png",
+      href: "/webkits/Mobile App/ANDROID/REACT NATIVE.zip",
+    },
+    {
+      id: 'FLUTTER',
+      name: 'FLUTTER',
+      url: "/images/flutter.png",
+      href: "/webkits/Mobile App/FLUTTER/INAPP WEBVIEW.zip",
+      href2: "/webkits/Mobile App/FLUTTER/WITH WEBVIEW.zip",
+      text: 'IN-APP WEBVIEW',
+      text2: 'WITH WEBVIEW',
+
+    },
+    {
+      id: 'IOS',
+      name: 'IOS',
+      url: "/images/ios.png",
+      href: "/webkits/Mobile App/IOS/NATIVE MULTI PRODUCT.zip",
+      href2: "/webkits/Mobile App/IOS/NATIVE SINGLE PRODUCT.zip",
+      text: 'NATIVE MULTI PRODUCT',
+      text2: 'WITH WEBVIEW',
+    },
+  ];
+
+
+  const handleDownload =  async (event,url) => {
+    console.log(url);
+      // Stop the form from submitting and refreshing the page.
+    event.preventDefault();
+      // Get data from the form.
+       let new_contact = {
+        first_name: event.target.first_name.value,
+        last_name: event.target.last_name.value,
+        mobile: event.target.mobile.value,
+        email: event.target.email.value,
+        products_required: 'Integration Assistance',
+      
+    }
+    
+     let email=event.target.email.value;
+      mycontact(new_contact,email);
+     
+       await fetch('/api/formemail', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(new_contact)
+      }).then((res) => {
+        if (res.status === 200) {  
+          console.log('download the file');
+          download(url);
+        }
+      }) 
+  }
+  function download(url) {
+    const URL = url;
+    if (typeof window !== "undefined"){
+      window.location.href = URL
+    }
+}
   return (
     <div className="product-payment pd-lr-15">
       <Head>
@@ -87,6 +263,35 @@ export default function product1() {
     }
     ` }}
   /> 
+   <script strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `function createFcn(nm){
+                (window.freshsales)[nm]=function(){
+                (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; 
+                } (function(url,appToken,formCapture){
+                window.freshsales=window.freshsales||[];
+                if(window.freshsales.length==0){
+                list='init identify trackPageView trackEvent set'.split(' ');
+                for(var i=0;i<list.length;i++){var nm=list[i];
+                createFcn(nm);}
+                var t=document.createElement('script');
+                t.async=1;
+                t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';
+                var ft=document.getElementsByTagName('script')[0];
+                ft.parentNode.insertBefore(t,ft);
+                freshsales.init("https://nttdatapay.myfreshworks.com/crm/sales","2e01c8cd9f52aab8ebc4e821232d2e960007634e4e705a24e233bf3cd821cd82",true);}})();
+                function mycontact(new_contact,email){
+                  const identifier = email;
+                  freshsales.identify(identifier, new_contact);
+                  document.getElementById("first_name").value = "";
+                  document.getElementById("last_name").value = "";
+                  document.getElementById("mobile").value = "";
+                  document.getElementById("email").value = "";
+                  document.getElementById("tymessage").style.display = 'inline-block'; 
+                  }
+              `,
+            }}
+          />
       </Head>
 
  
@@ -106,7 +311,7 @@ export default function product1() {
 <div className="container_1300 d-block">
   <ol className="breadcrumb">
   <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
-    <li className="breadcrumb-item"><a href="#">Developers</a></li>
+    <li className="breadcrumb-item"><a href="/developer-guide">Developers</a></li>
     <li className="breadcrumb-item active" aria-current="page">Integration Kits</li>
   </ol>
 </div>
@@ -134,302 +339,238 @@ export default function product1() {
   </li>
 </ul>
 <div className="tab-content" id="pills-tabContent">
+  {/* Website section starts */}
   <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div className="spg-cvr">
+      <div className='row'>
+              {WebsiteData?.map((data,index) => {
+                return (
+                  <>
+                    <div className="col-md-3 col-6" key={index}>
+                    <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                      <a className="spg-box">
+                        <span><img src={data.url} alt="" width={data.width ? data.width: 30} className="img-fluid" /></span>
+                          <p>{data?.name}</p>
+                      </a>
+                    </a>
+                    </div>
+                    <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered modal-lg">
+                      <div className="modal-content">
+                        <div className="modal-header p-4">
+                          <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
+                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body p-4">
+                        
+                            <form onSubmit={(e) => {
+                              handleDownload(e,data.href);
+                              }}>
+                              <div className='row'>
+                                <div className="col-md-6 mb-10">
+                                <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
+                                <input type="text" className="form-control" required id="first_name" />  
+                                </div>  
+                                <div className="col-md-6 mb-10">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                                <input type="text" className="form-control" required id="last_name" />    
+                                </div>  
+                              </div>
 
-<div className="spg-cvr">
- <div className="row">
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/PHP.zip">
-<a  className="spg-box">
-<i className="fab fa-php fa-3x text-grad"></i>
-<p>PHP</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<i className="fab fa-joomla fa-3x text-grad"></i>
-<p>JOOMLA</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<i className="fab fa-drupal fa-3x text-grad"></i>
-<p>DRUPAL</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/Java.zip">
-<a  className="spg-box">
-<i className="fab fa-java fa-3x text-grad"></i>
-<p>JAVA</p>
-</a>
-</Link>  
-</div>  
-
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/NodeJS.zip">
-<a  className="spg-box">
-<i className="fab fa-node  fa-3x text-grad"></i>
-<p>NODE JS</p>
-</a>
-</Link>     
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<i className="fab fa-angular  fa-3x text-grad"></i>
-<p>ANGULAR JS</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/WHMCS AES Kit.zip">
-<a  className="spg-box">
-<span><img src="/images/whmcs.png" alt="" className="img-fluid" /></span>
-<p>WHMCS</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/Odoo_13.zip">
-<a  className="spg-box">
-<span><img src="/images/odoo.png" alt="" className="img-fluid" /></span>
-<p>ODOO 11</p>
-</a>
-</Link>  
-</div>  
+                            <div className="col-md-12 mb-10">
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
+                            <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+                            </div>  
 
 
+                            <div className="col-md-12 mb-10">
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                            <input type="email" className="form-control" required id="email" />    
+                            </div> 
 
-
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<span><img src="/images/chronoform.png" alt="" className="img-fluid" /></span>
-<p>CHRONOFORM</p>
-</a>
-</Link>     
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/Codeigniter_3.zip">
-<a  className="spg-box">
-<span><img src="/images/codeigniter.png" width={30} alt="" className="img-fluid" /></span>
-<p>CODE IGNITER</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<span><img src="/images/cake.png" alt="" width={30} className="img-fluid" /></span>
-<p>CAKE PHP</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/Python.zip">
-<a  className="spg-box">
-<i className="fab fa-python  fa-3x text-grad"></i>
-<p>CORE PYTHON</p>
-</a>
-</Link>  
-</div>  
-
-
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<span><img src="/images/vbnet.png" width={50} alt="" className="img-fluid" /></span>
-<p>VB .NET</p>
-</a>
-</Link>     
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<i className="fab fa-microsoft fa-3x text-grad"></i>
-<p>ASP.NET</p>
-</a>
-</Link>  
-</div>
-<div className="col-md-3 col-6">
-<Link href="/webkits/C.zip">
-<a  className="spg-box">
-<span><img src="/images/csharp.png" alt="" width={35} className="img-fluid" /></span>
-<p>C SHARP</p>
-</a>
-</Link>  
-</div>
-
-
-
-</div>   
-</div>
-
-  </div>
-  <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-  <div className="spg-cvr">
- <div className="row">
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Android_Encrytion_Kit.zip">
-<a  className="spg-box">
-<i className="fab fa-android fa-3x text-grad"></i>
-<p>ANDROID</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<i className="fab fa-apple fa-3x text-grad"></i>
-<p>SWIFT</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/C_dot_net.zip">
-<a  className="spg-box">
-<i className="fab fa-apple fa-3x text-grad"></i>
-<p>OBJECTIVE C</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<span><img src="/images/xamrin.png" alt="" width={35} className="img-fluid" /></span>
-<p>XAMRIN</p>
-</a>
-</Link>     
-</div>
-
-
-</div>
-</div>
-    
-  </div>
-  <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-
-  <div className="spg-cvr">
- <div className="row">
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Magento.zip">
-<a  className="spg-box">
-<i className="fab fa-magento fa-3x text-grad"></i>
-<p>MAGENTO 2.x</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Magento.zip">
-<a  className="spg-box">
-<i className="fab fa-magento fa-3x text-grad"></i>
-<p>MAGENTO 1.x</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Opencart.zip">
-<a  className="spg-box">
-<i className="fab fa-opencart fa-3x text-grad"></i>
-<p>OPENCART 3.x.x</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Opencart_2.3.zip">
-<a  className="spg-box">
-<i className="fab fa-opencart fa-3x text-grad"></i>
-<p>OPENCART 2.x.x</p>
-</a>
-</Link>     
-</div>
-
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/WordPress.zip">
-<a  className="spg-box">
-<span><img src="/images/woo.png" alt="" width={35} className="img-fluid" /></span>
-<p>WOO COMMERCE</p>
-</a>
-</Link>     
-</div>
-
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/Prestashop_1-7.zip">
-<a  className="spg-box">
-<span><img src="/images/presta.png" alt="" width={35} className="img-fluid" /></span>
-<p>PRESTASHOP</p>
-</a>
-</Link>     
-</div>
-
-<div className="col-md-3 col-6">
-<Link href="/webkits/">
-<a  className="spg-box">
-<span><img src="/images/jigoshop.png" alt="" width={35} className="img-fluid" /></span>
-<p>JIGOSHOP</p>
-</a>
-</Link>     
-</div>
-
-
-</div>
-</div>
-
-
-  </div>
-</div>
-
-
-
-</div>
-</div>
-
-
-
-
-
-<div className="wch-wrp">
- <div className="container_1300 d-block">
-<div className="row">
-<div className="col-md-7">
- <div className="wch-lhs">
-<h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-<a href="" className="btn_style1">Contact Us</a>  
-</div>   
-</div>
-<div className="col-md-5">
-<div className="wch-rhs text-end">
-<img src="/images/integration-guides-btm-pic.svg" alt="" className="img-fluid" />  
-</div>   
- </div>    
-</div>     
-</div>   
-</div>
-
- 
+                            {/* <div className="col-md-12 mb-10">
+                            <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
+                            </div> */}
+                              <div className='d-flex justify-content-end mt-3'>
+                                {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                              <button type="submit" className='btn text-white btn_style1 '> Download</button>
+                              </div>
+                          </form>
+                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </>
+                );
+              })}
+        </div>
+      </div>
     </div>
+  
+  {/* Website section ends */}        
+
+
+{/* Mobile App section starts */}
+  <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <div className="spg-cvr">
+          <div className="row">
+              {MobileData?.map((data,index) => {
+                return (
+                  <>
+                    <div className="col-md-3 col-6" key={index}>
+                    <a className="spg-box">
+                      <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                          <span><img src={data.url} alt="" width={35} className="img-fluid" /></span>
+                            <p>{data?.name}</p>
+                        </a>
+                      </a>
+                    </div>
+                    <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
+                      <div className="modal-dialog modal-dialog-centered modal-lg">
+                        <div className="modal-content">
+                          <div className="modal-header p-4">
+                            <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div className="modal-body p-4">
+                            <form onSubmit={(e) => {
+                                handleDownload(e,selectedHref ? data.href : data.href2);
+                                }}>
+                                <div className='row'>
+                                  <div className="col-md-6 mb-10">
+                                    <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
+                                    <input type="text" className="form-control" required id="first_name" />  
+                                  </div>  
+                                  <div className="col-md-6 mb-10">
+                                    <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                                    <input type="text" className="form-control" required id="last_name" />    
+                                  </div>  
+                                </div>
+                                <div className="col-md-12 mb-10">
+                                  <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
+                                  <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+                                </div>  
+                                <div className="col-md-12 mb-10">
+                                  <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                                  <input type="email" className="form-control" required id="email" />    
+                                </div> 
+                              <div className='d-flex justify-content-end mt-3'>
+                                <div className='d-flex flex-column justify-content-center align-items-center'>
+                                  <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(true)}> Download</button>
+                                  {data.href2 && <p>({data.text})</p>}
+                                </div>
+                                {data.href2 && <div className='d-flex flex-column justify-content-center align-items-center ms-2'>
+                                    <button type="submit" className='btn text-white btn_style1' onClick={() => setSelectedHref(false)}> Download</button>
+                                    <p>({data.text2})</p>
+                                </div>}                              
+                              </div>
+                            </form>
+                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+        </div>
+      </div>
+  </div>
+{/* Mobile App  section ends*/}              
+
+  {/* Ecom section starts */}
+  <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    <div className="spg-cvr">
+        <div className="row justify-content-center">
+            {EcomData?.map((data,index) => {
+              return (
+                <>
+                  <div className="col-md-3 col-6" key={index}>
+                    <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                      <a className="spg-box">
+                        <span><img src={data.url} alt="" width={data.width ? 50: 30} className="img-fluid" /></span>
+                          <p>{data?.name}</p>
+                      </a>
+                    </a>
+                  </div>
+                  <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-dialog-centered modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header p-4">
+                        <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body p-4">
+                      
+                          <form onSubmit={(e) => {
+                            handleDownload(e,data.href);
+                            }}>
+                            <div className='row'>
+                              <div className="col-md-6 mb-10">
+                              <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
+                              <input type="text" className="form-control" required id="first_name" />  
+                              </div>  
+                              <div className="col-md-6 mb-10">
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                              <input type="text" className="form-control" required id="last_name" />    
+                              </div>  
+                            </div>
+
+                          <div className="col-md-12 mb-10">
+                          <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
+                          <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+                          </div>  
+
+
+                          <div className="col-md-12 mb-10">
+                          <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                          <input type="email" className="form-control" required id="email" />    
+                          </div> 
+
+                          {/* <div className="col-md-12 mb-10">
+                          <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
+                          </div> */}
+                            <div className='d-flex justify-content-end mt-3'>
+                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                            <button type="submit" className='btn text-white btn_style1 '> Download</button>
+                            </div>
+                        </form>
+                        <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </>
+              );
+            })}
+      </div>
+      </div>
+    </div>
+  </div>
+{/* Ecom section ends*/}
+</div>
+</div>
+
+  <div className="wch-wrp">
+    <div className="container_1300 d-block">
+      <div className="row">
+        <div className="col-md-7">
+          <div className="wch-lhs">
+            <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
+            <a href="/contact-us" className="btn_style1">Contact Us</a>  
+          </div>   
+          </div>
+          <div className="col-md-5">
+          <div className="wch-rhs text-end">
+            <img src="/images/integration-guides-btm-pic.svg" alt="" className="img-fluid" />  
+          </div>   
+        </div>    
+      </div>     
+    </div>   
+  </div>
+
+</div>
   )
 }
+
