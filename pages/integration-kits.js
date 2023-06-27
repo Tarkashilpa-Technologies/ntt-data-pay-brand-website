@@ -157,7 +157,8 @@ export default function product1() {
   const handleDownload =  async (event,data) => {
       // Stop the form from submitting and refreshing the page.
     event.preventDefault();
-      // Get data from the form.
+    // Get data from the form.
+    
     let new_contact = {
       first_name: event.target.first_name.value,
       last_name: event.target.last_name.value,
@@ -182,20 +183,31 @@ export default function product1() {
         if (res.status === 200) {  
           console.log('download the file');
           download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
-          // var modal = Modal.getInstance(document.getElementById(data?.id));
-          setTimeout(() => {
-            location.reload();
-        }, 2000)
+          var modal = Modal.getInstance(document.getElementById(data?.id));
+          modal.hide();
+          let id = document.getElementById(data?.id);
+          id.close()
+        //   setTimeout(() => {
+        //     location.reload();
+        // }, 2000)
         }
       }) 
+      return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
   }
   function download(url) {
     const URL = url;
     if (typeof window !== "undefined"){
       window.location.href = URL
     }
-}
-  return (
+  }
+  
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  useEffect(() => {
+   setIsBrowser(typeof window !== "undefined");
+  }, []);
+
+  return isBrowser && (
     <div className="product-payment pd-lr-15">
       <Head>
         <title>Best Online Payment Gateway in India | Online Payment Aggregators and Service provider in India</title>
@@ -390,7 +402,7 @@ export default function product1() {
                             </div> */}
                               <div className='d-flex justify-content-end mt-3'>
                                 {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                              <button type="submit" className='btn text-white btn_style1 '> Download</button>
+                              <button type="submit" className='btn text-white btn_style1'> Download</button>
                               </div>
                           </form>
                           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
