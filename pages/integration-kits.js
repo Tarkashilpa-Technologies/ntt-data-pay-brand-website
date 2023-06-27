@@ -12,7 +12,6 @@ import 'swiper/css/pagination';
 import "swiper/css/autoplay";
 import { useSSRSafeId } from '@react-aria/ssr';
 //import {Tabs, Tab, Nav} from "bootstrap";  
-import { Modal } from 'bootstrap';
 
 
 export default function product1() {
@@ -183,10 +182,10 @@ export default function product1() {
         if (res.status === 200) {  
           console.log('download the file');
           download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
-          var modal = Modal.getInstance(document.getElementById(data?.id));
-          modal.hide();
-          let id = document.getElementById(data?.id);
-          id.close()
+          // var modal = Modal.getInstance(document.getElementById(data?.id));
+          // modal.hide();
+          // let id = document.getElementById(data?.id);
+          // id.close()
         //   setTimeout(() => {
         //     location.reload();
         // }, 2000)
@@ -201,13 +200,8 @@ export default function product1() {
     }
   }
   
-  const [isBrowser, setIsBrowser] = useState(false);
 
-  useEffect(() => {
-   setIsBrowser(typeof window !== "undefined");
-  }, []);
-
-  return isBrowser && (
+  return (
     <div className="product-payment pd-lr-15">
       <Head>
         <title>Best Online Payment Gateway in India | Online Payment Aggregators and Service provider in India</title>
@@ -515,7 +509,7 @@ export default function product1() {
                       <div className="modal-body p-4">
                       
                           <form onSubmit={(e) => {
-                            handleDownload(e,data.name);
+                            handleDownload(e,data);
                             }}>
                             <div className='row'>
                               <div className="col-md-6 mb-10">
