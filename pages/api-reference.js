@@ -93,14 +93,10 @@ export default function product1() {
     <div className="bnr-home-wrp integration-guides-bnr">
     <div className="container_1300">
      <div className="bnr-caption">
-       <h2>Hassle free guides for a quick and seamless Payment Gateway Integration</h2>
+       <h2>APIs to automate your every feature, backed with comprehensive documentation and round the clock support with NTT DATA Payment Services.</h2>
      </div>
      </div>
     </div>
-
-  
-
-
 
 <nav className='bread-wrp minus-top-40' aria-label="breadcrumb">
 <div className="container_1300 d-block">

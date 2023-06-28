@@ -10,11 +10,19 @@ import 'swiper/css';
 import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/autoplay";
-import { useSSRSafeId } from '@react-aria/ssr';
 //import {Tabs, Tab, Nav} from "bootstrap";  
+
+import { clearLocalStorage, getLocalStorage, setLocalStorage } from './utils/storage';
+import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPasswordValidate, onFormFeildsChange, validateField } from './utils/formValidator';
+import { EMAIL, PHONE, REQUIRED } from './utils/messages';
 
 
 export default function product1() {
+  const [modalDismiss, setModalDismiss] = useState(null)
+  const [firstName, setFirstName] = useState(getLocalStorage('first_name') ? getLocalStorage('first_name') : '');
+  const [lastName, setLastName] = useState(getLocalStorage('last_name') ? getLocalStorage('last_name') : '');
+  const [phoneNumber, setPhoneNumber] = useState(getLocalStorage('Phone_no') ? getLocalStorage('Phone_no') : '');
+  const [email, setEmail] = useState(getLocalStorage('email') ? getLocalStorage('email') : '');
   const WebsiteData = [
     {
       id: 'ASPNET',
@@ -153,25 +161,109 @@ export default function product1() {
   ];
 
 
+  const [formData, setFormData] = useState({
+    Firstname: {
+      value: firstName,
+      error: '',
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
+    Lastname: {
+      value: lastName,
+      error: '',
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
+    Email: {
+      value: email,
+      error: '',
+      check: [EMAIL, REQUIRED],
+      shouldShowError: false,
+    },
+    MobilePhone: {
+      value: phoneNumber,
+      error: '',
+      check: [PHONE, REQUIRED],
+      shouldShowError: false,
+    },
+  });
+
+  useEffect(() => {
+console.log(formData,"formdata")
+  },[formData])
+
   const handleDownload =  async (event,data) => {
+    // Stop the form from submitting and refreshing the page.
+  event.preventDefault();
+  // Get data from the form.
+  
+  let new_contact = {
+    first_name: event.target.first_name.value,
+    last_name: event.target.last_name.value,
+    mobile: event.target.mobile.value,
+    email: event.target.email.value,
+    products_required: "Payment Gateway",
+    subject: data?.name + " Integration Kit Downloded",
+    mail: 'ndps.integrationgrp@nttdata.com',
+  }
+   
+     await fetch('/api/formemail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_contact)
+    }).then((res) => {
+      if (res.status === 200) {  
+        console.log('download the file');
+        download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
+        // var modal = Modal.getInstance(document.getElementById(data?.id));
+        // modal.hide();
+        // let id = document.getElementById(data?.id);
+        // id.close()
+      //   setTimeout(() => {
+      //     location.reload();
+      // }, 2000)
+      }
+    }) 
+    return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+}
+
+
+
+  const handleDownload2 =  async (event,data) => {
       // Stop the form from submitting and refreshing the page.
     event.preventDefault();
     // Get data from the form.
     
     let new_contact = {
-      first_name: event.target.first_name.value,
-      last_name: event.target.last_name.value,
-      mobile: event.target.mobile.value,
-      email: event.target.email.value,
+      first_name: formData.Firstname.value,
+      last_name: formData.Lastname.value,
+      mobile: formData.MobilePhone.value,
+      email: formData.Email.value,
       products_required: 'Integration Assistance',
       subject: data?.name + " Integration Kit Downloded",
       mail: 'ndps.integrationgrp@nttdata.com',
     }
-    
-     let email=event.target.email.value;
-      mycontact(new_contact,email);
-     
-       await fetch('/api/formemail', {
+
+    let isValid = true;
+    Object.keys(formData)?.forEach((key) => {
+      enableShouldErrorShow({ target: { name: key } }, formData, setFormData);
+      if (
+        !validateField(key, formData, setFormData) 
+      ) {
+        isValid = false;
+      }
+    });
+
+    if (isValid) {
+      setLocalStorage('first_name', formData.Firstname.value);
+      setLocalStorage('last_name', formData.Lastname.value);
+      setLocalStorage('Phone_no', formData.MobilePhone.value);
+      setLocalStorage('email', formData.Email.value);
+
+      await fetch('/api/formemail', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -179,18 +271,19 @@ export default function product1() {
         },
         body: JSON.stringify(new_contact)
       }).then((res) => {
-        if (res.status === 200) {  
+        if (res.status === 200) {
           console.log('download the file');
           download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
-          // var modal = Modal.getInstance(document.getElementById(data?.id));
-          // modal.hide();
+          // var modal = Modal.(`#${data.id}`);
+         
           // let id = document.getElementById(data?.id);
           // id.close()
-        //   setTimeout(() => {
-        //     location.reload();
-        // }, 2000)
+          // setTimeout(() => {
+          //   modal.hide();
+          // }, 500)
         }
-      }) 
+      })
+    }
       return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
   }
   function download(url) {
@@ -199,9 +292,25 @@ export default function product1() {
       window.location.href = URL
     }
   }
-  
+  // useEffect(() => {
+  //   localStorage.setItem("lastname", "Smith");
+  // }, [])
 
-  return (
+  // useEffect(() => {
+  //   console.log(localStorage.getItem("lastname"));
+  // },[localStorage])
+
+  const [isBrowser, setIsBrowser] = useState(false);
+useEffect(() => {
+    setIsBrowser(typeof window !== "undefined");
+}, []);
+  
+  // useEffect(() => {
+  //   clearLocalStorage();
+  // }, [])
+  console.log(getLocalStorage('first_name'))
+
+  return isBrowser && (
     <div className="product-payment pd-lr-15">
       <Head>
         <title>Best Online Payment Gateway in India | Online Payment Aggregators and Service provider in India</title>
@@ -273,35 +382,6 @@ export default function product1() {
     }
     ` }}
   /> 
-   <script strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `function createFcn(nm){
-                (window.freshsales)[nm]=function(){
-                (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; 
-                } (function(url,appToken,formCapture){
-                window.freshsales=window.freshsales||[];
-                if(window.freshsales.length==0){
-                list='init identify trackPageView trackEvent set'.split(' ');
-                for(var i=0;i<list.length;i++){var nm=list[i];
-                createFcn(nm);}
-                var t=document.createElement('script');
-                t.async=1;
-                t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';
-                var ft=document.getElementsByTagName('script')[0];
-                ft.parentNode.insertBefore(t,ft);
-                freshsales.init("https://nttdatapay.myfreshworks.com/crm/sales","2e01c8cd9f52aab8ebc4e821232d2e960007634e4e705a24e233bf3cd821cd82",true);}})();
-                function mycontact(new_contact,email){
-                  const identifier = email;
-                  freshsales.identify(identifier, new_contact);
-                  document.getElementById("first_name").value = "";
-                  document.getElementById("last_name").value = "";
-                  document.getElementById("mobile").value = "";
-                  document.getElementById("email").value = "";
-                  document.getElementById("tymessage").style.display = 'inline-block'; 
-                  }
-              `,
-            }}
-          />
       </Head>
 
  
@@ -365,30 +445,140 @@ export default function product1() {
                           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body p-4">
-                        
-                            <form onSubmit={(e) => {
-                              handleDownload(e,data);
-                              }}>
+                            <form >
                               <div className='row'>
                                 <div className="col-md-6 mb-10">
                                 <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
-                                <input type="text" className="form-control" required id="first_name" />  
+                                <input autoFocus={true}
+                                    onPaste={(e) => {
+                                      e.preventDefault();
+                                    }}
+                                  
+                                    type="text"
+                                    onBlur={($event) => {
+                                      enableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    onFocus={($event) => {
+                                      disableShouldErrorShow($event, formData, setFormData);
+                                   }}
+                                    className={
+                                      (formData?.Firstname?.error &&
+                                      formData?.Firstname?.shouldShowError
+                                        ? "border border-danger"
+                                        : "") + " form-control"
+                                    }
+                                    name="Firstname"
+                                   value={formData.Firstname.value}
+                                    onChange={($event) => {
+                                      onFormFeildsChange($event, formData, setFormData);
+                                    }}
+                                  />
+                                  {formData.Firstname.error && formData.Firstname.shouldShowError && (
+                                    <div className="text-danger mt-1">
+                                      {formData.Firstname.error}
+                                    </div>
+                                  )}
                                 </div>  
                                 <div className="col-md-6 mb-10">
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input type="text" className="form-control" required id="last_name" />    
+                                <input autoFocus={true}
+                                    onPaste={(e) => {
+                                      e.preventDefault();
+                                    }}
+                                    
+                                    type="text"
+                                    onBlur={($event) => {
+                                      enableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    onFocus={($event) => {
+                                      disableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    className={
+                                      (formData?.Lastname?.error &&
+                                      formData?.Lastname?.shouldShowError
+                                        ? "border border-danger"
+                                        : "") + " form-control"
+                                    }
+                                    name="Lastname"
+                                    value={formData.Lastname.value}
+                                    onChange={($event) => {
+                                      onFormFeildsChange($event, formData, setFormData);
+                                      }
+                                    }
+                                  />
+                                  {formData.Lastname.error && formData.Lastname.shouldShowError && (
+                                    <div className="text-danger mt-1">
+                                      {formData.Lastname.error}
+                                    </div>
+                                  )} 
                                 </div>  
                               </div>
 
                             <div className="col-md-12 mb-10">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                            <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+                            <input autoFocus={true}
+                                    onPaste={(e) => {
+                                      e.preventDefault();
+                                    }}
+                                   
+                                    type="text"
+                                    onBlur={($event) => {
+                                      enableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    onFocus={($event) => {
+                                      disableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    className={
+                                      (formData?.MobilePhone?.error &&
+                                      formData?.MobilePhone?.shouldShowError
+                                        ? "border border-danger"
+                                        : "") + " form-control"
+                                    }
+                                    name="MobilePhone"
+                                   value={formData.MobilePhone.value}
+                                  onChange={($event) => {
+                                      onFormFeildsChange($event, formData, setFormData);
+                                    }}
+                                  />
+                                  {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
+                                    <div className="text-danger mt-1">
+                                      {formData.MobilePhone.error}
+                                    </div>
+                                  )}  
                             </div>  
 
 
                             <div className="col-md-12 mb-10">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                            <input type="email" className="form-control" required id="email" />    
+                            <input autoFocus={true}
+                                    onPaste={(e) => {
+                                      e.preventDefault();
+                                    }}
+                                    
+                                    type="text"
+                                    onBlur={($event) => {
+                                      enableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    onFocus={($event) => {
+                                      disableShouldErrorShow($event, formData, setFormData);
+                                    }}
+                                    className={
+                                      (formData?.Email?.error &&
+                                      formData?.Email?.shouldShowError
+                                        ? "border border-danger"
+                                        : "") + " form-control"
+                                    }
+                                    name="Email"
+                                    value={formData.Email.value}
+                                  onChange={($event) => {
+                                      onFormFeildsChange($event, formData, setFormData);
+                                    }}
+                                  />
+                                  {formData.Email.error && formData.Email.shouldShowError && (
+                                    <div className="text-danger mt-1">
+                                      {formData.Email.error}
+                                    </div>
+                                  )}     
                             </div> 
 
                             {/* <div className="col-md-12 mb-10">
@@ -396,7 +586,11 @@ export default function product1() {
                             </div> */}
                               <div className='d-flex justify-content-end mt-3'>
                                 {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                              <button type="submit" className='btn text-white btn_style1'> Download</button>
+                                <button type="submit" className='btn text-white btn_style1' 
+                                  onClick={(e) => {
+                                  handleDownload2(e, data);
+                                  setModalDismiss(data.id)
+                                  }}> Download</button>
                               </div>
                           </form>
                           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   

@@ -40,7 +40,7 @@ export default function (req, res) {
 
     const mailData = {
       from: 'noreply@atomtech.in',
-      to: req.body.mail ? req.body.mail : 'web-leads@atomtech.in',
+      to: 'nikita.owalekar@catseyetech.in',
       //cc:'abhijeet@digitalvibe.in',
       subject: req.body.subject ? req.body.subject : 'NTTDATA - Sign Up User Details',
       html: '<table style="border-collapse: collapse;">'+
