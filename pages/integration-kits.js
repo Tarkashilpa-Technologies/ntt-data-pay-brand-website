@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/autoplay";
 //import {Tabs, Tab, Nav} from "bootstrap";  
+import { Modal, Button } from 'react-bootstrap'
 
 import { clearLocalStorage, getLocalStorage, setLocalStorage } from './utils/storage';
 import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPasswordValidate, onFormFeildsChange, validateField } from './utils/formValidator';
@@ -18,21 +19,25 @@ import { EMAIL, PHONE, REQUIRED } from './utils/messages';
 
 export default function product1() {
   const [modalDismiss, setModalDismiss] = useState(null)
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState(getLocalStorage('first_name') ? getLocalStorage('first_name') :'');
+  const [lastName, setLastName] = useState(getLocalStorage('last_name') ? getLocalStorage('last_name') : '');
+  const [phoneNumber, setPhoneNumber] = useState(getLocalStorage('Phone_no') ? getLocalStorage('Phone_no'):'');
+  const [email, setEmail] = useState(getLocalStorage('email') ? getLocalStorage('email') :'');
+  const [isShow, setIsShow] = React.useState(false);
+  const [isShowMobileModal, setIsShowMobileModal] = React.useState(false);
+  const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
+  const [modalOpen,setModalOpen] = useState(null)
   
 
-  useEffect(() => {
-    // Perform localStorage action
-    if (typeof window !== 'undefined')  {
-      setFirstName(getLocalStorage('first_name'));
-      setLastName(getLocalStorage('last_name'));
-      setPhoneNumber(getLocalStorage('Phone_no'));
-      setEmail(getLocalStorage('email'));
-    }
-  }, [])
+  // useEffect(() => {
+  //   // Perform localStorage action
+  //   if (typeof window !== 'undefined')  {
+  //     setFirstName(getLocalStorage('first_name'));
+  //     setLastName(getLocalStorage('last_name'));
+  //     setPhoneNumber(getLocalStorage('Phone_no'));
+  //     setEmail(getLocalStorage('email'));
+  //   }
+  // }, [])
 
   const WebsiteData = [
     {
@@ -246,9 +251,9 @@ export default function product1() {
         if (res.status === 200) {
           console.log('download the file');
           download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
-          // var myModalEl = document.getElementById(data.id);
-          // var modal = bootstrap.Modal.getInstance(myModalEl)
-          // modal.hide();
+          setIsShow(false);
+          setIsShowMobileModal(false);
+          setIsShowEcomModal(false)
         }
       })
     }
@@ -398,174 +403,177 @@ useEffect(() => {
                 return (
                   <>
                     <div className="col-md-3 col-6" key={index}>
-                    <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                      <p onClick={() => {
+                        setIsShow(true);
+                        setModalOpen(data.id);
+                      }
+                    }>
                       <a className="spg-box">
                         <span><img src={data.url} alt="" width={data.width ? data.width: 30} className="img-fluid" /></span>
                           <p>{data?.name}</p>
                       </a>
-                    </a>
-                    </div>
-                    <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered modal-lg">
-                      <div className="modal-content">
-                        <div className="modal-header p-4">
-                          <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
-                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body p-4">
-                            <form >
-                              <div className='row'>
-                                <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
+                    </p>
+                    </div>  
+                    {modalOpen == data.id && isShow &&
+                      <Modal show={isShow} className={'modal-lg'} backdrop="static" centered onHide={() => setIsShow(false)}>
+                        <Modal.Header closeButton className='p-4'>
+                          <Modal.Title>
+                            <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className='p-4'>
+                          <form >
+                            <div className='row'>
+                              <div className="col-md-6 mb-10">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                                 <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                                  onPaste={(e) => {
+                                    e.preventDefault();
+                                  }}
                                   
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                   }}
-                                    className={
-                                      (formData?.Firstname?.error &&
+                                  type="text"
+                                  onBlur={($event) => {
+                                    enableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  onFocus={($event) => {
+                                    disableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  className={
+                                    (formData?.Firstname?.error &&
                                       formData?.Firstname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Firstname"
-                                   value={formData.Firstname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Firstname.error}
-                                    </div>
-                                  )}
-                                </div>  
-                                <div className="col-md-6 mb-10">
+                                      ? "border border-danger"
+                                      : "") + " form-control"
+                                  }
+                                  name="Firstname"
+                                  value={formData.Firstname.value}
+                                  onChange={($event) => {
+                                    onFormFeildsChange($event, formData, setFormData);
+                                  }}
+                                />
+                                {formData.Firstname.error && formData.Firstname.shouldShowError && (
+                                  <div className="text-danger mt-1">
+                                    {formData.Firstname.error}
+                                  </div>
+                                )}
+                              </div>
+                              <div className="col-md-6 mb-10">
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
                                 <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                                  onPaste={(e) => {
+                                    e.preventDefault();
+                                  }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Lastname?.error &&
+                                  type="text"
+                                  onBlur={($event) => {
+                                    enableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  onFocus={($event) => {
+                                    disableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  className={
+                                    (formData?.Lastname?.error &&
                                       formData?.Lastname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Lastname"
-                                    value={formData.Lastname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                      }
-                                    }
-                                  />
-                                  {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Lastname.error}
-                                    </div>
-                                  )} 
-                                </div>  
+                                      ? "border border-danger"
+                                      : "") + " form-control"
+                                  }
+                                  name="Lastname"
+                                  value={formData.Lastname.value}
+                                  onChange={($event) => {
+                                    onFormFeildsChange($event, formData, setFormData);
+                                  }
+                                  }
+                                />
+                                {formData.Lastname.error && formData.Lastname.shouldShowError && (
+                                  <div className="text-danger mt-1">
+                                    {formData.Lastname.error}
+                                  </div>
+                                )}
                               </div>
+                            </div>
 
                             <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                            <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                    
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.MobilePhone?.error &&
-                                      formData?.MobilePhone?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="MobilePhone"
-                                   value={formData.MobilePhone.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.MobilePhone.error}
-                                    </div>
-                                  )}  
-                            </div>  
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.MobilePhone?.error &&
+                                    formData?.MobilePhone?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="MobilePhone"
+                                value={formData.MobilePhone.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }}
+                              />
+                              {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.MobilePhone.error}
+                                </div>
+                              )}
+                            </div>
 
 
                             <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                            <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Email?.error &&
-                                      formData?.Email?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Email"
-                                    value={formData.Email.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Email.error && formData.Email.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Email.error}
-                                    </div>
-                                  )}     
-                            </div> 
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.Email?.error &&
+                                    formData?.Email?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="Email"
+                                value={formData.Email.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }}
+                              />
+                              {formData.Email.error && formData.Email.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.Email.error}
+                                </div>
+                              )}
+                            </div>
 
                             {/* <div className="col-md-12 mb-10">
                             <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                             </div> */}
-                              <div className='d-flex justify-content-end mt-3'>
-                                {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                                <button type="submit" className='btn text-white btn_style1' 
-                                  onClick={(e) => {
+                            <div className='d-flex justify-content-end mt-3'>
+                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                              <button type="submit" className='btn text-white btn_style1'
+                                onClick={(e) => {
                                   handleDownloadKit(e, data);
                                   setModalDismiss(data.id)
-                                  }}> Download</button>
-                              </div>
+                                }}> Download</button>
+                            </div>
                           </form>
-                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
-                        </div>
-                      </div>
-                    </div>
-                    </div>
+                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+                        </Modal.Body>
+                      </Modal>
+                    }
                   </>
                 );
               })}
@@ -584,178 +592,182 @@ useEffect(() => {
                 return (
                   <>
                     <div className="col-md-3 col-6" key={index}>
+                      <p onClick={() => {
+                        setIsShowMobileModal(true);
+                        setModalOpen(data.id);
+                      }}>
                     <a className="spg-box">
-                      <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                     
                           <span><img src={data.url} alt="" width={35} className="img-fluid" /></span>
                             <p>{data?.name}</p>
-                        </a>
+                      
                       </a>
+                      </p>
                     </div>
-                    <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
-                      <div className="modal-dialog modal-dialog-centered modal-lg">
-                        <div className="modal-content">
-                          <div className="modal-header p-4">
-                            <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div className="modal-body p-4">
-                            <form >
-                                <div className='row'>
-                                <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
+                    {modalOpen == data.id && isShowMobileModal &&
+                      <Modal show={isShowMobileModal} className={'modal-lg'} backdrop='static' centered onHide={() => setIsShowMobileModal(false)}>
+                        <Modal.Header closeButton className='p-4'>
+                          <Modal.Title>
+                            <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className='p-4'>
+                          <form >
+                            <div className='row'>
+                              <div className="col-md-6 mb-10">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                                 <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                                  onPaste={(e) => {
+                                    e.preventDefault();
+                                  }}
                                   
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                   }}
-                                    className={
-                                      (formData?.Firstname?.error &&
+                                  type="text"
+                                  onBlur={($event) => {
+                                    enableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  onFocus={($event) => {
+                                    disableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  className={
+                                    (formData?.Firstname?.error &&
                                       formData?.Firstname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Firstname"
-                                   value={formData.Firstname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Firstname.error}
-                                    </div>
-                                  )}
-                                </div>  
-                                <div className="col-md-6 mb-10">
+                                      ? "border border-danger"
+                                      : "") + " form-control"
+                                  }
+                                  name="Firstname"
+                                  value={formData.Firstname.value}
+                                  onChange={($event) => {
+                                    onFormFeildsChange($event, formData, setFormData);
+                                  }}
+                                />
+                                {formData.Firstname.error && formData.Firstname.shouldShowError && (
+                                  <div className="text-danger mt-1">
+                                    {formData.Firstname.error}
+                                  </div>
+                                )}
+                              </div>
+                              <div className="col-md-6 mb-10">
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
                                 <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                                  onPaste={(e) => {
+                                    e.preventDefault();
+                                  }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Lastname?.error &&
+                                  type="text"
+                                  onBlur={($event) => {
+                                    enableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  onFocus={($event) => {
+                                    disableShouldErrorShow($event, formData, setFormData);
+                                  }}
+                                  className={
+                                    (formData?.Lastname?.error &&
                                       formData?.Lastname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Lastname"
-                                    value={formData.Lastname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                      }
-                                    }
-                                  />
-                                  {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Lastname.error}
-                                    </div>
-                                  )} 
-                                </div>  
+                                      ? "border border-danger"
+                                      : "") + " form-control"
+                                  }
+                                  name="Lastname"
+                                  value={formData.Lastname.value}
+                                  onChange={($event) => {
+                                    onFormFeildsChange($event, formData, setFormData);
+                                  }
+                                  }
+                                />
+                                {formData.Lastname.error && formData.Lastname.shouldShowError && (
+                                  <div className="text-danger mt-1">
+                                    {formData.Lastname.error}
+                                  </div>
+                                )}
                               </div>
+                            </div>
 
                             <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                            <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                    
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.MobilePhone?.error &&
-                                      formData?.MobilePhone?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="MobilePhone"
-                                   value={formData.MobilePhone.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.MobilePhone.error}
-                                    </div>
-                                  )}  
-                            </div>  
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.MobilePhone?.error &&
+                                    formData?.MobilePhone?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="MobilePhone"
+                                value={formData.MobilePhone.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }}
+                              />
+                              {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.MobilePhone.error}
+                                </div>
+                              )}
+                            </div>
 
 
                             <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                            <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Email?.error &&
-                                      formData?.Email?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Email"
-                                    value={formData.Email.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Email.error && formData.Email.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Email.error}
-                                    </div>
-                                  )}     
-                            </div> 
-                              {data?.href2 &&
-                                <div className="col-md-12 mb-10 mt-1">
-                                  <label htmlFor="exampleFormControlInput1" className="form-label">Which Kit to download ? </label>
-                                  <select className="form-control" id="kits" >
-                                    <option value={data?.text}>{data?.text}</option>
-                                    <option value={data?.text2}>{data?.text2}</option>
-                                  </select>
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.Email?.error &&
+                                    formData?.Email?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="Email"
+                                value={formData.Email.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }}
+                              />
+                              {formData.Email.error && formData.Email.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.Email.error}
                                 </div>
-                              }
-                              <div className='d-flex justify-content-end mt-3'>
-                                <button type="submit" className='btn text-white btn_style1'
-                                  onClick={(e) => {
+                              )}
+                            </div>
+                            {data?.href2 &&
+                              <div className="col-md-12 mb-10 mt-1">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Which Kit to download ? </label>
+                                <select className="form-control" id="kits" >
+                                  <option value={data?.text}>{data?.text}</option>
+                                  <option value={data?.text2}>{data?.text2}</option>
+                                </select>
+                              </div>
+                            }
+                            <div className='d-flex justify-content-end mt-3'>
+                              <button type="submit" className='btn text-white btn_style1'
+                                onClick={(e) => {
                                   handleDownloadKit(e, data);
                                   setModalDismiss(data.id)
-                                  }} > Download</button>                           
-                              </div>
-                            </form>
-                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                                }} > Download</button>
+                            </div>
+                          </form>
+                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+                        </Modal.Body>
+                      </Modal>
+                    }
                   </>
                 );
               })}
@@ -772,175 +784,176 @@ useEffect(() => {
               return (
                 <>
                   <div className="col-md-3 col-6" key={index}>
-                    <a className="our-team-more" href="#" data-bs-toggle="modal" data-bs-target={`#${data.id}`} >
+                    <p onClick={() => {
+                      setIsShowEcomModal(true);
+                      setModalOpen(data.id);
+                    }}>
                       <a className="spg-box">
                         <span><img src={data.url} alt="" width={data.width ? 50: 30} className="img-fluid" /></span>
                           <p>{data?.name}</p>
                       </a>
-                    </a>
+                    </p>
                   </div>
-                  <div className="modal fade" id={data.id} data-bs-backdrop="bod" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bodLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered modal-lg">
-                    <div className="modal-content">
-                      <div className="modal-header p-4">
-                        <h5 className="modal-title fw-bold" id="bodLabel">{data.name} INTEGRATION KIT</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body p-4">
-                      
-                      <form >
-                              <div className='row'>
-                                <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1"  className="form-label">First Name</label>
-                                <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                  {modalOpen == data.id && isShowEcomModal &&
+                    <Modal show={isShowEcomModal} className={'modal-lg'} backdrop='static' centered onHide={() => setIsShowEcomModal(false)}>
+                      <Modal.Header closeButton className='p-4'>
+                        <Modal.Title>
+                          <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body className='p-4'>
+                        <form >
+                          <div className='row'>
+                            <div className="col-md-6 mb-10">
+                              <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                   
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                   }}
-                                    className={
-                                      (formData?.Firstname?.error &&
-                                      formData?.Firstname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Firstname"
-                                   value={formData.Firstname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Firstname.error}
-                                    </div>
-                                  )}
-                                </div>  
-                                <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.Firstname?.error &&
+                                    formData?.Firstname?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="Firstname"
+                                value={formData.Firstname.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }}
+                              />
+                              {formData.Firstname.error && formData.Firstname.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.Firstname.error}
+                                </div>
+                              )}
+                            </div>
+                            <div className="col-md-6 mb-10">
+                              <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                              <input autoFocus={true}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Lastname?.error &&
-                                      formData?.Lastname?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Lastname"
-                                    value={formData.Lastname.value}
-                                    onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                      }
-                                    }
-                                  />
-                                  {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Lastname.error}
-                                    </div>
-                                  )} 
-                                </div>  
-                              </div>
+                                type="text"
+                                onBlur={($event) => {
+                                  enableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                onFocus={($event) => {
+                                  disableShouldErrorShow($event, formData, setFormData);
+                                }}
+                                className={
+                                  (formData?.Lastname?.error &&
+                                    formData?.Lastname?.shouldShowError
+                                    ? "border border-danger"
+                                    : "") + " form-control"
+                                }
+                                name="Lastname"
+                                value={formData.Lastname.value}
+                                onChange={($event) => {
+                                  onFormFeildsChange($event, formData, setFormData);
+                                }
+                                }
+                              />
+                              {formData.Lastname.error && formData.Lastname.shouldShowError && (
+                                <div className="text-danger mt-1">
+                                  {formData.Lastname.error}
+                                </div>
+                              )}
+                            </div>
+                          </div>
 
-                            <div className="col-md-12 mb-10">
+                          <div className="col-md-12 mb-10">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
                             <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              onPaste={(e) => {
+                                e.preventDefault();
+                              }}
                                    
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.MobilePhone?.error &&
-                                      formData?.MobilePhone?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="MobilePhone"
-                                   value={formData.MobilePhone.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.MobilePhone.error}
-                                    </div>
-                                  )}  
-                            </div>  
+                              type="text"
+                              onBlur={($event) => {
+                                enableShouldErrorShow($event, formData, setFormData);
+                              }}
+                              onFocus={($event) => {
+                                disableShouldErrorShow($event, formData, setFormData);
+                              }}
+                              className={
+                                (formData?.MobilePhone?.error &&
+                                  formData?.MobilePhone?.shouldShowError
+                                  ? "border border-danger"
+                                  : "") + " form-control"
+                              }
+                              name="MobilePhone"
+                              value={formData.MobilePhone.value}
+                              onChange={($event) => {
+                                onFormFeildsChange($event, formData, setFormData);
+                              }}
+                            />
+                            {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
+                              <div className="text-danger mt-1">
+                                {formData.MobilePhone.error}
+                              </div>
+                            )}
+                          </div>
 
 
-                            <div className="col-md-12 mb-10">
+                          <div className="col-md-12 mb-10">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                             <input autoFocus={true}
-                                    onPaste={(e) => {
-                                      e.preventDefault();
-                                    }}
+                              onPaste={(e) => {
+                                e.preventDefault();
+                              }}
                                     
-                                    type="text"
-                                    onBlur={($event) => {
-                                      enableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    onFocus={($event) => {
-                                      disableShouldErrorShow($event, formData, setFormData);
-                                    }}
-                                    className={
-                                      (formData?.Email?.error &&
-                                      formData?.Email?.shouldShowError
-                                        ? "border border-danger"
-                                        : "") + " form-control"
-                                    }
-                                    name="Email"
-                                    value={formData.Email.value}
-                                  onChange={($event) => {
-                                      onFormFeildsChange($event, formData, setFormData);
-                                    }}
-                                  />
-                                  {formData.Email.error && formData.Email.shouldShowError && (
-                                    <div className="text-danger mt-1">
-                                      {formData.Email.error}
-                                    </div>
-                                  )}     
-                            </div> 
+                              type="text"
+                              onBlur={($event) => {
+                                enableShouldErrorShow($event, formData, setFormData);
+                              }}
+                              onFocus={($event) => {
+                                disableShouldErrorShow($event, formData, setFormData);
+                              }}
+                              className={
+                                (formData?.Email?.error &&
+                                  formData?.Email?.shouldShowError
+                                  ? "border border-danger"
+                                  : "") + " form-control"
+                              }
+                              name="Email"
+                              value={formData.Email.value}
+                              onChange={($event) => {
+                                onFormFeildsChange($event, formData, setFormData);
+                              }}
+                            />
+                            {formData.Email.error && formData.Email.shouldShowError && (
+                              <div className="text-danger mt-1">
+                                {formData.Email.error}
+                              </div>
+                            )}
+                          </div>
 
                           {/* <div className="col-md-12 mb-10">
                           <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                           </div> */}
-                            <div className='d-flex justify-content-end mt-3'>
-                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                              <button type="submit" className='btn text-white btn_style1'
-                                onClick={(e) => {
-                                  handleDownloadKit(e, data);
-                                  setModalDismiss(data.id)
-                                  }} > Download</button>
-                            </div>
+                          <div className='d-flex justify-content-end mt-3'>
+                            {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                            <button type="submit" className='btn text-white btn_style1'
+                              onClick={(e) => {
+                                handleDownloadKit(e, data);
+                                setModalDismiss(data.id)
+                              }} > Download</button>
+                          </div>
                         </form>
-                        <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>   
-                      </div>
-                    </div>
-                  </div>
-                  </div>
+                        <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+                      </Modal.Body>
+                    </Modal>
+                  }
                 </>
               );
             })}
