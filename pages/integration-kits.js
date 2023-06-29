@@ -19,10 +19,10 @@ import { EMAIL, PHONE, REQUIRED } from './utils/messages';
 
 export default function product1() {
   const [modalDismiss, setModalDismiss] = useState(null)
-  const [firstName, setFirstName] = useState(getLocalStorage('first_name') ? getLocalStorage('first_name') :'');
-  const [lastName, setLastName] = useState(getLocalStorage('last_name') ? getLocalStorage('last_name') : '');
-  const [phoneNumber, setPhoneNumber] = useState(getLocalStorage('Phone_no') ? getLocalStorage('Phone_no'):'');
-  const [email, setEmail] = useState(getLocalStorage('email') ? getLocalStorage('email') :'');
+  const [firstName, setFirstName] = useState( typeof window !== "undefined" ? getLocalStorage('first_name') :'');
+  const [lastName, setLastName] = useState(typeof window !== "undefined" ? getLocalStorage('last_name') : '');
+  const [phoneNumber, setPhoneNumber] = useState(typeof window !== "undefined"? getLocalStorage('Phone_no'):'');
+  const [email, setEmail] = useState(typeof window !== "undefined" ? getLocalStorage('email') :'');
   const [isShow, setIsShow] = React.useState(false);
   const [isShowMobileModal, setIsShowMobileModal] = React.useState(false);
   const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
@@ -253,7 +253,7 @@ export default function product1() {
           download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
           setIsShow(false);
           setIsShowMobileModal(false);
-          setIsShowEcomModal(false)
+          setIsShowEcomModal(false);
         }
       })
     }
