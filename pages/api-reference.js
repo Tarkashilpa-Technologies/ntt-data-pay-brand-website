@@ -93,7 +93,7 @@ export default function product1() {
     <div className="bnr-home-wrp integration-guides-bnr">
     <div className="container_1300">
      <div className="bnr-caption">
-       <h2>APIs to automate your every feature, backed with comprehensive documentation and round the clock support with NTT DATA Payment Services.</h2>
+       <h2>APIs to automate your every feature, backed with comprehensive documentation.</h2>
      </div>
      </div>
     </div>

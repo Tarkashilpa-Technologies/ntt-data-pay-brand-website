@@ -1,17 +1,38 @@
 
 export const getLocalStorage = (key) => {
-  return localStorage.getItem(key);
+  if (localStorage) {
+    return localStorage.getItem(key);
+  } else {
+    return null;
+  }
 };
 export const setLocalStorage = (key, data) => {
-  localStorage.setItem(key, data);
+  if (localStorage) {
+    return  localStorage.setItem(key, data);
+  } else {
+    return null;
+  }
+ 
 };
 export const clearLocalStorage = () => {
-  window?.localStorage?.clear();
-  window?.sessionStorage?.clear();
+  if (localStorage ) {
+    window?.localStorage?.clear();
+  }
 };
 export const getSessionStorage = (key) => {
-  return sessionStorage.getItem(key);
+  if (sessionStorage) {
+    return sessionStorage.getItem(key);
+  } else {
+    return null;
+  }
 };
 export const setSessionStorage = (key, data) => {
-  sessionStorage.setItem(key, data);
+  if (localStorage) {
+    sessionStorage.setItem(key, data);
+  }
+};
+export const clearSessionStorage = () => {
+  if (sessionStorage) {
+    window?.sessionStorage?.clear();
+  }
 };

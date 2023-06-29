@@ -18,26 +18,43 @@ import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPas
 import { EMAIL, PHONE, REQUIRED } from './utils/messages';
 
 export default function product1() {
-  const [modalDismiss, setModalDismiss] = useState(null)
-  const [firstName, setFirstName] = useState( typeof window !== "undefined" ? getLocalStorage('first_name') :'');
-  const [lastName, setLastName] = useState(typeof window !== "undefined" ? getLocalStorage('last_name') : '');
-  const [phoneNumber, setPhoneNumber] = useState(typeof window !== "undefined"? getLocalStorage('Phone_no'):'');
-  const [email, setEmail] = useState(typeof window !== "undefined" ? getLocalStorage('email') :'');
+  const [formData, setFormData] = useState();
   const [isShow, setIsShow] = React.useState(false);
   const [isShowMobileModal, setIsShowMobileModal] = React.useState(false);
   const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
   const [modalOpen,setModalOpen] = useState(null)
   
 
-  // useEffect(() => {
-  //   // Perform localStorage action
-  //   if (typeof window !== 'undefined')  {
-  //     setFirstName(getLocalStorage('first_name'));
-  //     setLastName(getLocalStorage('last_name'));
-  //     setPhoneNumber(getLocalStorage('Phone_no'));
-  //     setEmail(getLocalStorage('email'));
-  //   }
-  // }, [])
+  useEffect(() => {
+    // Perform localStorage action
+    setFormData({
+      Firstname: {
+        value: getLocalStorage('first_name'),
+        error: '',
+        check: [REQUIRED],
+        shouldShowError: false,
+      },
+      Lastname: {
+        value: getLocalStorage('last_name'),
+        error: '',
+        check: [REQUIRED],
+        shouldShowError: false,
+      },
+      Email: {
+        value: getLocalStorage('email'),
+        error: '',
+        check: [EMAIL, REQUIRED],
+        shouldShowError: false,
+      },
+      MobilePhone: {
+        value: getLocalStorage('Phone_no'),
+        error: '',
+        check: [PHONE, REQUIRED],
+        shouldShowError: false,
+      },
+    });
+
+  }, [])
 
   const WebsiteData = [
     {
@@ -176,33 +193,7 @@ export default function product1() {
     },
   ];
 
-
-  const [formData, setFormData] = useState({
-    Firstname: {
-      value: firstName,
-      error: '',
-      check: [REQUIRED],
-      shouldShowError: false,
-    },
-    Lastname: {
-      value: lastName,
-      error: '',
-      check: [REQUIRED],
-      shouldShowError: false,
-    },
-    Email: {
-      value: email,
-      error: '',
-      check: [EMAIL, REQUIRED],
-      shouldShowError: false,
-    },
-    MobilePhone: {
-      value: phoneNumber,
-      error: '',
-      check: [PHONE, REQUIRED],
-      shouldShowError: false,
-    },
-  });
+ 
 
 //   useEffect(() => {
 // console.log(formData,"formdata")
@@ -281,7 +272,7 @@ useEffect(() => {
   // useEffect(() => {
   //   clearLocalStorage();
   // }, [])
-  console.log(getLocalStorage('first_name'))
+ 
 
   return isBrowser && (
     <div className="product-payment pd-lr-15">
