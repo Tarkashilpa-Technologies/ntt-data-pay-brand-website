@@ -557,7 +557,6 @@ useEffect(() => {
                               <button type="submit" className='btn text-white btn_style1'
                                 onClick={(e) => {
                                   handleDownloadKit(e, data);
-                                  setModalDismiss(data.id)
                                 }}> Download</button>
                             </div>
                           </form>
@@ -751,7 +750,6 @@ useEffect(() => {
                               <button type="submit" className='btn text-white btn_style1'
                                 onClick={(e) => {
                                   handleDownloadKit(e, data);
-                                  setModalDismiss(data.id)
                                 }} > Download</button>
                             </div>
                           </form>
@@ -937,7 +935,6 @@ useEffect(() => {
                             <button type="submit" className='btn text-white btn_style1'
                               onClick={(e) => {
                                 handleDownloadKit(e, data);
-                                setModalDismiss(data.id)
                               }} > Download</button>
                           </div>
                         </form>
