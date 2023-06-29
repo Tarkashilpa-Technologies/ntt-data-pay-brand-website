@@ -162,6 +162,104 @@ Officer
 
 <p>The Customer Service team will reach out to the Complainant to confirm that the Complaint has been resolved once the concerned function marks the complaint as “resolved” in the system. Post confirmation, the Complainant will be intimated via email that their Complaint has been resolved. The intimation of resolution will contain the UTN, the solution / explicitly mention that the issue has been resolved, the escalation matrix and TAT in case the resolution is not per the expectations of the Complainant, etc. In case of rejection of the complaint, response will be sent to the Complainant with reasons thereof recorded in writing.</p>
 <p>Please note, PA related complaints will be resolved within a period of 30 business days of its receipt as per the prescribed regulations.</p>
+          
+<div>
+  <h3>Disputes / Chargeback Management</h3> 
+    <p>Disputes/Chargebacks can be associated with unsatisfactory customer services or product or
+    poor service delivery experience from the merchant. Chargebacks can also be filed if the
+    customer suspects any fraudulent activity on their card. Once a cardholder files a complaint with
+    the issuer Bank, the dispute is forwarded by the associations to the acquirer who in turn raises
+    the dispute/Chargeback to the service provider to initiate an investigation. NDPS further shares
+    the chargeback with the Merchant.</p>  
+  <p>Disputes/Chargebacks cases are considered high priority due to the involvement of
+    Disputes/Chargeback handling team of both the customer’s bank as well as our partner banks.
+    There could be several reasons for a chargeback against a particular transaction. A list of the
+    most common reasons for chargeback are as below :-</p>   
+
+  <h4 style={{color: '#6785C1'}}>Dispute Reasons</h4>  
+  <ul>
+    <li>Transaction amount is different</li>
+    <li>Request is made for the copy of the receipt</li>
+    <li>Merchandise is defective or damaged</li>
+    <li>Alleged fraudulent transaction investigated by the acquiring bank</li>
+    <li>Multiple charges for the same order</li>
+    <li>Merchant agreed to issue refund on merchandise returned or for any other reason</li>
+    <li>Merchandise not as advertised</li>
+    <li>Customer did not engage in or authorize this transaction</li>
+    <li>Merchandise has not been delivered</li>
+    <li>Cardholder is not in possession of the card used for the transaction</li>
+    <li>Service not received from merchant</li>
+    <li>Order was cancelled</li>
+    <li>Customer paid for order by other payment method</li>
+  </ul>  
+
+  <h4 style={{color: '#6785C1'}}>Process to resolve Disputes/chargebacks</h4> 
+  <ul>
+    <li>NDPS will notify Merchant by email about the dispute, with the common transaction
+      details along wjth the payment ID and the reason of chargeback, which is provided
+      by the bank.</li>
+    <li>In order to represent the chargeback, Merchant needs to review the
+      Disputes/chargeback and provide documentary evidence to contest or defend the
+      dispute with the stipulated time</li>
+    <li>NDPS may request for additional documents for cases that need further
+      investigation. These documents could include based on the merchant business or 
+      Authorization Letter from the customer, Cancellation Policy, etc.</li>
+    <li>Merchants needs to respond by sharing all the required documents as per the
+      requirement of the bank along with a clarification/explanation in email. NDPS shall be
+      check the documents and represent the dispute.</li>
+    <li>Merchant needs to revert within the turn-around-time with the required document, in
+      case non receipt and non-available of the documents merchant is liable for disputes.</li>
+  </ul>  
+      <p>Most of chargebacks arise due to miscommunication between Customer and Merchant, the
+        following are the best practices for merchants when processing payments/ settlements to avoid
+        chargebacks or disputes.</p>
+      <ul>
+        <li>Transparent Return Policy – Merchants should ensure that all refund/ return policies are
+          clearly stated on their website.</li>
+        <li>Clear and Constant Communication - Merchants must keep their customers informed
+          about the status of orders/delivery.</li>
+        <li>To avoid any uncertainty, merchants should share reference numbers, invoices details,
+          and other order/services related documents with customers.</li>
+      </ul>       
+  </div>
+  <div>
+    <h3>Refund Management</h3>
+    <h4 style={{color: '#6785C1'}}>Refund Processing Timelines</h4> 
+    <p>NDPS has a very stringent mechanism to deal with refunds of failed transactions (transactions
+      charged to customer but not returned to Payment Aggregator and, in turn, to merchant, hence
+      no services are rendered). As per the merchant&#39;s line of business, they can opt to configure
+      their account to reverse such transactions or get it updated as a successful transaction post
+      reconciliation, and continue to provide services.</p>
+      <p>We can reconcile dropped transactions in 2 ways:</p>
+      <ul>
+        <li>We initiate server-to-server API calls with banks on periodic basis throughout the day to
+          fetch the status of transactions. Such cases are sent to bank for reversal on T+1.</li>
+        <li>For banks who do not provide the API-based reconciliation mechanism, we reconcile
+          with the offline files received from the banks on the next working day. Thus refunds for
+          such transactions are sent the next day post reconciliation or T+1 post reconciliation.</li>
+      </ul>
+      <h4 style={{color: '#6785C1'}}>Refund Reasons</h4> 
+      <ul>
+        <li>Merchant has initiated the refund to the customer because he is unable to provide goods
+        or services or due to a customer complaint about the service to merchant.</li>
+        <li>There are duplicate transactions and one of the duplicate transactions has to be
+        refunded.</li>
+      </ul>
+      <p>Once a refund has been initiated, NDPS refunds to the source account as follows –</p>
+      <ul>
+        <li>Merchant is provided with a refund API or batch mechanism to initiate complete or partial
+          refund in portal.</li>
+        <li>Batch file is processed by the payment team at NDPS to acquiring bank to initiate refund
+          to the source account.</li>
+        <li>Refund is processed from the acquiring bank to the source account. Daily reconciliation
+          of the files is done to check on refund RRN and the same is reflected on merchant
+          dashboard and payout file on the merchant’s portal.</li>
+        <li>In case there are issues or queries related to any of the details related to refund, then
+          the merchant can reach out to the Customer Service Team</li>
+      </ul>
+  </div>
+
+
 </div>    
 </div>
 
