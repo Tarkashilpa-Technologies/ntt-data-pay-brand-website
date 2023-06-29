@@ -54,7 +54,7 @@ export default function Footer() {
     <img src="/images/ntt-footer-logo.svg" alt="" className="img-fluid" />  
     </a> 
     <a className={styles.ftrtele} tel="18602664959"><span>Helpdesk : </span> 1860 266 4959</a>
-    <a className={styles.ftrtele} tel="02239853410"><span>New Sales : </span> 022 3985 3410</a>
+    <a className={styles.ftrtele} tel="+91 9152035710"><span>New Sales : </span> +91 9152035710</a>
     
     </div> 
   </div>

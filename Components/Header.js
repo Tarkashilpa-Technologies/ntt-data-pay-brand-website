@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import Script from "next/script";
 import styles from "../styles/Header.module.scss";
+import Image from "next/image";
 
 
 export default function Header() {
@@ -221,17 +222,17 @@ export default function Header() {
       <div className="container_1300">
       <div className="logo">
       <Link href="/">
-    <a>    
-        {/* <Image
+   
+        <Image
               priority
               src="/images/logo.png"
             //   className={utilStyles.borderCircle}
               width={183}
               height={52}
               alt="Logo"
-            /> */}
-            <img className="img-fluid" src="/images/logo.svg" alt="Logo" />
-            </a>
+            />
+            {/* <img className="img-fluid" src="/images/logo.svg" alt="Logo" /> */}
+            
   </Link>
 
 <span className="ham-menu" ref={ham}  onClick={handleMenuToggle}>

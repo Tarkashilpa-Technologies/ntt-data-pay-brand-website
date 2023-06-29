@@ -93,14 +93,10 @@ export default function product1() {
     <div className="bnr-home-wrp integration-guides-bnr">
     <div className="container_1300">
      <div className="bnr-caption">
-       <h2>Hassle free guides for a quick and seamless Payment Gateway Integration</h2>
+       <h2>APIs to automate your every feature, backed with comprehensive documentation.</h2>
      </div>
      </div>
     </div>
-
-  
-
-
 
 <nav className='bread-wrp minus-top-40' aria-label="breadcrumb">
 <div className="container_1300 d-block">
@@ -144,98 +140,100 @@ export default function product1() {
 <div className="tab-content" id="v-pills-tabContent">
     <div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
     
-      <h3>Background:</h3>
-      <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-      <h3>1. Electronic Payment Interface</h3>
-      <p>This document will provide overview of call-back API process flow. Callback API is an API in 
-        which NTT Data payment services system posts transaction response through server-to-server mode in name value pair format on configured merchant’s URL in NTT Data payment 
-        services system.</p>
-      <h3>Process Flow</h3>
-      <p>This section briefly details the overall customer transaction flow.</p>
-      <h3>Transaction Process</h3>
-      <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-      <p>Customer then decides to make payment at merchant website.</p>
-      <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+      <h3>Call Back API </h3>
+      <h3>Overview: </h3>
+      <p>Designed to integrate seamlessly with various platforms. This API allows merchants to receive the transaction info, without initiating any API request. It is only triggered when transaction is only for successful and failed transactions.</p>
+      <h3> Key Features:</h3>
+        <p>1. No API request required to be triggered, it's a webhook call, triggered from NDPS</p>
+        <p>2. Callback gets triggered for three times if the API response code to NDPS is not 200.</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
       <div className='d-flex justify-content-end'>
         <a href='/pdf/API/API References/Call Back API/Callback API.pdf' className='btn_style1' download={"Callback API.pdf"}>Download</a>
       </div>
     </div>
                 
     <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-    <h3>Background:</h3>
-      <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-      <h3>1. Electronic Payment Interface</h3>
-      <p>This document will provide overview of call-back API process flow. Callback API is an API in 
-        which NTT Data payment services system posts transaction response through server-to-server mode in name value pair format on configured merchant’s URL in NTT Data payment 
-        services system.</p>
-      <h3>Process Flow</h3>
-      <p>This section briefly details the overall customer transaction flow.</p>
-      <h3>Transaction Process</h3>
-      <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-      <p>Customer then decides to make payment at merchant website.</p>
-      <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+    <h3>Refund Initiation API</h3>
+    <h3>Overview: </h3>
+      <p>Designed to integrate seamlessly with various platforms. This API allows merchants to initiate the refund for any transaction held previously.
+      </p>
+      <h3> Key Features:</h3>
+        <p>1. Partial refunds can be processed</p>
+        <p>2. Initiate partial refund for partial amount of total transaction amount (Applicable if the transaction amount was split and settled to multiple bank accounts)</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
       <div className='d-flex justify-content-end'>
         <a href='/pdf/API/API References/Refund API/Refund API V1.01.pdf' className='btn_style1' download={"Refund API.pdf"} >Download</a>
       </div>
     </div>
                 
     <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-    <h3>Background:</h3>
-      <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-      <h3>1. Electronic Payment Interface</h3>
-      <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-      <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-      <p>Platform to facilitate electronic commerce transactions.</p>
-      <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-      <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-      <h3>Process Flow</h3>
-      <p>This section briefly details the overall customer transaction flow.</p>
-      <h3>Transaction Process</h3>
-      <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-      <p>Customer then decides to make payment at merchant website.</p>
-      <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-      <div className='d-flex justify-content-end'>
+    <h3>Refund Status API</h3>
+    <h3>Overview: </h3>
+      <p>Designed to integrate seamlessly with various platforms. 
+        This API can be used for Tracking –<br></br>
+        1) Status of any given refund that’s under process<br></br>
+        2) Tracking the refund status of old refunds
+      </p>
+      <h3> Key Features:</h3>
+        <p>1. Real-time status of the ongoing transaction</p>
+        <p>2. Refund status of any past transaction (up to 30 days of transaction)</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
+      <div className='d-flex justify-content-end mt-5'>
         <a href='/pdf/API/API References/Refund Status API/Refund Status API_V1.01.pdf' className='btn_style1' download={"Refund Status API.pdf"}>Download</a>
       </div>
     </div>
                 
 
     <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
-    <h3>Background:</h3>
-      <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-      <h3>1. Electronic Payment Interface</h3>
-      <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-      <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-      <p>Platform to facilitate electronic commerce transactions.</p>
-      <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-      <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-      <h3>Process Flow</h3>
-      <p>This section briefly details the overall customer transaction flow.</p>
-      <h3>Transaction Process</h3>
-      <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-      <p>Customer then decides to make payment at merchant website.</p>
-      <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+    <h2> Settlement API   </h2>
+      <h3>Overview: </h3>
+        <p>Designed to integrate seamlessly with various platforms. This API allows merchants to track the settlement status of a sale transaction. Settlement status can be fetched for any given transaction, or the transactions performed on any given day.</p>
+      <h3> Key Features:</h3>
+        <p>1. Settlement Status can be traced through Transaction ID or through Settlement Date </p>
+        <p>2. Statement Status can be either fetched as JSON response or .CSV format, based on API request</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+        Method: HTTP POST (S2S)<br></br>
+        Encryption Type: AES-512<br></br>
+        Checksum Type: HMACSHA-512
+        </p>
       <div className='d-flex justify-content-end'>
         <a href='/pdf/API/API References/Settlement API/Settlement API.pdf' className='btn_style1' download={"Settlement API.pdf"}>Download</a>
       </div>
     </div>
 
     <div className="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
-    <h3>Background:</h3>
-      <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-      <h3>1. Electronic Payment Interface</h3>
-      <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-      <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-      <p>Platform to facilitate electronic commerce transactions.</p>
-      <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-      <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-      <h3>Process Flow</h3>
-      <p>This section briefly details the overall customer transaction flow.</p>
-      <h3>Transaction Process</h3>
-      <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-      <p>Customer then decides to make payment at merchant website.</p>
-      <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
-      <div className='d-flex justify-content-end'>
+      <h2>Transaction Status API  </h2>
+      <h3>Overview: </h3>
+        <p>This API allows merchants to track the status of any purchase Transaction and can be used for tracking -<br></br> 1) Ongoing Transaction<br></br> 2) Older transactions.</p>
+      <h3> Key Features:</h3>
+        <p>1. Real-time status of the ongoing transaction</p>
+        <p>2. Transaction status of any past transaction (up to 30 days of transaction)</p>
+        <p>3. List of the Transaction Status (If Merchant Transaction ID is same for multiple Transactions)</p>
+        <p>4. Can be triggered if merchant has neither received Transaction Response nor Call Back API</p>
+      <h3>API Info:</h3>
+      
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
+      <div className='d-flex justify-content-end mt-5'>
         <a href='/pdf/API/API References/Transaction Status API/Transaction Status (Requery) API.pdf' className='btn_style1' download={"Transaction Status API.pdf"}>Download</a>
       </div>
     </div>

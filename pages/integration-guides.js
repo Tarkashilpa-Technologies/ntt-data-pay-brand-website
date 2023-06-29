@@ -132,8 +132,8 @@ export default function product1() {
 <div className="ig-f2-lhs">
 <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <button className="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Invoice Payment Link API</button>
-    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Penny Drop (Bank Account Verification) API</button>
-    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Single _ Multi Product API</button>
+    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Bank Account Verification API</button>
+    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Transaction API </button>
     <button className="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">Vendor Payment API</button>
   </div>  
 </div>    
@@ -143,58 +143,75 @@ export default function product1() {
 <div className="tab-content" id="v-pills-tabContent">
 <div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
     
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>This document will provide overview of call-back API process flow. Callback API is an API in 
-      which NTT Data payment services system posts transaction response through server-to-server mode in name value pair format on configured merchant’s URL in NTT Data payment 
-      services system.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+    
+<h3>Invoice Payment Link API's</h3>
+      <h3>Overview: </h3>
+      <p>Invoice payment link API module enables you to perform various actions pertaining to invoice generation to accept payments via payment link as an API-based alternative for the same actions performed using the Console.</p>
+      <p>Get Template API –
+        When triggered, with the validation of the request the merchant receives template number and name in response as per the templates created by the merchant.
+      </p>
+      <p>Get Template Details API –
+        When triggered, with the validation of the request the merchant receives all details pertaining to the specific template for which the API is triggered.
+      </p>
+      <p>Create Payment Link API –
+        The Create Payment Link API is triggered in order to create invoice using a predefined template in the merchant console by the merchant which is sent along with the payment link.
+      </p>
+      <p>Resend Payment Link API –
+        The merchant hits this API in order to resend the payment link and invoice to customer.
+      </p>
+      <p>Cancel Payment Link API –
+        The merchant hits this API in order to cancel the sent invoice by restricting the ability to make payment using the payment link.
+      </p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
     <div className='d-flex justify-content-end'>
       <a href='/pdf/API/Integration Guides/Invoice Payment Link API/Link Based Payment_API Document_V1.2.pdf' className='btn_style1' download={"Invoice Payment Link API.pdf"}>Download</a>
     </div>
   </div>
     
-  <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-     <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+  <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">   
+  <h3>Bank Account Verification API </h3>
+      <h3>Overview: </h3>
+      <p>Bank Account Verification API allows you to verify the bank account swiftly and efficiently, ensuring that the customer’s bank account is active, and the details are accurate.</p>
+      <h3> Key Features:</h3>
+        <p>1. Reduced risk of payment failures and fraudulent transactions</p>
+        <p>2.	Comprehensive report accessible using the console entailing detailed information.</p>
+        <p>3.	Callback gets triggered for three times if the API response code to NDPS is 200.</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
     <div className='d-flex justify-content-end'>
       <a href='/pdf/API/Integration Guides/Penny Drop (Bank Account Verification) API/PennyDrop_ProcessNote - API.pdf' className='btn_style1' download={"PennyDrop_ProcessNote - API.pdf"}>Download</a>
     </div>
   </div>
                 
   <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+    <h3>Transaction API </h3>
+    <p>Designed to integrate seamlessly with various platforms. Transaction API facilitates the payment process from the initiation of the transaction to the authorization of the payment by the customer on the payment page or seamlessly and provide the transaction API response.</p>
+    <h3> Key Features:</h3>
+        <p>1. Single transaction can be settled to multiple accounts using multi-Product approach</p>
+        <p>2. The customer account can be verified for each payment made via Net Banking and UPI
+        (Use Case : Broker Transactions)
+        </p>
+        <p>3. Precise mode of payment can be executed to be displayed on payment page</p>
+        <p>4. Transactions can be processed directly without redirection to NTT’s payment page
+        (Only for PCI-DSS compliant institutions)
+        </p>
+        <p>5.  Multiple attempts to retry the payment post payment failure while using any payment mode</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
+    
     <div className='d-flex justify-content-end'>
       <a href='/pdf/API/Integration Guides/Single _ Multi Product API/01. AIPay API_NDPS_V1.5.pdf' className='btn_style1' download={"Single _ Multi Product API.pdf"}>Download</a>
     </div>
@@ -202,20 +219,20 @@ export default function product1() {
                 
 
   <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
-    <h3>Background:</h3>
-    <p>This note briefly describes the mode/manner of technical integration between Atom and Merchant in respect of powering online transactions.</p>
-    <h3>1. Electronic Payment Interface</h3>
-    <p>Atom offers electronic payment interface services to merchant organizations through its partnership with various banks and card companies.</p>
-    <p>The Electronic Payment Interface (EPI) is an API provided by atom Technologies on its Paynetz.</p>
-    <p>Platform to facilitate electronic commerce transactions.</p>
-    <p>This facility allows for the end users to make electronic payment through credit card and online net banking accounts.</p>
-    <p>Atom also provides a Merchant Console that support various features including transaction settlement reports, query module, refund module.</p>
-    <h3>Process Flow</h3>
-    <p>This section briefly details the overall customer transaction flow.</p>
-    <h3>Transaction Process</h3>
-    <p>Customer logs-in at the merchant website and selects the product / service to purchase. Based on the purchase amount, appropriate transaction amount would be computed at the merchant website.</p>
-    <p>Customer then decides to make payment at merchant website.</p>
-    <p>Merchant website will log the order by generating a unique Order Number; and establish a connection with the Atom Electronic Payment Interface [refer the section on Payment Request.</p>
+  <h3>Vendor Payment API </h3>
+      <h3>Overview: </h3>
+        <p>Designed to integrate seamlessly with various platforms. Payout API enables the Merchant to make payments securely to any vendor or service provider’s bank account. </p>
+      <h3>Payment Mode(s): IMPS</h3>           
+      <h3> Key Features:</h3>
+        <p>1.	Integrates seamlessly with your existing infrastructure</p>
+        <p>2.	Designed to handle high transaction volume.</p>
+        <p>3.	Real-time notification and comprehensive reports are available to view and download via dashboard.</p>
+      <h3>API Info:</h3>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type: AES-512<br></br>
+          Checksum Type: HMACSHA-512
+        </p>
     <div className='d-flex justify-content-end'>
       <a href='/pdf/API/Integration Guides/Vendor Payment API/VendorPaymentSolution- API.pdf' className='btn_style1' download={"Vendor Payment API.pdf"}>Download</a>
     </div>               
