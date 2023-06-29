@@ -22,8 +22,8 @@ export default function product1() {
   const [isShow, setIsShow] = React.useState(false);
   const [isShowMobileModal, setIsShowMobileModal] = React.useState(false);
   const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
-  const [modalOpen,setModalOpen] = useState(null)
-  
+  const [modalOpen, setModalOpen] = useState(null);
+  const [selectedValue, setSelectedValue] = useState();
 
   useEffect(() => {
     // Perform localStorage action
@@ -193,18 +193,12 @@ export default function product1() {
     },
   ];
 
- 
-
-//   useEffect(() => {
-// console.log(formData,"formdata")
-//   },[formData])
-
 
   const handleDownloadKit =  async (event,data) => {
       // Stop the form from submitting and refreshing the page.
     event.preventDefault();
     // Get data from the form.
-    
+    console.log(selectedValue == data.text2,selectedValue,"selectedValue == data.text2")
     let new_contact = {
       first_name: formData.Firstname.value,
       last_name: formData.Lastname.value,
@@ -241,7 +235,7 @@ export default function product1() {
       }).then((res) => {
         if (res.status === 200) {
           console.log('download the file');
-          download(data?.href2 ? event?.target?.kits?.value == data.text2 ? data.href2 : data?.href : data?.href);
+          download(data?.href2 || selectedValue ? selectedValue == data.text2 ? data.href2 : data?.href : data?.href);
           setIsShow(false);
           setIsShowMobileModal(false);
           setIsShowEcomModal(false);
@@ -256,23 +250,15 @@ export default function product1() {
       window.location.href = URL
     }
   }
-  // useEffect(() => {
-  //   localStorage.setItem("lastname", "Smith");
-  // }, [])
-
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("lastname"));
-  // },[localStorage])
 
   const [isBrowser, setIsBrowser] = useState(false);
 useEffect(() => {
     setIsBrowser(typeof window !== "undefined");
 }, []);
   
-  // useEffect(() => {
-  //   clearLocalStorage();
-  // }, [])
- 
+  const handleSelectedOption = (event) => {
+    setSelectedValue(event.target.value);
+  }
 
   return isBrowser && (
     <div className="product-payment pd-lr-15">
@@ -740,7 +726,7 @@ useEffect(() => {
                             {data?.href2 &&
                               <div className="col-md-12 mb-10 mt-1">
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Which Kit to download ? </label>
-                                <select className="form-control" id="kits" >
+                                <select className="form-control" id="kits" onChange={handleSelectedOption}>
                                   <option value={data?.text}>{data?.text}</option>
                                   <option value={data?.text2}>{data?.text2}</option>
                                 </select>
