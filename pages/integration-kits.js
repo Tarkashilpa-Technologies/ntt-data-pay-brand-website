@@ -235,7 +235,7 @@ export default function product1() {
       }).then((res) => {
         if (res.status === 200) {
           console.log('download the file');
-          download(data?.href2 || selectedValue ? selectedValue == data.text2 ? data.href2 : data?.href : data?.href);
+          download(data?.href2 ? selectedValue == data.text2 ? data.href2 : data?.href : data?.href);
           setIsShow(false);
           setIsShowMobileModal(false);
           setIsShowEcomModal(false);

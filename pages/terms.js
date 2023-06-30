@@ -36,40 +36,39 @@ export default function product1() {
 
 
 <div className='container'>
-<div className=" d-flex justify-content-center flex-column">
+<div className=" d-flex justify-content-center flex-column tc-main-wrp">
 
-<h4 className='text-center my-4 py-4'>MERCHANT SERVICES TERMS AND CONDITIONS</h4>
+<h2 className='text-center mb-4 pb-4 common-ttle'>MERCHANT SERVICES TERMS AND CONDITIONS</h2>
 <div>
 <p>These Merchant Services Terms and Conditions (“Terms and Conditions”) are entered into By and Between; NTT DATA Payment Services India Limited (formerly known as Atom Technologies Limited), a company incorporated under the Companies Act, 1956, having its registered office at 4th Floor, Marchon, 401, Suraksha Ace, Plot No.2A, CTS. No.34/3, Andheri - Kurla Road, Village Chakala, J.B. Nagar, Chakala, Andheri East, Mumbai Suburban, Maharashtra, 400059, (hereinafter referred to as “NDPS”, which expression shall unless repugnant to the subject or context shall mean and include its successors and assigns) of the One Part; And you, the signatory to the Letter of Engagement (hereinafter referred to as “Merchant/Seller” which expression shall unless repugnant to the subject or context shall mean and include its successors and assigns) of the Other Part. NDPS and the Merchant/Seller shall hereinafter be individually referred to as a “Party” and collectively as the “Parties”.</p>
-<h6  className='font-weight-bold'>WHEREAS:</h6>
+<h4  className='font-weight-bold'>WHEREAS:</h4>
 <p>A.	NDPS is, inter alia, engaged in the business of providing multiple payment facilities over multiple channels such as Internet, IVR and Mobile using credit/debit card, net banking, loyalty, prepaid cards, wallets, IMPS, QR, UPI, NEFT/RTGS, Pay later options, POS and other payment related services/solutions.</p>
 <p>B.	Merchant/Seller having entered into and accepted the terms of the Letter of Engagement with NDPS has requested NDPS, and NDPS has agreed to provide it’s payment related services more specifically mentioned hereinbelow, in order to enable Customer/Buyers to purchase the products and/or services of the Merchant/Seller in accordance with the terms and conditions hereinafter appearing.</p>
 
-<p>NOW THEREFORE it is acknowledged by and agreed between the Parties hereto as follows:</p>
-<h6 className='mt-4 pt-2 font-weight-bold'>1. DEFINITIONS:</h6>
+<p><h4>NOW THEREFORE</h4>it is acknowledged by and agreed between the Parties hereto as follows:</p>
+<h5 className='mt-4 pt-2 font-weight-bold'><b>1. DEFINITIONS:</b></h5>
 <p>In addition to the terms defined in the introduction to these Terms and Conditions and other parts of these Terms and Conditions, wherever used in these Terms and Conditions, unless repugnant to the meaning or context thereof, the following expressions shall have the meanings set forth below:</p>
 
-<p>1.1.	Affiliate: in case of a Party being a body corporate, any entity that directly or indirectly controls, is controlled by, or is under the common control of that Party;</p>
+<p><b>1.1.	Affiliate:</b> in case of a Party being a body corporate, any entity that directly or indirectly controls, is controlled by, or is under the common control of that Party;</p>
 <p>under the common control of that Party;</p>
-<p>1.2. Authentication: shall mean the process by which Customer/Buyer identification is authenticated in the Processing Mechanism</p>
-<p>1.3. Card Association(s): Card Association(s) shall mean any of VISA, MasterCard, NPCI, Amex, or any other card association as may be specified from time to time.</p>
-<p>1.4. Chargeback: shall mean the reversal of any Transaction on account of (i) any alleged forgery of the card or other details (ii) any charge/debit made on a card that has been listed as a hot listed card or otherwise listed on the Card Association warning bulletins (iii) duplicate processing of the Transaction; (iv) any amount required to be refunded due to, denial of Transaction by the Customer/Buyer as wrongly charged payment/ extra payments and/or due to the fraudulent use/service related/quality related/misuse of the personal and financial information of the Customer/Buyer by any unauthorized person; &nbsp;and (v) subject to applicable law, any other dispute received from Bank/ Card determined reasonably by NDPS.</p>
-<p>1.5. Confidential Information: shall mean any and all information or data of a confidential nature, application, network configuration, documents, software, code, accounts, business plans and processes and/or any other information in whole or in part of either Party;</p>
-<p>1.6. Customer/Buyer: shall mean any person who is availing services or products of the Merchant/Seller using NDPS Services;</p>
-<p>1.7. Fees: shall mean such fee and/or charges payable by the Merchant/Seller to NDPS for NDPS Services and as specified in the Letter of Engagement and/or the purchase order (&ldquo;PO&rdquo;).</p>
-<p>1.8. Guidelines: shall mean the Card Association, Bank, or any Specific Guidelines Issued by Reserve Bank of India;</p>
-<p>1.9. Payment Channels: shall mean Internet, IVR, Mobile., Point of sale or any other channel where electronic payments are accepted using credit/debit card, net banking, loyalty, prepaid cards, wallets, IMPS, or any other payment instrument.</p>
-<p>1.10. Payment Modes: shall mean payment via credit cards, debit cards, pre-paid wallets/cards, net banking, Mobile payments, IMPS, EMI, or any other payment mode as applicable</p>
-<p>1.11. Payment Gateway: shall mean the protocol that may be stipulated by or through NDPS to enable the Authentication of Customer/Buyers and the Authorization of payments in accordance with the Processing Mechanism;</p>
-<p>1.12. Payment Gateway Network: shall mean the hardware, software, and telecommunications tools necessary to perform protocol conversion between different networks or applications and all associated software required for the Merchant/Seller to submit Authorization and data capture Transactions to NDPS and to transmit Authorization and</p>
-<p>settlement Transactions between the Merchant/Seller and the Payment Service Provider(s);</p>
-<p>1.13.	Processing Mechanism: shall mean the mechanism utilizing the payment channels of the Payment Service Providers through NDPS Services and/or through such other modes and mechanisms of payment, as may be notified by NDPS from time to time;</p>
-<p>1.14. Payment Gateway Providers: shall mean Banks, financial institutions and any other person authorized to issue or process payments or any persons acting on their behalf.</p>
-<p>1.15. Payment Service Provider(s): shall mean Payment Gateway Providers and NDPS;</p>
-<p>1.16.	MSP Model: shall mean the services to be provided by NDPS to the Merchant/Seller wherein the Merchant/Seller’s ‘code / identification number’ is obtained by NDPS and the charges and settlement process is the responsibility of NDPS subject to clause 5 herein below. </p>
-<p>1.17.	Non-MSP Model: shall mean the services to be provided by NDPS to the Merchant/Seller wherein the Merchant/Seller’s ‘code /identification number’ is obtained by the Merchant/Seller directly from the bank and the charges and settlement process is solely the responsibility of the Bank.</p>
-<p>1.18. Transaction: shall mean a financial Transaction conducted by the Customer/Buyer using NDPS Services.</p>
-<h6  className='font-weight-bold mt-4 pt-2'>2. SCOPE OF NDPS SERVICES:</h6>
+<p><b>1.2. Authentication:</b> shall mean the process by which Customer/Buyer identification is authenticated in the Processing Mechanism</p>
+<p><b>1.3. Card Association(s):</b> Card Association(s) shall mean any of VISA, MasterCard, NPCI, Amex, or any other card association as may be specified from time to time.</p>
+<p><b>1.4. Chargeback:</b> shall mean the reversal of any Transaction on account of (i) any alleged forgery of the card or other details (ii) any charge/debit made on a card that has been listed as a hot listed card or otherwise listed on the Card Association warning bulletins (iii) duplicate processing of the Transaction; (iv) any amount required to be refunded due to, denial of Transaction by the Customer/Buyer as wrongly charged payment/ extra payments and/or due to the fraudulent use/service related/quality related/misuse of the personal and financial information of the Customer/Buyer by any unauthorized person; &nbsp;and (v) subject to applicable law, any other dispute received from Bank/ Card determined reasonably by NDPS.</p>
+<p><b>1.5. Confidential Information:</b> shall mean any and all information or data of a confidential nature, application, network configuration, documents, software, code, accounts, business plans and processes and/or any other information in whole or in part of either Party;</p>
+<p><b>1.6. Customer/Buyer:</b> shall mean any person who is availing services or products of the Merchant/Seller using NDPS Services;</p>
+<p><b>1.7. Fees:</b> shall mean such fee and/or charges payable by the Merchant/Seller to NDPS for NDPS Services and as specified in the Letter of Engagement and/or the purchase order (&ldquo;PO&rdquo;).</p>
+<p><b>1.8. Guidelines:</b> shall mean the Card Association, Bank, or any Specific Guidelines Issued by Reserve Bank of India;</p>
+<p><b>1.9. Payment Channels:</b> shall mean Internet, IVR, Mobile., Point of sale or any other channel where electronic payments are accepted using credit/debit card, net banking, loyalty, prepaid cards, wallets, IMPS, or any other payment instrument.</p>
+<p><b>1.10. Payment Modes:</b> shall mean payment via credit cards, debit cards, pre-paid wallets/cards, net banking, Mobile payments, IMPS, EMI, or any other payment mode as applicable</p>
+<p><b>1.11. Payment Gateway:</b> shall mean the protocol that may be stipulated by or through NDPS to enable the Authentication of Customer/Buyers and the Authorization of payments in accordance with the Processing Mechanism;</p>
+<p><b>1.12. Payment Gateway Network:</b> shall mean the hardware, software, and telecommunications tools necessary to perform protocol conversion between different networks or applications and all associated software required for the Merchant/Seller to submit Authorization and data capture Transactions to NDPS and to transmit Authorization and settlement Transactions between the Merchant/Seller and the Payment Service Provider(s);</p>
+<p><b>1.13.	Processing Mechanism:</b> shall mean the mechanism utilizing the payment channels of the Payment Service Providers through NDPS Services and/or through such other modes and mechanisms of payment, as may be notified by NDPS from time to time;</p>
+<p><b>1.14. Payment Gateway Providers:</b> shall mean Banks, financial institutions and any other person authorized to issue or process payments or any persons acting on their behalf.</p>
+<p><b>1.15. Payment Service Provider(s):</b> shall mean Payment Gateway Providers and NDPS;</p>
+<p><b>1.16.	MSP Model:</b> shall mean the services to be provided by NDPS to the Merchant/Seller wherein the Merchant/Seller’s ‘code / identification number’ is obtained by NDPS and the charges and settlement process is the responsibility of NDPS subject to clause 5 herein below. </p>
+<p><b>1.17.	Non-MSP Model:</b> shall mean the services to be provided by NDPS to the Merchant/Seller wherein the Merchant/Seller’s ‘code /identification number’ is obtained by the Merchant/Seller directly from the bank and the charges and settlement process is solely the responsibility of the Bank.</p>
+<p><b>1.18. Transaction:</b> shall mean a financial Transaction conducted by the Customer/Buyer using NDPS Services.</p>
+<h4  className='font-weight-bold mt-4 pt-2'>2. SCOPE OF NDPS SERVICES:</h4>
 <p>2.1.	NDPS has developed technologies, processes and software which enables the end-user/Merchant/Seller to make/accept payments vide the respective Payment Channels through any of the Payment Modes under the MSP/Non-MSP Models (hereinafter referred to as the “NDPS Services”)</p>
 <p>2.2.	The NDPS Services facilitate payments made by Customers/Buyers through any of the Payment Modes under the respective Payment Channels made available by NDPS and provide technological and payments support in relation to Transactions involving the Payment Mechanism compliant with requirements of Payment Service Provider(s) so as to enable receipt of such payments by the Merchant/Seller or any person acting on the Merchant/Seller’s behalf.</p>
 <p>2.3.	The Merchant/Seller hereby agrees to the installation of certain software and hardware solutions to integrate the Merchant/Seller’s billing system with NDPS Services as part of these Terms and Conditions.</p>
@@ -78,13 +77,13 @@ export default function product1() {
 <p>2.6.	As and when NDPS requests for a particular document, bills/invoices, proof of delivery or any other supporting documents, the same shall be handed over to NDPS within four (04) days of the request. If on account of non-compliance of the foregoing, NDPS incurs any loss, the same shall be made good by the Merchant/Seller, inclusive of all charges, interest, and costs. NDPS with or without intimation shall be entitled at any times to disclose any and all information concerning the Terms and Conditions and Transactions of the Merchant/Seller, within the knowledge and possession of NDPS to any Regulator RBI, Card Associations, or law enforcement.</p>
 <p>2.7.	Nothing in these Terms and Conditions shall prohibit NDPS from providing services similar to those provided under these Terms and Conditions to others, including competitors of the Merchant/Seller.</p>
 
-<h6  className='font-weight-bold mt-4 pt-2'>3. FEES FOR NDPS SERVICES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>3. FEES FOR NDPS SERVICES:</h4>
 <p>3.1.	The Merchant/Seller agrees to pay to NDPS, the fees and/or charges (“Fees”) as mentioned in the Letter of Engagement and/or PO. for the services along with any other sums including but not limited to, reimbursable expenses for the implementation of the NDPS Services, if any, and any and all applicable statutory taxes, including without limitation, goods service tax.</p>
 <p>3.2.	GST as governed by the Tax Authorities and applicability will be levied on the Merchant/Seller. Notwithstanding anything to the contrary in the Agreement: (i) if NDPS charges the GST as per Govt. regulations at the time of rendering the NDPS Services, then the same will be uploaded on the GST Portal by tagging the GSTN of the Merchant/Seller; (ii) Merchant/Seller shall have the right to deduct TDS as applicable as per Income tax Act, 1961; and Merchant/Seller will provide TDS certificate to NDPS against the  PAN, which will be reimbursed later on post verification on IT Portal.  NDPS will file on a timely basis all the compliances as required by the Govt. regulations under this Agreement.</p>
 <p>3.3.	NDPS shall have the right to vary the Fees specified in this clause 3 at any time after the Execution Date.</p>
 <p>3.4.	All fees / charges paid to NDPS will be non-refundable </p>
 
-<h6  className='font-weight-bold mt-4 pt-2'>4. CHARGES AND SETTLEMENT OF ACCOUNTS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>4. CHARGES AND SETTLEMENT OF ACCOUNTS:</h4>
 <p>4.1.	Subject to applicable law, payments shall be made available by NDPS to the Merchant/Seller after making the following adjustments, deductions and any other deductions, if any, in terms of these Terms and Conditions from the amount of the Transaction (subject to the limits volumes/limits allowed to the Merchant/Seller):</p>
 <p>4.1.1.	the consideration/fees, the TDR along with other dues, fees, charges, out of pocket expenses, etc., due to NDPS or any other rates and percentage as amended from time to time for all Transactions processed;</p>
 <p>4.1.2.	the sum of all Customer/Buyer charges denied, refused, or Charged back by the Customer/Buyer/partner Banks;</p>
@@ -105,14 +104,14 @@ NDPS reserves the right to discontinue, with the provision of the NDPS Services 
 <p>4.8.	Any discrepancy in settlement / reports provided to the Merchant/Seller by NDPS in relation to the NDPS Services, if any, must be raised by the Merchant / Seller and communicated to NDPS within ten (10) calendar days, failing which it will be assumed to be correct and shall be conclusive and binding on the Merchant/Seller.
 </p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>5. CHARGEBACK AND OTHER DUES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>5. CHARGEBACK AND OTHER DUES:</h4>
 <p>5.1.	NDPS shall be entitled, and Merchant/Seller hereby authorizes NDPS to debit to the account of the Merchant/Seller, from time to time, to recover any amounts due from it or incurred by NDPS on account of the following:</p>
 <p>5.1.1.	Chargeback of Transactions; or</p>
 <p>5.1.2.	Any penalties, charges/fees, loss, or claims including but not limited to legal claims that may be made against NDPS by Payment Service Providers, Customer/Buyers, or regulatory authorities for any reason other than a breach of these Terms and Conditions by NDPS. These amounts shall include without limitation any costs arising as a result of excessive Chargeback of Transactions or failure of Transactions or Customer/Buyer disputes.</p>
 <p>5.2.	The Merchant/Seller agrees that any charges accepted by Merchant/Seller, which prove to be uncollectable, shall be the exclusive financial responsibility of the Merchant/Seller alone. The Merchant/Seller agrees to such charges or the Chargeback of such uncollectable charges (as the case may be) by NDPS, without any demur or protest</p>
 <p>5.3.	  Seller or the unsettled Transactions in the pipeline in the event of failure by the Merchant/Seller in providing as per Clause 2.6 the necessary valid proof of Transaction to the retrieval request / Chargeback / suspicious Transaction received from the issuer/acquirer through the card schemes (VISA / MasterCard / NPCI / Amex or Others).</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>6. REPRESENTATIONS AND WARRANTIES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>6. REPRESENTATIONS AND WARRANTIES:</h4>
 <p>6.1.	NDPS represents and warrants that:</p>
 <p>6.1.1.	it is duly organized and validly existing and is duly qualified, including for undertaking the Transaction contemplated by these Terms and Conditions, as per the laws of India and the jurisdiction where it maintains its principal or registered office; and</p>
 <p>6.1.2.	it has all the requisite power, including corporate power and authority to enter into these Terms and Conditions, to perform its obligations thereunder and to consummate the Transaction contemplated hereby.</p>
@@ -128,29 +127,29 @@ NDPS reserves the right to discontinue, with the provision of the NDPS Services 
 <p>6.2.9.	it shall at all times during the subsistence of these Terms and Conditions observe and comply with all applicable laws, regulations, and guidelines, including, but not limited to all applicable FEMA, AML, CFT, anti-money laundering laws and anti-bribery laws prescribed by any regulatory and/or statutory authorities from time to time. Merchant / Seller shall be responsible for all liabilities arising out of its breach of the aforesaid and shall indemnify NDPS towards the same in each applicable jurisdiction.</p>
 
 
-<h6 className='font-weight-bold mt-4 pt-2'>7. TERM AND TERMINATION:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>7. TERM AND TERMINATION:</h4>
 <p>7.1.	These Terms and Conditions shall be valid from the Effective Date of the Letter of Engagement for a period of one (01) year (“Term”). Thereafter the Term shall automatically be renewed annually and shall extend for successive twelve (12) month terms, until unless terminated by the Parties.</p>
 <p>7.2.	This Terms & Conditions may be terminated by either Party by giving sixty days (60) days prior notice in writing to the other without being required to assign or give any reasons.</p>
 <p>7.3.	Either Party shall be entitled to terminate these Terms and Conditions in case of the defaulting Party’s failure to remedy the breach of any terms and conditions of the Terms and Conditions within thirty (30) days of receipt of written notice stating such breach.</p>
 <p>7.4.	NDPS reserves the right to terminate the Terms and Conditions immediately without any notice period in case of fraud, or if, the Merchant/Seller has violated any of the terms of the Terms and Conditions in which case the fees paid by Merchant/Seller shall be forfeited.</p>
 <p>7.5.	Merchant/Seller acknowledges that it shall honour all Transactions until the Terms and Conditions is in force. The Merchant/Seller shall provide necessary documentation related to Transactions done by Merchant/Seller post termination upto a period of fifteen (15) months in case of Customer/Buyer disputes, failing which the Merchant/Seller will indemnify NDPS towards such Transaction loss.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>8. CONFIDENTIALITY:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>8. CONFIDENTIALITY:</h4>
 <p>Each Party acknowledges and agrees that in connection with these Terms and Conditions, the receiving Party shall not disclose to any Third Party any Confidential Information of the disclosing Party that it may have access to during and in connection with its performance of services hereunder. Merchant/Seller shall ensure that that neither the Merchant/Seller nor any of its employees are privy to any information relating to Customer/Buyer details and information relating to passwords/pins and other private matters in respect of the NDPS Services.  Merchant/Seller shall not reverse engineer, decompile of disassemble any software shared/disclosed by NDPS. Each Party acknowledges that monetary damages may not be a sufficient remedy for unauthorized disclosure of any Confidential Information / materials and that the disclosing Party shall be entitled, without waiving any other rights or remedies, to such injunctive or equitable relief as may be deemed proper.</p>
            
-<h6 className='font-weight-bold mt-4 pt-2'>9. INTELLECTUAL PROPERTY:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>9. INTELLECTUAL PROPERTY:</h4>
 <p>9.1.	The intellectual property associated with NDPS Services is the Intellectual Property of NDPS and its associates. Nothing in these Terms and Conditions shall be deemed to be a transfer of any Intellectual Property rights to the Merchant/Seller and / or any of its associates, employees, and partners. The Merchant/Seller acquires only the non-exclusive right to use such NDPS Services as permitted herein and does not acquire any rights of ownership in the same. NDPS and/or its suppliers hereunder retain the title or ownership of any rights with respect to NDPS Services and all the Intellectual Property of NDPS/ suppliers.</p>
 <p>9.2.	Merchant/Seller agrees and undertakes not to claim any ownership, right, title or interest in, or dispute the ownership of any of NDPS Services.</p>
 <p>9.3.	Notwithstanding anything contained in these Terms and Conditions, Merchant/Seller shall be responsible at all times to adequately compensate NDPS in respect of attributable or contributory infringement of any of the Intellectual Property Rights of NDPS by the Merchant/Seller or its associates, employees and partners.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>10. INDEMNIFICATION:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>10. INDEMNIFICATION:</h4>
 <p>10.1.	Merchant/Seller hereby undertakes and agrees to indemnify and hold harmless NDPS and its directors, affiliates, representative, employees and agents against all actions, proceedings, claims, liabilities (including statutory liabilities), penalties, demands and costs (including without limitation, legal costs of NDPS on a solicitor / attorney and own client basis), awards, damages, losses and/or expenses however arising directly or indirectly as a result of:</p>
 <p>10.2.	any claim or proceeding brought by the Customer/Buyer or any other person against NDPS, in respect of any services offered by the Merchant/Seller;</p>
 <p>10.3.	any gross negligent act of Merchant/Seller’s agents, employees, licensees, or Customer/Buyers;</p>
 <p>10.4.	any fines, penalties or interest imposed directly or indirectly on NDPS on account of Merchant/Seller’s services or Transactions conducted through Merchant/Seller under these Terms and Conditions; and</p>
 <p>10.5.	breach of any of these Terms and Conditions by the Merchant/Seller, its agents, employees or representatives.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>11. DISCLAIMERS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>11. DISCLAIMERS:</h4>
 <p>11.1.	Notwithstanding anything contained in these Terms and Conditions, NDPS disclaims all warranties, express or implied, written or oral, including, but not limited to, warranties of fitness for a particular purpose with respect to the NDPS Services or otherwise made as regards these Terms and Conditions.  Merchant/Seller acknowledges and accepts that the NDPS Services are provided on an “as is” basis. NDPS shall have the right to forthwith terminate the link with a specific Payment Gateway Provider, by giving immediate notice to the Merchant/Seller, in the event the Payment Gateway Provider terminates its business arrangement with NDPS.</p>
 <p>11.2.	NDPS’s sole obligation and the Merchant/Sellers’ sole and exclusive remedy in the event of interruption to the NDPS Services or loss of use and/or access to NDPS’s website and the Payment Gateway Provider’s Processing Mechanism and services, shall be, to use all reasonable endeavors to restore the NDPS Services and/or access to the Processing Mechanism as soon as reasonably possible.</p>
 <p>11.3.	Without prejudice to any other provision of these Terms and Conditions, NDPS does not warrant that:</p>
@@ -158,47 +157,47 @@ NDPS reserves the right to discontinue, with the provision of the NDPS Services 
 <p>11.3.2.	the NDPS Services are free from any virus, Trojan or other malicious, destructive or corrupting code, program or macro.</p>
 <p>11.4.	NDPS reserves the right to make changes, enhancements, and/or modifications, due to mandatory, or regulatory or periodic requirements, applicable to the NDPS Services from time to time in such manner as it may deem necessary or appropriate for the provision of the NDPS Services by providing notice to the Merchant/Seller of the same. Merchant/Seller agrees to comply with the directions and/or instructions issued by NDPS to suitably modify/upgrade the Merchant/Seller’s systems to comply with the standards of the Processing Mechanisms (then in force) and the standards applicable to the NDPS Services. NDPS shall not be liable for whatsoever reasons in case of any failure of the Merchant / Seller to timely upgrade its systems as mentioned here in above and Merchant/Seller alone shall be solely responsible for any loss or damage arising therefrom. If so, requested by the Merchant / Seller, NDPS shall provide such additional services to the Merchant / Seller to suitably modify / upgrade the Merchant / Seller’s systems and the Merchant/Seller agrees to pay NDPS such additional charges as may be mutually agreed to by the Parties.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>12. LIMITATION OF LIABILITY:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>12. LIMITATION OF LIABILITY:</h4>
 <p>12.1.	Notwithstanding anything to the contrary in these Terms and Conditions, in no event shall either Party be liable, whether in contract or in tort or otherwise for special, punitive, indirect, or consequential damages, including without limitation, loss of profits or revenue arising under or in connection with these Terms and Conditions.</p>
 <p>12.2.	In any event the overall aggregate liability of NDPS in respect of all claims and liabilities arising under these Terms and Conditions shall be limited to an amount not exceeding the Fees received from the Merchant/Seller for the NDPS Services for the month immediately preceding the date of such proven claim/demands</p>
 
             
-<h6 className='font-weight-bold mt-4 pt-2'>13. BANNED PRODUCTS &amp;amp; SERVICES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>13. BANNED PRODUCTS SERVICES:</h4>
 <p>The Merchant/Seller hereby expressly agrees not to directly or indirectly deal in such product(s) or service(s) in restricted categories as provided on NDPS’s website www.nttdatapay.com at any time during the subsistence of these Terms and Conditions. Without prejudice whatsoever to NDPS’s other rights and privileges, the Merchant/Seller binds himself unequivocally to be solely liable for, including but not limited to any legal actions and suits, and to make good to NDPS immediately upon demand actual damages suffered by NDPS directly or owing to claims by any third party, levy of assessment fees or fines, penal actions taken by VISA/ MasterCard/ NPCI/ Amex/ RuPay, the Reserve Bank of India and/ or any other statutory or competent authorities for any breach of this clause.</p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>14. NON-SOLICITATION:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>14. NON-SOLICITATION:</h4>
 <p>Merchant/Seller agrees that during the Term of these Terms and Conditions and for a period of two (2) years thereafter, it shall not, without the prior written approval of NDPS hire or enter into a contract with any employee, agent or representative of NDPS to provide services to the Merchant/Seller or, directly or indirectly, induce or attempt to induce or otherwise counsel, bribe, discuss, advise or encourage any employee, consultant, agent or  representative of NDPS to leave or otherwise terminate such person’s relationship with NDPS.</p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>15. RELATIONSHIP OF THE PARTIES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>15. RELATIONSHIP OF THE PARTIES:</h4>
 <p>The relationship between the Parties hereunder these Terms and Conditions shall be  on a principal-to-principal basis. Nothing in these Terms and Conditions shall constitute an agency, partnership or any other relationship whether in the nature of a joint venture or otherwise between the Parties.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>16. FORCE MAJEURE:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>16. FORCE MAJEURE:</h4>
 <p>Notwithstanding anything to the contrary in these Terms and Conditions neither Party will be liable for failure to perform or delay in performing any obligation under these Terms and Conditions to the extent that such failure or delay is due to fire, flood, earthquake, strike, war (declared or undeclared), epidemic and/or pandemic, complete or partial restriction on movement, embargo, blockade, legal prohibition, governmental action, riot, insurrection, damage, destruction or any other similar cause beyond the reasonable control of such Party (“Force Majeure Event”); provided, however, that the affected Party will promptly notify the other Party of the occurrence of the Force Majeure Event and will take all steps reasonably necessary to resume performance of its obligations. In the event of a Force Majeure, the Parties shall immediately consult each other in order to find a mutually acceptable solution and shall use all reasonable efforts to minimize the consequences of such Force Majeure event.  In the event a Party does not cure, or is unable to cure, such failure or delay within thirty (30) days after the commencement of such failure or delay, the other Party may terminate the unperformed portions of this Agreement, or, as the case may be, the entire Terms and Conditions immediately upon written notice to the nonperforming Party</p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>17. AMENDMENTS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>17. AMENDMENTS:</h4>
 <p>Any modification of or amendment to these Terms and Conditions, shall be made in writing, vide addendums, exchange of letters, email, or any other mode of communication as mutually agreed between the Parties and which shall be considered as an addendum to this Agreement.</p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>18. ENTIRE AGREEMENT:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>18. ENTIRE AGREEMENT:</h4>
 <p>These Terms and Conditions, together with the Letter of Engagement and/or PO and all Attachments, constitutes the entire agreement between the Parties regarding the subject matter of these Terms and Conditions and will supersede all prior oral or written representations and Terms and Conditions. These Terms and Conditions are co-terminus with the Letter of Engagement and in case of online services, the commercials mentioned in the PO, between the Parties. Save and except as specifically stated herein above all other terms, conditions and covenants contained in the Letter of Engagement and/or PO shall remain unchanged and shall be fully applicable, enforceable and binding on the Parties. As of the date of the Letter of Engagement, all the provisions of these Terms and Conditions and in case of online services, the commercials mentioned in the PO, shall be deemed to be incorporated in, and made the part and parcel of the Letter of Engagement and shall be read taken and construed as one and the same instrument except as modified hereinbefore.</p>
             
-<h6 className='font-weight-bold mt-4 pt-2'>19. SEVERABILITY:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>19. SEVERABILITY:</h4>
 <p>If any provision of these Terms and Conditions are determined to be unenforceable in whole or in part thereof for any reason, then such provision or part thereof, shall to that extent be deemed deleted from these Terms and Conditions and the legality, validity and enforceability of the remaining provisions of these Terms and Conditions shall not be in any way be affected thereby and any act of omission/commission of the Parties hereto done prior to the provisions being held unenforceable shall be deemed to be valid and/or binding on the other.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>20. INVALID PROVISIONS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>20. INVALID PROVISIONS:</h4>
 <p>The Parties agree to attempt to substitute for any invalid or unenforceable provision, a valid or enforceable provision which achieves to the greatest extent possible the same effect as would have been achieved by the invalid or unenforceable provision</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>21. ASSIGNMENT:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>21. ASSIGNMENT:</h4>
 <p>The rights under these Terms and Conditions granted to the Merchant/Seller are not assignable or transferable
 without the prior approval of NDPS. NDPS shall be entitled to assign or transfer its rights and obligations under these
 Terms and Conditions to any other entity.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>22. RIGHTS, REMEDIES AND WAIVER:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>22. RIGHTS, REMEDIES AND WAIVER:</h4>
 <p>All rights and remedies hereunder shall be cumulative and may be exercised singularly or concurrently. If either Party
 fails to perform its obligations under any provision of these Terms and Conditions and if the other Party does not
 enforce such provision then, failure to enforce on that occasion shall not prevent enforcement on later occasions..</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>23. GOVERNING LAW, JURISDICTION AND DISPUTE RESOLUTION:</h6>
-<p>GOVERNING LAW, JURISDICTION AND DISPUTE RESOLUTION:
+<h4 className='font-weight-bold mt-4 pt-2'>23. GOVERNING LAW, JURISDICTION AND DISPUTE RESOLUTION:</h4>
+<p>
 These Terms and Conditions shall be governed by and construed in accordance with the laws in India. The Parties
 agree to submit to the exclusive jurisdiction of the courts located in Mumbai, India as regards any claims or matters
 arising under or in relation to the terms and conditions of these Terms and Conditions. The Parties hereto will
@@ -211,16 +210,16 @@ Conciliation Act, 1996; as amended from time to time shall govern the arbitratio
 Conciliation Act, 1996; as amended from time to time shall govern the arbitration proceedings. The arbitral procedure
 shall be conducted in the English language and any award or awards shall be rendered in English.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>24. NOTICES:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>24. NOTICES:</h4>
 <p>All notices required or permitted by these Terms and Conditions shall be in writing and shall be delivered by hand
 delivery, reputed courier, registered AD, to the Party to their address as mentioned above in these Terms and
 Conditions, or to the last known address of the Parties. All notices shall be deemed served once delivered.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>25. COUNTERPARTS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>25. COUNTERPARTS:</h4>
 <p>The Parties may execute these Terms and Conditions in counterparts, and each fully executed counterpart shall be
 deemed an original.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>26. SCHEDULE I - PAYMENT TERMS CONDITIONS:</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>26. SCHEDULE I - PAYMENT TERMS CONDITIONS:</h4>
 <p>26.1.	If the Merchant/Seller requests for user training to be carried out by NDPS in conjunction with the employees of the Merchant/Seller vide telephone as agreed by NDPS in writing, then the Fees paid by the Merchant/Seller shall include a onetime charge as agreed between the Parties.  Further, installation and training charges outside Mumbai; Delhi-NCR; Ahmedabad; or Bangalore; if any, will be chargeable at INR 7,500/- (Indian Rupees Seven Thousand and Five Hundred only) per man day with reimbursement of additional costs such as traveling/ boarding & other expenses, which will be payable at actuals.</p>
 <p>26.2.	For any customization or modification required in NDPS Services, the Merchant/Seller shall pay charges, per man day basis as specified by NDPS or as may be mutually agreed between the parties in writing.</p>
 <p>26.3.	Charges for Settlement of Accounts (Under MSP Model Only):</p>
@@ -236,7 +235,7 @@ The Merchant/Seller agrees to pay an amount, if requested of NDPS as a refundabl
 <p>26.4.5.	Merchant/Seller agrees to settle the transaction within three (03) days, if any transaction settled post three (03) days results in a ‘Late Settlement Chargeback’ the amount of the chargeback shall be recovered from the Merchant/Seller as there are no representation rights for Late Settlement. NDPS/Bank has the right to hold back payments for delayed settlement cases and also levy additional charges in case of a Late Settlement.</p>
 <p>26.4.6.	Merchant/Seller shall permit NDPS or its representative for installation of the POS terminal/device in the premises of the Merchant/Seller at the time of the ‘Merchant/Seller boarding’ and during un-installation of the POS terminal in case of un-boarding. NDPS shall have the right to install or un-install the terminal and Merchant/Seller shall not have any objection towards installation or un-installation. Any theft or loss or damage to terminal shall be responsibility of the Merchant/Seller and NDPS shall have the right to recover such damages/charges from Merchant/Seller.</p>
 
-<h6 className='font-weight-bold mt-4 pt-2'>27. SCHEDULE II - MERCHANT/SELLER DUTIES, OBLIGATIONS AND RESPONSIBILITIES</h6>
+<h4 className='font-weight-bold mt-4 pt-2'>27. SCHEDULE II - MERCHANT/SELLER DUTIES, OBLIGATIONS AND RESPONSIBILITIES</h4>
 <p>27.1.	The Duties, Obligations and Responsibilities of the Merchant/Seller for availing the applicable NDPS Services under these Terms and Conditions are us under:</p>
 <p>27.1.1.	Merchant/Seller shall ensure that its Merchant/Seller shall duly fulfill all Customer Orders in accordance with the order of the Customer.</p>
 <p>27.1.2.	Merchant/Seller is aware that NDPS/Partner Bank is not guaranteeing any transactions with the Customers/Buyers in any manner what-so-ever. The debit to the Customer’s Account will be subject to there being adequate balance in the Customer’s Account.</p>

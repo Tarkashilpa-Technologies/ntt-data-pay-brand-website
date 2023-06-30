@@ -132,9 +132,10 @@ export default function product1() {
 <div className="ig-f2-lhs">
 <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <button className="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Invoice Payment Link API</button>
-    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Bank Account Verification API</button>
+    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Penny Drop (Bank Account Verification) API</button>
     <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Transaction API </button>
     <button className="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">Vendor Payment API</button>
+    <button className="nav-link" id="v-pills-5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-5" type="button" role="tab" aria-controls="v-pills-5" aria-selected="false">Settlement Account Add/Update APIs</button>
   </div>  
 </div>    
 </div>
@@ -145,24 +146,24 @@ export default function product1() {
     
     
 <h3>Invoice Payment Link API's</h3>
-      <h3>Overview: </h3>
+      <h4>Overview: </h4>
       <p>Invoice payment link API module enables you to perform various actions pertaining to invoice generation to accept payments via payment link as an API-based alternative for the same actions performed using the Console.</p>
-      <p>Get Template API –
+      <p><b>Get Template API –</b>
         When triggered, with the validation of the request the merchant receives template number and name in response as per the templates created by the merchant.
       </p>
-      <p>Get Template Details API –
+      <p><b>Get Template Details API –</b>
         When triggered, with the validation of the request the merchant receives all details pertaining to the specific template for which the API is triggered.
       </p>
-      <p>Create Payment Link API –
+      <p><b>Create Payment Link API –</b>
         The Create Payment Link API is triggered in order to create invoice using a predefined template in the merchant console by the merchant which is sent along with the payment link.
       </p>
-      <p>Resend Payment Link API –
+      <p><b>Resend Payment Link API –</b>
         The merchant hits this API in order to resend the payment link and invoice to customer.
       </p>
-      <p>Cancel Payment Link API –
+      <p><b>Cancel Payment Link API –</b>
         The merchant hits this API in order to cancel the sent invoice by restricting the ability to make payment using the payment link.
       </p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
@@ -174,28 +175,29 @@ export default function product1() {
   </div>
     
   <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">   
-  <h3>Bank Account Verification API </h3>
-      <h3>Overview: </h3>
+  <h3>Penny Drop (Bank Account Verification) API </h3>
+      <h4>Overview: </h4>
       <p>Bank Account Verification API allows you to verify the bank account swiftly and efficiently, ensuring that the customer’s bank account is active, and the details are accurate.</p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. Reduced risk of payment failures and fraudulent transactions</p>
         <p>2.	Comprehensive report accessible using the console entailing detailed information.</p>
         <p>3.	Callback gets triggered for three times if the API response code to NDPS is 200.</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
           Checksum Type: HMACSHA-512
         </p>
     <div className='d-flex justify-content-end'>
-      <a href='/pdf/API/Integration Guides/Penny Drop (Bank Account Verification) API/PennyDrop_ProcessNote - API.pdf' className='btn_style1' download={"PennyDrop_ProcessNote - API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Penny Drop (Bank Account Verification) API/Penny Drop API.zip' className='btn_style1' download={"Penny Drop API.zip"}>Download</a>
     </div>
   </div>
                 
   <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
     <h3>Transaction API </h3>
+    <h4>Overview: </h4>
     <p>Designed to integrate seamlessly with various platforms. Transaction API facilitates the payment process from the initiation of the transaction to the authorization of the payment by the customer on the payment page or seamlessly and provide the transaction API response.</p>
-    <h3> Key Features:</h3>
+    <h4> Key Features:</h4>
         <p>1. Single transaction can be settled to multiple accounts using multi-Product approach</p>
         <p>2. The customer account can be verified for each payment made via Net Banking and UPI
         (Use Case : Broker Transactions)
@@ -205,7 +207,7 @@ export default function product1() {
         (Only for PCI-DSS compliant institutions)
         </p>
         <p>5.  Multiple attempts to retry the payment post payment failure while using any payment mode</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
@@ -213,31 +215,51 @@ export default function product1() {
         </p>
     
     <div className='d-flex justify-content-end'>
-      <a href='/pdf/API/Integration Guides/Single _ Multi Product API/01. AIPay API_NDPS_V1.5.pdf' className='btn_style1' download={"Single _ Multi Product API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Single _ Multi Product API/Transaction_API (Non-Seamless).zip' className='btn_style1' download={"Transaction_API (Non-Seamless).zip"}>Download</a>
     </div>
   </div>
                 
 
   <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
   <h3>Vendor Payment API </h3>
-      <h3>Overview: </h3>
+      <h4>Overview: </h4>
         <p>Designed to integrate seamlessly with various platforms. Payout API enables the Merchant to make payments securely to any vendor or service provider’s bank account. </p>
-      <h3>Payment Mode(s): IMPS</h3>           
-      <h3> Key Features:</h3>
+      <h4>Payment Mode(s): IMPS</h4>           
+      <h4> Key Features:</h4>
         <p>1.	Integrates seamlessly with your existing infrastructure</p>
         <p>2.	Designed to handle high transaction volume.</p>
         <p>3.	Real-time notification and comprehensive reports are available to view and download via dashboard.</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
           Checksum Type: HMACSHA-512
         </p>
     <div className='d-flex justify-content-end'>
-      <a href='/pdf/API/Integration Guides/Vendor Payment API/VendorPaymentSolution- API.pdf' className='btn_style1' download={"Vendor Payment API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Vendor Payment API/Vendor Payouts.zip' className='btn_style1' download={"Vendor Payment API.zip"}>Download</a>
     </div>               
   </div>
 
+  <div className="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+  <h3>Settlement Account Add/Update APIs </h3>
+      <h4>Overview: </h4>
+        <p>Settlement Account Add/Update API allows you to verify the bank account swiftly and efficiently, ensuring you that the customer’s bank account is active, and the details are accurate. </p>           
+      <h4> Key Features:</h4>
+        <p>1. Callback gets triggered for three times if the API response code to NDPS is 200.</p>
+      <h4>API's: </h4>
+        <p><b>Settlement Account Add/Update API</b><br></br>
+        This API is used to Add new settlement Bank Account for an Account ID or to Update the existing Account Number assigned against said MID</p>
+        <p><b>Account ID Status Request</b><br></br>This API will be used to retrieve Account Information from NDPS System post the Add/Update Request</p> 
+        <p><b>Callback API</b><br></br>It will be triggered once Bank Account is onboarded and will provide information on change of status</p>
+        <h4>API Info:</h4>
+        <p>API Type: REST<br></br>
+          Method: HTTP POST (S2S)<br></br>
+          Encryption Type:  None
+        </p>
+    <div className='d-flex justify-content-end'>
+      <a href='/pdf/API/Integration Guides/Settlement Account Add Update API/Settlement Account Add Update APIs_V1.0.pdf' className='btn_style1' download={"Settlement Account Add Update API.pdf"}>Download</a>
+    </div>               
+  </div>
     
 
   </div>    
