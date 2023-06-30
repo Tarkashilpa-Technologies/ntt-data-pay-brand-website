@@ -435,7 +435,7 @@ useEffect(() => {
                               </div>
                               <div className="col-md-6 mb-10">
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input autoFocus={true}
+                                <input
                                   onPaste={(e) => {
                                     e.preventDefault();
                                   }}
@@ -470,7 +470,7 @@ useEffect(() => {
 
                             <div className="col-md-12 mb-10">
                               <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                              <input autoFocus={true}
+                              <input 
                                 onPaste={(e) => {
                                   e.preventDefault();
                                 }}
@@ -504,7 +504,7 @@ useEffect(() => {
 
                             <div className="col-md-12 mb-10">
                               <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                              <input autoFocus={true}
+                              <input 
                                 onPaste={(e) => {
                                   e.preventDefault();
                                 }}
