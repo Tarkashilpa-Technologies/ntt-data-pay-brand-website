@@ -13,9 +13,9 @@ import "swiper/css/autoplay";
 //import {Tabs, Tab, Nav} from "bootstrap";  
 import { Modal, Button } from 'react-bootstrap'
 
-import { clearLocalStorage, getLocalStorage, setLocalStorage } from './utils/storage';
-import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPasswordValidate, onFormFeildsChange, validateField } from './utils/formValidator';
-import { EMAIL, PHONE, REQUIRED } from './utils/messages';
+import { clearLocalStorage, getLocalStorage, setLocalStorage } from '../utils/storage';
+import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPasswordValidate, onFormFeildsChange, validateField } from '../utils/formValidator';
+import { EMAIL, PHONE, REQUIRED } from '../utils/messages';
 
 export default function product1() {
   const [formData, setFormData] = useState();
