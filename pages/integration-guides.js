@@ -142,7 +142,7 @@ export default function product1() {
 <div className="col-md-6">
 <div className="ig-f2-rhs">
 <div className="tab-content" id="v-pills-tabContent">
-<div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+<div className="tab-pane fade " id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
     
     
 <h3>Invoice Payment Link API's</h3>
@@ -193,7 +193,7 @@ export default function product1() {
     </div>
   </div>
                 
-  <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+  <div className="tab-pane fade show active" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
     <h3>Transaction API </h3>
     <h4>Overview: </h4>
     <p>Designed to integrate seamlessly with various platforms. Transaction API facilitates the payment process from the initiation of the transaction to the authorization of the payment by the customer on the payment page or seamlessly and provide the transaction API response.</p>
