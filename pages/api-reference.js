@@ -141,12 +141,12 @@ export default function product1() {
     <div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
     
       <h3>Call Back API </h3>
-      <h3>Overview: </h3>
+      <h4>Overview: </h4>
       <p>Designed to integrate seamlessly with various platforms. This API allows merchants to receive the transaction info, without initiating any API request. It is only triggered when transaction is only for successful and failed transactions.</p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. No API request required to be triggered, it's a webhook call, triggered from NDPS</p>
         <p>2. Callback gets triggered for three times if the API response code to NDPS is not 200.</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
@@ -159,13 +159,13 @@ export default function product1() {
                 
     <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
     <h3>Refund Initiation API</h3>
-    <h3>Overview: </h3>
+    <h4>Overview: </h4>
       <p>Designed to integrate seamlessly with various platforms. This API allows merchants to initiate the refund for any transaction held previously.
       </p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. Partial refunds can be processed</p>
         <p>2. Initiate partial refund for partial amount of total transaction amount (Applicable if the transaction amount was split and settled to multiple bank accounts)</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
@@ -178,16 +178,16 @@ export default function product1() {
                 
     <div className="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
     <h3>Refund Status API</h3>
-    <h3>Overview: </h3>
+    <h4>Overview: </h4>
       <p>Designed to integrate seamlessly with various platforms. 
         This API can be used for Tracking –<br></br>
         1) Status of any given refund that’s under process<br></br>
         2) Tracking the refund status of old refunds
       </p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. Real-time status of the ongoing transaction</p>
         <p>2. Refund status of any past transaction (up to 30 days of transaction)</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
           Encryption Type: AES-512<br></br>
@@ -201,12 +201,12 @@ export default function product1() {
 
     <div className="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
     <h2> Settlement API   </h2>
-      <h3>Overview: </h3>
+      <h4>Overview: </h4>
         <p>Designed to integrate seamlessly with various platforms. This API allows merchants to track the settlement status of a sale transaction. Settlement status can be fetched for any given transaction, or the transactions performed on any given day.</p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. Settlement Status can be traced through Transaction ID or through Settlement Date </p>
         <p>2. Statement Status can be either fetched as JSON response or .CSV format, based on API request</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
         <p>API Type: REST<br></br>
         Method: HTTP POST (S2S)<br></br>
         Encryption Type: AES-512<br></br>
@@ -219,14 +219,14 @@ export default function product1() {
 
     <div className="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
       <h2>Transaction Status API  </h2>
-      <h3>Overview: </h3>
+      <h4>Overview: </h4>
         <p>This API allows merchants to track the status of any purchase Transaction and can be used for tracking -<br></br> 1) Ongoing Transaction<br></br> 2) Older transactions.</p>
-      <h3> Key Features:</h3>
+      <h4> Key Features:</h4>
         <p>1. Real-time status of the ongoing transaction</p>
         <p>2. Transaction status of any past transaction (up to 30 days of transaction)</p>
         <p>3. List of the Transaction Status (If Merchant Transaction ID is same for multiple Transactions)</p>
         <p>4. Can be triggered if merchant has neither received Transaction Response nor Call Back API</p>
-      <h3>API Info:</h3>
+      <h4>API Info:</h4>
       
         <p>API Type: REST<br></br>
           Method: HTTP POST (S2S)<br></br>
