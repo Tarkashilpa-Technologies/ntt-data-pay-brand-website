@@ -130,12 +130,10 @@ export default function product1() {
 <div className="row g-0">
 <div className="col-md-6">
 <div className="ig-f2-lhs">
-<div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <button className="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Invoice Payment Link API</button>
+  <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <button className="nav-link active" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Transaction API </button>
+    <button className="nav-link" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">Invoice Payment Link API</button>
     <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Penny Drop (Bank Account Verification) API</button>
-    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Transaction API </button>
-    <button className="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">Bank Account Verification API</button>
-    <button className="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">Transaction API </button>
     <button className="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">Vendor Payment API</button>
     <button className="nav-link" id="v-pills-5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-5" type="button" role="tab" aria-controls="v-pills-5" aria-selected="false">Settlement Account Add/Update APIs</button>
   </div>  
@@ -172,7 +170,7 @@ export default function product1() {
           Checksum Type: HMACSHA-512
         </p>
     <div className='d-flex justify-content-end'>
-      <a href='/pdf/API/Integration Guides/Invoice Payment Link API/Link Based Payment_API Document_V1.2.pdf' className='btn_style1' download={"Invoice Payment Link API.pdf"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Invoice Payment Link API/Link Based Payment API V1.2.pdf' className='btn_style1' download={"Link Based Payment API V1.2.pdf"}>Download</a>
     </div>
   </div>
     
