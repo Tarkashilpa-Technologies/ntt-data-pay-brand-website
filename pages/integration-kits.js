@@ -199,7 +199,6 @@ export default function product1() {
       // Stop the form from submitting and refreshing the page.
     event.preventDefault();
     // Get data from the form.
-    console.log(selectedValue == data.text2,selectedValue,"selectedValue == data.text2")
     let new_contact = {
       first_name: formData.Firstname.value,
       last_name: formData.Lastname.value,
