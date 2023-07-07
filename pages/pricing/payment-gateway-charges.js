@@ -113,7 +113,7 @@ with No hidden charges!</h2>
           <td>2.20%</td>
         </tr>
       </table>
-      <p className="text-left">“&#42;Platform fee levied per transaction basis”</p> 
+      <p className="pt-2 font-weight-bold">“&#42;Platform fee levied per transaction basis”</p> 
       </div>   
     </div> 
   </div>
@@ -145,6 +145,7 @@ to INR 25000 </td>
         </tr>
         
       </table> 
+      <p className="pt-2 font-weight-bold">“&#42;Setup Cost levied as per merchant category.”</p> 
       </div>  
   </div>  
   </div> 
