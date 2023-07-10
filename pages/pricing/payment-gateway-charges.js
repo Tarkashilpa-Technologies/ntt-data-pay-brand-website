@@ -21,7 +21,7 @@ export default function product1() {
         <title>Integrated Payment Solution for your business’ needs |NTT Data Payment Services</title>
         <meta name="description" content="NTT DATA Payment Services’ payment gateway charges are customized as per merchant's needs. Zero setup or hosting cost. NTT DATA payment gateway pricing to fit your needs." />
       
-      
+
       </Head>
 
  
@@ -121,13 +121,12 @@ with No hidden charges!</h2>
   <div className="m-1 m-xl-2">
   <div className="hcw-table-wrp">
       <table width="100%" cellSpacing={0} cellPadding={0}>
-    
         <tr>
         <th>Payout</th>
         <th>RATES</th>
         </tr>
         <tr>
-          <td>Penny Drop </td>
+          <td>Penny Drop</td>
           <td>Rs.2.85</td>
         </tr>
         <tr>
