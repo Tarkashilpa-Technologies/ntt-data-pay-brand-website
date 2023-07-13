@@ -346,7 +346,7 @@ useEffect(() => {
 <nav className='bread-wrp minus-top-40' aria-label="breadcrumb">
 <div className="container_1300 d-block">
   <ol className="breadcrumb">
-  <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
+    <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
     <li className="breadcrumb-item"><a href="/developer-guide">Developers</a></li>
     <li className="breadcrumb-item active" aria-current="page">Integration Kits</li>
   </ol>
