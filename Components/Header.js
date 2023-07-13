@@ -233,9 +233,9 @@ export default function Header() {
             />
             {/* <img className="img-fluid" src="/images/logo.svg" alt="Logo" /> */}
             
-  </Link>
+          </Link>
 
-<span className="ham-menu" ref={ham}  onClick={handleMenuToggle}>
+      <span className="ham-menu" ref={ham}  onClick={handleMenuToggle}>
   <input type="checkbox" id="checkbox4"  ref={checkboxmenu} className="checkbox4 visuallyHidden"/>
         <label htmlFor="checkbox4">
             <div className="hamburger hamburger4">
@@ -277,7 +277,7 @@ export default function Header() {
       
       :
 
-      
+    <div className="menubox-div">  
       <ul className="menubox" ref={menubox}>
       <li  className={`${styles.dropdown} ${router.pathname  == "/about-us" ? "active" : ""}`}>
       <Link href="/about-us">
@@ -408,7 +408,8 @@ export default function Header() {
           <a onClick={handleMenuClick} href="https://pgreports.atomtech.in/titan_merchant_console/home#no-back-button" target="_blank" className="btn_style2">Log In</a>
          </Link> 
         </li>
-      </ul>
+        </ul>
+      </div>
 }
       </div>
     </section>
