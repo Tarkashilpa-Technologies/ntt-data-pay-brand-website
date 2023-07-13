@@ -215,7 +215,7 @@ export default function product1() {
         </p>
     
     <div className='d-flex justify-content-end'>
-      <a href='/pdf/API/Integration Guides/Single _ Multi Product API/Transaction_API (Non-Seamless).zip' className='btn_style1' download={"Transaction_API (Non-Seamless).zip"}>Download</a>
+      <a href='/pdf/API/Integration Guides/Single _ Multi Product API/Transaction_API.zip' className='btn_style1' download={"Transaction_API.zip"}>Download</a>
     </div>
   </div>
                 

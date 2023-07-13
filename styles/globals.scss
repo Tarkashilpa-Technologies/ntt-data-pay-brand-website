@@ -3190,4 +3190,55 @@ span{
   --bs-backdrop-opacity: 0.1 !important;
 }
 
+.font-weight-bold {
+  font-weight: 500;
+}
 // reponsive css end// 
+// @media (min-width: 800px) and (max-width: 1100px)
+// {
+
+//   .container_1300{
+//     display: flex;
+//     justify-content: space-between;
+    
+//       .ham-menu {
+//         display: block;
+//       }
+    
+//     .menubox {
+//       display: none;
+//     }
+//     .menubox.show{
+//       display: block;
+      
+//     }
+//   }
+// }
+
+@media (min-width: 767px) and (max-width: 1100px) {
+
+  .container_1300{ width: 100%; display: block;}
+  .container_1100{ width: 100%;  display: block;}
+  .brand-logos-wrp{ width: 100%; max-width: 100%; display: block; height: auto; margin: 0px; border-radius: 0px; padding: 20px 0px;}
+  .Header_header__ubBbX{ height: 82px; align-items: inherit;}
+  .Header_header__ubBbX li.Header_dropdown__mgErL{ display: block; float: none;}
+  .logo{ padding: 15px 0px;}
+
+  // .logo:before{content: ''; width: ;}
+.menubox-div { width: 100%; display: flex; margin-right: -60px;  margin-top: -87px; justify-content: end;}
+.menubox.show{margin-right: -20px;}
+  .ham-menu{ display: block; position: absolute; top:25px; right: 20px;}
+  .Header_header__ubBbX ul{ display: none; background-color: #fff; height:600px; overflow: scroll; width: 350px; padding-left: 15px; padding-right: 15px; padding-top: 30px; border-radius: 0px 0px 0px 5px; box-shadow: 0px 1px 10px rgba(0, 0, 0,0.8);}
+  .Header_header__ubBbX li a, .Header_header__ubBbX .Header_dropbtn__KfthW{ display: block;}
+  .Header_header__ubBbX .Header_dropdown_content___lr9O{ width: 100%; text-align: center;}
+  .Header_header__ubBbX li{ float: none; margin: 15px 0px;}
+  .insta-main-wrp::before{ display: none;}
+  .insta-main-wrp::after{ display: none;}
+  .Header_header__ubBbX .Header_dropdown_content___lr9O{ position: relative;}
+  .Header_header__ubBbX .Header_dropdown_content___lr9O a{ text-align: center;}
+
+ 
+  .brand-logos-wrp div {margin: 0rem 0rem;display: flex;text-align: center;width: 100%; padding: 0px 20px;}  
+
+  .brand-logos-wrp div img{ max-width: 100%; margin: 0 auto;}
+}

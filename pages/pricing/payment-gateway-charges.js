@@ -21,7 +21,7 @@ export default function product1() {
         <title>Integrated Payment Solution for your business’ needs |NTT Data Payment Services</title>
         <meta name="description" content="NTT DATA Payment Services’ payment gateway charges are customized as per merchant's needs. Zero setup or hosting cost. NTT DATA payment gateway pricing to fit your needs." />
       
-      
+
       </Head>
 
  
@@ -72,8 +72,8 @@ with No hidden charges!</h2>
 
 <div className="no-hcw-inner">
  <div className="row justify-content-center">
-  <div className="col-md-6">
-   <div className="hcw-lhs">
+  <div className="col-lg-6">
+   <div className="m-1 m-xl-2">
      <div className="hcw-table-wrp">
       <table width="100%" cellSpacing={0} cellPadding={0}>
         <tr>
@@ -113,21 +113,20 @@ with No hidden charges!</h2>
           <td>2.20%</td>
         </tr>
       </table>
-      <p className="text-left">“&#42;Platform fee levied per transaction basis”</p> 
+      <p className="pt-2 font-weight-bold">“&#42;Platform fee levied per transaction basis”</p> 
       </div>   
     </div> 
   </div>
-  <div className="col-md-6">
-  <div className="hcw-rhs">
+  <div className="col-lg-6">
+  <div className="m-1 m-xl-2">
   <div className="hcw-table-wrp">
       <table width="100%" cellSpacing={0} cellPadding={0}>
-    
         <tr>
         <th>Payout</th>
         <th>RATES</th>
         </tr>
         <tr>
-          <td>Penny Drop </td>
+          <td>Penny Drop</td>
           <td>Rs.2.85</td>
         </tr>
         <tr>
@@ -145,6 +144,7 @@ to INR 25000 </td>
         </tr>
         
       </table> 
+      <p className="pt-2 font-weight-bold">“&#42;Setup Cost levied as per merchant category.”</p> 
       </div>  
   </div>  
   </div> 
