@@ -73,7 +73,7 @@ with No hidden charges!</h2>
 <div className="no-hcw-inner">
  <div className="row justify-content-center">
   <div className="col-lg-6">
-   <div className="m-1 m-xl-2">
+   <div className="m-3 m-xl-2">
      <div className="hcw-table-wrp">
       <table width="100%" cellSpacing={0} cellPadding={0}>
         <tr>
@@ -118,7 +118,7 @@ with No hidden charges!</h2>
     </div> 
   </div>
   <div className="col-lg-6">
-  <div className="m-1 m-xl-2">
+  <div className="m-3 m-xl-2">
   <div className="hcw-table-wrp">
       <table width="100%" cellSpacing={0} cellPadding={0}>
         <tr>

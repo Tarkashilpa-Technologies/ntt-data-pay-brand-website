@@ -28,3 +28,4 @@ yarn-error.log*
 /public/videos/
 /public/webkits/
 /public/pdf/
+/public/images
