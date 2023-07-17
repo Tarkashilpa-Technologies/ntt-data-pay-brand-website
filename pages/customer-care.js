@@ -258,19 +258,25 @@ informed about the channels to escalate their complaints, concerns and grievance
 <h2 className='common-ttle text-center'>Customer Support Details</h2>
 
 <div className="csd-cntr-box">
- <img src="/images/csd.svg" alt="" className="img-fluid" />  
+  <div className='row'>
+    <img src="/images/csd.svg" alt="" className="img-fluid mt-md-4 pt-md-4" />  
+  </div>
+  <div className='row'>
+    <div className='col-lg-6'>
+      <Link href="mailto:NDPS.helpdesk@nttdata.com">
+      <a className="csd-anchor csd-anchor1">NDPS.helpdesk@nttdata.com</a>
+      </Link>
+    </div>
+    <div className='col-lg-6'>
+      <Link href="mailto:NDPS.poshelpdesk@nttdata.com">
+      <a className="csd-anchor csd-anchor2">NDPS.poshelpdesk@nttdata.com</a>
+      </Link>
+    </div>
+  </div>
 
-<Link href="mailto:NDPS.helpdesk@nttdata.com">
-<a className="csd-anchor csd-anchor1">NDPS.helpdesk@nttdata.com</a>
-</Link>
-
-<Link href="mailto:NDPS.poshelpdesk@nttdata.com">
-<a className="csd-anchor csd-anchor2">NDPS.poshelpdesk@nttdata.com</a>
-</Link>
-
-<Link href="">
-<a className="csd-anchor csd-anchor3">1860 - 266 - 4959</a>
-</Link>
+  <Link href="">
+  <a className="csd-anchor csd-anchor3">1860 - 266 - 4959</a>
+  </Link>
 
 </div>
 

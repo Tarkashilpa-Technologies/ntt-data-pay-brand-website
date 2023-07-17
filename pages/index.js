@@ -383,6 +383,9 @@ autoplay={{
  <span><img src="/images/Group-logo3.png" alt="" className="img-fluid" /></span> 
  <span><img src="/images/Group-logo4.png" alt="" className="img-fluid" /></span> 
 </div>
+<div className="mt-4">
+<a href="/integration-kits" className="btn_style1 mt-3">Know More</a>
+</div>
 
   </div> 
   </div> 

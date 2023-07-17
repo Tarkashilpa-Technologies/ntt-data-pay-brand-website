@@ -288,7 +288,7 @@ modules={[Autoplay ]}
         <div className="card-style card-style3 card-bg4">
           <h2 className="ttle">Payouts</h2>
           <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
-          {/* <a href="" className="btn_style_white">Know More</a> */}
+          {/* <a href="" className="btn_style_white"></a> */}
         </div>
 
         <div className='spacer-30'></div>
