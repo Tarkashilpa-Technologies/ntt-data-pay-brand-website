@@ -63,6 +63,7 @@ color:#fff !important;
 font-size:14px;
 font-weight:500;
 text-decoration: none;
+cursor: pointer;
 p{
   margin-bottom: 0px !important;
   color: #fff !important;
@@ -73,7 +74,7 @@ p{
 
 .btn_style1:hover
 {
-  background: linear-gradient(83.73deg, #7198CE -9.34%, #0F1C50 100%);
+  background: linear-gradient(83.73deg, #5a79c8 -9.34%, #0072BC 100%);
 }
 .btn_style2
 {
@@ -2305,14 +2306,13 @@ span{
 
     .csd-cntr-box{
 
-      &{ max-width: 666px; position: relative; margin: 0 auto;}
+      &{ max-width: 666px;position: relative; margin: 0 auto;}
       a.csd-anchor{
 
         &{font-size: 30px; font-weight: $fw-semi-bold; color: $black-clr; position: absolute;}
-        &.csd-anchor1{ top:85px; left:-125px; text-decoration: underline;}
-        &.csd-anchor2{ top:85px; right:-170px; text-decoration: underline;}
-        &.csd-anchor3{ top:185px; right:-80px;}
-
+        &.csd-anchor1{ top:60px; left:-160px; text-decoration: underline;}
+        &.csd-anchor2{ top:60px; right:-170px; text-decoration: underline;}
+        &.csd-anchor3{ top:240px; right:-80px;}
 
       }
 
@@ -3241,4 +3241,23 @@ span{
   .brand-logos-wrp div {margin: 0rem 0rem;display: flex;text-align: center;width: 100%; padding: 0px 20px;}  
 
   .brand-logos-wrp div img{ max-width: 100%; margin: 0 auto;}
+
+
+  .csd-cntr-box{
+
+    &{ max-width: 500px;position: relative; margin: 0 auto;}
+    a.csd-anchor{
+
+      &{font-size: 30px; font-weight: $fw-semi-bold; color: $black-clr; position: absolute;}
+      &.csd-anchor1{ top:10px !important; left:-60px !important; text-decoration: underline;}
+      &.csd-anchor2{ top:60px !important; right:-60px !important; text-decoration: underline;}
+      &.csd-anchor3{ top:240px; right:-80px;}
+
+    }
+
+  }
+}
+
+.pointer {
+  cursor: pointer !important;
 }
