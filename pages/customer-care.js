@@ -258,35 +258,41 @@ informed about the channels to escalate their complaints, concerns and grievance
 <h2 className='common-ttle text-center'>Customer Support Details</h2>
 
 <div className="csd-cntr-box">
- <img src="/images/csd.svg" alt="" className="img-fluid" />  
+  <div className='row'>
+    <img src="/images/csd.svg" alt="" className="img-fluid mt-md-4 pt-md-4" />  
+  </div>
+  <div className='row'>
+    <div className='col-lg-6 col-12'>
+      <Link href="mailto:NDPS.helpdesk@nttdata.com">
+      <a className="csd-anchor csd-anchor1">NDPS.helpdesk@nttdata.com</a>
+      </Link>
+    </div>
+    <div className='col-lg-6 col-12'>
+      <Link href="mailto:NDPS.poshelpdesk@nttdata.com">
+      <a className="csd-anchor csd-anchor2">NDPS.poshelpdesk@nttdata.com</a>
+      </Link>
+    </div>
+  </div>
 
-<Link href="mailto:NDPS.helpdesk@nttdata.com">
-<a className="csd-anchor csd-anchor1">NDPS.helpdesk@nttdata.com</a>
-</Link>
-
-<Link href="mailto:NDPS.poshelpdesk@nttdata.com">
-<a className="csd-anchor csd-anchor2">NDPS.poshelpdesk@nttdata.com</a>
-</Link>
-
-<Link href="">
-<a className="csd-anchor csd-anchor3">1860 - 266 - 4959</a>
-</Link>
+  <Link href="">
+  <a className="csd-anchor csd-anchor3">1860 - 266 - 4959</a>
+  </Link>
 
 </div>
 
 
 <div className="container_1300 d-block">
 
-<div className="cds-tabs-wrp">
+<div className="cds-tabs-wrp ">
 
-<ul className="nav nav-tabs" id="myTab" role="tablist">
+<ul className="nav nav-tabs justify-content-center" id="myTab" role="tablist">
   <li className="nav-item" role="presentation">
     <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Request for POS Paper Roll</button>
   </li>
-  <li className="nav-item" role="presentation">
+  <li className="nav-item mt-3 mt-md-0" role="presentation">
     <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">EDC Machine related issue</button>
   </li>
-  <li className="nav-item" role="presentation">
+  <li className="nav-item mt-3 mt-xl-0" role="presentation">
     <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Require training</button>
   </li>
 </ul>

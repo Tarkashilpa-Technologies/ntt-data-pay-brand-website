@@ -379,7 +379,7 @@ useEffect(() => {
               {WebsiteData?.map((data,index) => {
                 return (
                   <>
-                    <div className="col-md-3 col-6" key={index}>
+                    <div className="col-md-3 col-6 pointer" key={index}>
                       <p onClick={() => {
                         setIsShow(true);
                         setModalOpen(data.id);
@@ -567,7 +567,7 @@ useEffect(() => {
               {MobileData?.map((data,index) => {
                 return (
                   <>
-                    <div className="col-md-3 col-6" key={index}>
+                    <div className="col-md-3 col-6 pointer" key={index}>
                       <p onClick={() => {
                         setIsShowMobileModal(true);
                         setModalOpen(data.id);
@@ -758,7 +758,7 @@ useEffect(() => {
             {EcomData?.map((data,index) => {
               return (
                 <>
-                  <div className="col-md-3 col-6" key={index}>
+                  <div className="col-md-3 col-6 pointer" key={index}>
                     <p onClick={() => {
                       setIsShowEcomModal(true);
                       setModalOpen(data.id);
