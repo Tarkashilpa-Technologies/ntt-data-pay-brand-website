@@ -835,9 +835,9 @@ export default function product1() {
             <p>
               Any modification of or amendment to these Terms and Conditions,
               shall be made in writing, vide addendums, exchange of letters,
-              email, or any other mode of communication as mutually agreed
-              between the Parties and which shall be considered as an addendum
-              to this Agreement.
+              email, or by any other mode of communication, and once
+              communicated, shall be considered as an addendum to this
+              Agreement.
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">
               18. ENTIRE AGREEMENT:
@@ -930,11 +930,11 @@ export default function product1() {
             <h4 className="font-weight-bold mt-4 pt-2">24. NOTICES:</h4>
             <p>
               All notices required or permitted by these Terms and Conditions
-              shall be in writing and shall be delivered by hand delivery,
-              reputed courier, registered AD, to the Party to their address as
-              mentioned above in these Terms and Conditions, or to the last
-              known address of the Parties. All notices shall be deemed served
-              once delivered.
+              shall be in writing and shall be delivered by a Party to the other
+              by 'Hand Delivery', 'Registered Post Acknowledgement Due', 'Speed
+              Post', 'Courier', or 'Email', to their address as mentioned in the
+              Letter of Engagement, or to the last known address of the Parties.
+              All notices shall be deemed served once delivered.
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">25. COUNTERPARTS:</h4>
             <p>
