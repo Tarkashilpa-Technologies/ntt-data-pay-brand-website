@@ -85,7 +85,7 @@ export default function Contact() {
     </h2>
     <div id="c14" className="accordion-collapse collapse" aria-labelledby="h14" data-bs-parent="#faq1">
       <div className="accordion-body">
-      <p>NTT DATA Payment Services understands the importance of trust and security and is therefore complied with PCI DSS 3.2 V and is 256-bit encrypted, providing you with a bulletproof payments interface.  </p>
+      <p>NTT DATA Payment Services understands the importance of trust and security and is therefore complied with PCI DSS 3.2.1V and is 256-bit encrypted, providing you with a bulletproof payments interface.  </p>
       </div>
     </div>
   </div>

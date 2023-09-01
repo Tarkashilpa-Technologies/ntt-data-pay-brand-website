@@ -39,7 +39,7 @@ export default function product1() {
         "name": "2.How secure is the Payment Gateway?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere."
+          "text": "NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2.1V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere."
         }
       },{
         "@type": "Question",

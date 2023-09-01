@@ -402,7 +402,7 @@ modules={[Autoplay ]}
       </SwiperSlide>
       <SwiperSlide className="wcbg6">
       <h2>Fraud Prevention and Advanced Encryption System</h2> 
-       <p>NTT DATA Payments is powered by PCI DSS 3.2 V compliance and is 256-bit encrypted, giving you the safest and the most secure digital payment experience</p> 
+       <p>NTT DATA Payments is powered by PCI DSS 3.2.1V compliance and is 256-bit encrypted, giving you the safest and the most secure digital payment experience</p> 
       </SwiperSlide>
       <SwiperSlide className="wcbg7">
       <h2>Round the Clock Support</h2> 

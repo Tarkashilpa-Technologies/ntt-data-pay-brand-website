@@ -55,7 +55,7 @@ export default function About() {
         <p className="common-desc">
         NTT DATA Payment Services India is constantly marvelling in providing secure and seamless digital payment solutions across various industrial and banking segments across the globe. NTT DATA Payment Services India caters to more than 6 million+ merchants, with an annual transaction value and volume of INR 800+ billion and 100 million, respectively.</p> 
         <p className="common-desc">
-        NTT DATA Payment Services complies with PCI DSS 3.2V and is 256-bit encrypted, keeping our security system bulletproof.</p> 
+        NTT DATA Payment Services complies with PCI DSS 3.2.1V and is 256-bit encrypted, keeping our security system bulletproof.</p> 
 <p className="common-desc">
 In 2019, NTT DATA, a Japanese system integration company acquired Atom Technologies, now known as NTT DATA Payment Services India. As one of the global innovators, NTT DATA has been striving to establish a framework through which it can provide its diverse services worldwide and support its customers&#39; needs and further broaden the horizon for customers in both Indian and Global Market</p> 
 

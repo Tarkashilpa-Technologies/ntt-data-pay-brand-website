@@ -201,7 +201,7 @@ export default function product1() {
     </h2>
     <div id="collapsefive" className="accordion-collapse collapse" aria-labelledby="headingfive" data-bs-parent="#accordionfaq">
       <div className="accordion-body">
-      NTT DATA Payments keep your transactions safe and impenetrable with PCI DSS 3.2V compliance and 256-bit SSL encryption.
+      NTT DATA Payments keep your transactions safe and impenetrable with PCI DSS 3.2.1V compliance and 256-bit SSL encryption.
       </div>
     </div>
   </div>

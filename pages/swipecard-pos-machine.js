@@ -46,7 +46,7 @@ export default function mGalla() {
         "name": "Is accepting card payments through the POS terminal safe?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, our bulletproof online security is backed with PCI DSS v 3.2 compliance and 256-bit encryption, ensuring a safe transaction. With NTT DATA Payments- one of the best POS machine providers in India, be a part of our comprehensive retailer family."
+          "text": "Yes, our bulletproof online security is backed with PCI DSS v 3.2.1 compliance and 256-bit encryption, ensuring a safe transaction. With NTT DATA Payments- one of the best POS machine providers in India, be a part of our comprehensive retailer family."
         }
       },{
         "@type": "Question",
@@ -448,7 +448,7 @@ Our ready to deploy POS helps meet the digital demands and offers several value-
       <div className="boost-card">
       <img src="/images/pos-icn7.svg" alt="" className="img-fluid" />  
       <h3>Secured Transactions</h3>
-      <p>Your security is our top most priority. NTT DATA Payments promotes bank-level security with PCI DSS 3.2v compliance and 256-bit encryption.</p>
+      <p>Your security is our top most priority. NTT DATA Payments promotes bank-level security with PCI DSS 3.2.1v compliance and 256-bit encryption.</p>
       </div>  
       </div>
       <div className="col-md-4">
@@ -632,7 +632,7 @@ Our ready to deploy POS helps meet the digital demands and offers several value-
     </p>
     <div id="collapseOne3" className="accordion-collapse collapse" aria-labelledby="headingOne3" data-bs-parent="#accordionExample3">
       <div className="accordion-body">
-      Yes, our bulletproof online security is backed with PCI DSS v 3.2 compliance and 256-bit encryption, ensuring a safe transaction. With NTT DATA Payments- one of the best POS machine providers in India, be a part of our comprehensive retailer family.
+      Yes, our bulletproof online security is backed with PCI DSS v 3.2.1 compliance and 256-bit encryption, ensuring a safe transaction. With NTT DATA Payments- one of the best POS machine providers in India, be a part of our comprehensive retailer family.
       </div>
     </div>
   </div>
