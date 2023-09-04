@@ -95,7 +95,7 @@ export default function mGalla() {
         "name": "Is mGalla safe and secured?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "mGalla is a highly secured payment app for merchants. We understand that you trust us with your money and so, we are here to provide you with bank-level security features. NTT DATA Payment Services is PCI DSS v. 3.2 and SSL 256 bit encrypted, which is the highest level of security available."
+          "text": "mGalla is a highly secured payment app for merchants. We understand that you trust us with your money and so, we are here to provide you with bank-level security features. NTT DATA Payment Services is PCI DSS v. 3.2.1 and SSL 256 bit encrypted, which is the highest level of security available."
         }
       },{
         "@type": "Question",
@@ -598,7 +598,7 @@ autoplay={{
     </p>
     <div id="collapseOne10" className="accordion-collapse collapse" aria-labelledby="headingOne10" data-bs-parent="#accordionExample3">
       <div className="accordion-body">
-      mGalla is a highly secured payment app for merchants. We understand that you trust us with your money and so, we are here to provide you with bank-level security features. NTT DATA Payment Services is PCI DSS v. 3.2 and SSL 256 bit encrypted, which is the highest level of security available.
+      mGalla is a highly secured payment app for merchants. We understand that you trust us with your money and so, we are here to provide you with bank-level security features. NTT DATA Payment Services is PCI DSS v. 3.2.1 and SSL 256 bit encrypted, which is the highest level of security available.
       </div>
     </div>
   </div>

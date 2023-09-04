@@ -39,7 +39,7 @@ export default function product1() {
         "name": "2.How secure is the Payment Gateway?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere."
+          "text": "NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2.1V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere."
         }
       },{
         "@type": "Question",
@@ -495,7 +495,7 @@ your disposal for every kind of online & offline payment.</p>
   <span className="ppo-icn"><img src="/images/ppo-icn3.svg" alt="" className="img-fluid" /></span>
   <h2 className="ttle">Minimizing risk & fraudulent transactions</h2>
   <p>Ensure safe and secure transactions with our
-PCI DSS 3.2v complied payment system.</p>
+PCI DSS 3.2.1v complied payment system.</p>
   </div>  
   </div> 
 
@@ -630,7 +630,7 @@ PCI DSS 3.2v complied payment system.</p>
     </h2>
     <div id="collapseseven" className="accordion-collapse collapse" aria-labelledby="headingseven" data-bs-parent="#accordionfaq">
       <div className="accordion-body">
-      Insta Pay complies with PCI DSS 3.2V, providing customers with world-class safety and security.
+      Insta Pay complies with PCI DSS 3.2.1V, providing customers with world-class safety and security.
       </div>
     </div>
   </div>
@@ -773,7 +773,7 @@ PCI DSS 3.2v complied payment system.</p>
     <div className="why-rhs">
     <div className="tab-content" id="v-pills-tabContent">
     <div className="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-     <p className="common-desc">NTT DATA Payments’ security is backed with PCI DSS version 3.2 and 256-bit encryption.</p>
+     <p className="common-desc">NTT DATA Payments’ security is backed with PCI DSS version 3.2.1 and 256-bit encryption.</p>
      <img src="/images/Safe-Secure-Payments.png" alt="" className="img-fluid" />
     </div>
     <div className="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
@@ -929,7 +929,7 @@ PCI DSS 3.2v complied payment system.</p>
     </h2>
     <div id="collapseTwo3" className="accordion-collapse collapse" aria-labelledby="headingTwo3" data-bs-parent="#accordionExample3">
       <div className="accordion-body">
-      NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere.
+      NTT DATA Payments has the best payment gateway in India, whose bullet-proof security is backed by PCI DSS 3.2.1V compliance and is 256-bit encrypted, ensuring a safe and reliable transactional atmosphere.
 
       </div>
     </div>
