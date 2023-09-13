@@ -71,6 +71,23 @@ export default function SignUp() {
       // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
     });
   }
+  function onCaptchaChange(value) {
+    console.log("Captcha value:", value);
+  }
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src =
+      "https://www.google.com/recaptcha/enterprise.js?render=6LcSNiEoAAAAAHMlx4XBiT2xYF3L0GqIXKqCa6Jc";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="signuppage">
       <Head>
@@ -315,7 +332,7 @@ export default function SignUp() {
               </div>
               <ReCAPTCHA
                 sitekey="6LcSNiEoAAAAAHMlx4XBiT2xYF3L0GqIXKqCa6Jc"
-                onChange={handleRecaptchaVerify}
+                onChange={onCaptchaChange}
               />
               <div className="col-md-12 mb-10">
                 <button type="submit" className="btn btn-primary mb-3">
@@ -330,7 +347,6 @@ export default function SignUp() {
           </div>
         </div>
       </div>
-      <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfoFiAoAAAAALYuXpvPKjQ3P-3QSpVnOLTV5R4z"></script>
     </div>
   );
 }
