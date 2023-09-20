@@ -24,7 +24,7 @@ const IntegrationGuides = () => {
     <div>
       <div className="powerful-gateway ">
         <div className="pb-4">
-          <div className="container_1300 d-block ">
+          <div className="container_1300 d-block " style={{ minHeight: 600 }}>
             <div className="p-5">
               <h1 className="text-center">Integrate Our Payment Solution</h1>
               <h3 className="text-center pt-3">
@@ -42,7 +42,10 @@ const IntegrationGuides = () => {
               <div className="d-flex gap-3 align-items-center justify-content-center">
                 {tutorialsData?.map((tutorial, index) => {
                   return (
-                    <div className="card p-3 col-lg-3 col-md-6 col-12 border-0 shadow">
+                    <div
+                      className="card p-3 col-lg-3 col-md-6 col-12 border-0 shadow"
+                      key={index}
+                    >
                       <div>
                         <h4 className="text-center">{tutorial?.title}</h4>
                         <p>{tutorial?.desc}</p>
