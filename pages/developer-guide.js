@@ -157,7 +157,7 @@ export default function product1() {
                       Step by step guide for integration our solution with
                       yours.
                     </div>
-                    <Link href="/integration-guides">
+                    <Link href="/integration-guides-new">
                       <a href="" className="btn_style1">
                         Know More
                       </a>
@@ -176,7 +176,7 @@ export default function product1() {
                       View sample code and field descriptions. Send request to
                       the sandbox and see the responses.
                     </div>
-                    <Link href="/api-reference">
+                    <Link href="/api-references-new">
                       <a href="" className="btn_style1">
                         Know More
                       </a>
