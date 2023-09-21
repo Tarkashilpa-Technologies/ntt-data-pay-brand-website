@@ -145,60 +145,72 @@ export default function product1() {
           </div>
 
           <div className="fold2-grid-cvr">
-            <div className="row">
-              <div className="col-md-4">
+            <div className="d-flex flex-md-row flex-wrap flex-lg-nowrap h-100 gap-3 justify-content-center">
+              <div className="col-12 col-md-6 col-lg-4">
                 <div className="f2grid-bx">
                   <div className="grd-pic">
                     <img src="/images/dev1.png" alt="" className="img-fluid" />
                   </div>
-                  <div className="desc-hldr">
-                    <p>Integration Guides</p>
-                    <div className="h6 mb-4">
-                      Step by step guide for integration our solution with
-                      yours.
+                  <div className="desc-hldr d-flex justify-content-between flex-column">
+                    <div>
+                      <p>Integration Guides</p>
+                      <div className="h6 mb-4">
+                        Step by step guide for integration our solution with
+                        yours.
+                      </div>
                     </div>
-                    <Link href="/integration-guides-new">
-                      <a href="" className="btn_style1">
-                        Know More
-                      </a>
-                    </Link>
+                    <div className="d-flex justify-content-center">
+                      <Link href="/integration-guides-new">
+                        <a href="" className="btn_style1">
+                          Know More
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-12 col-md-6 col-lg-4">
                 <div className="f2grid-bx">
                   <div className="grd-pic">
                     <img src="/images/dev2.png" alt="" className="img-fluid" />
                   </div>
-                  <div className="desc-hldr">
-                    <p>API Reference</p>
-                    <div className="h6 mb-4">
-                      View sample code and field descriptions. Send request to
-                      the sandbox and see the responses.
+                  <div className="desc-hldr d-flex justify-content-between flex-column">
+                    <div>
+                      <p>API Reference</p>
+                      <div className="h6 mb-4">
+                        View sample code and field descriptions. Send request to
+                        the sandbox and see the responses.
+                      </div>
                     </div>
-                    <Link href="/api-references-new">
-                      <a href="" className="btn_style1">
-                        Know More
-                      </a>
-                    </Link>
+                    <div className="d-flex justify-content-center">
+                      <Link href="/api-references-new">
+                        <a href="" className="btn_style1">
+                          Know More
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-12 col-md-6 col-lg-4">
                 <div className="f2grid-bx">
                   <div className="grd-pic">
                     <img src="/images/dev3.png" alt="" className="img-fluid" />
                   </div>
-                  <div className="desc-hldr">
-                    <p>API Explorer</p>
-                    <div className="h6 mb-4">
-                      Learn about Our API by try it out directly from browser.
+                  <div className="desc-hldr d-flex justify-content-between flex-column">
+                    <div>
+                      <p>API Explorer</p>
+                      <div className="h6 mb-4">
+                        Learn about Our API by try it out directly from browser.
+                      </div>
                     </div>
-                    <Link href="/try-it-out-api-screen">
-                      <a href="" className="btn_style1">
-                        Know More
-                      </a>
-                    </Link>
+                    <div className="d-flex justify-content-center">
+                      <Link href="/try-it-out-api-screen">
+                        <a href="" className="btn_style1">
+                          Know More
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -51,7 +51,7 @@ a {
 
 .container_1300 {
   width: 1300px;
-  margin: 0 auto;
+  margin: 0px auto;
   display: flex;
   justify-content: space-between;
 }
@@ -3440,6 +3440,7 @@ ol li {
           max-width: 300px;
           margin: 0 auto;
           padding: 40px;
+          height: 280px;
         }
         p {
           font-size: 30px;
