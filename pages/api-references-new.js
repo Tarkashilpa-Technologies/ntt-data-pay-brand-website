@@ -50,7 +50,7 @@ const ApiReferences = () => {
                       <div className="d-flex gap-3 align-items-center justify-content-end">
                         <a
                           className="btn btn_style1 p-2 px-4"
-                          href={"/tutorial-screen"}
+                          href={"/api-reference-screen"}
                         >
                           Explore
                         </a>
