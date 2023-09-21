@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
+  const [selectedTitle, setSelectedTitle] = useState(0);
   const dropdownData = [
     {
       title: "Dropdown Button",
@@ -37,7 +38,31 @@ const ApiReferenceScreen = () => {
               {dropdownData?.map((dropdown, index) => {
                 return (
                   <div key={index}>
-                    <Dropdown size="full" className="bg-primary">
+                    <div>
+                      <button
+                        className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white"
+                        onClick={() => {
+                          setSelectedTitle(index);
+                        }}
+                      >
+                        {dropdown?.title}
+                      </button>
+                    </div>
+                    {selectedTitle == index && (
+                      <div className="w-100 rounded-0 mt-0 bg-white">
+                        <ul>
+                          {dropdown?.options?.map((data, index) => {
+                            return (
+                              <li className="p-1" key={index}>
+                                <label>{data}</label>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* <Dropdown size="full" className="bg-primary">
                       <Dropdown.Toggle
                         id="dropdown-basic"
                         className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary"
@@ -54,7 +79,7 @@ const ApiReferenceScreen = () => {
                           Something else
                         </Dropdown.Item>
                       </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown> */}
                   </div>
                 );
               })}

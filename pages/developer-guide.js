@@ -194,7 +194,7 @@ export default function product1() {
                     <div className="h6 mb-4">
                       Learn about Our API by try it out directly from browser.
                     </div>
-                    <Link href="/integration-kits">
+                    <Link href="/try-it-out-api-screen">
                       <a href="" className="btn_style1">
                         Know More
                       </a>
