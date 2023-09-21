@@ -9,6 +9,22 @@ const IntegrationGuides = () => {
     },
     {
       title: "Generate invoice",
+      desc: "Learn how to integrate our payment gateway with app checkout flow",
+    },
+    {
+      title: "Accept Payments",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+    },
+    {
+      title: "Accept Payments",
+      desc: "Learn how to integrate our payment gateway with your",
+    },
+    {
+      title: "Accept Payments",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+    },
+    {
+      title: "Generate invoice",
       desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
@@ -17,7 +33,7 @@ const IntegrationGuides = () => {
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website ",
     },
   ];
   return (
@@ -25,9 +41,9 @@ const IntegrationGuides = () => {
       <div className="powerful-gateway ">
         <div className="pb-4">
           <div className="container_1300 d-block " style={{ minHeight: 600 }}>
-            <div className="p-5">
+            <div className="p-5 pb-4">
               <h1 className="text-center">Integrate Our Payment Solution</h1>
-              <h3 className="text-center pt-3">
+              <h3 className="text-center pt-3 text-primary">
                 Learn with our step by step tutorials how to integrate with our
                 solutions
               </h3>
@@ -38,25 +54,28 @@ const IntegrationGuides = () => {
               </p>
             </div>
 
-            <div className="pb-3 ">
-              <div className="d-flex gap-3 align-items-center justify-content-center">
+            <div className="pb-4 ">
+              <div className="d-flex gap-5 flex-wrap align-items-center justify-content-center h-100 ">
                 {tutorialsData?.map((tutorial, index) => {
                   return (
                     <div
-                      className="card p-3 col-lg-3 col-md-6 col-12 border-0 shadow"
+                      className="card p-4 col-md-3 col-sm-6 col-12 border-0 shadow h-100"
                       key={index}
+                      style={{ minHeight: 220 }}
                     >
-                      <div>
-                        <h4 className="text-center">{tutorial?.title}</h4>
-                        <p>{tutorial?.desc}</p>
-                      </div>
-                      <div className="d-flex gap-3 align-items-center justify-content-end">
-                        <a
-                          className="btn btn_style1 p-2 px-4"
-                          href={"/tutorial-screen"}
-                        >
-                          Explore
-                        </a>
+                      <div className="d-flex flex-column justify-content-between">
+                        <div>
+                          <h4 className="text-center">{tutorial?.title}</h4>
+                          <p>{tutorial?.desc}</p>
+                        </div>
+                        <div className="d-flex gap-3 align-items-center justify-content-end">
+                          <a
+                            className="btn btn_style1 p-2 px-4"
+                            href={"/tutorial-screen"}
+                          >
+                            Explore
+                          </a>
+                        </div>
                       </div>
                     </div>
                   );

@@ -18,57 +18,64 @@ const ApiReferences = () => {
       title: "Accept Payments",
       desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
+    {
+      title: "Accept Payments",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+    },
   ];
   return (
     <div>
       <div className="powerful-gateway " style={{ minHeight: 600 }}>
         <div className="pb-4">
           <div className="container_1300 d-block ">
-            <div className="p-5">
-              <h1 className="text-center">Learn about our API</h1>
-              <h3 className="text-center pt-3">
+            <div className="p-5 pb-4">
+              <h1 className="text-center mb-0">Learn about our API</h1>
+              <h3 className="text-center pt-3 text-primary">
                 Learn with our API endpoints, request, params and response
               </h3>
-              <p className="pt-2">
+              <p className="pt-2 text-center">
                 Our APIs are designed to integrate with your solutions and
                 systems with easy and provide highest degree of flexibility
               </p>
             </div>
 
-            <div className="pb-3 ">
-              <div className="d-flex gap-3 align-items-center justify-content-center">
+            <div className="pb-3">
+              <div className="row row-gap-2 col-gap-1 align-items-center justify-content-center">
                 {tutorialsData?.map((tutorial, index) => {
                   return (
                     <div
-                      className="card p-3 col-lg-3 col-md-6 col-12 border-0 shadow"
+                      className="card p-4 col-lg-3  m-2 col-md-4 col-sm-6 col-12 border-0 shadow"
                       key={index}
+                      style={{ minHeight: 220 }}
                     >
-                      <div>
-                        <h4 className="text-center">{tutorial?.title}</h4>
-                        <p>{tutorial?.desc}</p>
-                      </div>
-                      <div className="d-flex gap-3 align-items-center justify-content-end">
-                        <a
-                          className="btn btn_style1 p-2 px-4"
-                          href={"/api-reference-screen"}
-                        >
-                          Explore
-                        </a>
+                      <div className="d-flex justify-content-between flex-column">
+                        <div>
+                          <h4 className="text-center">{tutorial?.title}</h4>
+                          <p>{tutorial?.desc}</p>
+                        </div>
+                        <div className="d-flex gap-3 align-items-center justify-content-end">
+                          <a
+                            className="btn btn_style1 p-2 px-4"
+                            href={"/api-reference-screen"}
+                          >
+                            Explore
+                          </a>
+                        </div>
                       </div>
                     </div>
                   );
                 })}
               </div>
-              <div className="mt-4">
-                <h3 className="text-center pt-3">
+              <div className="pt-4 mt-3">
+                <h3 className="text-center">
                   If you prefer exploring API while trying it out, visit our API
                   Explorer
                 </h3>
               </div>
-              <div className="d-flex align-items-center justify-content-center mt-4">
+              <div className="d-flex align-items-center justify-content-center mt-4 mb-3">
                 <a
-                  className="btn btn_style1 p-2 px-4"
-                  href={"/tutorial-screen"}
+                  className="btn btn_style1 p-3 px-5"
+                  href="/try-it-out-api-screen"
                 >
                   API Explorer
                 </a>

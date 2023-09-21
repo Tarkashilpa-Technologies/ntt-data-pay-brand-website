@@ -95,7 +95,7 @@ const TutorialScreen = () => {
               </div>
             </div>
           </div>
-          <div style={{ width: 350, backgroundColor: "lightgray" }}>
+          <div style={{ width: 350 }}>
             <div className="p-3 pt-4">
               <h6>ON THIS PAGE</h6>
               <div className="border-start ps-2 border-primary fw-bold text-primary">
