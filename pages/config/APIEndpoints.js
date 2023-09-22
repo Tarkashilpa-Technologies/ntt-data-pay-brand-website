@@ -1,1 +1,1 @@
-export const TUTORIAL_API_ENDPOINT = "/tutorial";
+export const TUTORIAL_API_ENDPOINT = "/tutorials";

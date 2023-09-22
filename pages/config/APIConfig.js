@@ -4,7 +4,7 @@
 
 export const HOST = "http://3.109.212.20:1337";
 
-export const API_URL = `${HOST}/admin`;
+export const API_URL = `${HOST}/api`;
 
 /**
  * The options used to configure the API.
