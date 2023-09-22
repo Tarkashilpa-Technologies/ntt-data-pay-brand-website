@@ -1,5 +1,5 @@
-import { Router } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { tutorialDataApi } from "./services/services";
 
 const IntegrationGuides = () => {
   const tutorialsData = [
@@ -36,8 +36,33 @@ const IntegrationGuides = () => {
       desc: "Learn how to integrate our payment gateway with your website ",
     },
   ];
+
+  const [data, setData] = useState();
+  const tutorialDataApiCall = () => {
+    // setShowLoader(true);
+
+    console.log("api is getting call");
+    tutorialDataApi()
+      .then((res) => {
+        // setPageNumber(pageNo ? pageNo : pageNumber);
+        console.log(res?.data, "res?.data");
+        setData(res?.data);
+        // setShowLoader(false);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        // setShowLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    tutorialDataApiCall();
+  }, []);
+
   return (
     <div>
+      {data}
+      <div dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
       <div className="powerful-gateway ">
         <div className="pb-4">
           <div className="container_1300 d-block " style={{ minHeight: 600 }}>

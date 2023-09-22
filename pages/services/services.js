@@ -1,0 +1,11 @@
+import { TUTORIAL_API_ENDPOINT } from "../config/APIEndpoints";
+import instance from "./api";
+
+export const tutorialDataApi = async () => {
+  try {
+    const response = await instance?.get(`${TUTORIAL_API_ENDPOINT}`);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
