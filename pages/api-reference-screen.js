@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import JSONPretty from "react-json-pretty";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
   const [selectedTitle, setSelectedTitle] = useState(0);
-  const JSONPrettyMon = require("react-json-pretty/dist/monikai");
+  // const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   const dropdownData = [
     {
       title: "Dropdown Button",
@@ -21,9 +20,12 @@ const ApiReferenceScreen = () => {
       options: ["Another action", "Something else", "Another action"],
     },
   ];
+
+  const data = router.query.data;
+  console.log(data, "router data");
   return (
     <div>
-      <div className="powerful-gateway ">
+      <div className="api-reference-page">
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
           <div style={{ width: 300 }} className="bg-primary pt-3 ">
             <div className="border-bottom">
@@ -125,12 +127,12 @@ const ApiReferenceScreen = () => {
           <div className="w-50 bg-black">
             <div className="p-3 pt-4">
               <div className="text-white d-flex flex-column justify-content-center">
-                <JSONPretty
+                {/* <JSONPretty
                   id="json-pretty"
                   data={dropdownData}
                   theme={JSONPrettyMon}
                   themeClassName="p-4"
-                ></JSONPretty>
+                ></JSONPretty> */}
               </div>
             </div>
           </div>

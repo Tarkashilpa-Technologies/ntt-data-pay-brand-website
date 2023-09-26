@@ -20,7 +20,7 @@ const TutorialScreen = () => {
   ];
   return (
     <div>
-      <div className="powerful-gateway ">
+      <div className="api-reference-page">
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
           <div style={{ width: 250 }} className="bg-primary pt-3 ">
             <div className="border-bottom">

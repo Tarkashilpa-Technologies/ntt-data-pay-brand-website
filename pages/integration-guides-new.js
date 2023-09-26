@@ -1,11 +1,15 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { tutorialDataApi } from "./services/services";
+
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Generate invoice",
@@ -13,7 +17,8 @@ const IntegrationGuides = () => {
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
@@ -21,15 +26,18 @@ const IntegrationGuides = () => {
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Generate invoice",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
@@ -58,6 +66,15 @@ const IntegrationGuides = () => {
     tutorialDataApiCall();
   }, []);
 
+  // const DataConversion = (data) => {
+  //   console.log(data, "data");
+  //   const processedContent = remark().use(html).process(data);
+  //   // console.log(processedContent, "processed content");
+  //   const contentHtml = processedContent.toString();
+  //   // console.log(contentHtml, "content html", processedContent);
+  //   return contentHtml;
+  // };
+
   return (
     <div>
       <div className="powerful-gateway ">
@@ -84,14 +101,19 @@ const IntegrationGuides = () => {
                       <div
                         className="card p-4 col-md-3 col-sm-6 col-12 border-0 shadow h-100"
                         key={index}
-                        style={{ minHeight: 220 }}
                       >
-                        <div className="d-flex flex-column justify-content-between">
+                        <div
+                          className="d-flex flex-column justify-content-between"
+                          style={{ minHeight: 220 }}
+                        >
                           <div>
                             <h4 className="text-center">
                               {tutorial?.attributes?.Title}
                             </h4>
-                            <p numberOfLines={3}>
+                            <p className="">
+                              {/* <MarkdownPreview
+                                source={tutorial?.attributes?.Content}
+                              /> */}
                               {tutorial?.attributes?.Content}
                             </p>
                           </div>
