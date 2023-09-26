@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { tutorialDataApi } from "./services/services";
 
-import MarkdownPreview from "@uiw/react-markdown-preview";
-
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([
     {
@@ -110,7 +108,7 @@ const IntegrationGuides = () => {
                             <h4 className="text-center">
                               {tutorial?.attributes?.Title}
                             </h4>
-                            <p className="">
+                            <p className="numberOfLinesThree">
                               {/* <MarkdownPreview
                                 source={tutorial?.attributes?.Content}
                               /> */}
