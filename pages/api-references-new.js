@@ -7,23 +7,28 @@ const ApiReferences = () => {
   const tutorialsData = [
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Generate invoice",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc:
+        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
   ];
 
@@ -82,7 +87,7 @@ const ApiReferences = () => {
                             <h4 className="text-center">
                               {api?.attributes?.Title}
                             </h4>
-                            <p>
+                            <p className="numberOfLinesThree">
                               {api?.attributes?.Description
                                 ? api?.attributes?.Description
                                 : "No Description Available"}

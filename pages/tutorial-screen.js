@@ -1,23 +1,50 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
+import { tutorialDataApi } from "./services/services";
 
 const TutorialScreen = () => {
   const router = useRouter();
-  const dropdownData = [
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else", "Another action"],
-    },
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else"],
-    },
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else", "Another action"],
-    },
-  ];
+  const queryData = router.query?.data;
+  const [tutorialsListData, setTutorialsListData] = useState([]);
+  const [tutorialData, setTutorialData] = useState([]);
+  console.log(queryData, "queryData");
+  const tutorialListDataApiCall = () => {
+    // setShowLoader(true);
+
+    console.log("api is getting call");
+    tutorialDataApi()
+      .then((res) => {
+        // setPageNumber(pageNo ? pageNo : pageNumber);
+
+        setTutorialsListData(res?.data?.data);
+        // setTutorialData(res?.data?.data[0]?.attributes);
+        // setShowLoader(false);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        // setShowLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    tutorialListDataApiCall();
+  }, []);
+
+  useEffect(() => {
+    if (tutorialsListData) {
+      tutorialsListData?.map((data, index) => {
+        console.log(
+          (data?.attributes?.Title).replace(/\s+/g, "") == queryData,
+          `(data?.attributes?.Title).replace(/\s+/g, "") == queryData`
+        );
+        if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
+          return setTutorialData(data.attributes);
+        }
+      });
+    }
+  }, [tutorialsListData]);
+
   return (
     <div>
       <div className="api-reference-page">
@@ -34,18 +61,25 @@ const TutorialScreen = () => {
             </div>
             <div>
               {" "}
-              {dropdownData?.map((dropdown, index) => {
+              {tutorialsListData?.map((dropdown, index) => {
+                console.log(dropdown, "dropdown data");
                 return (
                   <div key={index}>
-                    <Dropdown size="full" className="bg-primary">
+                    <Dropdown
+                      size="full"
+                      className="bg-primary border-bottom p-1"
+                    >
                       <Dropdown.Toggle
                         id="dropdown-basic"
-                        className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary"
+                        className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0"
+                        onClick={() => {
+                          setTutorialData(dropdown?.attributes);
+                        }}
                       >
-                        {dropdown?.title}
+                        {dropdown?.attributes?.Title}
                       </Dropdown.Toggle>
 
-                      <Dropdown.Menu className="w-100 rounded-0 mt-0">
+                      {/* <Dropdown.Menu className="w-100 rounded-0 mt-0">
                         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
                           Another action
@@ -53,7 +87,7 @@ const TutorialScreen = () => {
                         <Dropdown.Item href="#/action-3">
                           Something else
                         </Dropdown.Item>
-                      </Dropdown.Menu>
+                      </Dropdown.Menu> */}
                     </Dropdown>
                   </div>
                 );
@@ -64,40 +98,14 @@ const TutorialScreen = () => {
             <div className="shadow p-4">
               <div className="text-start">
                 {" "}
-                <h6 className="text-start">
-                  Web Checkout / Payl Hosted Checkout
-                </h6>
-                <h3>PayU Hosted Checkout</h3>
-                <p>
-                  Use PayU's pre-built pages for customers to enter their
-                  payment information. This simpilfies the integration process
-                  and saves time on designing pages. Customers will be
-                  redirected to the PayU pages after adding items 10 their
-                  shopping cart on your website. The payment information will be
-                  submitted through an API. To get started with integration,
-                  refer to Integrate with PayU Hosted Checkout.
-                </p>
-                <p className="font-weight-bold">Before you Begin</p>
-                <p>
-                  PayU strongly recommends you test your integration using the
-                  test merchant Key or Salt. To create a test merchant account,
-                  refer to Register for a Test Merchant Account. After you
-                  create a test merchant account, you can access the test Key or
-                  Salt as described in Generate Test Merchant Key and Salt.
-                </p>
-                <p className="font-weight-bold">Workflow</p>
-                <p>
-                  The following process diagram illustrates the integration
-                  workflow. To get started with integration, refer to Integrate
-                  with PayU Hosted Checkout.
-                </p>
-                <img src="/images/dev1.png" alt="" />
+                <h2 className="text-start">{tutorialData?.Title}</h2>
+                <div>{tutorialData?.Content}</div>
               </div>
             </div>
           </div>
           <div style={{ width: 350 }}>
             <div className="p-3 pt-4">
-              <h6>ON THIS PAGE</h6>
+              <h6 className="fw-bold">ON THIS PAGE</h6>
               <div className="border-start ps-2 border-primary fw-bold text-primary">
                 Workflow
               </div>

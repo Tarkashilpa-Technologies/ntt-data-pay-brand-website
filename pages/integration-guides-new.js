@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { tutorialDataApi } from "./services/services";
+import Link from "next/link";
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([
@@ -116,11 +117,20 @@ const IntegrationGuides = () => {
                             </p>
                           </div>
                           <div className="d-flex gap-3 align-items-center justify-content-end">
-                            <a
-                              className="btn btn_style1 p-2 px-4"
-                              href={"/tutorial-screen"}
-                            >
-                              Explore
+                            <a className="btn btn_style1 p-2 px-4">
+                              <Link
+                                href={{
+                                  pathname: "/tutorial-screen",
+                                  query: {
+                                    data: tutorial?.attributes?.Title.replace(
+                                      /\s+/g,
+                                      ""
+                                    ),
+                                  },
+                                }}
+                              >
+                                Explore
+                              </Link>
                             </a>
                           </div>
                         </div>
