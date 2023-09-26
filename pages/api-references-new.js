@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { apisDataApi } from "./services/services";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([]);
-  const tutorialsData = [
-    {
-      title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Generate invoice",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-  ];
+  // const tutorialsData = [
+  //   {
+  //     title: "Accept Payments",
+  //     desc:
+  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+  //   },
+  //   {
+  //     title: "Generate invoice",
+  //     desc:
+  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+  //   },
+  //   {
+  //     title: "Accept Payments",
+  //     desc:
+  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+  //   },
+  //   {
+  //     title: "Accept Payments",
+  //     desc:
+  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+  //   },
+  //   {
+  //     title: "Accept Payments",
+  //     desc:
+  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+  //   },
+  // ];
 
   const apisDataApiCall = () => {
     // setShowLoader(true);
@@ -53,7 +54,6 @@ const ApiReferences = () => {
     apisDataApiCall();
   }, []);
 
-  console.log(apisData?.length, "apisData");
   return (
     <div>
       <div className="powerful-gateway " style={{ minHeight: 600 }}>
@@ -88,9 +88,9 @@ const ApiReferences = () => {
                               {api?.attributes?.Title}
                             </h4>
                             <p className="numberOfLinesThree">
-                              {api?.attributes?.Description
-                                ? api?.attributes?.Description
-                                : "No Description Available"}
+                              <ReactMarkdown>
+                                {api?.attributes?.Description}
+                              </ReactMarkdown>
                             </p>
                           </div>
                           <div className="d-flex gap-3 align-items-center justify-content-end">
@@ -99,7 +99,10 @@ const ApiReferences = () => {
                                 href={{
                                   pathname: "/api-reference-screen",
                                   query: {
-                                    data: api?.attributes?.Defination,
+                                    data: api?.attributes?.Title.replace(
+                                      /\s+/g,
+                                      ""
+                                    ),
                                   },
                                 }}
                               >

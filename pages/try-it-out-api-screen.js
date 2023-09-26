@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import JSONPretty from "react-json-pretty";
+import { apisDataApi } from "./services/services";
 
 const TryItOutApiScreen = () => {
-  const JSONPrettyMon = require("react-json-pretty/dist/monikai");
+  const [apisData, setApisData] = useState([]);
   const data = {
     id: 11,
     title: "perfume Oil",
@@ -22,161 +22,188 @@ const TryItOutApiScreen = () => {
       "https://i.dummyjson.com/data/products/11/thumbnail.jpg",
     ],
   };
+
+  const apisDataApiCall = () => {
+    // setShowLoader(true);
+
+    apisDataApi()
+      .then((res) => {
+        // setPageNumber(pageNo ? pageNo : pageNumber);
+        console.log(res?.data, "res?.data");
+        setApisData(res?.data?.data);
+        // setShowLoader(false);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        // setShowLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    apisDataApiCall();
+  }, []);
+
+  console.log(apisData, "apois data");
+
   return (
-    <div style={{ minHeight: 600 }} className="powerful-gateway bg-white">
-      <div className="w-100 pt-4 h-100">
-        <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
-          <div className="flex-1">
-            <label>Environment</label>
-            <div>
-              <Dropdown
-                size="full"
-                className="bg-primary"
-                style={{ minWidth: 250 }}
-              >
-                <Dropdown.Toggle
-                  id="dropdown-basic"
-                  className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
+    <div className="api-reference-page bg-white">
+      <div style={{ minHeight: 600 }} className="bg-white">
+        <div className="w-100 pt-4 h-100">
+          <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
+            <div className="flex-1">
+              <label>Environment</label>
+              <div>
+                <Dropdown
+                  size="full"
+                  className="bg-primary"
+                  style={{ minWidth: 250 }}
                 >
-                  Production
-                </Dropdown.Toggle>
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
+                  >
+                    Production
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                  <Dropdown.Menu className="w-100 rounded-0 mt-0">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      Another action
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      Something else
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
+            <div className="flex-1">
+              <label>API</label>
+              <div>
+                <Dropdown
+                  size="full"
+                  className="bg-primary"
+                  style={{ minWidth: 250 }}
+                >
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
+                  >
+                    Penny drop Api
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="w-100 rounded-0 mt-0">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      Another action
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      Something else
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
+            <div className="flex-1">
+              <label>Function</label>
+              <div>
+                <Dropdown
+                  size="full"
+                  className="bg-primary"
+                  style={{ minWidth: 250 }}
+                >
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
+                  >
+                    Verify Account
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="w-100 rounded-0 mt-0">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      Another action
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      Something else
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
             </div>
           </div>
-          <div className="flex-1">
-            <label>API</label>
-            <div>
-              <Dropdown
-                size="full"
-                className="bg-primary"
-                style={{ minWidth: 250 }}
-              >
-                <Dropdown.Toggle
-                  id="dropdown-basic"
-                  className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
-                >
-                  Penny drop Api
-                </Dropdown.Toggle>
 
-                <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          </div>
-          <div className="flex-1">
-            <label>Function</label>
-            <div>
-              <Dropdown
-                size="full"
-                className="bg-primary"
-                style={{ minWidth: 250 }}
-              >
-                <Dropdown.Toggle
-                  id="dropdown-basic"
-                  className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
-                >
-                  Verify Account
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          </div>
-        </div>
-
-        {/* divider section start here */}
-        <div className="container_1300">
-          <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4">
-            <div className="w-lg-50 w-100">
-              <div className="p-2">
-                <div className="pb-2">Request </div>
-                <div className="text-white d-flex flex-column justify-content-center">
-                  <JSONPretty
+          {/* divider section start here */}
+          <div className="container_1300">
+            <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4">
+              <div className="w-lg-50 w-100">
+                <div className="p-2">
+                  <div className="pb-2">Request </div>
+                  <div className="text-white d-flex flex-column justify-content-center">
+                    {/* <JSONPretty
                     id="json-pretty"
                     data={data}
                     theme={JSONPrettyMon}
                     themeClassName="p-4"
-                  ></JSONPretty>
-                </div>
-                <div className="pt-3">
-                  <div className="d-flex justify-content-end gap-3">
-                    <button className="bg-black p-1 px-4 text-white">
-                      Reset
-                    </button>
-                    <button className="bg-black p-1 px-4 text-white">
-                      Send
-                    </button>
+                  ></JSONPretty> */}
                   </div>
-                </div>
-                <div className="mt-4">
-                  <div className="pb-2">
-                    <label> Response</label>
+                  <div className="pt-3">
+                    <div className="d-flex justify-content-end gap-3">
+                      <button className="bg-black p-1 px-4 text-white">
+                        Reset
+                      </button>
+                      <button className="bg-black p-1 px-4 text-white">
+                        Send
+                      </button>
+                    </div>
                   </div>
-                  <div className="text-white d-flex flex-column justify-content-center">
-                    <JSONPretty
+                  <div className="mt-4">
+                    <div className="pb-2">
+                      <label> Response</label>
+                    </div>
+                    <div className="text-white d-flex flex-column justify-content-center">
+                      {/* <JSONPretty
                       id="json-pretty"
                       data={data}
                       theme={JSONPrettyMon}
                       themeClassName="p-4"
-                    ></JSONPretty>
+                    ></JSONPretty> */}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="w-lg-50 w-100 p-3">
-              <div>
-                <div className="h2 fw-bold">Dummy Data</div>
+              <div className="w-lg-50 w-100 p-3">
                 <div>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </p>
-                  <p>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to
-                    using 'Content here, content here', making it look like
-                    readable English. Many desktop publishing packages and web
-                    page editors now use Lorem Ipsum as their default model
-                    text, and a search for 'lorem ipsum' will uncover many web
-                    sites still in their infancy. Various versions have evolved
-                    over the years, sometimes by accident, sometimes on purpose
-                    (injected humour and the like).
-                  </p>
+                  <div className="h2 fw-bold">Dummy Data</div>
+                  <div>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries, but also the leap into electronic typesetting,
+                      remaining essentially unchanged. It was popularised in the
+                      1960s with the release of Letraset sheets containing Lorem
+                      Ipsum passages, and more recently with desktop publishing
+                      software like Aldus PageMaker including versions of Lorem
+                      Ipsum.
+                    </p>
+                    <p>
+                      It is a long established fact that a reader will be
+                      distracted by the readable content of a page when looking
+                      at its layout. The point of using Lorem Ipsum is that it
+                      has a more-or-less normal distribution of letters, as
+                      opposed to using 'Content here, content here', making it
+                      look like readable English. Many desktop publishing
+                      packages and web page editors now use Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will
+                      uncover many web sites still in their infancy. Various
+                      versions have evolved over the years, sometimes by
+                      accident, sometimes on purpose (injected humour and the
+                      like).
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

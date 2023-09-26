@@ -1,10 +1,15 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
+import { apisDataApi } from "./services/services";
+import ReactMarkdown from "react-markdown";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
+  const queryData = router.query?.data;
   const [selectedTitle, setSelectedTitle] = useState(0);
+  const [apisListData, setApisListData] = useState([]);
+  const [apiData, setApiData] = useState();
   // const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   const dropdownData = [
     {
@@ -20,9 +25,36 @@ const ApiReferenceScreen = () => {
       options: ["Another action", "Something else", "Another action"],
     },
   ];
+  const apisListDataApiCall = () => {
+    // setShowLoader(true);
 
-  const data = router.query.data;
-  console.log(data, "router data");
+    console.log("api is getting call");
+    apisDataApi()
+      .then((res) => {
+        // setPageNumber(pageNo ? pageNo : pageNumber);
+        console.log(res?.data, "res?.data");
+        setApisListData(res?.data?.data);
+        // setShowLoader(false);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        // setShowLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    apisListDataApiCall();
+  }, []);
+
+  useEffect(() => {
+    if (apisListData) {
+      apisListData?.map((data) => {
+        if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
+          return setApiData(data.attributes);
+        }
+      });
+    }
+  }, [setApisListData, queryData]);
   return (
     <div>
       <div className="api-reference-page">
@@ -30,26 +62,27 @@ const ApiReferenceScreen = () => {
           <div style={{ width: 300 }} className="bg-primary pt-3 ">
             <div className="border-bottom">
               {" "}
-              <button
-                className="w-100 btn bg-primary text-white text-start rounded-0"
-                onClick={() => router.back()}
-              >
-                Search
-              </button>
+              <input
+                // onClick={() => router.back()}
+                type="search"
+                placeholder="Search"
+                className="w-100 btn bg-primary text-white text-start rounded-0 border-0"
+              />
             </div>
             <div>
               {" "}
-              {dropdownData?.map((dropdown, index) => {
+              {apisListData?.map((dropdown, index) => {
                 return (
                   <div key={index}>
-                    <div>
+                    <div className="bg-primary border-bottom p-1">
                       <button
                         className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white"
                         onClick={() => {
                           setSelectedTitle(index);
+                          setApiData(dropdown?.attributes);
                         }}
                       >
-                        {dropdown?.title}
+                        {dropdown?.attributes?.Title}
                       </button>
                     </div>
                     {selectedTitle == index && (
@@ -93,34 +126,42 @@ const ApiReferenceScreen = () => {
             <div className=" p-4">
               <div className="text-start">
                 {" "}
-                <h6 className="text-start">
-                  Web Checkout / Payl Hosted Checkout
-                </h6>
-                <h3>PayU Hosted Checkout</h3>
-                <p>
-                  Use PayU's pre-built pages for customers to enter their
-                  payment information. This simpilfies the integration process
-                  and saves time on designing pages. Customers will be
-                  redirected to the PayU pages after adding items 10 their
-                  shopping cart on your website. The payment information will be
-                  submitted through an API. To get started with integration,
-                  refer to Integrate with PayU Hosted Checkout.
-                </p>
-                <p className="font-weight-bold">Before you Begin</p>
-                <p>
-                  PayU strongly recommends you test your integration using the
-                  test merchant Key or Salt. To create a test merchant account,
-                  refer to Register for a Test Merchant Account. After you
-                  create a test merchant account, you can access the test Key or
-                  Salt as described in Generate Test Merchant Key and Salt.
-                </p>
-                <p className="font-weight-bold">Workflow</p>
-                <p>
-                  The following process diagram illustrates the integration
-                  workflow. To get started with integration, refer to Integrate
-                  with PayU Hosted Checkout.
-                </p>
-                <img src="/images/dev1.png" alt="" />
+                <h2 className="text-start">{apiData?.Title}</h2>
+                <div>
+                  <ReactMarkdown
+                    components={{
+                      p: ({ node, children }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="image">
+                              <Image
+                                src={image.properties.src}
+                                alt={image.properties.alt}
+                                width="600"
+                                height="300"
+                              />
+                            </div>
+                          );
+                        } else if (node.children[0].tagName == "a") {
+                          const a = node.children[0];
+                          return (
+                            <div className="a">
+                              <a
+                                href={a.href}
+                                className="text-underline p-1 text-bg-primary"
+                              ></a>
+                            </div>
+                          );
+                        }
+                        // Return default child if it's not an image
+                        return <p>{children}</p>;
+                      },
+                    }}
+                  >
+                    {apiData?.Defination?.info?.description}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           </div>
