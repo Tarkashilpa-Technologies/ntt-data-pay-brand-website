@@ -140,6 +140,7 @@ const ApiReferenceScreen = () => {
                                 alt={image.properties.alt}
                                 width="600"
                                 height="300"
+                                className="w-100 h-100 d-flex justify-content-center"
                               />
                             </div>
                           );
