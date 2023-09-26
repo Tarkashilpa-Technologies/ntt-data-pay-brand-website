@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { tutorialDataApi } from "./services/services";
+import ReactMarkdown from "react-markdown";
 
 const TutorialScreen = () => {
   const router = useRouter();
@@ -33,23 +34,22 @@ const TutorialScreen = () => {
 
   useEffect(() => {
     if (tutorialsListData) {
-      tutorialsListData?.map((data, index) => {
-        console.log(
-          (data?.attributes?.Title).replace(/\s+/g, "") == queryData,
-          `(data?.attributes?.Title).replace(/\s+/g, "") == queryData`
-        );
+      tutorialsListData?.map((data) => {
         if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
           return setTutorialData(data.attributes);
         }
       });
     }
-  }, [tutorialsListData]);
+  }, [tutorialsListData, queryData]);
 
   return (
     <div>
-      <div className="api-reference-page">
-        <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
-          <div style={{ width: 250 }} className="bg-primary pt-3 ">
+      <div className="api-reference-page overflow-hidden">
+        <div
+          className="d-flex w-100 h-100 overflow-hidden"
+          style={{ minHeight: 600 }}
+        >
+          <div style={{ width: 300 }} className="bg-primary pt-3">
             <div className="border-bottom">
               {" "}
               <button
@@ -65,7 +65,17 @@ const TutorialScreen = () => {
                 console.log(dropdown, "dropdown data");
                 return (
                   <div key={index}>
-                    <Dropdown
+                    <div className="bg-primary border-bottom p-1">
+                      <div
+                        className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 py-2 text-white"
+                        onClick={() => {
+                          setTutorialData(dropdown?.attributes);
+                        }}
+                      >
+                        {dropdown?.attributes?.Title}
+                      </div>
+                    </div>
+                    {/* <Dropdown
                       size="full"
                       className="bg-primary border-bottom p-1"
                     >
@@ -79,7 +89,7 @@ const TutorialScreen = () => {
                         {dropdown?.attributes?.Title}
                       </Dropdown.Toggle>
 
-                      {/* <Dropdown.Menu className="w-100 rounded-0 mt-0">
+                       <Dropdown.Menu className="w-100 rounded-0 mt-0">
                         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
                           Another action
@@ -87,19 +97,44 @@ const TutorialScreen = () => {
                         <Dropdown.Item href="#/action-3">
                           Something else
                         </Dropdown.Item>
-                      </Dropdown.Menu> */}
-                    </Dropdown>
+                      </Dropdown.Menu> 
+                    </Dropdown> */}
                   </div>
                 );
               })}
             </div>
           </div>
-          <div className="flex-1 w-100 p-3 pt-4">
+          <div className="flex-1 w-100 p-3 pt-4 overflow-y-auto h-100">
             <div className="shadow p-4">
               <div className="text-start">
                 {" "}
                 <h2 className="text-start">{tutorialData?.Title}</h2>
-                <div>{tutorialData?.Content}</div>
+                <div>
+                  {" "}
+                  <ReactMarkdown
+                    components={{
+                      p: ({ node, children }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="image">
+                              <Image
+                                src={image.properties.src}
+                                alt={image.properties.alt}
+                                width="600"
+                                height="300"
+                              />
+                            </div>
+                          );
+                        }
+                        // Return default child if it's not an image
+                        return <p>{children}</p>;
+                      },
+                    }}
+                  >
+                    {tutorialData?.Content}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           </div>

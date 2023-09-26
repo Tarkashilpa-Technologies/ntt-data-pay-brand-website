@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { tutorialDataApi } from "./services/services";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([
@@ -109,11 +110,15 @@ const IntegrationGuides = () => {
                             <h4 className="text-center">
                               {tutorial?.attributes?.Title}
                             </h4>
+                          </div>
+                          <div>
                             <p className="numberOfLinesThree">
                               {/* <MarkdownPreview
                                 source={tutorial?.attributes?.Content}
                               /> */}
-                              {tutorial?.attributes?.Content}
+                              <ReactMarkdown>
+                                {tutorial?.attributes?.Content}
+                              </ReactMarkdown>
                             </p>
                           </div>
                           <div className="d-flex gap-3 align-items-center justify-content-end">
