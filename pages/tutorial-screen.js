@@ -117,12 +117,13 @@ const TutorialScreen = () => {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image">
+                            <div className="image d-flex justify-content-center w-100 mt-5">
                               <Image
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 width="600"
                                 height="300"
+                                className="w-100 h-100 d-flex justify-content-center"
                               />
                             </div>
                           );
