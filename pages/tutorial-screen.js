@@ -118,7 +118,7 @@ const TutorialScreen = () => {
                           const image = node.children[0];
                           return (
                             <div className="image d-flex justify-content-center w-100 mt-5">
-                              <Image
+                              <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 width="600"
