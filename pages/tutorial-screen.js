@@ -144,7 +144,7 @@ const TutorialScreen = () => {
             <div className="shadow p-4">
               <div className="text-start">
                 {" "}
-                <h1 className="text-start">{tutorialData?.Title}</h1>
+                <h2 className="text-start">{tutorialData?.Title}</h2>
                 <div>
                   {" "}
                   <ReactMarkdown
@@ -168,9 +168,23 @@ const TutorialScreen = () => {
                         // Return default child if it's not an image
                         return <p>{children}</p>;
                       },
-                      h1: "h1",
+                      h1: "h3",
+                      a: ({ node, ...props }) => (
+                        <a
+                          className="fst-italic text-primary text-decoration-underline"
+                          {...props}
+                        />
+                      ),
                       h2: ({ node, ...props }) => (
-                        <h2 {...props} id={props.title} />
+                        <a
+                          target="_self"
+                          data-anchorjs-icon="#"
+                          href={`/tutorial-screen?data=${
+                            tutorialData?.Title
+                          }${props?.title?.replace(/\s+/g, "_")}`}
+                          {...props}
+                          id={props.title}
+                        />
                       ),
                     }}
                   >
