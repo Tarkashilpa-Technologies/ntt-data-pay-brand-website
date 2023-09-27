@@ -127,7 +127,7 @@ const ApiReferenceScreen = () => {
               <div className="text-start">
                 {" "}
                 <h2 className="text-start">{apiData?.Title}</h2>
-                <div>
+                <div className="w-100 overflow-auto">
                   <ReactMarkdown
                     components={{
                       p: ({ node, children }) => {

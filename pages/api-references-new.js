@@ -36,7 +36,6 @@ const ApiReferences = () => {
   const apisDataApiCall = () => {
     // setShowLoader(true);
 
-    console.log("api is getting call");
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);

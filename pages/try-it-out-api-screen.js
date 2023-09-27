@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { apisDataApi } from "./services/services";
+import JSONEditor from "jsoneditor";
+import dynamic from "next/dynamic";
 
 const TryItOutApiScreen = () => {
   const [apisData, setApisData] = useState([]);
+  const [jsonData, setJsonData] = useState();
   const data = {
     id: 11,
     title: "perfume Oil",
@@ -31,6 +34,9 @@ const TryItOutApiScreen = () => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
         console.log(res?.data, "res?.data");
         setApisData(res?.data?.data);
+        setJsonData(
+          res?.data?.data[0]?.attributes?.Defination?.components?.requestBodies
+        );
         // setShowLoader(false);
       })
       .catch((err) => {
@@ -43,7 +49,19 @@ const TryItOutApiScreen = () => {
     apisDataApiCall();
   }, []);
 
-  console.log(apisData, "apois data");
+  console.log(apisData, "apis data");
+
+  const JsonEditor = dynamic(
+    {
+      loader: () => import("nextjs-jsoneditor").then((mod) => mod.JsonEditor),
+      render: (props, JsonEditor) => {
+        return JsonEditor;
+      },
+    },
+    {
+      ssr: false,
+    }
+  );
 
   return (
     <div className="api-reference-page bg-white">
@@ -146,6 +164,11 @@ const TryItOutApiScreen = () => {
                     theme={JSONPrettyMon}
                     themeClassName="p-4"
                   ></JSONPretty> */}
+                    <JsonEditor
+                      search={false}
+                      navigationBar={false}
+                      value={jsonData}
+                    />
                   </div>
                   <div className="pt-3">
                     <div className="d-flex justify-content-end gap-3">

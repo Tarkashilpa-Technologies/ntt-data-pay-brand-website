@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { tutorialDataApi } from "./services/services";
+import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
@@ -8,8 +8,7 @@ const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([
     {
       title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Generate invoice",
@@ -17,8 +16,7 @@ const IntegrationGuides = () => {
     },
     {
       title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
@@ -26,18 +24,15 @@ const IntegrationGuides = () => {
     },
     {
       title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Generate invoice",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
-      desc:
-        "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
+      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
     },
     {
       title: "Accept Payments",
@@ -49,7 +44,7 @@ const IntegrationGuides = () => {
     // setShowLoader(true);
 
     console.log("api is getting call");
-    tutorialDataApi()
+    tutorialGroupDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
         console.log(res?.data, "res?.data");
@@ -104,7 +99,7 @@ const IntegrationGuides = () => {
                       >
                         <div
                           className="d-flex flex-column justify-content-between"
-                          style={{ minHeight: 220 }}
+                          style={{ minHeight: 200 }}
                         >
                           <div>
                             <h4 className="text-center">
@@ -117,7 +112,7 @@ const IntegrationGuides = () => {
                                 source={tutorial?.attributes?.Content}
                               /> */}
                               <ReactMarkdown>
-                                {tutorial?.attributes?.Content}
+                                {tutorial?.attributes?.Description}
                               </ReactMarkdown>
                             </p>
                           </div>
