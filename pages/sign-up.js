@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Script from "next/script";
@@ -10,14 +10,15 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function SignUp() {
   var new_contact;
   var email;
-  const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
+  const handleSubmit = async (event, gReCaptchaToken) => {
+    // Stop the form from submitting and refreshing the page.
     // Get data from the form.
     new_contact = {
       first_name: event.target.first_name.value,
@@ -25,6 +26,7 @@ export default function SignUp() {
       mobile: event.target.mobile.value,
       email: event.target.email.value,
       products_required: event.target.products_required.value,
+      gReCaptchaToken: gReCaptchaToken,
     };
     email = event.target.email.value;
     mycontact(new_contact, email);
@@ -45,48 +47,21 @@ export default function SignUp() {
 
     return false;
   };
-  // const [isVerified, setIsVerified] = useState(false);
-  // const handleRecaptchaVerify = (response) => {
-  //   if (response) {
-  //     setIsVerified(true);
-  //   } else {
-  //     setIsVerified(false);
-  //   }
-  // };
 
-  // useEffect(() => {
-  //   console.log(isVerified, "isVerified");
-  // }, [isVerified]);
-
-  function handleRecaptchaVerify(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute(
-        "6LcSNiEoAAAAAHMlx4XBiT2xYF3L0GqIXKqCa6Jc",
-        { action: "LOGIN" }
-      );
-      // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
-      // reCAPTCHA Enterprise to the end user's browser.
-      // This token must be validated by creating an assessment.
-      // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
-    });
-  }
-  function onCaptchaChange(value) {
-    console.log("Captcha value:", value);
-  }
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src =
-      "https://www.google.com/recaptcha/enterprise.js?render=6LcSNiEoAAAAAHMlx4XBiT2xYF3L0GqIXKqCa6Jc";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const handleSumitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+      executeRecaptcha("enquiryFormSubmit").then((gReCaptchaToken) => {
+        console.log(gReCaptchaToken, "response Google reCaptcha server");
+        handleSubmit(e, gReCaptchaToken);
+      });
+    },
+    [executeRecaptcha]
+  );
 
   return (
     <div className="signuppage">
@@ -254,7 +229,7 @@ export default function SignUp() {
         <div className="container_1100 d-block">
           <h2 className="common-ttle">Sign Up</h2>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSumitForm}>
             <div className="row">
               <div className="col-md-12 mb-20">
                 <label
@@ -307,7 +282,7 @@ export default function SignUp() {
                   Mobile
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   required
                   id="mobile"
@@ -330,10 +305,7 @@ export default function SignUp() {
                   id="email"
                 />
               </div>
-              <ReCAPTCHA
-                sitekey="6LcSNiEoAAAAAHMlx4XBiT2xYF3L0GqIXKqCa6Jc"
-                onChange={onCaptchaChange}
-              />
+
               <div className="col-md-12 mb-10">
                 <button type="submit" className="btn btn-primary mb-3">
                   Sign Up
