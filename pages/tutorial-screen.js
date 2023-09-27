@@ -9,11 +9,12 @@ const TutorialScreen = () => {
   const queryData = router.query?.data;
   const [tutorialsListData, setTutorialsListData] = useState([]);
   const [tutorialData, setTutorialData] = useState([]);
-  console.log(queryData, "queryData");
+  const [headerData, setHeaderData] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedUrl, setSelectedUrl] = useState(0);
+
   const tutorialListDataApiCall = () => {
     // setShowLoader(true);
-
-    console.log("api is getting call");
     tutorialGroupDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
@@ -42,6 +43,21 @@ const TutorialScreen = () => {
     }
   }, [tutorialsListData, queryData]);
 
+  const sidebarData = [];
+  if (tutorialData?.default_tutorial) {
+    const regex = /# ([^\n]+)/g;
+    let match;
+    while (
+      (match = regex.exec(
+        tutorialData?.default_tutorial?.data?.attributes?.Content
+      )) !== null
+    ) {
+      sidebarData.push(match[1]);
+    }
+
+    console.log(sidebarData);
+  }
+
   return (
     <div>
       <div className="api-reference-page overflow-hidden">
@@ -49,32 +65,52 @@ const TutorialScreen = () => {
           className="d-flex w-100 h-100 overflow-hidden"
           style={{ minHeight: 600 }}
         >
-          <div style={{ width: 300 }} className="bg-primary pt-3">
-            <div className="border-bottom">
+          <div style={{ width: 300 }} className="bg-primary pt-4">
+            <div className="">
               {" "}
               <button
-                className="w-100 btn bg-primary text-white text-start rounded-0"
+                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
                 onClick={() => router.back()}
               >
                 {"<"} Back to home
               </button>
             </div>
+            {/* <hr
+              className=" bg-white mx-2 text-white m-0 border rounded"
+              style={{ padding: 1 }}
+            ></hr> */}
+            <hr className="p-0 bg-white text-white m-0"></hr>
             <div>
               {" "}
               {tutorialsListData?.map((dropdown, index) => {
-                console.log(dropdown, "dropdown data");
                 return (
                   <div key={index}>
-                    <div className="bg-primary border-bottom p-1">
+                    <div
+                      className={`bg-primary pointer  ${
+                        selectedIndex == index ? "bg-white" : "bg-primary"
+                      }`}
+                    >
                       <div
-                        className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 py-2 text-white"
+                        className={`w-100 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-2 ps-2 ${
+                          selectedIndex == index
+                            ? "bg-white text-primary"
+                            : "bg-primary text-white"
+                        }`}
                         onClick={() => {
                           setTutorialData(dropdown?.attributes);
+                          router.push(
+                            `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
+                              /\s+/g,
+                              ""
+                            )}`
+                          );
+                          setSelectedIndex(index);
                         }}
                       >
                         {dropdown?.attributes?.Title}
                       </div>
                     </div>
+                    <hr className="p-0 bg-white text-white m-0"></hr>
                     {/* <Dropdown
                       size="full"
                       className="bg-primary border-bottom p-1"
@@ -108,7 +144,7 @@ const TutorialScreen = () => {
             <div className="shadow p-4">
               <div className="text-start">
                 {" "}
-                <h2 className="text-start">{tutorialData?.Title}</h2>
+                <h1 className="text-start">{tutorialData?.Title}</h1>
                 <div>
                   {" "}
                   <ReactMarkdown
@@ -117,7 +153,7 @@ const TutorialScreen = () => {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image d-flex justify-content-center w-100 mt-5">
+                            <div className="image d-flex justify-content-center w-100 my-5">
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
@@ -128,9 +164,14 @@ const TutorialScreen = () => {
                             </div>
                           );
                         }
+
                         // Return default child if it's not an image
                         return <p>{children}</p>;
                       },
+                      h1: "h1",
+                      h2: ({ node, ...props }) => (
+                        <h2 {...props} id={props.title} />
+                      ),
                     }}
                   >
                     {tutorialData?.default_tutorial
@@ -145,11 +186,26 @@ const TutorialScreen = () => {
           <div style={{ width: 350 }}>
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
-              <div className="border-start ps-2 border-primary fw-bold text-primary">
-                Workflow
-              </div>
-              <div className="border-start ps-2 border-primary">Workflow</div>
-              <div className="border-start ps-2 border-primary">Workflow</div>
+              {sidebarData?.map((data, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setSelectedUrl(index);
+                    }}
+                    className="border-2 ps-2 py-1 border-start-primary fw-semibold"
+                  >
+                    <a
+                      href={`#${data.replace(/\s+/g, "-")}`}
+                      className={`${
+                        selectedUrl == index ? "text-primary" : "text-Black"
+                      }`}
+                    >
+                      {data}
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

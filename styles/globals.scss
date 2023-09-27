@@ -5886,6 +5886,11 @@ ol li {
 .text-primary {
   color: #0072bc !important;
 }
+.border-start-primary {
+  border-left-color: #2295e2;
+  border-left-width: 3px;
+  border-left-style: solid;
+}
 
 .api-reference-page {
   padding-top: 90px;
