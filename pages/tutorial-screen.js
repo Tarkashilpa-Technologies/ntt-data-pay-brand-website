@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { tutorialDataApi } from "./services/services";
+import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 
 const TutorialScreen = () => {
@@ -14,7 +14,7 @@ const TutorialScreen = () => {
     // setShowLoader(true);
 
     console.log("api is getting call");
-    tutorialDataApi()
+    tutorialGroupDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
 
@@ -133,7 +133,10 @@ const TutorialScreen = () => {
                       },
                     }}
                   >
-                    {tutorialData?.Content}
+                    {tutorialData?.default_tutorial
+                      ? tutorialData?.default_tutorial?.data?.attributes
+                          ?.Content
+                      : tutorialData?.Content}
                   </ReactMarkdown>
                 </div>
               </div>
