@@ -4,8 +4,9 @@ import { Dropdown } from "react-bootstrap";
 import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
+import Script from "next/script";
 
-const TutorialScreen = () => {
+export default function TutorialScreen() {
   const router = useRouter();
   const queryData = router.query?.data;
   const [tutorialsListData, setTutorialsListData] = useState([]);
@@ -14,16 +15,13 @@ const TutorialScreen = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedUrl, setSelectedUrl] = useState(0);
   const [isPageHelpful, setIsPageHelpful] = useState();
+  const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
 
   const tutorialListDataApiCall = () => {
     // setShowLoader(true);
     tutorialGroupDataApi()
       .then((res) => {
-        // setPageNumber(pageNo ? pageNo : pageNumber);
-
         setTutorialsListData(res?.data?.data);
-        // setTutorialData(res?.data?.data[0]?.attributes);
-        // setShowLoader(false);
       })
       .catch((err) => {
         console.log("err", err);
@@ -31,6 +29,7 @@ const TutorialScreen = () => {
       });
   };
 
+  console.log(tutorialData, "tutorial data");
   useEffect(() => {
     tutorialListDataApiCall();
   }, []);
@@ -39,7 +38,9 @@ const TutorialScreen = () => {
     if (tutorialsListData) {
       tutorialsListData?.map((data) => {
         if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
-          return setTutorialData(data.attributes);
+          return setTutorialData(
+            data.attributes?.tutorials?.data[0]?.attributes
+          );
         }
       });
     }
@@ -47,14 +48,10 @@ const TutorialScreen = () => {
 
   // fetch on this page data
   const sidebarData = [];
-  if (tutorialData?.default_tutorial) {
+  if (tutorialData) {
     const regex = /# ([^\n]+)/g;
     let match;
-    while (
-      (match = regex.exec(
-        tutorialData?.default_tutorial?.data?.attributes?.Content
-      )) !== null
-    ) {
+    while ((match = regex.exec(tutorialData?.Content)) !== null) {
       sidebarData.push(match[1]);
     }
   }
@@ -91,8 +88,72 @@ const TutorialScreen = () => {
     },
   ];
 
+  // submit page helpful form
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Get data from the form.
+    const new_contact = {
+      subject: isPageHelpful
+        ? "What was the most helpful ?"
+        : "What can be improved ?",
+      article: tutorialData?.Title,
+      message: event.target.message.value,
+      data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
+    };
+
+    // mycontact(new_contact);
+
+    await fetch("/api/formemail", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(new_contact),
+    }).then((res) => {
+      console.log("Response received");
+      console.log(res.json());
+      if (res.status === 200) {
+      }
+    });
+  };
+
+  const reasonSelectionFunction = (data) => {
+    setPageHelpfulFalseData((prevArray) => [...prevArray, data]);
+  };
+
+  useEffect(() => {
+    console.log(pageHelpfulFalseData, "false data");
+  }, [pageHelpfulFalseData]);
   return (
     <div>
+      <Script
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `function createFcn(nm){
+                (window.freshsales)[nm]=function(){
+                (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; 
+                } (function(url,appToken,formCapture){
+                window.freshsales=window.freshsales||[];
+                if(window.freshsales.length==0){
+                list='init identify trackPageView trackEvent set'.split(' ');
+                for(var i=0;i<list.length;i++){var nm=list[i];
+                createFcn(nm);}
+                var t=document.createElement('script');
+                t.async=1;
+                t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';
+                var ft=document.getElementsByTagName('script')[0];
+                ft.parentNode.insertBefore(t,ft);
+                freshsales.init("https://nttdatapay.myfreshworks.com/crm/sales","2e01c8cd9f52aab8ebc4e821232d2e960007634e4e705a24e233bf3cd821cd82",true);}})();
+                function mycontact(new_contact){
+                  document.getElementById("message").value = "";
+                  document.getElementById("data").value = "";
+                  }
+              `,
+        }}
+      />
+
       <div className="api-reference-page overflow-hidden">
         <div
           className="d-flex w-100 h-100 overflow-hidden"
@@ -103,7 +164,7 @@ const TutorialScreen = () => {
               {" "}
               <button
                 className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
-                onClick={() => router.back()}
+                onClick={() => router.push("/integration-guides-new")}
               >
                 {"<"} Back to home
               </button>
@@ -115,43 +176,17 @@ const TutorialScreen = () => {
             <hr className="p-0 bg-white text-white m-0"></hr>
             <div>
               {" "}
-              {tutorialsListData?.map((dropdown, index) => {
-                console.log(dropdown, "dropdown data");
-                return (
-                  <div key={index}>
-                    {/* <div
-                      className={`bg-primary pointer  ${
-                        selectedIndex == index ? "bg-white" : "bg-primary"
-                      }`}
-                    > */}
-                    {/* <div
-                        className={`w-100 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-2 ps-2 ${
-                          selectedIndex == index
-                            ? "bg-white text-primary"
-                            : "bg-primary text-white"
-                        }`}
-                        onClick={() => {
-                          setTutorialData(dropdown?.attributes);
-                          router.push(
-                            `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
-                              /\s+/g,
-                              ""
-                            )}`
-                          );
-                          setSelectedIndex(index);
-                        }}
-                      >
-                        {dropdown?.attributes?.Title}
-                      </div> */}
-                    {/* </div> */}
-                    {/* <hr className="p-0 bg-white text-white m-0"></hr> */}
+              <Accordion
+                defaultActiveKey="0"
+                className="border-0 bg-primary shadow-none rounded-0"
+              >
+                {tutorialsListData?.map((dropdown, index) => {
+                  return (
+                    <div key={index}>
+                      {/* <hr className="p-0 bg-white text-white m-0"></hr> */}
 
-                    <Accordion
-                      defaultActiveKey="0"
-                      className="border-0 bg-primary shadow-none rounded-0"
-                    >
                       <Accordion.Item
-                        eventKey="0"
+                        eventKey={selectedIndex}
                         className={`p-0 m-0 border-0 bg-primary rounded-0 ${
                           selectedIndex == index
                             ? "bg-white text-primary"
@@ -165,15 +200,21 @@ const TutorialScreen = () => {
                               : "bg-primary text-white"
                           }`}
                           onClick={() => {
-                            setTutorialData(dropdown?.attributes);
+                            setTutorialData(
+                              dropdown?.attributes?.tutorials?.data[0]
+                                ?.attributes
+                            );
                             if (
                               dropdown?.attributes?.tutorials?.data?.length == 0
                             ) {
                               router.push(
-                                `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
-                                  /\s+/g,
-                                  ""
-                                )}`
+                                dropdown?.attributes?.tutorials?.data?.length >
+                                  0
+                                  ? `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
+                                      /\s+/g,
+                                      ""
+                                    )}`
+                                  : "/404"
                               );
                             }
                             setSelectedIndex(index);
@@ -204,10 +245,10 @@ const TutorialScreen = () => {
                             }
                           )}
                       </Accordion.Item>
-                    </Accordion>
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </Accordion>
             </div>
           </div>
           <div className="flex-1 w-100 p-4 mt-5 overflow-y-auto h-100">
@@ -248,7 +289,7 @@ const TutorialScreen = () => {
                       h1: ({ node, ...props }) => {
                         if (tutorialData?.Title) {
                           return (
-                            <h2>
+                            <h2 className="pt-3">
                               <a {...props} id={`#Make-Payouts`} />
                             </h2>
                           );
@@ -317,7 +358,12 @@ const TutorialScreen = () => {
                   </div>
                 ) : (
                   <div>
-                    <form>
+                    <form
+                      onSubmit={(e) => {
+                        alert("form submitted");
+                        handleSubmit(e);
+                      }}
+                    >
                       {isPageHelpful == false ? (
                         <div>
                           <div>
@@ -331,9 +377,15 @@ const TutorialScreen = () => {
                                 <div
                                   className="d-flex align-items-center gap-2 p-1"
                                   key={index}
-                                  onClick={() => {}}
+                                  id={data.value.replace(/\s+/g, "-")}
                                 >
-                                  <input type="checkbox" />
+                                  <input
+                                    type="checkbox"
+                                    onClick={(e) => {
+                                      // e.preventDefault();
+                                      reasonSelectionFunction(data.value);
+                                    }}
+                                  />
                                   <label>{data?.value}</label>
                                 </div>
                               );
@@ -349,13 +401,17 @@ const TutorialScreen = () => {
                             ? "What was most useful?"
                             : "What can be improved?"}
                         </label>
-                        <textarea className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"></textarea>
+                        <textarea
+                          id="message"
+                          required
+                          className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
+                        ></textarea>
                       </div>
                       <button
                         className="btn btn-primary px-4 mt-2 mb-2"
-                        onClick={() => {
-                          setIsPageHelpful(null);
-                        }}
+                        // onClick={() => {
+                        //   setIsPageHelpful(null);
+                        // }}
                       >
                         Submit
                       </button>
@@ -395,6 +451,4 @@ const TutorialScreen = () => {
       </div>
     </div>
   );
-};
-
-export default TutorialScreen;
+}
