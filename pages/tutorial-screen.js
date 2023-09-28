@@ -11,7 +11,7 @@ export default function TutorialScreen() {
   const queryData = router.query?.data;
   const [tutorialsListData, setTutorialsListData] = useState([]);
   const [tutorialData, setTutorialData] = useState([]);
-  const [headerData, setHeaderData] = useState([]);
+  const [showHelpfulData, setShowHelpfulData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedUrl, setSelectedUrl] = useState(0);
   const [isPageHelpful, setIsPageHelpful] = useState();
@@ -117,6 +117,8 @@ export default function TutorialScreen() {
       if (res.status === 200) {
       }
     });
+    alert("Thank you for submitting your feedback to us.");
+    setShowHelpfulData(false);
   };
 
   const reasonSelectionFunction = (data) => {
@@ -332,93 +334,88 @@ export default function TutorialScreen() {
                   )}
                 </div>
                 <hr className="text-secondary"></hr>
-                {isPageHelpful == null ? (
-                  <div className="d-flex gap-3 align-items-center w-100">
-                    <label className="fw-bold fs-6">
-                      Was this page helpful?
-                    </label>
-                    <div className="d-flex gap-2">
-                      <button
-                        className="btn border-primary rounded-0 text-primary px-4"
-                        style={{ backgroundColor: "#F3FFFF" }}
-                        onClick={() => setIsPageHelpful(true)}
-                      >
-                        {" "}
-                        Yes{" "}
-                      </button>
-                      <button
-                        className="btn border-danger text-danger rounded-0 px-4"
-                        style={{ backgroundColor: "#FFEAE9" }}
-                        onClick={() => setIsPageHelpful(false)}
-                      >
-                        {" "}
-                        No{" "}
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <form
-                      onSubmit={(e) => {
-                        alert("form submitted");
-                        handleSubmit(e);
-                      }}
-                    >
-                      {isPageHelpful == false ? (
-                        <div>
-                          <div>
-                            <label className="fw-bold fs-6 pt-2">
-                              Let us know what went wrong.
-                            </label>
-                          </div>
-                          <div className="p-2 ps-0">
-                            {pageHelpfulData?.map((data, index) => {
-                              return (
-                                <div
-                                  className="d-flex align-items-center gap-2 p-1"
-                                  key={index}
-                                  id={data.value.replace(/\s+/g, "-")}
-                                >
-                                  <input
-                                    type="checkbox"
-                                    onClick={(e) => {
-                                      // e.preventDefault();
-                                      reasonSelectionFunction(data.value);
-                                    }}
-                                  />
-                                  <label>{data?.value}</label>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      <div className="py-3 d-flex flex-column gap-2">
-                        <label className="fw-bold fs-6">
-                          {isPageHelpful
-                            ? "What was most useful?"
-                            : "What can be improved?"}
-                        </label>
-                        <textarea
-                          id="message"
-                          required
-                          className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
-                        ></textarea>
+                {showHelpfulData &&
+                  (isPageHelpful == null ? (
+                    <div className="d-flex gap-3 align-items-center w-100">
+                      <label className="fw-bold fs-6">
+                        Was this page helpful?
+                      </label>
+                      <div className="d-flex gap-2">
+                        <button
+                          className="btn border-primary rounded-0 text-primary px-4"
+                          style={{ backgroundColor: "#F3FFFF" }}
+                          onClick={() => setIsPageHelpful(true)}
+                        >
+                          {" "}
+                          Yes{" "}
+                        </button>
+                        <button
+                          className="btn border-danger text-danger rounded-0 px-4"
+                          style={{ backgroundColor: "#FFEAE9" }}
+                          onClick={() => setIsPageHelpful(false)}
+                        >
+                          {" "}
+                          No{" "}
+                        </button>
                       </div>
-                      <button
-                        className="btn btn-primary px-4 mt-2 mb-2"
-                        // onClick={() => {
-                        //   setIsPageHelpful(null);
-                        // }}
+                    </div>
+                  ) : (
+                    <div>
+                      <form
+                        onSubmit={(e) => {
+                          handleSubmit(e);
+                        }}
                       >
-                        Submit
-                      </button>
-                    </form>
-                  </div>
-                )}
-                <hr className="text-secondary"></hr>
+                        {isPageHelpful == false ? (
+                          <div>
+                            <div>
+                              <label className="fw-bold fs-6 pt-2">
+                                Let us know what went wrong.
+                              </label>
+                            </div>
+                            <div className="p-2 ps-0">
+                              {pageHelpfulData?.map((data, index) => {
+                                return (
+                                  <div
+                                    className="d-flex align-items-center gap-2 p-1"
+                                    key={index}
+                                    id={data.value.replace(/\s+/g, "-")}
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      onClick={(e) => {
+                                        // e.preventDefault();
+                                        reasonSelectionFunction(data.value);
+                                      }}
+                                    />
+                                    <label>{data?.value}</label>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        <div className="py-3 d-flex flex-column gap-2">
+                          <label className="fw-bold fs-6">
+                            {isPageHelpful
+                              ? "What was most useful?"
+                              : "What can be improved?"}
+                          </label>
+                          <textarea
+                            id="message"
+                            required
+                            className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
+                          ></textarea>
+                        </div>
+                        <button className="btn btn-primary px-4 mt-2 mb-2">
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  ))}
+                {showHelpfulData && <hr className="text-secondary"></hr>}
               </div>
             </div>
           </div>
