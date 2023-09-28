@@ -5903,3 +5903,18 @@ ol li {
   line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+.bg-lighgray {
+  background-color: #f7f8f9;
+}
+.accordion-button {
+  background-color: #0072bc !important;
+  color: white !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #212529;
+}
