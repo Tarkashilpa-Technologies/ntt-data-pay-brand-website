@@ -168,9 +168,9 @@ const TutorialScreen = () => {
                         // Return default child if it's not an image
                         return <p>{children}</p>;
                       },
-                      p: ({ node, ...props }) => (
-                        <p className="text-secondary" {...props} />
-                      ),
+                      // p: ({ node, ...props }) => (
+                      //   <p className="text-secondary" {...props} />
+                      // ),
                       h1: "h2",
                       a: ({ node, ...props }) => (
                         <a
