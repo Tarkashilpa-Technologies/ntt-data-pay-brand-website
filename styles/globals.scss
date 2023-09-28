@@ -5916,5 +5916,8 @@ ol li {
 }
 
 .accordion-button:not(.collapsed) {
-  color: white;
+  color: white !important;
+}
+.accordion-panel {
+  background-color: transparent !important;
 }

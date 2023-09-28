@@ -188,16 +188,21 @@ export default function TutorialScreen() {
                       {/* <hr className="p-0 bg-white text-white m-0"></hr> */}
 
                       <Accordion.Item
-                        eventKey={selectedIndex}
+                        eventKey={index}
                         className={`p-0 m-0 border-0 bg-primary rounded-0 ${
-                          selectedIndex == index
+                          queryData ==
+                          dropdown?.attributes?.Title.replace(/\s+/g, "")
                             ? "bg-white text-primary"
                             : "bg-primary text-white"
                         }`}
+                        onClick={() => {
+                          setSelectedIndex(index);
+                        }}
                       >
                         <Accordion.Header
                           className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-2 ps-2 ${
-                            selectedIndex == index
+                            queryData ==
+                            dropdown?.attributes?.Title.replace(/\s+/g, "")
                               ? "bg-white text-primary"
                               : "bg-primary text-white"
                           }`}
@@ -219,7 +224,6 @@ export default function TutorialScreen() {
                                   : "/404"
                               );
                             }
-                            setSelectedIndex(index);
                           }}
                         >
                           {dropdown?.attributes?.Title}
@@ -230,7 +234,15 @@ export default function TutorialScreen() {
                               return (
                                 <Accordion.Body
                                   key={index}
-                                  className={`text-white rounded-0`}
+                                  className={`text-white rounded-0 ${
+                                    queryData ==
+                                    tutorial?.attributes?.Title.replace(
+                                      /\s+/g,
+                                      ""
+                                    )
+                                      ? "bg-white text-primary"
+                                      : "bg-primary text-white"
+                                  }`}
                                   onClick={() => {
                                     setTutorialData(tutorial?.attributes);
                                     router.push(
