@@ -29,7 +29,6 @@ export default function TutorialScreen() {
       });
   };
 
-  console.log(tutorialData, "tutorial data");
   useEffect(() => {
     tutorialListDataApiCall();
   }, []);
@@ -125,9 +124,6 @@ export default function TutorialScreen() {
     setPageHelpfulFalseData((prevArray) => [...prevArray, data]);
   };
 
-  useEffect(() => {
-    console.log(pageHelpfulFalseData, "false data");
-  }, [pageHelpfulFalseData]);
   return (
     <div>
       <Script
