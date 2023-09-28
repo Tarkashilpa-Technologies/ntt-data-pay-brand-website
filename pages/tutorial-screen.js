@@ -168,7 +168,10 @@ const TutorialScreen = () => {
                         // Return default child if it's not an image
                         return <p>{children}</p>;
                       },
-                      h1: "h3",
+                      p: ({ node, ...props }) => (
+                        <p className="text-secondary" {...props} />
+                      ),
+                      h1: "h2",
                       a: ({ node, ...props }) => (
                         <a
                           className="fst-italic text-primary text-decoration-underline"
@@ -176,15 +179,17 @@ const TutorialScreen = () => {
                         />
                       ),
                       h2: ({ node, ...props }) => (
-                        <a
-                          target="_self"
-                          data-anchorjs-icon="#"
-                          href={`/tutorial-screen?data=${
-                            tutorialData?.Title
-                          }${props?.title?.replace(/\s+/g, "_")}`}
-                          {...props}
-                          id={props.title}
-                        />
+                        <h2>
+                          <a
+                            target="_self"
+                            href={`/tutorial-screen?data=${tutorialData?.Title.replace(
+                              /\s+/g,
+                              ""
+                            )}#${props.title}`}
+                            {...props}
+                            id={`#${props.title}`}
+                          />
+                        </h2>
                       ),
                     }}
                   >
