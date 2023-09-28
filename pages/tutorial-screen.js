@@ -158,7 +158,7 @@ export default function TutorialScreen() {
           style={{ minHeight: 600 }}
         >
           <div style={{ width: 300 }} className="bg-primary pt-4">
-            <div className="">
+            <div className="p-2">
               {" "}
               <button
                 className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
@@ -176,7 +176,7 @@ export default function TutorialScreen() {
               {" "}
               <Accordion
                 defaultActiveKey="0"
-                className="border-0 bg-primary shadow-none rounded-0"
+                className="border-0 bg-primary shadow-none rounded-0 p-0 m-0"
               >
                 {tutorialsListData?.map((dropdown, index) => {
                   return (
@@ -254,6 +254,7 @@ export default function TutorialScreen() {
                               );
                             }
                           )}
+                        <hr className=" p-0 m-0 "></hr>
                       </Accordion.Item>
                     </div>
                   );
