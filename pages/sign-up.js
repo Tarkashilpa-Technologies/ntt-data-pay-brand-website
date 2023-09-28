@@ -9,13 +9,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import ReCAPTCHA from "react-google-recaptcha";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import RecaptchaWidget from "../Components/RecaptchaWidget";
 
 export default function SignUp() {
   var new_contact;
   var email;
-  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (event, gReCaptchaToken) => {
     // Stop the form from submitting and refreshing the page.
@@ -48,20 +46,29 @@ export default function SignUp() {
     return false;
   };
 
-  const handleSumitForm = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!executeRecaptcha) {
-        console.log("Execute recaptcha not yet available");
-        return;
-      }
-      executeRecaptcha("enquiryFormSubmit").then((gReCaptchaToken) => {
-        console.log(gReCaptchaToken, "response Google reCaptcha server");
-        handleSubmit(e, gReCaptchaToken);
-      });
-    },
-    [executeRecaptcha]
-  );
+  const handleSumitForm = async (e) => {
+    e.preventDefault();
+    const recaptchaToken = await grecaptcha.execute("YOUR_SITE_KEY", {
+      action: "submit",
+    });
+
+    const response = await fetch("/api/verifyCaptcha", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ recaptchaToken }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // CAPTCHA verification successful, proceed with form submission.
+    } else {
+      // CAPTCHA verification failed.
+      alert("CAPTCHA verification failed");
+    }
+  };
 
   return (
     <div className="signuppage">
@@ -305,7 +312,7 @@ export default function SignUp() {
                   id="email"
                 />
               </div>
-
+              <RecaptchaWidget />
               <div className="col-md-12 mb-10">
                 <button type="submit" className="btn btn-primary mb-3">
                   Sign Up
