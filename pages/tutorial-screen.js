@@ -4,7 +4,6 @@ import { Dropdown } from "react-bootstrap";
 import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
-import Script from "next/script";
 
 export default function TutorialScreen() {
   const router = useRouter();
@@ -101,8 +100,6 @@ export default function TutorialScreen() {
       data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
     };
 
-    // mycontact(new_contact);
-
     await fetch("/api/formemail", {
       method: "POST",
       headers: {
@@ -125,33 +122,7 @@ export default function TutorialScreen() {
   };
 
   return (
-    <div>
-      <Script
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `function createFcn(nm){
-                (window.freshsales)[nm]=function(){
-                (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; 
-                } (function(url,appToken,formCapture){
-                window.freshsales=window.freshsales||[];
-                if(window.freshsales.length==0){
-                list='init identify trackPageView trackEvent set'.split(' ');
-                for(var i=0;i<list.length;i++){var nm=list[i];
-                createFcn(nm);}
-                var t=document.createElement('script');
-                t.async=1;
-                t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';
-                var ft=document.getElementsByTagName('script')[0];
-                ft.parentNode.insertBefore(t,ft);
-                freshsales.init("https://nttdatapay.myfreshworks.com/crm/sales","2e01c8cd9f52aab8ebc4e821232d2e960007634e4e705a24e233bf3cd821cd82",true);}})();
-                function mycontact(new_contact){
-                  document.getElementById("message").value = "";
-                  document.getElementById("data").value = "";
-                  }
-              `,
-        }}
-      />
-
+    <div className="mt-5">
       <div className="api-reference-page overflow-hidden">
         <div
           className="d-flex w-100 h-100 overflow-hidden"
@@ -262,7 +233,9 @@ export default function TutorialScreen() {
               </Accordion>
             </div>
           </div>
-          <div className="flex-1 w-100 p-4 mt-5 overflow-y-auto h-100">
+
+          {/* middle section  */}
+          <div className="flex-1 w-100 p-4 mt-5 h-100">
             <div className="shadow p-5">
               <div className="text-start">
                 {" "}
@@ -301,7 +274,13 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                           return (
                             <h2 className="pt-3">
-                              <a {...props} id={`#Make-Payouts`} />
+                              <a
+                                {...props}
+                                id={`${node?.children[0]?.value.replace(
+                                  /\s+/g,
+                                  "-"
+                                )}`}
+                              />
                             </h2>
                           );
                         }
@@ -428,6 +407,8 @@ export default function TutorialScreen() {
               </div>
             </div>
           </div>
+
+          {/* last section */}
           <div style={{ width: 350 }}>
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
