@@ -231,7 +231,12 @@ export default function TutorialScreen() {
                         return <h2 {...props} />;
                       },
                       blockquote: ({ node, ...props }) => {
-                        return <blockquote {...props} className="blockquote-style" style={{ backgroundColor: "yellowGreen" }}></blockquote>;
+                        console.log("blockquote", node, node?.children[1]?.children[0]?.children[0]);
+                        if (node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "INFO" || node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "ERROR") {
+                          return <blockquote {...props} className={node?.children[1]?.children[0]?.children[0]?.value?.toLowerCase()}></blockquote>;
+                        } else {
+                          return <blockquote {...props}></blockquote>;
+                        }
                       },
                     }}
                   >

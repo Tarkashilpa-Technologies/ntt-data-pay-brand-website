@@ -5921,3 +5921,38 @@ ol li {
 .accordion-panel {
   background-color: transparent !important;
 }
+
+blockquote.info,
+blockquote.error  
+{
+  border-radius: 5px;
+  /* background-size: 30px 30px;
+  background-position: left; */
+  padding-left: 42px !important;
+  background-position: 15px 15px;
+  background-repeat: no-repeat;
+  text-align: justify;
+  padding: 12px 15px;
+  border: 0px solid;
+  margin: 0 0 20px 0;
+  color: #000000;
+  line-height: 22px;
+  font-size: 15px;
+  border-left-width: 4px;
+}
+
+blockquote.info {
+  background-color: #deebff;
+  background-image: url(/images/info-icon.png);
+  border-left-color: blue;
+}
+blockquote.error {
+  background-color: #ffebe6;
+  background-image: url(/images/error-icon.png);
+  border-left-color: red;
+}
+blockquote.info > div > strong,
+blockquote.error > div > strong
+{
+  display: none;
+}
