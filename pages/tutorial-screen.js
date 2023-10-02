@@ -208,13 +208,14 @@ export default function TutorialScreen() {
                       },
                       a: ({ node, ...props }) => {
                         if (node.children[0].tagName == "img") {
-                          console.log("tag found", node);
                           const image = node.children[0];
                           return (
                             <video controls poster={image.properties.src} width="600" height="300">
                               <source src={node.properties.href} />
                             </video>
                           );
+                        } else if (node.properties.href.indexOf("youtube.com") != -1) {
+                          return <iframe src={node.properties.href} width="600" height="300"></iframe>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
