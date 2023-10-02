@@ -9,14 +9,27 @@ import Footer from "../Components/Footer";
 import "../styles/globals.scss";
 import React, { useEffect } from "react";
 import "../styles/nextjs-jsoneditor.css";
+import store from "../store";
+
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://.../data`)
+  const data = await res.json()
+ 
+  // Pass data to the page via props
+  return { props: { data } }
+}
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap");
   }, []);
 
+  
   return (
     <>
+     <Provider store={store}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -66,6 +79,7 @@ function MyApp({ Component, pageProps }) {
       <Header></Header>
       <Component {...pageProps} />
       <Footer></Footer>
+      </Provider>
     </>
   );
 }
