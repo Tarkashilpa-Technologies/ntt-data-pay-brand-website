@@ -33,13 +33,15 @@ export default function TutorialScreen() {
   }, []);
 
   useEffect(() => {
-    if (tutorialsListData) {
+    if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
-        if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
-          return setTutorialData(
+        const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
+        if (title != undefined && title.replace(/\s+/g, "") == queryData) {
+          return  data.attributes?.tutorials?.data[0]?.attributes != undefined ? setTutorialData(
             data.attributes?.tutorials?.data[0]?.attributes
-          );
-        }
+          ) : router?.push('/404')
+        } 
+      
       });
     }
   }, [tutorialsListData, queryData]);
