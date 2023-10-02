@@ -518,7 +518,7 @@ white">Sign up</a>
 <div className="explore-grid-wrp">
  <div className="row justify-content-center">
 
-<div className="col-md-3">
+<div className="col-xl-3 col-md-4 col-sm-6">
 <div className="explore-card explore1">
 <h3>POS Machine</h3>  
 <p>Receiving card payments in-store or on the go, made easy!</p>
@@ -536,7 +536,7 @@ white">Sign up</a>
 </div>  
 </div>   */}
 
-<div className="col-md-3">
+<div className="col-xl-3 col-md-4 col-sm-6">
 <div className="explore-card explore3">
 <h3>mGalla
 <span>Payment App For Merchants</span></h3>  
@@ -547,7 +547,7 @@ white">Sign up</a>
 </div>  
 </div>  
 
-<div className="col-md-3">
+<div className="col-xl-3 col-md-4 col-sm-6">
 <div className="explore-card explore4">
 <h3>Payment Gateway</h3>  
 <p>Open doors to great sales with the best payment experience for your customers.</p>

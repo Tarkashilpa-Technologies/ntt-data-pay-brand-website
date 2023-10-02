@@ -194,27 +194,27 @@ a {
   }
   &.retail-bnr {
     background-image: url(/images/retail-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.gov-bnr {
     background-image: url(/images/gov-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.broker-bnr {
     background-image: url(/images/broker-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.travel-bnr {
     background-image: url(/images/travel-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.edu-bnr {
     background-image: url(/images/edu-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.dth-bnr {
     background-image: url(/images/dth-bnr.jpg);
-    background-position: center center;
+    background-position: center bottom;
   }
   &.pricing-pgc-bnr {
     background-image: url(/images/pricing-payment-bg.jpg);
@@ -2696,6 +2696,7 @@ ol li {
         height: 304px;
         padding: 25px;
         border-radius: 15px;
+        overflow: hidden;
       }
     }
 
@@ -4744,10 +4745,10 @@ ol li {
   }
   .bnr-home-wrp.bnr-about-wrp {
     background-image: url(/images/about-mob-bnr.png);
-    height: 700px;
+    height: 750px;
   }
   .bnr-home-wrp.bnr-about-wrp .container_1100 {
-    height: 700px;
+    height: 600px;
   }
 
   .brand-logos-wrp div {
@@ -5872,8 +5873,21 @@ ol li {
 }
 
 @media screen and (max-width: 1000px) {
+  .product-payment-bnr {
+    background-image: none !important;
+  }
   .dev-landing-bnr {
     background-position: right bottom !important;
+  }
+  .product-ivr-bnr{
+    background-image: none !important;
+  }
+  .pricing-pgc-bnr2{
+    background-image: none !important;
+  }
+  .pricing-pgc-bnr
+  {
+    background-image: none !important;
   }
   .ig-f2-lhs {
     height: auto !important;
@@ -5893,5 +5907,11 @@ ol li {
   }
   .customer-care-bnr {
     background-position: bottom center !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .product-pos-bnr{
+    background-image: none !important;
   }
 }
