@@ -190,6 +190,7 @@ const ApiReferenceScreen = () => {
                   return(
                     <div className="border-start ps-3">
                     <h4>{tag.name}</h4>
+                    <label className="pb-1">URL : {tag?.externalDocs?.url}</label>
                     <p>{tag?.description}</p>
                   </div>
                   )
