@@ -30,9 +30,6 @@ export default function SignUp() {
     }
     email=event.target.email.value;
     mycontact(new_contact,email);
-
-    
-
       
      await fetch('/api/formemail', {
       method: 'POST',

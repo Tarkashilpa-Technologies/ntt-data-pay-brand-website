@@ -127,9 +127,10 @@ export default function TutorialScreen() {
     <div className="mt-5">
       <div className="api-reference-page overflow-hidden">
         <div
-          className="d-flex w-100 h-100 overflow-hidden"
+          className="d-flex flex-column w-100 h-100 overflow-hidden"
           style={{ minHeight: 600 }}
         >
+          <div className="d-flex ">
           <div style={{ width: 300 }} className="bg-primary pt-4">
             <div className="p-2">
               {" "}
@@ -435,6 +436,7 @@ export default function TutorialScreen() {
                 );
               })}
             </div>
+          </div>
           </div>
         </div>
       </div>
