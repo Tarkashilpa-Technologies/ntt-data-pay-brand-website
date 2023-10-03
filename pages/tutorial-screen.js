@@ -21,7 +21,12 @@ export default function TutorialScreen() {
     // setShowLoader(true);
     tutorialGroupDataApi()
       .then((res) => {
+        if(res?.data?.data){
+        console.log(res?.data?.data,"res data")
         setTutorialsListData(res?.data?.data);
+        }else {
+          setTutorialsListData([])
+        }
       })
       .catch((err) => {
         console.log("err", err);
@@ -34,7 +39,7 @@ export default function TutorialScreen() {
   }, []);
 
   useEffect(() => {
-    if (tutorialsListData) {
+    if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
         const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
         if (title != undefined && title.replace(/\s+/g, "") == queryData) {
@@ -45,7 +50,7 @@ export default function TutorialScreen() {
       
       });
     }
-  }, [tutorialsListData]);
+  }, [tutorialsListData,queryData]);
 
   // fetch on this page data
   const sidebarData = [];
@@ -126,30 +131,14 @@ export default function TutorialScreen() {
 
 
 
-  // const isBrowser = () => typeof window !== 'undefined'; 
-  // useEffect(() => {
-  //   if( isBrowser)
-  //   {
-  //     window.scroll({
-  //       top: 200, 
-  //       left: 0, 
-  //       behavior: 'smooth'
-  //     });
-  //   }
-  // },[])
- 
-
-
-  function scrollToTarget( text) {
+  function scrollToTarget(text) {
     console.log(text,"text")
-    text?.current?.scrollIntoView({ behavior: 'smooth', top:100 });
+    text?.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   useEffect(() => {
-    if(queryId){
-    scrollToTarget(queryId);
-    }
-  }, []);
+    scrollToTarget('Instant-Settlements');
+  }, [queryId]);
 
   return (
     <div className="mt-5">
@@ -311,14 +300,14 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h1 className="pt-3 d-flex align-items-center pointer">
+                            <h1 className="pt-3 d-flex align-items-center pointer" 
+                            ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}>
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
                                   /\s+/g,
                                   "-"
                                 )}`}
-                                ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
                                 href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
                                 className="pe-2"
