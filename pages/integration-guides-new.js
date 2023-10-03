@@ -91,6 +91,7 @@ const IntegrationGuides = () => {
                                       /\s+/g,
                                       ""
                                     ),
+                                    id: ''
                                   }} : {pathname:'/404'}
                                 }
                               >

@@ -5925,3 +5925,20 @@ ol li {
 .shadow {
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1) !important;
 }
+// .show-link-icon
+// {
+//   display: none;
+// }
+.show-link-icon:hover {
+  display: block !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.hide-accordion-btn {
+  .accordion-button::after
+  {
+    background-image: none !important;
+  }
+}
