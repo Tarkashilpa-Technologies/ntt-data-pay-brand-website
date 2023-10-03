@@ -311,7 +311,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h1 className="pt-3 d-flex align-items-center">
+                            <h1 className="pt-3 d-flex align-items-center pointer">
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
@@ -319,7 +319,7 @@ export default function TutorialScreen() {
                                   "-"
                                 )}`}
                                 ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
-                                // href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
+                                href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
                                 className="pe-2"
                               />
@@ -335,7 +335,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h2 className="pt-3 d-flex align-items-center">
+                            <h2 className="pt-3 d-flex align-items-center pointer">
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
@@ -343,7 +343,7 @@ export default function TutorialScreen() {
                                   "-"
                                 )}`}
                                 ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
-                                // href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
+                                href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
                                 className="pe-2"
                               />
@@ -359,7 +359,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h3 className="pt-3 d-flex align-items-center">
+                            <h3 className="pt-3 d-flex align-items-center pointer">
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
@@ -367,7 +367,7 @@ export default function TutorialScreen() {
                                   "-"
                                 )}`}
                                 ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
-                                // href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
+                                href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
                                 className="pe-2"
                               />
@@ -514,7 +514,7 @@ export default function TutorialScreen() {
                     onClick={() => {
                       setSelectedUrl(index);
                     }}
-                    className="border-2 ps-2 py-1 border-start-primary fw-semibold"
+                    className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
                   >
                     <a
                       href={`#${data.replace(/\s+/g, "-")}`}
