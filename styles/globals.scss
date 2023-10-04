@@ -5906,21 +5906,7 @@ ol li {
 .bg-lighgray {
   background-color: #f7f8f9;
 }
-.accordion-button {
-  background-color: #0072bc !important;
-  color: white !important;
-}
 
-.accordion-button:focus {
-  box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-  color: white !important;
-}
-.accordion-panel {
-  background-color: transparent !important;
-}
 
 .shadow {
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1) !important;
@@ -5937,8 +5923,59 @@ html {
 }
 
 .hide-accordion-btn {
+
+  .accordion-button {
+    background-color: #0072bc !important;
+    color: white !important;
+    padding: 10px 0px 10px 20px;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+    border: 0px;
+  }
+  
+  .accordion-button:not(.collapsed) {
+    color: white !important;
+  }
+  .accordion-panel {
+    background-color: transparent !important;
+  }
   .accordion-button::after
   {
     background-image: none !important;
   }
+}
+
+.image-width {
+  max-width: 600px !important;
+  max-height: 300px !important;
+  object-fit: contain;
+ 
+}
+
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .image-width {
+    max-width: 700px !important;
+    max-height: 400px !important;
+  }
+}
+@media (min-width:2560px)  {
+  .image-width {
+    max-width: 800px !important;
+    max-height: 500px !important;
+  }
+}
+
+.react-markdown{
+  div {
+    padding: 10px !important;
+  }
+  ul {
+    padding: 10px 5px 10px 5px;
+    li {
+      padding: 5px;
+    }
+  }
+  
 }

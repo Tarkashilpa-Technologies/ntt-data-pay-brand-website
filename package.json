@@ -25,6 +25,8 @@
     "react-dom": "17.0.2",
     "react-markdown": "^8.0.7",
     "react-scripts": "^5.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "3.0.1",
     "sass": "^1.49.9",
     "swiper": "^8.0.7"
   },

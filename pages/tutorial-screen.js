@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
+import { tutorialDataApi, tutorialGroupDataApi, useCaseDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 
 export default function TutorialScreen() {
   const router = useRouter();
@@ -17,12 +20,12 @@ export default function TutorialScreen() {
   const [isPageHelpful, setIsPageHelpful] = useState();
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
 
+
   const tutorialListDataApiCall = () => {
     // setShowLoader(true);
     tutorialGroupDataApi()
       .then((res) => {
-        if(res?.data?.data){
-        console.log(res?.data?.data,"res data")
+        if(res?.data){
         setTutorialsListData(res?.data?.data);
         }else {
           setTutorialsListData([])
@@ -39,18 +42,42 @@ export default function TutorialScreen() {
   }, []);
 
   useEffect(() => {
+    // console.log(queryData,"queryData")
     if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
         const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
         if (title != undefined && title.replace(/\s+/g, "") == queryData) {
-          return  data.attributes?.tutorials?.data[0]?.attributes != undefined ? setTutorialData(
-            data.attributes?.tutorials?.data[0]?.attributes
+          return  data.attributes?.tutorials?.data[0]?.attributes != undefined ?  UseCaseDataApiCall(
+            data.attributes?.tutorials?.data[0]?.id
           ) : router?.push('/404')
         } 
       
       });
     }
   }, [tutorialsListData,queryData]);
+  
+
+  // use case data api
+  const UseCaseDataApiCall = (id) => {
+    // setShowLoader(true);
+    // console.log(id,"id")
+    useCaseDataApi(id)
+      .then((res) => {
+        console.log(res?.data.data,"res data")
+        if(res?.data){
+        setTutorialData(res?.data?.data?.attributes);
+        }else {
+          setTutorialData([]);
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setTutorialData([]);
+        // setShowLoader(false);
+      });
+  };
+
+
 
   // fetch on this page data
   const sidebarData = [];
@@ -117,7 +144,7 @@ export default function TutorialScreen() {
       body: JSON.stringify(new_contact),
     }).then((res) => {
       console.log("Response received");
-      console.log(res.json());
+      // console.log(res.json());
       if (res.status === 200) {
       }
     });
@@ -130,25 +157,28 @@ export default function TutorialScreen() {
   };
 
 
-
   function scrollToTarget(text) {
-    console.log(text,"text")
-    text?.current?.scrollIntoView({ behavior: 'smooth' });
+    const eleId= document.getElementById(text);
+    console.log(eleId,"eleId")
+    eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
 
   useEffect(() => {
     scrollToTarget('Instant-Settlements');
   }, [queryId]);
 
+
+  // console.log(router,"router")
+
   return (
-    <div className="mt-5">
+    <div>
       <div className="api-reference-page overflow-hidden">
         <div
-          className="d-flex flex-column w-100 h-100 overflow-hidden"
-          style={{ minHeight: 600 }}
+          className="d-flex flex-column"
+          style={{ maxHeight: 800}}
         >
-          <div className="d-flex ">
-          <div style={{ width: 300 }} className="bg-primary pt-4">
+          <div className="d-flex h-100">
+          <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto">
             <div className="p-2">
               {" "}
               <button
@@ -188,17 +218,17 @@ export default function TutorialScreen() {
                         }}
                       >
                         <Accordion.Header
-                          className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-2 ps-2 ${
+                          className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-1 ps-2 ${
                             queryData ==
                             dropdown?.attributes?.Title.replace(/\s+/g, "")
-                              ? "bg-white text-primary"
+                              ? "fw-bold"
                               : "bg-primary text-white"
                           }`}
                           onClick={() => {
-                            setTutorialData(
-                              dropdown?.attributes?.tutorials?.data[0]
-                                ?.attributes
-                            );
+                            console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
+                            UseCaseDataApiCall(
+                              dropdown?.attributes?.tutorials?.data[0]?.id
+                            )
                             if (
                               dropdown?.attributes?.tutorials?.data ==0
                             ) {
@@ -226,17 +256,20 @@ export default function TutorialScreen() {
                               return (
                                 <div
                                   key={index}
-                                  className={`text-white rounded-start p-2 ${
+                                  className={`text-white rounded-start p-2 ps-4 ${
                                     queryData ==
                                     tutorial?.attributes?.Title.replace(
                                       /\s+/g,
                                       ""
                                     )
-                                      ? "bg-white text-primary"
-                                      : "bg-primary text-white"
+                                      ? "fw-bold"
+                                      : "bg-primary fw-normal"
                                   }`}
                                   onClick={() => {
-                                    setTutorialData(tutorial?.attributes);
+                                    UseCaseDataApiCall(
+                                      tutorial.id
+                                    );
+                                    console.log(tutorial.id,"inside accordion body");
                                     router.push(
                                       `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
@@ -261,26 +294,36 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="flex-1 w-100 p-4 mt-5 h-100">
-            <div className="shadow p-5">
+          <div className="p-5 mt-5 h-100" style={{maxWidth:'60%'}}>
+            <div className="shadow p-5 overflow-y-auto" style={{maxHeight: 750}}>
               <div className="text-start">
                 {" "}
-                <h2 className="text-start">{tutorialData?.Title}</h2>
+                <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
+                <hr className="my-4 mb-2"></hr>
                 <div className="pb-3">
                   {" "}
                   <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]} 
+                 className="react-markdown"
                     components={{
+                      p:({ node, ...props }) => (
+                        <p
+                          className="py-3 text-secondary"
+                          {...props}
+                        />
+                      ),
                       p: ({ node, children }) => {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image d-flex justify-content-center w-100 my-5">
+                            <div className="image d-flex justify-content-center my-5 w-100">
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                width="600"
-                                height="300"
-                                className="w-100 h-100 d-flex justify-content-center"
+                                maxWidth="600"
+                                maxHeight="300"
+                                className="d-flex justify-content-center image-width"
                               />
                             </div>
                           );
@@ -289,10 +332,28 @@ export default function TutorialScreen() {
                         // Return default child if it's not an image
                         return <div>{children}</div>;
                       },
-
+                      
                       a: ({ node, ...props }) => (
                         <a
                           className="fst-italic text-primary text-decoration-underline"
+                          {...props}
+                        />
+                      ),
+                      table: ({ node, ...props }) => (
+                        <table
+                          className="table table-hover p-2"
+                          {...props}
+                        />
+                      ),
+                      thead: ({ node, ...props }) => (
+                        <thead
+                          className="table-light"
+                          {...props}
+                        />
+                      ),
+                      div: ({ node, ...props }) => (
+                        <div
+                          className="py-3"
                           {...props}
                         />
                       ),
@@ -300,7 +361,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h1 className="pt-3 d-flex align-items-center pointer" 
+                            <h1 className="pt-4 pb-2 d-flex align-items-center pointer" 
                             ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}>
                               <a
                                 {...props}
@@ -324,7 +385,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h2 className="pt-3 d-flex align-items-center pointer">
+                            <h2 className="pt-4 pb-2 d-flex align-items-center pointer">
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
@@ -348,7 +409,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h3 className="pt-3 d-flex align-items-center pointer">
+                            <h3 className="pt-4 pb-2 d-flex align-items-center pointer">
                               <a
                                 {...props}
                                 id={`${node?.children[0]?.value.replace(
@@ -493,7 +554,7 @@ export default function TutorialScreen() {
           </div>
 
           {/* last section */}
-          <div style={{ width: 350 }} className="d-md-block d-none">
+          <div style={{ width: 300 }} className="d-lg-block d-none">
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
               {sidebarData?.map((data, index) => {
