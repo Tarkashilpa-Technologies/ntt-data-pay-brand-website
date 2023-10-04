@@ -5973,9 +5973,18 @@ html {
   }
   ul {
     padding: 10px 5px 10px 5px;
+    list-style-type: circle;
     li {
       padding: 5px;
     }
   }
-  
+  tr {
+    align-items: center;
+  }
+  h2 {
+    a::after {
+      background-image: url('./../public/images/link.png');
+      content: attr(a);
+    }
+  }
 }
