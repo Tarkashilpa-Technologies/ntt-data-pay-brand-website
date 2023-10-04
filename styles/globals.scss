@@ -5969,9 +5969,9 @@ html {
 
 .react-markdown{
   div {
-    padding: 10px !important;
+    padding: 15px 10px !important;
   }
-  ul {
+  ul,ol {
     padding: 10px 5px 10px 5px;
     list-style-type: circle;
     li {
