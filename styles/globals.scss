@@ -5969,13 +5969,17 @@ html {
 
 .react-markdown{
   div {
-    padding: 15px 10px !important;
+    padding: 10px!important;
+    margin: 0px;
   }
   ul,ol {
     padding: 10px 5px 10px 5px;
   
     li {
       padding: 5px;
+      div {
+        padding: 0px !important;
+      }
     }
   }
   tr {
