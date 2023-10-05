@@ -5982,8 +5982,12 @@ html {
       }
     }
   }
-  tr {
-    align-items: center;
+  table{
+    td,th {
+      align-items: center;
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+    }
   }
   h2 {
     a::after {
