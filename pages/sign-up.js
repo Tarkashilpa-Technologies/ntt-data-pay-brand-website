@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Head from 'next/head'
 import Script from 'next/script'
@@ -9,16 +9,18 @@ import 'swiper/css';
 import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/autoplay";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function SignUp() {
   
   var new_contact;
   var email;
+  const [tokenData,setTokenData] = useState()
+  const recaptcha = useRef(null);
+
   const handleSubmit = async (event) => {
-    
     // Stop the form from submitting and refreshing the page.
     event.preventDefault()
-
     // Get data from the form.
       new_contact = {
       first_name: event.target.first_name.value,
@@ -26,14 +28,12 @@ export default function SignUp() {
       mobile: event.target.mobile.value,
       email: event.target.email.value,
       products_required: event.target.products_required.value,
+      token: tokenData,
     
     }
     email=event.target.email.value;
     mycontact(new_contact,email);
 
-    
-
-      
      await fetch('/api/formemail', {
       method: 'POST',
       headers: {
@@ -45,14 +45,19 @@ export default function SignUp() {
       console.log('Response received')
       console.log(res.json())
       if (res.status === 200) {
-       
+        recaptcha?.current?.reset();
        
       }
     }) 
-
-
    return false;
   }
+
+  const onCaptchaChange = (token) => {
+    // Set the captcha token when the user completes the reCAPTCHA
+    if (token) {
+      setTokenData(token);
+    }
+  };
 
   return (
 
@@ -234,6 +239,14 @@ modules={[Autoplay ]}
             <input type="email" className="form-control" required id="email" />    
             </div> 
 
+            <div> 
+              <ReCAPTCHA
+                size="normal"
+                sitekey={'6LdvV3koAAAAAHuRFIGKIOr36jSelWv_BULnrvpf'}
+                onChange={onCaptchaChange}
+                ref={recaptcha}
+              />
+            </div>
             <div className="col-md-12 mb-10">
             <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
             </div>
