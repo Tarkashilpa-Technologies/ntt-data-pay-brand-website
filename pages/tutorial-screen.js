@@ -8,6 +8,8 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 
+
+
 export default function TutorialScreen() {
   const router = useRouter();
   const queryData = router.query?.data;
@@ -19,6 +21,8 @@ export default function TutorialScreen() {
   const [selectedUrl, setSelectedUrl] = useState(0);
   const [isPageHelpful, setIsPageHelpful] = useState();
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
+  const divRef = useRef(null);
+
 
 
   const tutorialListDataApiCall = () => {
@@ -167,8 +171,33 @@ export default function TutorialScreen() {
     scrollToTarget('Instant-Settlements');
   }, [queryId]);
 
+  const useResize = (myRef) => {
+    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
+  
+    const [width, setWidth] = useState(undefined);
+  
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(getWidth());
+        };
+  
+        if (myRef.current) {
+            setWidth(getWidth());
+        }
+  
+        window.addEventListener('resize', handleResize);
+  
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [myRef, getWidth]);
+  
+    return width && width > 25 ? width - 25 : width;
+  };
 
-  // console.log(router,"router")
+  const maxWidth = useResize(divRef);
+  console.log(maxWidth,"maxWidth")
+
 
   return (
     <div>
@@ -178,7 +207,7 @@ export default function TutorialScreen() {
           style={{ maxHeight: 800}}
         >
           <div className="d-flex h-100">
-          <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto">
+          <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-md-block d-none">
             <div className="p-2">
               {" "}
               <button
@@ -294,7 +323,7 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-5 mt-5 h-100" style={{maxWidth:'60%'}}>
+          <div className="p-5 mt-5 h-100 w-md-50 w-100" >
             <div className="shadow p-5 overflow-y-auto" style={{maxHeight: 750}}>
               <div className="text-start">
                 {" "}
@@ -317,13 +346,18 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image d-flex justify-content-center my-5 w-100">
+                            <div className="image my-5"  
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth="600"
-                                maxHeight="300"
-                                className="d-flex justify-content-center image-width"
+                                maxWidth={maxWidth}
+                                className="d-flex justify-content-center image-width overflow-hidden"
                               />
                             </div>
                           );
