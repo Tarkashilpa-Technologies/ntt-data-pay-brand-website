@@ -55,6 +55,7 @@ const ApiReferenceScreen = () => {
       });
     }
   }, [setApisListData, queryData]);
+  console.log(apiData?.Defination?.info?.title,"apiData")
   return (
     <div>
       <div className="api-reference-page">
@@ -127,6 +128,17 @@ const ApiReferenceScreen = () => {
               <div className="text-start">
                 {" "}
                 <h2 className="text-start">{apiData?.Title}</h2>
+                {apiData?.Description &&
+                <div>
+                  <h3>Introduction </h3>
+                  <p>{apiData?.Description}</p>
+                </div>
+                }
+                  {apiData?.Defination?.info?.title &&
+                <div>
+                  <h3>{apiData?.Defination?.info?.title} : {apiData?.Defination?.info?.version} </h3>
+                </div>
+                }
                 <div className="w-100 overflow-auto">
                   <ReactMarkdown
                     components={{
@@ -162,6 +174,28 @@ const ApiReferenceScreen = () => {
                   >
                     {apiData?.Defination?.info?.description}
                   </ReactMarkdown>
+                </div>
+                {apiData?.Defination?.info?.termsOfService &&
+                <div>
+                  <h3>Terms Of Service</h3>
+                  <p>{apiData?.Defination?.info?.termsOfService}</p>
+                </div>
+                }
+                
+              <div>
+                {apiData?.Defination?.tags && <h3 className="pb-2">Tags :</h3> }
+                {apiData?.Defination?.tags?.length > 0 &&
+               
+                 apiData?.Defination?.tags.map((tag,index) => {
+                  return(
+                    <div className="border-start ps-3">
+                    <h4>{tag.name}</h4>
+                    <label className="pb-1">URL : {tag?.externalDocs?.url}</label>
+                    <p>{tag?.description}</p>
+                  </div>
+                  )
+                })
+                }
                 </div>
               </div>
             </div>

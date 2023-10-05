@@ -5,49 +5,13 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 const IntegrationGuides = () => {
-  const [tutorialsData, setTutorialsData] = useState([
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Generate invoice",
-      desc: "Learn how to integrate our payment gateway with app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your",
-    },
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Generate invoice",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-    },
-    {
-      title: "Accept Payments",
-      desc: "Learn how to integrate our payment gateway with your website ",
-    },
-  ]);
+  const [tutorialsData, setTutorialsData] = useState([]);
 
   const tutorialDataApiCall = () => {
     // setShowLoader(true);
-
-    console.log("api is getting call");
     tutorialGroupDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setTutorialsData(res?.data?.data);
         // setShowLoader(false);
       })
@@ -119,15 +83,17 @@ const IntegrationGuides = () => {
                           <div className="d-flex gap-3 align-items-center justify-content-end">
                             <a className="btn btn_style1 p-2 px-4">
                               <Link
-                                href={{
-                                  pathname: "/tutorial-screen",
+                                href={
+                                  (tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != undefined || tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != null) ?
+                                  {pathname: "/tutorial-screen",
                                   query: {
-                                    data: tutorial?.attributes?.Title.replace(
+                                    data: tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(
                                       /\s+/g,
                                       ""
                                     ),
-                                  },
-                                }}
+                                    id: ''
+                                  }} : {pathname:'/404'}
+                                }
                               >
                                 Explore
                               </Link>

@@ -31,3 +31,12 @@ export const apisDataApi = async () => {
     return error;
   }
 };
+
+export const useCaseDataApi = async (id) => {
+  try {
+    const response = await instance?.get(`${TUTORIAL_API_ENDPOINT}/${id}`);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
