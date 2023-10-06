@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from "next/link";
 import Script from "next/script";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 //import styles from "../styles/Home.module.scss";
 import { Navigation,Pagination,Autoplay} from "swiper";
 import { Swiper, SwiperSlide} from 'swiper/react';
@@ -16,6 +16,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { clearLocalStorage, getLocalStorage, setLocalStorage } from '../utils/storage';
 import { disableShouldErrorShow, enableShouldErrorShow, formatPhoneNumber, isPasswordValidate, onFormFeildsChange, validateField } from '../utils/formValidator';
 import { EMAIL, PHONE, REQUIRED } from '../utils/messages';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function product1() {
   const [formData, setFormData] = useState();
@@ -24,6 +25,8 @@ export default function product1() {
   const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
   const [modalOpen, setModalOpen] = useState(null);
   const [selectedValue, setSelectedValue] = useState();
+  const [tokenData,setTokenData] = useState()
+  const recaptcha = useRef(null);
 
   useEffect(() => {
     // Perform localStorage action
@@ -220,6 +223,7 @@ export default function product1() {
     });
 
     if (isValid) {
+      if(tokenData){
       setLocalStorage('first_name', formData.Firstname.value);
       setLocalStorage('last_name', formData.Lastname.value);
       setLocalStorage('Phone_no', formData.MobilePhone.value);
@@ -236,11 +240,19 @@ export default function product1() {
         if (res.status === 200) {
           console.log('download the file');
           download(data?.href2 ? selectedValue == data.text2 ? data.href2 : data?.href : data?.href);
+          setTokenData(null);
+          document.getElementById("errormessage")?.style.display = 'none'; 
+          recaptcha?.current?.reset();
           setIsShow(false);
           setIsShowMobileModal(false);
           setIsShowEcomModal(false);
         }
       })
+    }
+    else {
+      document.getElementById("errormessage")?.style.display = 'inline-block'; 
+      alert("invalid Captcha value")
+    }
     }
       return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
   }
@@ -259,6 +271,15 @@ useEffect(() => {
   const handleSelectedOption = (event) => {
     setSelectedValue(event.target.value);
   }
+
+  const onCaptchaChange = (token) => {
+    // Set the captcha token when the user completes the reCAPTCHA
+    if (token) {
+      setTokenData(token);
+    }
+    // console.log(token);
+  };
+
 
   return isBrowser && (
     <div className="product-payment pd-lr-15">
@@ -535,9 +556,14 @@ useEffect(() => {
                               )}
                             </div>
 
-                            {/* <div className="col-md-12 mb-10">
-                            <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
-                            </div> */}
+                            <div className="pb-3 pt-2"> 
+                              <ReCAPTCHA
+                                size="normal"
+                                sitekey="6Lcs434oAAAAAJVUV1nksYHZfzfvBkoz1qQFZJI-"
+                                onChange={onCaptchaChange}
+                                ref={recaptcha}
+                              />
+                            </div>
                             <div className='d-flex justify-content-end mt-3'>
                               {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
                               <button type="submit" className='btn text-white btn_style1'
@@ -913,9 +939,7 @@ useEffect(() => {
                             )}
                           </div>
 
-                          {/* <div className="col-md-12 mb-10">
-                          <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
-                          </div> */}
+                        
                           <div className='d-flex justify-content-end mt-3'>
                             {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
                             <button type="submit" className='btn text-white btn_style1'
@@ -925,6 +949,7 @@ useEffect(() => {
                           </div>
                         </form>
                         <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+                        <div className="error-message" id="errormessage">Invalid captcha value.</div>
                       </Modal.Body>
                     </Modal>
                   }

@@ -47,6 +47,8 @@ export default function SignUp() {
         console.log('Response received')
         console.log(res.json())
         if (res.status === 200) {
+          setTokenData(null);
+          document.getElementById("errormessage")?.style.display = 'none'; 
           recaptcha?.current?.reset();
         
         }
