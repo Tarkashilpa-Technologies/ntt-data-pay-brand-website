@@ -30,9 +30,10 @@ export default function SignUp() {
       products_required: event.target.products_required.value,
       token: tokenData,
     }
-    email=event.target.email.value;
+    
 
     if(tokenData){
+      email=event.target.email.value;
       mycontact(new_contact,email);
 
      await fetch('/api/formemail', {
@@ -101,6 +102,7 @@ export default function SignUp() {
                   document.getElementById("mobile").value = "";
                   document.getElementById("email").value = "";
                   document.getElementById("tymessage").style.display = 'inline-block'; 
+                  document.getElementById("errormessage").style.display = 'none'; 
                   }
               `,
             }}
