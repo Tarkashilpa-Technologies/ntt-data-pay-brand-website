@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Dropdown } from "react-bootstrap";
+import Dropdown from 'react-bootstrap/Dropdown';
 import { tutorialDataApi, tutorialGroupDataApi, useCaseDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
@@ -203,10 +203,108 @@ export default function TutorialScreen() {
     <div>
       <div className="api-reference-page overflow-hidden">
         <div
-          className="d-flex flex-column"
+          className="d-flex flex-column  position-relative"
           style={{ maxHeight: 800}}
         >
-          <div className="d-flex h-100">
+          {/* navbar */}
+          <div style={{paddingTop: 20}} className="d-block d-md-none position-relative">
+            <div className="d-flex overflow-x-scroll position-relative">
+              <button
+                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
+                style={{minWidth:140}}
+                onClick={() => router.push("/integration-guides-new")}
+              >
+                {"<"} Back to home
+              </button>
+              <div className="d-flex position-relative" >
+              <Dropdown style={{zIndex: 2147483647}}>
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="show" >
+              Dropdown Button
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu style={{zIndex: 2147483647}}>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+              {tutorialsListData?.map((dropdown, index) => {
+                  return (
+                    <Dropdown key={index} className="bg-primary" style={{zIndex: 2147483647}}>
+                      <Dropdown.Toggle variant="basic" id={dropdown?.attributes?.Title} 
+                      className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 ${
+                          queryData ==
+                          dropdown?.attributes?.Title.replace(/\s+/g, "")
+                            ? "bg-white text-primary"
+                            : "bg-primary text-white"
+                        }`}
+                        onClick={() => {
+                          console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
+                          UseCaseDataApiCall(
+                            dropdown?.attributes?.tutorials?.data[0]?.id
+                          )
+                          if (
+                            dropdown?.attributes?.tutorials?.data ==0
+                          ) {
+                            router.push(
+                              dropdown?.attributes?.tutorials?.data?.length >
+                                0
+                                ? `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
+                                    /\s+/g,
+                                    ""
+                                  )}&id=`
+                                : "/404"
+                            ); 
+                          }
+                        }}>
+                        {dropdown?.attributes?.Title}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu style={{zIndex: 2147483647}}>
+                      {dropdown?.attributes?.tutorials?.data?.length > 0 &&
+                          dropdown?.attributes?.tutorials?.data?.map(
+                            (tutorial, index) => {
+                              return (
+                                <Dropdown.Item eventKey={tutorial?.id} key={index}>
+                                <div
+                                  key={index}
+                                  className={`rounded-start p-2 ps-4 ${
+                                    queryData ==
+                                    tutorial?.attributes?.Title.replace(
+                                      /\s+/g,
+                                      ""
+                                    )
+                                      ? "fw-bold"
+                                      : "bg-primary fw-normal"
+                                  }`}
+                                  onClick={() => {
+                                    UseCaseDataApiCall(
+                                      tutorial.id
+                                    );
+                                    console.log(tutorial.id,"inside accordion body");
+                                    router.push(
+                                      `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                        /\s+/g,
+                                        ""
+                                      )}&id=`
+                                    );
+                                  }}
+                                >
+                                  {tutorial?.attributes?.Title}
+                                </div>
+                                </Dropdown.Item>
+                              );
+                            }
+                          )}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )})}
+              </div>
+            </div>
+          </div>
+
+          {/* main 3 section started  */}
+          <div className="d-flex" style={{zIndex: 1}}>
           <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-md-block d-none">
             <div className="p-2">
               {" "}
@@ -324,7 +422,7 @@ export default function TutorialScreen() {
 
           {/* middle section  */}
           <div className="p-5 mt-5 h-100 w-md-50 w-100" >
-            <div className="shadow p-5 overflow-y-auto" style={{maxHeight: 750}}>
+            <div className="shadow p-5 overflow-y-auto" style={{maxHeight: 700}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
@@ -366,7 +464,54 @@ export default function TutorialScreen() {
                         // Return default child if it's not an image
                         return <div>{children}</div>;
                       },
-                      
+                      div: ({ node, children }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="my-5"  
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
+                              <img
+                                src={image.properties.src}
+                                alt={image.properties.alt}
+                                maxWidth={maxWidth}
+                                className="d-flex justify-content-center image-width overflow-hidden"
+                              />
+                            </div>
+                          );
+                        }
+
+                        // Return default child if it's not an image
+                        return <div>{children}</div>;
+                      },
+                      a: ({ node, children }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="my-5"  
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
+                              <img
+                                src={image.properties.src}
+                                alt={image.properties.alt}
+                                maxWidth={maxWidth}
+                                className="d-flex justify-content-center image-width overflow-hidden"
+                              />
+                            </div>
+                          );
+                        }
+
+                        // Return default child if it's not an image
+                        return <div>{children}</div>;
+                      },
                       a: ({ node, ...props }) => (
                         <a
                           className="fst-italic text-primary text-decoration-underline"
@@ -500,7 +645,7 @@ export default function TutorialScreen() {
                 <hr className="text-secondary"></hr>
                 {showHelpfulData &&
                   (isPageHelpful == null ? (
-                    <div className="d-flex gap-3 align-items-center w-100">
+                    <div className="d-flex flex-sm-row flex-column gap-3 align-items-center w-100">
                       <label className="fw-bold fs-6">
                         Was this page helpful?
                       </label>
