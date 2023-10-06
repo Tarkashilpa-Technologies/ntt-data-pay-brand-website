@@ -28,7 +28,6 @@ export default function SignUp() {
       mobile: event.target.mobile.value,
       email: event.target.email.value,
       products_required: event.target.products_required.value,
-      token: tokenData,
     }
     
 
