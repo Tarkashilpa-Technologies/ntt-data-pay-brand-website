@@ -51,7 +51,8 @@ export default function SignUp() {
         }
       }) 
     }else {
-      alert("invalid Captcha value")
+      document.getElementById("errormessage").style.display = 'inline-block'; 
+      // alert("invalid Captcha value")
     }
    return false;
   }
@@ -61,7 +62,7 @@ export default function SignUp() {
     if (token) {
       setTokenData(token);
     }
-    console.log(token);
+    // console.log(token);
   };
 
   return (
@@ -260,6 +261,8 @@ modules={[Autoplay ]}
           </form>
 
           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+          <div className="error-message" id="errormessage">Invalid captcha value.</div>
+
           
           </div>
 </div>
