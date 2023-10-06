@@ -203,7 +203,7 @@ export default function TutorialScreen() {
     <div>
       <div className="api-reference-page overflow-hidden">
         <div
-          className="d-flex flex-column  position-relative"
+          className="d-flex flex-column position-relative"
           style={{ maxHeight: 800}}
         >
           {/* navbar */}
@@ -217,22 +217,11 @@ export default function TutorialScreen() {
                 {"<"} Back to home
               </button>
               <div className="d-flex position-relative" >
-              <Dropdown style={{zIndex: 2147483647}}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="show" >
-              Dropdown Button
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu style={{zIndex: 2147483647}}>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
               {tutorialsListData?.map((dropdown, index) => {
                   return (
-                    <Dropdown key={index} className="bg-primary" style={{zIndex: 2147483647}}>
-                      <Dropdown.Toggle variant="basic" id={dropdown?.attributes?.Title} 
-                      className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 ${
+                    <Dropdown className="bg-primary">
+                    <Dropdown.Toggle variant="basic" id={dropdown?.attributes?.Title} 
+                      className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
                           queryData ==
                           dropdown?.attributes?.Title.replace(/\s+/g, "")
                             ? "bg-white text-primary"
@@ -257,15 +246,15 @@ export default function TutorialScreen() {
                             ); 
                           }
                         }}>
-                        {dropdown?.attributes?.Title}
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu style={{zIndex: 2147483647}}>
+                       {dropdown?.attributes?.Title}
+                    </Dropdown.Toggle>
+              
+                    <Dropdown.Menu style={{zIndex: 2147483647}}>
                       {dropdown?.attributes?.tutorials?.data?.length > 0 &&
                           dropdown?.attributes?.tutorials?.data?.map(
                             (tutorial, index) => {
                               return (
-                                <Dropdown.Item eventKey={tutorial?.id} key={index}>
+                                <Dropdown.Item>
                                 <div
                                   key={index}
                                   className={`rounded-start p-2 ps-4 ${
@@ -274,7 +263,7 @@ export default function TutorialScreen() {
                                       /\s+/g,
                                       ""
                                     )
-                                      ? "fw-bold"
+                                      ? "fw-bold bg-primary"
                                       : "bg-primary fw-normal"
                                   }`}
                                   onClick={() => {
@@ -288,16 +277,15 @@ export default function TutorialScreen() {
                                         ""
                                       )}&id=`
                                     );
-                                  }}
-                                >
+                                  }}>
                                   {tutorial?.attributes?.Title}
-                                </div>
-                                </Dropdown.Item>
-                              );
-                            }
-                          )}
-                      </Dropdown.Menu>
-                    </Dropdown>
+                                  </div>
+                                  </Dropdown.Item>
+                                  );
+                                }
+                              )}
+                        </Dropdown.Menu>
+                  </Dropdown>
                   )})}
               </div>
             </div>
@@ -421,8 +409,8 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-5 mt-5 h-100 w-md-50 w-100" >
-            <div className="shadow p-5 overflow-y-auto" style={{maxHeight: 700}}>
+          <div className="p-md-5 mt-5 h-100 w-md-50 w-100" >
+            <div className="shadow p-md-5 p-4 overflow-y-auto" style={{maxHeight: 700}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
@@ -436,7 +424,7 @@ export default function TutorialScreen() {
                     components={{
                       p:({ node, ...props }) => (
                         <p
-                          className="py-3 text-secondary"
+                          className="py-md-3 py-2 text-secondary"
                           {...props}
                         />
                       ),
@@ -444,7 +432,7 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image my-5"  
+                            <div className="image my-md-5 my-3"  
                               style={{
                                   width: '50vw',
                                   display:'flex',
@@ -468,7 +456,7 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="my-5"  
+                            <div className="my-md-5 my-3"  
                               style={{
                                   width: '50vw',
                                   display:'flex',
