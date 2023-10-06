@@ -49,6 +49,7 @@ export default function TutorialScreen() {
     // console.log(queryData,"queryData")
     if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
+
         const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
         if (title != undefined && title.replace(/\s+/g, "") == queryData) {
           return  data.attributes?.tutorials?.data[0]?.attributes != undefined ?  UseCaseDataApiCall(
@@ -56,6 +57,7 @@ export default function TutorialScreen() {
           ) : router?.push('/404')
         } 
       
+
       });
     }
   }, [tutorialsListData,queryData]);
@@ -131,9 +133,7 @@ export default function TutorialScreen() {
 
     // Get data from the form.
     const new_contact = {
-      subject: isPageHelpful
-        ? "What was the most helpful ?"
-        : "What can be improved ?",
+      subject: isPageHelpful ? "What was the most helpful ?" : "What can be improved ?",
       article: tutorialData?.Title,
       message: event.target.message.value,
       data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
@@ -202,6 +202,7 @@ export default function TutorialScreen() {
   return (
     <div>
       <div className="api-reference-page overflow-hidden">
+
         <div
           className="d-flex flex-column position-relative"
           style={{ maxHeight: 800}}
@@ -296,10 +297,7 @@ export default function TutorialScreen() {
           <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-md-block d-none">
             <div className="p-2">
               {" "}
-              <button
-                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
-                onClick={() => router.push("/integration-guides-new")}
-              >
+              <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
                 {"<"} Back to home
               </button>
             </div>
@@ -310,11 +308,13 @@ export default function TutorialScreen() {
             <hr className="p-0 bg-white text-white m-0"></hr>
             <div>
               {" "}
+
               <Accordion
                 defaultActiveKey="0"
                 className="border-0 bg-primary shadow-none rounded-0 p-0 m-0 hide-accordion-btn"
                 flush
               >
+
                 {tutorialsListData?.map((dropdown, index) => {
                   return (
                     <div key={index}>
@@ -322,17 +322,13 @@ export default function TutorialScreen() {
 
                       <Accordion.Item
                         eventKey={index}
-                        className={`p-0 m-0 border-0 bg-primary rounded-0 ${
-                          queryData ==
-                          dropdown?.attributes?.Title.replace(/\s+/g, "")
-                            ? "bg-white text-primary"
-                            : "bg-primary text-white"
-                        }`}
+                        className={`p-0 m-0 border-0 bg-primary rounded-0 ${queryData == dropdown?.attributes?.Title.replace(/\s+/g, "") ? "bg-white text-primary" : "bg-primary text-white"}`}
                         onClick={() => {
                           setSelectedIndex(index);
                         }}
                       >
                         <Accordion.Header
+
                           className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-1 ps-2 ${
                             queryData ==
                             dropdown?.attributes?.Title.replace(/\s+/g, "")
@@ -356,6 +352,7 @@ export default function TutorialScreen() {
                                     )}&id=`
                                   : "/404"
                               ); 
+
                             }
                           }}
                         >
@@ -366,6 +363,7 @@ export default function TutorialScreen() {
                         </Accordion.Header>
                         <Accordion.Body className="m-0 p-0 py-2 ps-4 pb-3">
                         {dropdown?.attributes?.tutorials?.data?.length > 0 &&
+
                           dropdown?.attributes?.tutorials?.data?.map(
                             (tutorial, index) => {
                               return (
@@ -400,6 +398,7 @@ export default function TutorialScreen() {
                           )}
                           </Accordion.Body>
                         <hr className="p-0 m-0"></hr>
+
                       </Accordion.Item>
                     </div>
                   );
@@ -469,30 +468,7 @@ export default function TutorialScreen() {
                                 maxWidth={maxWidth}
                                 className="d-flex justify-content-center image-width overflow-hidden"
                               />
-                            </div>
-                          );
-                        }
 
-                        // Return default child if it's not an image
-                        return <div>{children}</div>;
-                      },
-                      a: ({ node, children }) => {
-                        if (node.children[0].tagName == "img") {
-                          const image = node.children[0];
-                          return (
-                            <div className="my-5"  
-                              style={{
-                                  width: '50vw',
-                                  display:'flex',
-                                  justifyContent:'center',
-                              }}  
-                              ref={divRef}>
-                              <img
-                                src={image.properties.src}
-                                alt={image.properties.alt}
-                                maxWidth={maxWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
-                              />
                             </div>
                           );
                         }
@@ -506,6 +482,30 @@ export default function TutorialScreen() {
                           {...props}
                         />
                       ),
+
+                      a: ({ node, ...props }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="my-md-5 my-3"   
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
+                              <video controls poster={image.properties.src} maxWidth={maxWidth} 
+                               className="image-width overflow-hidden">
+                                <source src={node.properties.href} />
+                              </video>
+                            </div>
+                          );
+                        } else if (node.properties.href.indexOf("youtube.com") != -1) {
+                          return <iframe src={node.properties.href} width="600" height="300"></iframe>;
+                        } else {
+                          return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
+                        }
+                      }, 
                       table: ({ node, ...props }) => (
                         <table
                           className="table table-hover p-2"
@@ -525,6 +525,7 @@ export default function TutorialScreen() {
                           {...props}
                         />
                       ),
+
                       h1: ({ node, ...props }) => {
                         if (tutorialData?.Title) {
                          
@@ -549,6 +550,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
+
                             <h2 className="pt-4 pb-2 d-flex align-items-center pointer">
                               <a
                                 {...props}
@@ -564,11 +566,22 @@ export default function TutorialScreen() {
                               <div className="show-link-icon">
                               <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg>
                               </div>
+
                             </h2>
                           );
                         }
                         return <h2 {...props} />;
                       },
+
+                      blockquote: ({ node, ...props }) => {
+                        console.log("blockquote", node, node?.children[1]?.children[0]?.children[0]);
+                        if (node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "INFO" || node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "ERROR") {
+                          return <blockquote {...props} className={node?.children[1]?.children[0]?.children[0]?.value?.toLowerCase()}></blockquote>;
+                        } else {
+                          return <blockquote {...props}></blockquote>;
+                        }
+                      },
+
                       h3: ({ node, ...props }) => {
                         if (tutorialData?.Title) {
                          
@@ -594,12 +607,10 @@ export default function TutorialScreen() {
                         return <h3 {...props} />;
                       },
                       
+
                     }}
                   >
-                    {tutorialData?.default_tutorial
-                      ? tutorialData?.default_tutorial?.data?.attributes
-                          ?.Content
-                      : tutorialData?.Content}
+                    {tutorialData?.default_tutorial ? tutorialData?.default_tutorial?.data?.attributes?.Content : tutorialData?.Content}
                   </ReactMarkdown>
                 </div>
                 {/* was this page helpful section */}
@@ -608,12 +619,11 @@ export default function TutorialScreen() {
                   {tutorialData?.tutorials?.data?.length > 0 && (
                     <div className="pb-3">
                       <hr className="text-secondary"></hr>
-                      <label className="fs-5 fw-bold pt-3 pb-2">
-                        Related Tutorials{" "}
-                      </label>
+                      <label className="fs-5 fw-bold pt-3 pb-2">Related Tutorials </label>
                       {tutorialData?.tutorials?.data?.map((tutorial, index) => {
                         return (
                           <div className="p-1">
+
                             <a
                               href={`/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
                                 /\s+/g,
@@ -622,6 +632,7 @@ export default function TutorialScreen() {
                               
                               className="text-primary text-decoration-underline"
                             >
+
                               {tutorial?.attributes?.Title}
                             </a>
                           </div>
@@ -638,19 +649,11 @@ export default function TutorialScreen() {
                         Was this page helpful?
                       </label>
                       <div className="d-flex gap-2">
-                        <button
-                          className="btn border-primary rounded-0 text-primary px-4"
-                          style={{ backgroundColor: "#F3FFFF" }}
-                          onClick={() => setIsPageHelpful(true)}
-                        >
+                        <button className="btn border-primary rounded-0 text-primary px-4" style={{ backgroundColor: "#F3FFFF" }} onClick={() => setIsPageHelpful(true)}>
                           {" "}
                           Yes{" "}
                         </button>
-                        <button
-                          className="btn border-danger text-danger rounded-0 px-4"
-                          style={{ backgroundColor: "#FFEAE9" }}
-                          onClick={() => setIsPageHelpful(false)}
-                        >
+                        <button className="btn border-danger text-danger rounded-0 px-4" style={{ backgroundColor: "#FFEAE9" }} onClick={() => setIsPageHelpful(false)}>
                           {" "}
                           No{" "}
                         </button>
@@ -666,18 +669,12 @@ export default function TutorialScreen() {
                         {isPageHelpful == false ? (
                           <div>
                             <div>
-                              <label className="fw-bold fs-6 pt-2">
-                                Let us know what went wrong.
-                              </label>
+                              <label className="fw-bold fs-6 pt-2">Let us know what went wrong.</label>
                             </div>
                             <div className="p-2 ps-0">
                               {pageHelpfulData?.map((data, index) => {
                                 return (
-                                  <div
-                                    className="d-flex align-items-center gap-2 p-1"
-                                    key={index}
-                                    id={data.value.replace(/\s+/g, "-")}
-                                  >
+                                  <div className="d-flex align-items-center gap-2 p-1" key={index} id={data.value.replace(/\s+/g, "-")}>
                                     <input
                                       type="checkbox"
                                       onClick={(e) => {
@@ -695,20 +692,10 @@ export default function TutorialScreen() {
                           ""
                         )}
                         <div className="py-3 d-flex flex-column gap-2">
-                          <label className="fw-bold fs-6">
-                            {isPageHelpful
-                              ? "What was most useful?"
-                              : "What can be improved?"}
-                          </label>
-                          <textarea
-                            id="message"
-                            required
-                            className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
-                          ></textarea>
+                          <label className="fw-bold fs-6">{isPageHelpful ? "What was most useful?" : "What can be improved?"}</label>
+                          <textarea id="message" required className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"></textarea>
                         </div>
-                        <button className="btn btn-primary px-4 mt-2 mb-2">
-                          Submit
-                        </button>
+                        <button className="btn btn-primary px-4 mt-2 mb-2">Submit</button>
                       </form>
                     </div>
                   ))}
@@ -730,6 +717,7 @@ export default function TutorialScreen() {
                     }}
                     className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
                   >
+
                     <a
                       href={`#${data.replace(/\s+/g, "-")}`}
                       className={`${
@@ -737,6 +725,7 @@ export default function TutorialScreen() {
                       }`}
                       onClick={() => scrollToTarget(`${data.replace(/\s+/g, "-")}`)}
                     >
+
                       {data}
                     </a>
                   </div>
