@@ -5948,7 +5948,7 @@ html {
 }
 
 .image-width {
-  max-width: 600px !important;
+  // max-width: 600px !important;
   max-height: 300px !important;
   object-fit: contain;
  
@@ -5982,8 +5982,12 @@ html {
       }
     }
   }
-  tr {
-    align-items: center;
+  table{
+    td,th {
+      align-items: center;
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+    }
   }
   h2 {
     a::after {
@@ -5991,4 +5995,5 @@ html {
       content: attr(a);
     }
   }
+ 
 }

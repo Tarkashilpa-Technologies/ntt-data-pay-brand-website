@@ -2,7 +2,7 @@
 // const { API_URL } = require("../../config/env")
 // Or just specify it directly like this:
 
-export const HOST = "http://3.109.212.20:1337";
+export const HOST = "http://65.0.181.24:1337";
 
 export const API_URL = `${HOST}/api`;
 
