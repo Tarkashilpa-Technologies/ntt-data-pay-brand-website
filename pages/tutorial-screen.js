@@ -414,7 +414,7 @@ export default function TutorialScreen() {
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
-                <hr className="my-4 mb-2"></hr>
+                <hr className="my-md-4 my-2 mb-md-2 mb-1"></hr>
                 <div className="pb-3">
                   {" "}
                   <ReactMarkdown

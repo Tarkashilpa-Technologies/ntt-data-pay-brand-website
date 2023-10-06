@@ -5989,12 +5989,6 @@ html {
       padding-bottom: 15px !important;
     }
   }
-  h2 {
-    a::after {
-      background-image: url('./../public/images/link.png');
-      content: attr(a);
-    }
-  }
   .image-ref-div {
     width: 50vw !important;
   }
