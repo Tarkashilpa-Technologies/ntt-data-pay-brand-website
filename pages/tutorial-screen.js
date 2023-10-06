@@ -476,30 +476,6 @@ export default function TutorialScreen() {
                         // Return default child if it's not an image
                         return <div>{children}</div>;
                       },
-                      a: ({ node, children }) => {
-                        if (node.children[0].tagName == "img") {
-                          const image = node.children[0];
-                          return (
-                            <div className="my-5"  
-                              style={{
-                                  width: '50vw',
-                                  display:'flex',
-                                  justifyContent:'center',
-                              }}  
-                              ref={divRef}>
-                              <img
-                                src={image.properties.src}
-                                alt={image.properties.alt}
-                                maxWidth={maxWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
-                              />
-                            </div>
-                          );
-                        }
-
-                        // Return default child if it's not an image
-                        return <div>{children}</div>;
-                      },
                       a: ({ node, ...props }) => (
                         <a
                           className="fst-italic text-primary text-decoration-underline"
@@ -511,19 +487,25 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <video controls poster={image.properties.src} width="600" height="300">
-                              <source src={node.properties.href} />
-                            </video>
+                            <div className="my-md-5 my-3"   
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
+                              <video controls poster={image.properties.src} maxWidth={maxWidth} 
+                               className="image-width overflow-hidden">
+                                <source src={node.properties.href} />
+                              </video>
+                            </div>
                           );
                         } else if (node.properties.href.indexOf("youtube.com") != -1) {
                           return <iframe src={node.properties.href} width="600" height="300"></iframe>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
-                      },
-
-                      
-                      
+                      }, 
                       table: ({ node, ...props }) => (
                         <table
                           className="table table-hover p-2"
