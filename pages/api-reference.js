@@ -139,7 +139,7 @@ export default function product1() {
 
       <div className="ig-fold2">
         <div className="row g-0">
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <div className="ig-f2-lhs">
               <div
                 className="nav flex-column nav-pills me-3"
@@ -210,7 +210,7 @@ export default function product1() {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <div className="ig-f2-rhs">
               <div className="tab-content" id="v-pills-tabContent">
                 <div
