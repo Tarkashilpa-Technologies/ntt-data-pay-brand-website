@@ -5995,5 +5995,36 @@ html {
       content: attr(a);
     }
   }
- 
+  .image-ref-div {
+    width: 50vw !important;
+  }
+}
+
+@media (max-width:768px)  {
+  .react-markdown{
+    .image-ref-div {
+      width: 90vw !important;
+    }
+  
+    table{
+      td,th {
+        align-items: center;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+      }
+    }
+    ul,ol {
+      padding: 5px 2px 5px 2px;
+      li {
+        padding: 3px;
+      }
+    }
+    .middle-section-shadow{
+      box-shadow: none !important;
+    }
+    div {
+      padding: 5px!important;
+      margin: 0px;
+    }
+  }
 }
