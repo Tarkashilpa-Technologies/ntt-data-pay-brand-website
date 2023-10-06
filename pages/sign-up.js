@@ -29,10 +29,11 @@ export default function SignUp() {
       email: event.target.email.value,
       products_required: event.target.products_required.value,
       token: tokenData,
-    
     }
     email=event.target.email.value;
-    mycontact(new_contact,email);
+
+    if(tokenData){
+      mycontact(new_contact,email);
 
      await fetch('/api/formemail', {
       method: 'POST',
@@ -40,15 +41,18 @@ export default function SignUp() {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(new_contact)
-    }).then((res) => {
-      console.log('Response received')
-      console.log(res.json())
-      if (res.status === 200) {
-        recaptcha?.current?.reset();
-       
-      }
-    }) 
+        body: JSON.stringify(new_contact)
+      }).then((res) => {
+        console.log('Response received')
+        console.log(res.json())
+        if (res.status === 200) {
+          recaptcha?.current?.reset();
+        
+        }
+      }) 
+    }else {
+      alert("invalid Captcha value")
+    }
    return false;
   }
 
@@ -57,6 +61,7 @@ export default function SignUp() {
     if (token) {
       setTokenData(token);
     }
+    console.log(token);
   };
 
   return (
@@ -230,7 +235,7 @@ modules={[Autoplay ]}
 
             <div className="col-md-12 mb-10">
             <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-            <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+            <input type="tel" className="form-control" required id="mobile"  pattern="\d{10}" />    
             </div>  
 
 
@@ -239,10 +244,10 @@ modules={[Autoplay ]}
             <input type="email" className="form-control" required id="email" />    
             </div> 
 
-            <div> 
+            <div className="pb-3 pt-2"> 
               <ReCAPTCHA
                 size="normal"
-                sitekey={'6LdvV3koAAAAAHuRFIGKIOr36jSelWv_BULnrvpf'}
+                sitekey="6Lcs434oAAAAAJVUV1nksYHZfzfvBkoz1qQFZJI-"
                 onChange={onCaptchaChange}
                 ref={recaptcha}
               />
