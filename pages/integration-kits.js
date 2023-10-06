@@ -559,7 +559,7 @@ useEffect(() => {
                             <div className="pb-3 pt-2"> 
                               <ReCAPTCHA
                                 size="normal"
-                                sitekey="6Lcs434oAAAAAJVUV1nksYHZfzfvBkoz1qQFZJI-"
+                                sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
                                 onChange={onCaptchaChange}
                                 ref={recaptcha}
                               />
