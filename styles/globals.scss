@@ -5948,7 +5948,7 @@ html {
 }
 
 .image-width {
-  max-width: 600px !important;
+  // max-width: 600px !important;
   max-height: 300px !important;
   object-fit: contain;
  
@@ -6017,8 +6017,12 @@ blockquote.error > div > strong
       }
     }
   }
-  tr {
-    align-items: center;
+  table{
+    td,th {
+      align-items: center;
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+    }
   }
   h2 {
     a::after {
@@ -6026,4 +6030,5 @@ blockquote.error > div > strong
       content: attr(a);
     }
   }
+ 
 }
