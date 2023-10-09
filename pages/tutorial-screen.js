@@ -485,12 +485,12 @@ export default function TutorialScreen() {
                               ref={divRef}>
                               <video controls poster={image.properties.src} maxWidth={maxWidth} 
                                className="image-width overflow-hidden">
-                                <source src={node.properties.href} />
+                                <source src={node.properties.href} maxWidth={maxWidth} />
                               </video>
                             </div>
                           );
                         } else if (node.properties.href.indexOf("youtube.com") != -1) {
-                          return <iframe src={node.properties.href} width="600" height="300"></iframe>;
+                          return <iframe src={node.properties.href} height="300" width={maxWidth} ></iframe>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
