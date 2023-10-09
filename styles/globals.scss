@@ -5976,15 +5976,23 @@ blockquote.error
   padding: 12px 15px;
   border: 0px solid;
   margin: 15px 0 15px 0;
-  color: #000000;
+  color: #444343;
   line-height: 22px;
-  font-size: 15px;
+  // font-size: 15px;
   border-left-width: 4px;
+  div{
+    font-weight: 600;
+    padding: 2px !important;
+  }
+  ul {
+    margin-bottom: 0px !important;
+  }
 }
 
 blockquote.info {
-  background-color: #deebff;
+  background-color: #e4eeff;
   background-image: url(/images/info-icon.png);
+  background-size: 20px;
   border-left-color: blue;
 }
 blockquote.error {
@@ -6006,7 +6014,7 @@ blockquote.error > div > strong
 
 .react-markdown{
   div {
-    padding: 10px!important;
+    padding: 10px !important;
     margin: 0px;
   }
   ul,ol {
@@ -6027,7 +6035,13 @@ blockquote.error > div > strong
     }
   }
   .image-ref-div {
-    width: 50vw !important;
+    width: 90% !important;
+  }
+  blockquote.info,
+  blockquote.error  {
+    div {
+      padding-top: 2px !important;
+    }
   }
 }
 
@@ -6054,8 +6068,14 @@ blockquote.error > div > strong
       box-shadow: none !important;
     }
     div {
-      padding: 5px!important;
+      padding: 5px !important;
       margin: 0px;
+    }
+    blockquote.info,
+    blockquote.error  {
+      div {
+        padding-top: 2px !important;
+      }
     }
   }
 }
