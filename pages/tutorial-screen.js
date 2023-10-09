@@ -50,6 +50,7 @@ export default function TutorialScreen() {
     // console.log(queryData,"queryData")
     if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
+
         const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
         if (title != undefined && title.replace(/\s+/g, "") == queryData) {
           return  data.attributes?.tutorials?.data[0]?.attributes != undefined ?  UseCaseDataApiCall(
@@ -57,6 +58,7 @@ export default function TutorialScreen() {
           ) : router?.push('/404')
         } 
       
+
       });
     }
   }, [tutorialsListData,queryData]);
@@ -132,9 +134,7 @@ export default function TutorialScreen() {
 
     // Get data from the form.
     const new_contact = {
-      subject: isPageHelpful
-        ? "What was the most helpful ?"
-        : "What can be improved ?",
+      subject: isPageHelpful ? "What was the most helpful ?" : "What can be improved ?",
       article: tutorialData?.Title,
       message: event.target.message.value,
       data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
@@ -202,6 +202,7 @@ export default function TutorialScreen() {
   return (
     <div>
       <div className="api-reference-page overflow-hidden">
+
         <div
           className="d-flex flex-column"
           style={{ maxHeight: 800}}
@@ -279,10 +280,7 @@ export default function TutorialScreen() {
           <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
             <div className="p-2">
               {" "}
-              <button
-                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
-                onClick={() => router.push("/integration-guides-new")}
-              >
+              <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
                 {"<"} Back to home
               </button>
             </div>
@@ -293,11 +291,13 @@ export default function TutorialScreen() {
             <hr className="p-0 bg-white text-white m-0"></hr>
             <div>
               {" "}
+
               <Accordion
                 defaultActiveKey="0"
                 className="border-0 bg-primary shadow-none rounded-0 p-0 m-0 hide-accordion-btn"
                 flush
               >
+
                 {tutorialsListData?.map((dropdown, index) => {
                   return (
                     <div key={index}>
@@ -305,17 +305,13 @@ export default function TutorialScreen() {
 
                       <Accordion.Item
                         eventKey={index}
-                        className={`p-0 m-0 border-0 bg-primary rounded-0 ${
-                          queryData ==
-                          dropdown?.attributes?.Title.replace(/\s+/g, "")
-                            ? "bg-white text-primary"
-                            : "bg-primary text-white"
-                        }`}
+                        className={`p-0 m-0 border-0 bg-primary rounded-0 ${queryData == dropdown?.attributes?.Title.replace(/\s+/g, "") ? "bg-white text-primary" : "bg-primary text-white"}`}
                         onClick={() => {
                           setSelectedIndex(index);
                         }}
                       >
                         <Accordion.Header
+
                           className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-1 ps-2 ${
                             queryData ==
                             dropdown?.attributes?.Title.replace(/\s+/g, "")
@@ -338,6 +334,7 @@ export default function TutorialScreen() {
                                     )}&id=`
                                   : "/404"
                               ); 
+
                             }
                           }}
                         >
@@ -348,6 +345,7 @@ export default function TutorialScreen() {
                         </Accordion.Header>
                         <Accordion.Body className="m-0 p-0 py-2 ps-4 pb-3">
                         {dropdown?.attributes?.tutorials?.data?.length > 0 &&
+
                           dropdown?.attributes?.tutorials?.data?.map(
                             (tutorial, index) => {
                               return (
@@ -381,6 +379,7 @@ export default function TutorialScreen() {
                           )}
                           </Accordion.Body>
                         <hr className="p-0 m-0"></hr>
+
                       </Accordion.Item>
                     </div>
                   );
@@ -472,6 +471,30 @@ export default function TutorialScreen() {
                           {...props}
                         />
                       ),
+
+                      a: ({ node, ...props }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="my-md-5 my-3"   
+                              style={{
+                                  width: '50vw',
+                                  display:'flex',
+                                  justifyContent:'center',
+                              }}  
+                              ref={divRef}>
+                              <video controls poster={image.properties.src} maxWidth={maxWidth} 
+                               className="image-width overflow-hidden">
+                                <source src={node.properties.href} />
+                              </video>
+                            </div>
+                          );
+                        } else if (node.properties.href.indexOf("youtube.com") != -1) {
+                          return <iframe src={node.properties.href} width="600" height="300"></iframe>;
+                        } else {
+                          return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
+                        }
+                      }, 
                       table: ({ node, ...props }) => (
                         <table
                           className="table table-hover p-2"
@@ -491,6 +514,7 @@ export default function TutorialScreen() {
                           {...props}
                         />
                       ),
+
                       h1: ({ node, ...props }) => {
                         if (tutorialData?.Title) {
                          
@@ -524,6 +548,16 @@ export default function TutorialScreen() {
                         }
                         return <h2 {...props} />;
                       },
+
+                      blockquote: ({ node, ...props }) => {
+                        console.log("blockquote", node, node?.children[1]?.children[0]?.children[0]);
+                        if (node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "INFO" || node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "ERROR") {
+                          return <blockquote {...props} className={node?.children[1]?.children[0]?.children[0]?.value?.toLowerCase()}></blockquote>;
+                        } else {
+                          return <blockquote {...props}></blockquote>;
+                        }
+                      },
+
                       h3: ({ node, ...props }) => {
                         if (tutorialData?.Title) {
                          
@@ -541,12 +575,10 @@ export default function TutorialScreen() {
                         return <h3 {...props} />;
                       },
                       
+
                     }}
                   >
-                    {tutorialData?.default_tutorial
-                      ? tutorialData?.default_tutorial?.data?.attributes
-                          ?.Content
-                      : tutorialData?.Content}
+                    {tutorialData?.default_tutorial ? tutorialData?.default_tutorial?.data?.attributes?.Content : tutorialData?.Content}
                   </ReactMarkdown>
                 </div>
                 {/* was this page helpful section */}
@@ -555,12 +587,11 @@ export default function TutorialScreen() {
                   {tutorialData?.tutorials?.data?.length > 0 && (
                     <div className="pb-3">
                       <hr className="text-secondary"></hr>
-                      <label className="fs-5 fw-bold pt-3 pb-2">
-                        Related Tutorials{" "}
-                      </label>
+                      <label className="fs-5 fw-bold pt-3 pb-2">Related Tutorials </label>
                       {tutorialData?.tutorials?.data?.map((tutorial, index) => {
                         return (
                           <div className="p-1">
+
                             <a
                               href={`/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
                                 /\s+/g,
@@ -569,6 +600,7 @@ export default function TutorialScreen() {
                               
                               className="text-primary text-decoration-underline"
                             >
+
                               {tutorial?.attributes?.Title}
                             </a>
                           </div>
@@ -585,19 +617,11 @@ export default function TutorialScreen() {
                         Was this page helpful?
                       </label>
                       <div className="d-flex gap-2">
-                        <button
-                          className="btn border-primary rounded-0 text-primary px-4"
-                          style={{ backgroundColor: "#F3FFFF" }}
-                          onClick={() => setIsPageHelpful(true)}
-                        >
+                        <button className="btn border-primary rounded-0 text-primary px-4" style={{ backgroundColor: "#F3FFFF" }} onClick={() => setIsPageHelpful(true)}>
                           {" "}
                           Yes{" "}
                         </button>
-                        <button
-                          className="btn border-danger text-danger rounded-0 px-4"
-                          style={{ backgroundColor: "#FFEAE9" }}
-                          onClick={() => setIsPageHelpful(false)}
-                        >
+                        <button className="btn border-danger text-danger rounded-0 px-4" style={{ backgroundColor: "#FFEAE9" }} onClick={() => setIsPageHelpful(false)}>
                           {" "}
                           No{" "}
                         </button>
@@ -613,18 +637,12 @@ export default function TutorialScreen() {
                         {isPageHelpful == false ? (
                           <div>
                             <div>
-                              <label className="fw-bold fs-6 pt-2">
-                                Let us know what went wrong.
-                              </label>
+                              <label className="fw-bold fs-6 pt-2">Let us know what went wrong.</label>
                             </div>
                             <div className="p-2 ps-0">
                               {pageHelpfulData?.map((data, index) => {
                                 return (
-                                  <div
-                                    className="d-flex align-items-center gap-2 p-1"
-                                    key={index}
-                                    id={data.value.replace(/\s+/g, "-")}
-                                  >
+                                  <div className="d-flex align-items-center gap-2 p-1" key={index} id={data.value.replace(/\s+/g, "-")}>
                                     <input
                                       type="checkbox"
                                       onClick={(e) => {
@@ -642,20 +660,10 @@ export default function TutorialScreen() {
                           ""
                         )}
                         <div className="py-3 d-flex flex-column gap-2">
-                          <label className="fw-bold fs-6">
-                            {isPageHelpful
-                              ? "What was most useful?"
-                              : "What can be improved?"}
-                          </label>
-                          <textarea
-                            id="message"
-                            required
-                            className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
-                          ></textarea>
+                          <label className="fw-bold fs-6">{isPageHelpful ? "What was most useful?" : "What can be improved?"}</label>
+                          <textarea id="message" required className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"></textarea>
                         </div>
-                        <button className="btn btn-primary px-4 mt-2 mb-2">
-                          Submit
-                        </button>
+                        <button className="btn btn-primary px-4 mt-2 mb-2">Submit</button>
                       </form>
                     </div>
                   ))}
@@ -677,6 +685,7 @@ export default function TutorialScreen() {
                     }}
                     className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
                   >
+
                     <a
                       href={`#${data.replace(/\s+/g, "-")}`}
                       className={`${
@@ -684,6 +693,7 @@ export default function TutorialScreen() {
                       }`}
                       onClick={() => scrollToTarget(`${data.replace(/\s+/g, "-")}`)}
                     >
+
                       {data}
                     </a>
                   </div>
