@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Dropdown } from 'react-bootstrap';
 import { tutorialDataApi, tutorialGroupDataApi, useCaseDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
@@ -22,6 +22,7 @@ export default function TutorialScreen() {
   const [isPageHelpful, setIsPageHelpful] = useState();
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
   const divRef = useRef(null);
+  const [overflowBtn,setOverflowBtn] = useState(false)
 
 
 
@@ -67,7 +68,7 @@ export default function TutorialScreen() {
     // console.log(id,"id")
     useCaseDataApi(id)
       .then((res) => {
-        console.log(res?.data.data,"res data")
+        // console.log(res?.data.data,"res data")
         if(res?.data){
         setTutorialData(res?.data?.data?.attributes);
         }else {
@@ -163,7 +164,6 @@ export default function TutorialScreen() {
 
   function scrollToTarget(text) {
     const eleId= document.getElementById(text);
-    console.log(eleId,"eleId")
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
 
@@ -196,103 +196,86 @@ export default function TutorialScreen() {
   };
 
   const maxWidth = useResize(divRef);
-  console.log(maxWidth,"maxWidth")
+  // console.log(maxWidth,"maxWidth")
 
 
   return (
     <div>
       <div className="api-reference-page overflow-hidden">
         <div
-          className="d-flex flex-column position-relative"
+          className="d-flex flex-column"
           style={{ maxHeight: 800}}
         >
           {/* navbar */}
-          <div style={{paddingTop: 20}} className="d-block d-lg-none position-relative">
-            <div className="d-flex overflow-x-scroll position-relative">
-              <button
-                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
-                style={{minWidth:140}}
-                onClick={() => router.push("/integration-guides-new")}
-              >
-                {"<"} Back to home
-              </button>
-              <div className="d-flex position-relative" >
-              {tutorialsListData?.map((dropdown, index) => {
-                  return (
-                    <Dropdown className="bg-primary">
-                    <Dropdown.Toggle variant="basic" id={dropdown?.attributes?.Title} 
-                      className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
-                          queryData ==
-                          dropdown?.attributes?.Title.replace(/\s+/g, "")
-                            ? "bg-white text-primary"
-                            : "bg-primary text-white"
-                        }`}
-                        onClick={() => {
-                          console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
-                          UseCaseDataApiCall(
-                            dropdown?.attributes?.tutorials?.data[0]?.id
-                          )
-                          if (
-                            dropdown?.attributes?.tutorials?.data ==0
-                          ) {
-                            router.push(
-                              dropdown?.attributes?.tutorials?.data?.length >
-                                0
-                                ? `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
-                                    /\s+/g,
-                                    ""
-                                  )}&id=`
-                                : "/404"
-                            ); 
-                          }
-                        }}>
-                       {dropdown?.attributes?.Title}
-                    </Dropdown.Toggle>
-              
-                    <Dropdown.Menu style={{zIndex: 2147483647}}>
-                      {dropdown?.attributes?.tutorials?.data?.length > 0 &&
-                          dropdown?.attributes?.tutorials?.data?.map(
-                            (tutorial, index) => {
-                              return (
-                                <Dropdown.Item>
-                                <div
-                                  key={index}
-                                  className={`rounded-start p-2 ps-4 ${
-                                    queryData ==
-                                    tutorial?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    )
-                                      ? "fw-bold bg-primary"
-                                      : "bg-primary fw-normal"
-                                  }`}
-                                  onClick={() => {
-                                    UseCaseDataApiCall(
-                                      tutorial.id
-                                    );
-                                    console.log(tutorial.id,"inside accordion body");
-                                    router.push(
-                                      `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+          <div style={{paddingTop: 20}} className="d-block d-lg-none">
+              <div className={`d-flex `}>
+                <button
+                  className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
+                  style={{minWidth:140}}
+                  onClick={() => router.push("/integration-guides-new")}
+                >
+                  {"<"} Back to home
+                </button>
+                <div className="d-flex" >
+                {tutorialsListData?.map((dropdown, index) => {
+                    return (
+                      <div  key={index}>
+                      <Dropdown className="bg-primary" >
+                      <Dropdown.Toggle id="dropdown-autoclose-true"
+                        className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
+                            queryData ==
+                            dropdown?.attributes?.Title.replace(/\s+/g, "")
+                              ? "text-white fw-bold"
+                              : "bg-primary text-white"
+                          }`}
+                          
+                          >
+                        {dropdown?.attributes?.Title}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {dropdown?.attributes?.tutorials?.data?.length > 0 &&
+                            dropdown?.attributes?.tutorials?.data?.map(
+                              (tutorial, index) => { 
+                                return (
+                                  <Dropdown.Item>
+                                  <div
+                                    key={index}
+                                    className={`rounded-start p-1 ps-2 ${
+                                      queryData ==
+                                      tutorial?.attributes?.Title.replace(
                                         /\s+/g,
                                         ""
-                                      )}&id=`
+                                      )
+                                        ? "fw-bold text-primary"
+                                        : "fw-normal"
+                                    }`}
+                                    onClick={() => {
+                                      UseCaseDataApiCall(
+                                        tutorial.id
+                                      );
+                                      router.push(
+                                        `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                          /\s+/g,
+                                          ""
+                                        )}&id=`
+                                      );
+                                    }}
+                                    >
+                                    {tutorial?.attributes?.Title}
+                                    </div>
+                                    </Dropdown.Item>
                                     );
-                                  }}>
-                                  {tutorial?.attributes?.Title}
-                                  </div>
-                                  </Dropdown.Item>
-                                  );
-                                }
-                              )}
-                        </Dropdown.Menu>
-                  </Dropdown>
-                  )})}
+                                  }
+                                )}
+                          </Dropdown.Menu>
+                    </Dropdown>
+                    </div>
+                    )})}
+                </div>
               </div>
             </div>
-          </div>
-
           {/* main 3 section started  */}
-          <div className="d-flex" style={{zIndex: 1}}>
+          <div className="d-flex">
           <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
             <div className="p-2">
               {" "}
@@ -340,7 +323,6 @@ export default function TutorialScreen() {
                               : "bg-primary text-white"
                           }`}
                           onClick={() => {
-                            console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
                             UseCaseDataApiCall(
                               dropdown?.attributes?.tutorials?.data[0]?.id
                             )
@@ -384,7 +366,6 @@ export default function TutorialScreen() {
                                     UseCaseDataApiCall(
                                       tutorial.id
                                     );
-                                    console.log(tutorial.id,"inside accordion body");
                                     router.push(
                                       `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
@@ -409,8 +390,8 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100" >
-            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow" style={{maxHeight: 720}}>
+          <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100">
+            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 720}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>

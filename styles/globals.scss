@@ -6022,3 +6022,8 @@ html {
     }
   }
 }
+
+.dropdown-menu {
+  z-index: 2147483647 !important;
+}
+
