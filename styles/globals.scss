@@ -5966,7 +5966,7 @@ html {
 blockquote.info,
 blockquote.error  
 {
-  border-radius: 5px;
+  border-radius: 1px;
   /* background-size: 30px 30px;
   background-position: left; */
   padding-left: 42px !important;
@@ -6019,7 +6019,6 @@ blockquote.error > div > strong
   }
   ul,ol {
     padding: 10px 5px 10px 5px;
-  
     li {
       padding: 5px;
       div {
@@ -6084,3 +6083,10 @@ blockquote.error > div > strong
   z-index: 2147483647 !important;
 }
 
+.api-blackquote-style {
+  p {
+    padding: 15px 15px;
+    font-weight: 500;
+    
+  }
+}

@@ -40,3 +40,12 @@ export const useCaseDataApi = async (id) => {
     return error;
   }
 };
+
+export const singleApiDataApi = async (id) => {
+  try {
+    const response = await instance?.get(`${APIS_API_ENDPOINT}/${id}`);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
