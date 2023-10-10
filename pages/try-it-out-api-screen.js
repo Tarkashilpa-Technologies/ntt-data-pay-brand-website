@@ -1,67 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { apisDataApi } from "./services/services";
-import JSONEditor from "jsoneditor";
 import dynamic from "next/dynamic";
-
+import AjrmJsonEditor from "react-json-editor-ajrm";
+import { NO_DATA_FOUND } from "../utils/messages";
+import { generateExampleFromSchema } from "../utils/apiUtils";
 const TryItOutApiScreen = () => {
   const [apisData, setApisData] = useState([]);
-  const [jsonData, setJsonData] = useState();
-  const data = {
-    id: 11,
-    title: "perfume Oil",
-    description: "Mega Discount, Impression of A...",
-    price: 13,
-    discountPercentage: 8.4,
-    rating: 4.26,
-    stock: 65,
-    brand: "Impression of Acqua Di Gio",
-    category: "fragrances",
-    thumbnail: "https://i.dummyjson.com/data/products/11/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/11/1.jpg",
-      "https://i.dummyjson.com/data/products/11/2.jpg",
-      "https://i.dummyjson.com/data/products/11/3.jpg",
-      "https://i.dummyjson.com/data/products/11/thumbnail.jpg",
-    ],
-  };
+  const envList = [{ label: "UAT", value: "UAT" }];
+  const [selectedEnv, setSelectedEnv] = useState({
+    label: "UAT",
+    value: "UAT",
+  });
+  const [selectedAPI, setSelectedAPI] = useState({
+    label: "Select...",
+    value: "",
+  });
 
+  const [selectedFunction, setSelectedFunction] = useState();
+
+  const [functionList, setFunctionList] = useState();
+  const [json, setJson] = useState();
   const apisDataApiCall = () => {
-    // setShowLoader(true);
-
     apisDataApi()
       .then((res) => {
-        // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setApisData(res?.data?.data);
-        setJsonData(
-          res?.data?.data[0]?.attributes?.Defination?.components?.requestBodies
-        );
-        // setShowLoader(false);
       })
       .catch((err) => {
         console.log("err", err);
-        // setShowLoader(false);
       });
   };
 
+  //Handler Function
+  function handleFunctionItemClick(item) {
+    setSelectedFunction(item);
+    Object.entries(
+      selectedAPI?.attributes?.Defination?.components?.schemas || {}
+    ).forEach(([searchString, schemaData]) => {
+      const url =
+        item?.requestBody?.content?.["application/json"]?.schema?.$ref;
+      if (url?.includes(searchString)) {
+        setJson(generateExampleFromSchema(schemaData?.properties));
+      }
+    });
+  }
+  //UseEffects Function
   useEffect(() => {
     apisDataApiCall();
   }, []);
 
-  console.log(apisData, "apis data");
-
-  const JsonEditor = dynamic(
-    {
-      loader: () => import("nextjs-jsoneditor").then((mod) => mod.JsonEditor),
-      render: (props, JsonEditor) => {
-        return JsonEditor;
-      },
-    },
-    {
-      ssr: false,
+  useEffect(() => {
+    const nestedObject = selectedAPI?.attributes?.Defination?.paths;
+    if (nestedObject) {
+      let ObjEnt1 = Object.entries(nestedObject);
+      let tempArr = [];
+      ObjEnt1.map((data) => {
+        Object?.entries(data[1]).map((item) => {
+          tempArr?.push({
+            method: item[0],
+            api: data[0],
+            ...item[1],
+          });
+        });
+      });
+      setFunctionList(tempArr);
     }
-  );
+  }, [selectedAPI]);
 
   return (
     <div className="api-reference-page bg-white">
@@ -80,21 +84,30 @@ const TryItOutApiScreen = () => {
                     id="dropdown-basic"
                     className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
                   >
-                    Production
+                    {selectedEnv?.label ? selectedEnv?.label : "Select..."}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Another action
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">
-                      Something else
-                    </Dropdown.Item>
+                    {envList && envList?.length > 0 ? (
+                      envList?.map((item, index) => {
+                        return (
+                          <Dropdown.Item
+                            onClick={() => {
+                              setSelectedEnv(item);
+                            }}
+                          >
+                            {item?.label}
+                          </Dropdown.Item>
+                        );
+                      })
+                    ) : (
+                      <center>{NO_DATA_FOUND}</center>
+                    )}
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
             </div>
+
             <div className="flex-1">
               <label>API</label>
               <div>
@@ -107,21 +120,33 @@ const TryItOutApiScreen = () => {
                     id="dropdown-basic"
                     className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
                   >
-                    Penny drop Api
+                    {selectedAPI?.attributes?.Title
+                      ? selectedAPI?.attributes?.Title
+                      : "Select..."}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Another action
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">
-                      Something else
-                    </Dropdown.Item>
+                    {apisData && apisData?.length > 0 ? (
+                      apisData?.map((item, index) => {
+                        return (
+                          <Dropdown.Item
+                            onClick={() => {
+                              setSelectedAPI(item);
+                              setSelectedFunction();
+                            }}
+                          >
+                            {item?.attributes?.Title}
+                          </Dropdown.Item>
+                        );
+                      })
+                    ) : (
+                      <center>{NO_DATA_FOUND}</center>
+                    )}
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
             </div>
+
             <div className="flex-1">
               <label>Function</label>
               <div>
@@ -134,17 +159,28 @@ const TryItOutApiScreen = () => {
                     id="dropdown-basic"
                     className="w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-white text-black"
                   >
-                    Verify Account
+                    {selectedFunction?.summary
+                      ? selectedFunction?.summary
+                      : "Select..."}
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu className="w-100 rounded-0 mt-0">
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Another action
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">
-                      Something else
-                    </Dropdown.Item>
+                  <Dropdown.Menu
+                    className={`w-100 rounded-0 mt-0 ${
+                      functionList?.length > 1 ? "h-200 overflow-auto" : ""
+                    }`}
+                  >
+                    {functionList ? (
+                      functionList.map((item, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          onClick={() => handleFunctionItemClick(item)}
+                        >
+                          {item.summary}
+                        </Dropdown.Item>
+                      ))
+                    ) : (
+                      <center>{NO_DATA_FOUND}</center>
+                    )}
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
@@ -156,18 +192,17 @@ const TryItOutApiScreen = () => {
             <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4">
               <div className="w-lg-50 w-100">
                 <div className="p-2">
-                  <div className="pb-2">Request </div>
-                  <div className="text-white d-flex flex-column justify-content-center">
-                    {/* <JSONPretty
-                    id="json-pretty"
-                    data={data}
-                    theme={JSONPrettyMon}
-                    themeClassName="p-4"
-                  ></JSONPretty> */}
-                    <JsonEditor
-                      search={false}
-                      navigationBar={false}
-                      value={jsonData}
+                  <div className="pb-2">Request</div>
+                  <div className="text-white d-flex flex-column justify-content-center  ">
+                    <AjrmJsonEditor
+                      width="100%"
+                      height="320px"
+                      placeholder={json}
+                      onChange={(newJSON) => {
+                        console.log(newJSON);
+                        setJson(newJSON);
+                      }}
+                      locale={`react-json-editor-ajrm/locale/en`}
                     />
                   </div>
                   <div className="pt-3">
@@ -184,14 +219,7 @@ const TryItOutApiScreen = () => {
                     <div className="pb-2">
                       <label> Response</label>
                     </div>
-                    <div className="text-white d-flex flex-column justify-content-center">
-                      {/* <JSONPretty
-                      id="json-pretty"
-                      data={data}
-                      theme={JSONPrettyMon}
-                      themeClassName="p-4"
-                    ></JSONPretty> */}
-                    </div>
+                    <div className="text-white d-flex flex-column justify-content-center"></div>
                   </div>
                 </div>
               </div>

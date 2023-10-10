@@ -5987,8 +5987,12 @@ html {
   }
   h2 {
     a::after {
-      background-image: url('./../public/images/link.png');
+      // background-image: url('./../public/images/link.png');
       content: attr(a);
     }
   }
+}
+
+.h-200{
+  height: 200px ;
 }

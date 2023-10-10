@@ -16,3 +16,4 @@ export const PASSWORD_VALIDATION_MESSAGE =
   'Password must contain min 8 Character with at least a symbol, upper and lower case letters and a number';
 export const ISCHECKED = 'Please Check this field';
 export const MIN_6_DIGITS = 'Your input must be at least 6 characters long.';
+export const NO_DATA_FOUND = "No Data Found";
