@@ -6049,7 +6049,6 @@ blockquote.error > div > strong
     .image-ref-div {
       width: 90vw !important;
     }
-  
     table{
       td,th {
         align-items: center;
@@ -6088,5 +6087,44 @@ blockquote.error > div > strong
     padding: 15px 15px;
     font-weight: 500;
     
+  }
+}
+
+@media (max-width:1024px)  {
+  .middle-section-width{
+   width: 100% !important;
+  }
+}
+
+.api-integration-dropdown {
+  .dropdown-toggle::after {
+    content: none !important;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .middle-section-width{
+    max-width: 1200px !important;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #fcfcfc; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #cecece; 
+    border-radius: 10px;
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
   }
 }

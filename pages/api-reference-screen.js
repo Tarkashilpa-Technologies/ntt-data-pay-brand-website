@@ -14,6 +14,8 @@ const ApiReferenceScreen = () => {
   const [apiData, setApiData] = useState();
   const[searchData,setSearchData]= useState();
   const divRef = useRef(null);
+  const[fullHeight,setFullHeight]= useState();
+  const[fullWidth,setFullWidth] = useState();
   
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   const dropdownData = [
@@ -83,52 +85,76 @@ const ApiReferenceScreen = () => {
     }
   }, [queryId]);
 
+  useEffect(()=> {
+    window.addEventListener('resize', ()=> {
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth);
+    })
+ }, [])
   
-  const useResize = (myRef) => {
-    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
-    const [width, setWidth] = useState(undefined);
-    useEffect(() => {
-        const handleResize = () => {
-            setWidth(getWidth());
-        };
-        if (myRef.current) {
-            setWidth(getWidth());
-        }
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [myRef, getWidth]);
-    return width && width > 25 ? width - 25 : width;
-  };
-  const maxWidth = useResize(divRef);
+ console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
+
+
+
+ useEffect(() => {
+  const h1Elements = document.querySelectorAll('h1');
+
+  // Now h1Elements contains all the <h1> elements on the page
+  h1Elements.forEach((element) => {
+    console.log(element.innerText,"h1 tag");
+  });
+}, []);
 
   return (
     <div>
-      <div className="api-reference-page">
+      <div className="api-reference-page overflow-hidden w-100" style={{maxHeight:fullHeight}}>
+          <div className="d-flex pt-4 pt-md-3 d-block d-lg-none overflow-x-scroll">
+              <div className="d-flex bg-primary w-100">
+                {apisListData?.map((dropdown, index) => {
+                  return (
+                        <Dropdown className="bg-primary api-integration-dropdown" key={index}>
+                          <Dropdown.Toggle id="dropdown-autoclose-true"
+                            className={`p-2 px-3 m-0 border-0 bg-primary rounded-0 border-start show ${
+                                selectedTitle == index
+                                  ? "text-white fw-bold"
+                                  : "bg-primary text-white"
+                              }`}
+                              onClick={() => {
+                                setSelectedTitle(index);
+                                setApiData(dropdown);
+                              }}
+                              >
+                            {dropdown?.attributes?.Title}
+                          </Dropdown.Toggle>
+                        </Dropdown>
+                  );
+                })}
+              </div>
+            </div>
+          
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
-          <div style={{ width: 300,minHeight:800}} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
-            <div className="border-bottom p-2 position-relative">
+          <div style={{ width: 300,maxHeight:fullHeight}} className="bg-primary pt-4 overflow-y-auto d-lg-block d-none">
+            {/* <div className="border-bottom p-2 position-relative">
               {" "}
               <input
                 onChange={(e) => {setSearchData(e.target.value);}}
                 type="search"
                 placeholder="Search"
                 style={{paddingRight:15}}
-                className="w-100 bg-primary text-white text-start border-1 p-1 border-light rounded-1"
+                className="w-100 text-primary text-start border-1 border-light rounded-1 bg-white"
               />
               <div className="position-absolute" style={{top:12, right:10}}>
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
                   <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" fill="#fff"></path>
                 </svg>
               </div>
-            </div>
+            </div> */}
 
             <div>
               {apisListData?.map((dropdown, index) => {
                 return (
                   <div key={index}>
-                    <div className="bg-primary border-bottom p-1">
+                    <div className="bg-primary border-bottom p-2">
                       <button
                         className="btn w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white"
                         onClick={() => {
@@ -145,8 +171,8 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
           {/* mid section starts */}
-          <div className="p-lg-5 p-md-3 h-100 w-50 middle-section-width">
-          <div className="p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 780}}>
+          <div className="p-xl-5 p-md-3 h-100 w-75 middle-section-width">
+          <div className="p-xl-5 p-3 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 780}}>
               <div className="text-start">
                 {" "}
                 <h2 className="text-start pb-3">{apiData?.attributes?.Title}</h2>
@@ -170,6 +196,12 @@ const ApiReferenceScreen = () => {
                           {...props}
                         />
                       ),
+                      div: ({ node, ...props }) => (
+                        <div
+                          className="py-md-3 py-2"
+                          {...props}
+                        />
+                      ),
                       li: ({ node, ...props }) => (
                         <li
                           className="py-2"
@@ -185,8 +217,8 @@ const ApiReferenceScreen = () => {
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                maxWidth={fullWidth}
+                                className="d-flex justify-content-center overflow-hidden"
                               />
                             </div>
                           );
@@ -252,7 +284,7 @@ const ApiReferenceScreen = () => {
                 {apiData?.attributes?.Defination?.servers?.length > 0 &&
                 (
                 <div className="pt-3">
-                  <h3 className="pb-3">Environment : </h3>
+                  <h3 className="pb-3">Environments : </h3>
                 <table className="table border mt-2">
                   <tbody>
                   {
@@ -270,21 +302,90 @@ const ApiReferenceScreen = () => {
                 </div>
                 )}
                 <div className="w-100">
-                  {apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
+                  <h3 className="pt-4">Api Endpoints : </h3>
+                  {console.log(apiData?.attributes?.Defination,"apiData?.attributes?.Defination?.components")}
+                  {apiData?.attributes?.Defination?.paths && Object.entries(apiData?.attributes?.Defination?.paths)?.map((item,index) => {
+                    return(
+                      <div key={index}>
+                        <div className="py-2 fs-6"><b>Pathname :</b> "{item[0]}"</div>
+                       {Object.entries(item[1])?.map((item,index) => {
+                        console.log(item,"item details")
+                          return(
+                            <div key={index}>
+                              <p className="py-2">{item[1]?.description}</p>
+                              <div>
+                                <h5 className="py-3">Request Body : </h5>
+                                <p>{item[1].requestBody?.description}</p>
+                                <div>
+                                  {item[1].requestBody?.content && Object.entries(item[1].requestBody?.content)?.map((item,index) => {
+                                    if(item[0] == 'application/json')
+                                    {
+                                    return(
+                                      <div>
+                                        {item[0] &&
+                                        Object.entries(item[1])?.map((item,index) => {
+                                           
+                                                const result = `${item[0] && Object.entries(item[1])?.map((item, index) => {
+                                                    return `${Object.entries(item[1])?.map((item, index) => {
+                                                        console.log(item, "item details");
+                                                        return `${item[1].replace(/ \n/g, '')}`;
+                                                    }).join('')}`;
+                                                }).join('')}`
+                                            const finalResult = result.replace(/#\/components\/schemas\//g, '');
+                                            const data = apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
+                                              if(finalResult === item[0]){
+                                                console.log(finalResult,"final result",item[0],"item [0]")
+                                                return(
+                                                <div className="w-100">
+                                                  <h3 className="py-3">{item[0]}</h3>
+                                                  <JSONPretty
+                                                    id="json-pretty"
+                                                    data={JSON.stringify(item[1]?.properties)}
+                                                    theme={JSONPrettyMon}
+                                                    themeClassName="p-4"
+                                                  
+                                                  ></JSONPretty>
+                                                </div>
+                                                );
+                                              }
+                                            })
+                                            return(
+                                              <div>{data}</div>
+                                            )
+                                          })
+                                         }
+                                      </div>
+                                      
+                                    );
+                                    }
+                                    })}
+                                  </div>
+                              </div>
+                              <div>
+                                <h5 className="py-3">Responses : </h5>
+                                <p>{item[1].responses?.description}</p>
+                              </div>
+                            </div>
+                          );
+                      })}
+                    </div>
+                    );
+                   })}
+                  {/* {apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
                     console.log(item,"item")
                     return(
                     <div className="w-100">
                       <h3 className="py-3">{item[0]}</h3>
                       <JSONPretty
                         id="json-pretty"
-                        data={item[1]?.properties}
+                        data={JSON.stringify(item[1]?.properties)}
                         theme={JSONPrettyMon}
                         themeClassName="p-4"
                        
                       ></JSONPretty>
                     </div>
                     );
-                  })}
+                  })} */}
                 </div>
               
               </div>

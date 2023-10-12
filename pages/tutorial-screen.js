@@ -22,7 +22,9 @@ export default function TutorialScreen() {
   const [isPageHelpful, setIsPageHelpful] = useState();
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
   const divRef = useRef(null);
-  const [overflowBtn,setOverflowBtn] = useState(false)
+  const [overflowBtn,setOverflowBtn] = useState(false);
+  const[fullHeight,setFullHeight]= useState();
+  const[fullWidth,setFullWidth] = useState();
 
 
 
@@ -198,6 +200,14 @@ export default function TutorialScreen() {
   const maxWidth = useResize(divRef);
   // console.log(maxWidth,"maxWidth")
 
+    useEffect(()=> {
+    window.addEventListener('resize', ()=> {
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth);
+    })
+ }, [])
+  
+ console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
 
   return (
     <div>
@@ -205,7 +215,7 @@ export default function TutorialScreen() {
 
         <div
           className="d-flex flex-column"
-          style={{ maxHeight: 800}}
+          style={{ maxHeight: fullHeight}}
         >
           {/* navbar */}
           <div style={{paddingTop: 20}} className="d-block d-lg-none">
@@ -277,7 +287,7 @@ export default function TutorialScreen() {
             </div>
           {/* main 3 section started  */}
           <div className="d-flex">
-          <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
+          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
             <div className="p-2">
               {" "}
               <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
@@ -390,7 +400,7 @@ export default function TutorialScreen() {
 
           {/* middle section  */}
           <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100">
-            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 720}}>
+            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: fullHeight-100}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
@@ -417,7 +427,7 @@ export default function TutorialScreen() {
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
+                                maxWidth={fullWidth}
                                 className="d-flex justify-content-center image-width overflow-hidden"
                               />
                             </div>
@@ -436,7 +446,7 @@ export default function TutorialScreen() {
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
+                                maxWidth={fullWidth}
                                 className="d-flex justify-content-center image-width overflow-hidden"
                               />
                             </div>
@@ -455,7 +465,7 @@ export default function TutorialScreen() {
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
+                                maxWidth={fullWidth}
                                 className="d-flex justify-content-center image-width overflow-hidden"
                               />
                             </div>
@@ -483,14 +493,14 @@ export default function TutorialScreen() {
                                   justifyContent:'center',
                               }}  
                               ref={divRef}>
-                              <video controls poster={image.properties.src} maxWidth={maxWidth} 
-                               className="image-width overflow-hidden">
-                                <source src={node.properties.href} maxWidth={maxWidth} />
+                              <video controls poster={image.properties.src} maxWidth={fullWidth} 
+                               className="overflow-hidden">
+                                <source src={node.properties.href} maxWidth={fullWidth} />
                               </video>
                             </div>
                           );
                         } else if (node.properties.href.indexOf("youtube.com") != -1) {
-                          return <iframe src={node.properties.href} height="300" width={maxWidth} ></iframe>;
+                          return <div className="d-flex justify-content-center w-100" ><iframe src={node.properties.href} maxHeight={fullHeight-50} maxWidth={fullWidth} ></iframe></div>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
