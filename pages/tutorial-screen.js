@@ -400,7 +400,7 @@ export default function TutorialScreen() {
 
           {/* middle section  */}
           <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100">
-            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: fullHeight-100}}>
+            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight:780}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
