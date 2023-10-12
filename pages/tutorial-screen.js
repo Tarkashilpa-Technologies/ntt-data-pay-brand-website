@@ -150,7 +150,6 @@ export default function TutorialScreen() {
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
-      console.log("Response received");
       // console.log(res.json());
       if (res.status === 200) {
       }
@@ -400,10 +399,10 @@ export default function TutorialScreen() {
 
           {/* middle section  */}
           <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100">
-            <div className="shadow p-lg-5 p-4 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight:780}}>
+            <div className="shadow p-lg-5 middle-section-shadow" style={{maxHeight:780}}>
               <div className="text-start">
                 {" "}
-                <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
+                <h1 className="text-start title-font" >{tutorialData?.Title}</h1>
                 <hr className="my-md-4 my-2 mb-md-2 mb-1"></hr>
                 <div className="pb-3">
                   {" "}
@@ -422,13 +421,13 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image my-md-5 my-3 d-flex justify-content-center image-ref-div"  
+                            <div className="image my-md-5 my-3 display-center image-ref-div"  
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 maxWidth={fullWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                className="image-width"
                               />
                             </div>
                           );
@@ -441,13 +440,13 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="my-md-5 my-3 d-flex justify-content-center image-ref-div"   
+                            <div className="my-md-5 my-3 display-center image-ref-div"   
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 maxWidth={fullWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                className="image-width"
                               />
                             </div>
                           );
@@ -460,13 +459,13 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="my-md-5 my-2 d-flex justify-content-center image-ref-div" 
+                            <div className="my-md-5 my-2 display-center image-ref-div" 
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 maxWidth={fullWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                className="image-width"
                               />
                             </div>
                           );
@@ -500,7 +499,7 @@ export default function TutorialScreen() {
                             </div>
                           );
                         } else if (node.properties.href.indexOf("youtube.com") != -1) {
-                          return <div className="d-flex justify-content-center w-100" ><iframe src={node.properties.href} maxHeight={fullHeight-50} maxWidth={fullWidth} ></iframe></div>;
+                          return <div className="display-center w-100 h-100" ><iframe src={node.properties.href} maxWidth={fullWidth}  className="image-width" ></iframe></div>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
@@ -529,7 +528,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h1 className="pt-md-4 pb-md-2 pb-1 pt-3 d-flex align-items-center pointer" 
+                            <h1 className="pt-md-4 pb-md-2 heading-styles" 
                             id={(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}>
                               <a
                                 {...props}
@@ -546,7 +545,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h2 className="pt-md-4 pb-md-2 py-1 d-flex align-items-center pointer">
+                            <h2 className="pt-md-4 pb-md-2 heading-styles">
                               <a
                                 {...props}
                                 href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
@@ -560,7 +559,6 @@ export default function TutorialScreen() {
                       },
 
                       blockquote: ({ node, ...props }) => {
-                        console.log("blockquote", node, node?.children[1]?.children[0]?.children[0]);
                         if (node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "INFO" || node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "ERROR") {
                           return <blockquote {...props} className={node?.children[1]?.children[0]?.children[0]?.value?.toLowerCase()}></blockquote>;
                         } else {
@@ -572,7 +570,7 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h3 className="pt-md-4 pb-md-2 py-1 d-flex align-items-center pointer">
+                            <h3 className="pt-md-4 pb-md-2 heading-styles">
                              <a
                                 {...props}
                                 href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
@@ -584,8 +582,6 @@ export default function TutorialScreen() {
                         }
                         return <h3 {...props} />;
                       },
-                      
-
                     }}
                   >
                     {tutorialData?.default_tutorial ? tutorialData?.default_tutorial?.data?.attributes?.Content : tutorialData?.Content}

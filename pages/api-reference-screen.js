@@ -4,6 +4,7 @@ import { Dropdown } from "react-bootstrap";
 import { apisDataApi, singleApiDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import JSONPretty from 'react-json-pretty';
+import { generateExampleFromSchema } from "../utils/schema";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
@@ -18,28 +19,12 @@ const ApiReferenceScreen = () => {
   const[fullWidth,setFullWidth] = useState();
   
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
-  const dropdownData = [
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else", "Another action"],
-    },
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else"],
-    },
-    {
-      title: "Dropdown Button",
-      options: ["Another action", "Something else", "Another action"],
-    },
-  ];
+
   const apisListDataApiCall = () => {
     // setShowLoader(true);
-
-    console.log("api is getting call");
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setApisListData(res?.data?.data);
         // setShowLoader(false);
       })
@@ -69,7 +54,6 @@ const ApiReferenceScreen = () => {
     singleApiDataApi(id)
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setApiData(res?.data?.data);
         // setShowLoader(false);
       })
@@ -89,22 +73,16 @@ const ApiReferenceScreen = () => {
     window.addEventListener('resize', ()=> {
       setFullHeight(window.innerHeight);
       setFullWidth(window.innerWidth);
-    })
- }, [])
-  
- console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
+    });
 
-
-
- useEffect(() => {
-  const h1Elements = document.querySelectorAll('h1');
-
+    const h1Elements = document.querySelectorAll('h1');
   // Now h1Elements contains all the <h1> elements on the page
   h1Elements.forEach((element) => {
-    console.log(element.innerText,"h1 tag");
+    // console.log(element.innerText,"h1 tag");
   });
-}, []);
 
+ }, [])
+  
   return (
     <div>
       <div className="api-reference-page overflow-hidden w-100" style={{maxHeight:fullHeight}}>
@@ -172,10 +150,10 @@ const ApiReferenceScreen = () => {
           </div>
           {/* mid section starts */}
           <div className="p-xl-5 p-md-3 h-100 w-75 middle-section-width">
-          <div className="p-xl-5 p-3 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 780}}>
+          <div className="p-xl-5 middle-section-shadow" style={{maxHeight: 780}}>
               <div className="text-start">
                 {" "}
-                <h1 className="text-start pb-3" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{apiData?.attributes?.Title}</h1>
+                <h1 className="text-start pb-3 title-font">{apiData?.attributes?.Title}</h1>
                 {apiData?.attributes?.Description &&
                 <div>
                   <h3 id="intro">Introduction </h3>
@@ -212,13 +190,13 @@ const ApiReferenceScreen = () => {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image my-md-5 my-3 d-flex justify-content-center image-ref-div"  
+                            <div className="image my-md-5 my-3 display-center image-ref-div"  
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
                                 maxWidth={fullWidth}
-                                className="d-flex justify-content-center overflow-hidden"
+                                className="image-width"
                               />
                             </div>
                           );
@@ -231,7 +209,7 @@ const ApiReferenceScreen = () => {
                       },
                       h1: ({ node, ...props }) => {
                           return (
-                            <h1 className="pt-md-4 pb-md-2 pb-1 pt-3 d-flex align-items-center pointer">
+                            <h1 className="pt-md-4 pb-md-2 heading-styles">
                               <a
                                 {...props}
                                 href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
@@ -243,7 +221,7 @@ const ApiReferenceScreen = () => {
                       },
                       h2: ({ node, ...props }) => {
                           return (
-                            <h2 className="pt-md-4 pb-md-2 py-1 d-flex align-items-center pointer">
+                            <h2 className="pt-md-4 pb-md-2 heading-styles">
                               <a
                                 {...props}
                                 href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
@@ -303,13 +281,11 @@ const ApiReferenceScreen = () => {
                 )}
                 <div className="w-100">
                   <h3 className="pt-4">Api Endpoints : </h3>
-                  {console.log(apiData?.attributes?.Defination,"apiData?.attributes?.Defination?.components")}
                   {apiData?.attributes?.Defination?.paths && Object.entries(apiData?.attributes?.Defination?.paths)?.map((item,index) => {
                     return(
                       <div key={index}>
                         <div className="py-2 fs-6"><b>Pathname :</b> "{item[0]}"</div>
                        {Object.entries(item[1])?.map((item,index) => {
-                        console.log(item,"item details")
                           return(
                             <div key={index}>
                               <p className="py-2">{item[1]?.description}</p>
@@ -327,22 +303,20 @@ const ApiReferenceScreen = () => {
                                            
                                                 const result = `${item[0] && Object.entries(item[1])?.map((item, index) => {
                                                     return `${Object.entries(item[1])?.map((item, index) => {
-                                                        console.log(item, "item details");
                                                         return `${item[1].replace(/ \n/g, '')}`;
                                                     }).join('')}`;
                                                 }).join('')}`
                                             const finalResult = result.replace(/#\/components\/schemas\//g, '');
                                             const data = apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
                                               if(finalResult === item[0]){
-                                                console.log(finalResult,"final result",item[0],"item [0]")
                                                 return(
                                                 <div className="w-100">
                                                   <h3 className="py-3">{item[0]}</h3>
                                                   <JSONPretty
                                                     id="json-pretty"
-                                                    data={JSON.stringify(item[1]?.properties)}
+                                                    data={generateExampleFromSchema(item[1]?.properties)}
                                                     theme={JSONPrettyMon}
-                                                    themeClassName="p-4"
+                                                    themeClassName="p-4 fixed-height-data"
                                                   
                                                   ></JSONPretty>
                                                 </div>
@@ -371,23 +345,7 @@ const ApiReferenceScreen = () => {
                     </div>
                     );
                    })}
-                  {/* {apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
-                    console.log(item,"item")
-                    return(
-                    <div className="w-100">
-                      <h3 className="py-3">{item[0]}</h3>
-                      <JSONPretty
-                        id="json-pretty"
-                        data={JSON.stringify(item[1]?.properties)}
-                        theme={JSONPrettyMon}
-                        themeClassName="p-4"
-                       
-                      ></JSONPretty>
-                    </div>
-                    );
-                  })} */}
-                </div>
-              
+                </div>            
               </div>
             </div>
           </div>

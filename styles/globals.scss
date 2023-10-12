@@ -5951,8 +5951,15 @@ html {
 
 .image-width {
   // max-width: 600px !important;
-  max-height: 300px !important;
-  object-fit: contain;
+  min-height: 15rem;
+  max-height: 20rem;
+  min-width: 60%;
+  max-width: 100%;
+  object-position: center;
+  object-fit: contain  !important;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
  
 }
 
@@ -6064,6 +6071,8 @@ blockquote.error > div > strong
     }
     .middle-section-shadow{
       box-shadow: none !important;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
     div {
       padding: 5px !important;
@@ -6103,10 +6112,10 @@ blockquote.error > div > strong
 }
 
 @media (min-width: 1200px) {
-
   .middle-section-width{
     max-width: 1200px !important;
   }
+
   ::-webkit-scrollbar {
     width: 5px;
   }
@@ -6127,4 +6136,30 @@ blockquote.error > div > strong
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+}
+
+.fixed-height-data {
+  max-height: 400px !important;
+}
+
+.heading-styles {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 1.5rem;
+  padding-bottom: 0.25rem;
+}
+.title-font {
+  font-size: calc(1.5rem + 1.5vw);
+}
+.middle-section-shadow{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 1.5rem;
+}
+
+.display-center  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
