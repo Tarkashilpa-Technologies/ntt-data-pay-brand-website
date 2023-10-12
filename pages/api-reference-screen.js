@@ -175,7 +175,7 @@ const ApiReferenceScreen = () => {
           <div className="p-xl-5 p-3 overflow-y-auto middle-section-shadow overflow-x-hidden" style={{maxHeight: 780}}>
               <div className="text-start">
                 {" "}
-                <h2 className="text-start pb-3">{apiData?.attributes?.Title}</h2>
+                <h1 className="text-start pb-3" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{apiData?.attributes?.Title}</h1>
                 {apiData?.attributes?.Description &&
                 <div>
                   <h3 id="intro">Introduction </h3>
