@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import HeaderTwo from "../Components/HeaderTwo";
 
 
 
@@ -210,8 +211,8 @@ export default function TutorialScreen() {
 
   return (
     <div>
-      <div className="api-reference-page overflow-hidden">
-
+      <div className=" overflow-hidden">
+      <HeaderTwo />
         <div
           className="d-flex flex-column"
           style={{ maxHeight: fullHeight}}

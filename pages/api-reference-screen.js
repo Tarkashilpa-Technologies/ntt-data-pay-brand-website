@@ -5,6 +5,7 @@ import { apisDataApi, singleApiDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import JSONPretty from 'react-json-pretty';
 import { generateExampleFromSchema } from "../utils/schema";
+import HeaderTwo from "../Components/HeaderTwo";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
@@ -85,7 +86,8 @@ const ApiReferenceScreen = () => {
   
   return (
     <div>
-      <div className="api-reference-page overflow-hidden w-100" style={{maxHeight:fullHeight}}>
+      <div className=" overflow-hidden w-100" style={{maxHeight:fullHeight}}>
+        <HeaderTwo />
           <div className="d-flex pt-4 pt-md-3 d-block d-lg-none overflow-x-scroll">
               <div className="d-flex bg-primary w-100">
                 {apisListData?.map((dropdown, index) => {
