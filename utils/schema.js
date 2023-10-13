@@ -6,20 +6,17 @@ export function generateExampleFromSchema(schema) {
     example[propName] = generateExampleFromSchema(propInfo.properties);
     } else if (propInfo.type === "array") {
     if (propInfo.items && propInfo.items.example) {
-    // If the array has an example in its items, use that as the example.
-    const numItems = 1;
-    // You want 3 items in "prodDetails"
-    example[propName] = Array(numItems).fill(propInfo.items.example);
+    example[propName] = [propInfo.items.example];
     } else {
-    // If there's no example in items, provide an empty array.
     example[propName] = [];
     }
-    } else if (propInfo.hasOwnProperty("example")) {
-    example[propName] = propInfo.example;
-    } else if (propInfo.type === "string") {
-    example[propName] = "";
-    } else if (propInfo.type === "integer") {
-    example[propName] = 0;
+    } else {
+    const typeToDefault = {
+    string: "",
+    integer: 0,
+    };
+    example[propName] =
+    propInfo.example || typeToDefault[propInfo.type] || null;
     }
     }
     return example;
@@ -53,3 +50,4 @@ export function generateExampleFromSchema(schema) {
    
     return schema;
    }
+

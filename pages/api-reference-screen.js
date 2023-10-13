@@ -111,7 +111,7 @@ const ApiReferenceScreen = () => {
             </div>
           
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
-          <div style={{ width: 300,maxHeight:fullHeight}} className="bg-primary pt-4 overflow-y-auto d-lg-block d-none">
+          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
             {/* <div className="border-bottom p-2 position-relative">
               {" "}
               <input
@@ -150,13 +150,13 @@ const ApiReferenceScreen = () => {
           </div>
           {/* mid section starts */}
           <div className="p-xl-5 p-md-3 h-100 w-75 middle-section-width">
-          <div className="p-xl-5 middle-section-shadow" style={{maxHeight: 780}}>
+          <div className="p-xl-5 middle-section-shadow" style={{maxHeight: fullHeight-200}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start pb-3 title-font">{apiData?.attributes?.Title}</h1>
                 {apiData?.attributes?.Description &&
                 <div>
-                  <h3 id="intro">Introduction </h3>
+                  <h2 id="intro">Introduction </h2>
                   <p>{apiData?.attributes?.Description}</p>
                 </div>
                 }
@@ -244,7 +244,7 @@ const ApiReferenceScreen = () => {
                 }
                 
                 <div>
-                  {apiData?.attributes?.Defination?.tags && <h3 className="pb-2">Tags :</h3> }
+                  {apiData?.attributes?.Defination?.tags && <h3 className="pb-2" id="tags">Tags :</h3> }
                   {apiData?.attributes?.Defination?.tags?.length > 0 &&
                 
                   apiData?.attributes?.Defination?.tags.map((tag,index) => {
@@ -262,7 +262,7 @@ const ApiReferenceScreen = () => {
                 {apiData?.attributes?.Defination?.servers?.length > 0 &&
                 (
                 <div className="pt-3">
-                  <h3 className="pb-3">Environments : </h3>
+                  <h3 className="pb-3" id="envs">Environments : </h3>
                 <table className="table border mt-2">
                   <tbody>
                   {
@@ -286,12 +286,16 @@ const ApiReferenceScreen = () => {
                       <div key={index}>
                         <div className="py-2 fs-6"><b>Pathname :</b> "{item[0]}"</div>
                        {Object.entries(item[1])?.map((item,index) => {
+                        console.log(item,"item data")
                           return(
                             <div key={index}>
                               <p className="py-2">{item[1]?.description}</p>
                               <div>
                                 <h5 className="py-3">Request Body : </h5>
+                                <p>{item[1].requestBody?.summary} </p>
                                 <p>{item[1].requestBody?.description}</p>
+                                <p className="fw-bold">Method :  {item[0]}</p>
+
                                 <div>
                                   {item[1].requestBody?.content && Object.entries(item[1].requestBody?.content)?.map((item,index) => {
                                     if(item[0] == 'application/json')
@@ -300,12 +304,93 @@ const ApiReferenceScreen = () => {
                                       <div>
                                         {item[0] &&
                                         Object.entries(item[1])?.map((item,index) => {
-                                           
                                                 const result = `${item[0] && Object.entries(item[1])?.map((item, index) => {
                                                     return `${Object.entries(item[1])?.map((item, index) => {
                                                         return `${item[1].replace(/ \n/g, '')}`;
                                                     }).join('')}`;
                                                 }).join('')}`
+                                            const finalResult = result.replace(/#\/components\/schemas\//g, '');
+                                            const data = apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {                                                                                              
+                                              if(finalResult === item[0]){
+                                                const tableData = generateExampleFromSchema(item[1]?.properties);
+                                                // console.log(tableData,"table data")
+                                                const getFieldDetails = (obj, prefix = '') => {
+                                                  const fields = [];
+                                              
+                                                  for (const key in obj) {
+                                                    if (typeof obj[key] === 'object' && obj[key] !== null) {
+                                                      fields.push(...getFieldDetails(obj[key], `${prefix}${key}.`));
+                                                    } else {
+                                                      fields.push({
+                                                        id: `${prefix}${key}`,
+                                                        description: key,
+                                                      });
+                                                    }
+                                                  }
+                                                  return fields;
+                                                };
+                                                const fieldDetails = getFieldDetails(tableData);
+                                                
+                                                console.log(item[1]?.properties,"item[1]?.properties")
+                                                return(
+                                                <div className="w-100 react-markdown">
+                                                  <p>Example : </p>
+                                                  <JSONPretty
+                                                    id="json-pretty"
+                                                    data={generateExampleFromSchema(item[1]?.properties)}
+                                                    theme={JSONPrettyMon}
+                                                    themeClassName="p-4 fixed-height-data"
+                                                  
+                                                  ></JSONPretty>
+                                                  <div>
+                                                    <h3 className="py-2">Specifications of API Request:</h3>
+                                                    <table className="table table-hover p-2">
+                                                      <tbody>
+                                                    {fieldDetails.map((field, index) => (
+                                                        <tr key={index}>
+                                                          <td>{field.id.split('.').pop()}</td>
+                                                          <td className="text-break">{field.description}</td>
+                                                        </tr>    
+                                                    ))}    
+                                                     </tbody>                                                                                                                                            
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                                );
+                                              }
+                                            })
+                                            return(
+                                              <div>{data}</div>
+                                            )
+                                          })
+                                         }
+                                      </div>
+                                      
+                                    );
+                                    }
+                                    })}
+                                  </div>
+                                 
+                              </div>
+                              <div>
+                                <h5 className="py-3">Responses : </h5>
+                                <p>{item[1].responses?.description}</p>
+                                <div>
+                                  {item[1].responses && Object.entries(item[1].responses)?.map((item,index) => {
+                                    // if(item[0] == 'application/json')
+                                    return(
+                                    item[1].content && Object.entries(item[1].content)?.map((item,index) => {
+                                      if(item[0] == 'application/json')
+                                      {
+                                    return(
+                                      <div>
+                                        {item[0] &&
+                                        Object.entries(item[1])?.map((item,index) => {
+                                          const result = `${item[0] && Object.entries(item[1])?.map((item, index) => {
+                                            return `${Object.entries(item[1])?.map((item, index) => {
+                                              return `${item[1].replace(/ \n/g, '')}`;
+                                              }).join('')}`;
+                                            }).join('')}`
                                             const finalResult = result.replace(/#\/components\/schemas\//g, '');
                                             const data = apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {
                                               if(finalResult === item[0]){
@@ -332,12 +417,9 @@ const ApiReferenceScreen = () => {
                                       
                                     );
                                     }
+                                    }) )                                   
                                     })}
                                   </div>
-                              </div>
-                              <div>
-                                <h5 className="py-3">Responses : </h5>
-                                <p>{item[1].responses?.description}</p>
                               </div>
                             </div>
                           );
@@ -374,9 +456,27 @@ const ApiReferenceScreen = () => {
                     className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
                   >
                     <a
-                      href='#intro'
+                      href='#tags'
                     >
                     Tags
+                    </a>
+                  </div>
+                  <div
+                    className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
+                  >
+                    <a
+                      href='#envs'
+                    >
+                    Environments
+                    </a>
+                  </div>
+                  <div
+                    className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
+                  >
+                    <a
+                      href='#envs'
+                    >
+                    Api Endpoints
                     </a>
                   </div>
             </div>
