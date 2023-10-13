@@ -238,7 +238,7 @@ const ApiReferenceScreen = () => {
                 </div>
                 {apiData?.attributes?.Defination?.info?.termsOfService &&
                 <div className="pt-3">
-                  <h3 className="pb-3">Terms Of Service</h3>
+                  <h1 className="pb-3">Terms Of Service</h1>
                   <p>{apiData?.attributes?.Defination?.info?.termsOfService}</p>
                 </div>
                 }
@@ -262,7 +262,7 @@ const ApiReferenceScreen = () => {
                 {apiData?.attributes?.Defination?.servers?.length > 0 &&
                 (
                 <div className="pt-3">
-                  <h3 className="pb-3" id="envs">Environments : </h3>
+                  <h1 className="pb-3" id="envs">Environments : </h1>
                 <table className="table border mt-2">
                   <tbody>
                   {
@@ -280,21 +280,21 @@ const ApiReferenceScreen = () => {
                 </div>
                 )}
                 <div className="w-100">
-                  <h3 className="pt-4">Api Endpoints : </h3>
+                  <h1 className="pt-4">Api Endpoints : </h1>
                   {apiData?.attributes?.Defination?.paths && Object.entries(apiData?.attributes?.Defination?.paths)?.map((item,index) => {
                     return(
                       <div key={index}>
-                        <div className="py-2 fs-6"><b>Pathname :</b> "{item[0]}"</div>
+                        <div className="py-2 fs-5"><b>Pathname :</b> <span className="text-decoration-underline">"{item[0]}"</span></div>
                        {Object.entries(item[1])?.map((item,index) => {
                         console.log(item,"item data")
                           return(
                             <div key={index}>
-                              <p className="py-2">{item[1]?.description}</p>
+                              <p className="py-2 m-0">{item[1]?.description}</p>
                               <div>
-                                <h5 className="py-3">Request Body : </h5>
-                                <p>{item[1].requestBody?.summary} </p>
+                                <div className="py-3 fs-4 fw-bold"> Request Body : </div>
+                                <p>{item[1].requestBody?.summary}</p>
                                 <p>{item[1].requestBody?.description}</p>
-                                <p className="fw-bold">Method :  {item[0]}</p>
+                                <div className="fw-bold py-2 fs-5"> Method : {item[0]}</div>
 
                                 <div>
                                   {item[1].requestBody?.content && Object.entries(item[1].requestBody?.content)?.map((item,index) => {
@@ -340,10 +340,9 @@ const ApiReferenceScreen = () => {
                                                     data={generateExampleFromSchema(item[1]?.properties)}
                                                     theme={JSONPrettyMon}
                                                     themeClassName="p-4 fixed-height-data"
-                                                  
                                                   ></JSONPretty>
                                                   <div>
-                                                    <h3 className="py-2">Specifications of API Request:</h3>
+                                                    <h2 className="py-2">Specifications of API Request : </h2>
                                                     <table className="table table-hover p-2">
                                                       <tbody>
                                                     {fieldDetails.map((field, index) => (
