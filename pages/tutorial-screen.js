@@ -211,7 +211,7 @@ export default function TutorialScreen() {
 
   return (
     <div>
-      <div className=" overflow-hidden">
+      <div className=" overflow-hidden" style={{maxHeight:fullHeight}}>
       <HeaderTwo />
         <div
           className="d-flex flex-column"
