@@ -211,7 +211,7 @@ export default function TutorialScreen() {
 
   return (
     <div>
-      <div className=" overflow-hidden" style={{maxHeight:fullHeight}}>
+      <div className="overflow-hidden" style={{maxHeight:fullHeight}}>
       <HeaderTwo />
         <div
           className="d-flex flex-column"
@@ -219,7 +219,7 @@ export default function TutorialScreen() {
         >
           {/* navbar */}
           <div style={{paddingTop: 20}} className="d-block d-lg-none">
-              <div className={`d-flex `}>
+              <div className={`d-flex w-100 bg-primary`}>
                 <button
                   className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
                   style={{minWidth:140}}
@@ -227,7 +227,7 @@ export default function TutorialScreen() {
                 >
                   {"<"} Back to home
                 </button>
-                <div className="d-flex" >
+                <div className="d-flex">
                 {tutorialsListData?.map((dropdown, index) => {
                     return (
                       <div  key={index}>
