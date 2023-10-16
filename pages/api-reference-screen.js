@@ -113,7 +113,7 @@ const ApiReferenceScreen = () => {
             </div>
           
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
-          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
+          <div style={{ width: 300, height:fullHeight }} className="bg-primary overflow-y-auto  d-lg-block d-none">
             {/* <div className="border-bottom p-2 position-relative">
               {" "}
               <input
@@ -134,7 +134,11 @@ const ApiReferenceScreen = () => {
               {apisListData?.map((dropdown, index) => {
                 return (
                   <div key={index}>
-                    <div className="bg-primary border-bottom p-2">
+                    <div className={`bg-primary border-bottom p-2 ${
+                                selectedTitle == index
+                                  ? "text-white fw-bold"
+                                  : "bg-primary text-white"
+                              }`}>
                       <button
                         className="btn w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white"
                         onClick={() => {
@@ -397,7 +401,7 @@ const ApiReferenceScreen = () => {
                                               if(finalResult === item[0]){
                                                 return(
                                                 <div className="w-100">
-                                                  <h3 className="py-3">{item[0]}</h3>
+                                                  {/* <h3 className="py-3">{item[0]}</h3> */}
                                                   <JSONPretty
                                                     id="json-pretty"
                                                     data={generateExampleFromSchema(item[1]?.properties)}

@@ -11,10 +11,11 @@ const HeaderTwo = () => {
   let checkboxmenu = React.createRef();
   const[fullHeight,setFullHeight]= useState();
   const[fullWidth,setFullWidth] = useState();
+  const[hamClicked,setHamClicked]= useState();
 
   function handleMenuToggle(e) {
     e.preventDefault();
-    console.log(ham?.current?.classList);
+    console.log(ham?.current?.classList,"current ");
     if (ham?.current?.classList?.contains("open")) {
       menubox?.current?.classList?.add("hide");
       menubox?.current?.classList?.remove("show");
@@ -89,7 +90,7 @@ const HeaderTwo = () => {
     },[fullWidth])
 
   return (
-    <div className="py-3 px-2 d-flex">
+    <div className="py-lg-3 py-2 px-2 d-flex align-items-center">
       <div className="logo">
         <Link href="/">
           <Image
@@ -103,7 +104,8 @@ const HeaderTwo = () => {
           {/* <img className="img-fluid" src="/images/logo.svg" alt="Logo" /> */}
         </Link>
 
-        <span className="ham-menu" ref={ham} onClick={handleMenuToggle}>
+        <span className="ham-menu d-lg-none" ref={ham} onClick={(e) => {handleMenuToggle(e);
+        setHamClicked(!hamClicked);}}>
           <input
             type="checkbox"
             id="checkbox4"
@@ -121,15 +123,29 @@ const HeaderTwo = () => {
           </label>
         </span>
       </div>
-        <div className="menubox-div menubox-header-two">
+        <div className="menubox-header-two d-lg-block d-none">
           {dataArray?.map((data,index) => {
             return(
-              <ul className="menubox">
-              <li key={index} className={styles.dropdown}>
+              <ul className="menubox m-0 ps-0" key={index}>
+              <li key={index} className={styles.dropbtn}>
                 <Link href={data?.url}>
                   <a onClick={handleMenuClick} className={data.class}>{data?.label}</a>
                 </Link>
               </li>
+              </ul>
+            )
+          })}
+          
+        </div>
+        <div className={`d-lg-none ${hamClicked ? 'd-block' : 'd-none'} hamburger-show d-flex flex-column align-items-center`}>
+          {dataArray?.map((data,index) => {
+            return(
+              <ul className="menubox  w-100 m-0 p-2" key={index}>
+                <li key={index} className={`${styles.dropbtn} w-100`}>
+                  <Link href={data?.url}>
+                    <a onClick={handleMenuClick} className={`${data.class} w-100`}>{data?.label}</a>
+                  </Link>
+                </li>
               </ul>
             )
           })}

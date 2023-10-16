@@ -218,7 +218,7 @@ export default function TutorialScreen() {
           style={{ maxHeight: fullHeight}}
         >
           {/* navbar */}
-          <div style={{paddingTop: 20}} className="d-block d-lg-none">
+          <div className="d-block d-lg-none">
               <div className={`d-flex w-100 bg-primary`}>
                 <button
                   className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
@@ -287,7 +287,7 @@ export default function TutorialScreen() {
             </div>
           {/* main 3 section started  */}
           <div className="d-flex">
-          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-4 overflow-y-auto  d-lg-block d-none">
+          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-1 overflow-y-auto  d-lg-block d-none">
             <div className="p-2">
               {" "}
               <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
@@ -399,7 +399,7 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-lg-5 p-md-3 mt-5 h-100 w-md-50 w-100">
+          <div className="p-lg-5 pt-lg-0 p-md-3 mt-5 h-100 w-md-50 w-100">
             <div className="shadow p-lg-5 middle-section-shadow" style={{maxHeight:780}}>
               <div className="text-start">
                 {" "}
