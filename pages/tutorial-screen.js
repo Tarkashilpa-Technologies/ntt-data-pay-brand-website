@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Dropdown } from 'react-bootstrap';
 import { tutorialDataApi, tutorialGroupDataApi, useCaseDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import HeaderTwo from "../Components/HeaderTwo";
 
 
 
@@ -22,6 +23,9 @@ export default function TutorialScreen() {
   const [isPageHelpful, setIsPageHelpful] = useState();
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
   const divRef = useRef(null);
+  const [overflowBtn,setOverflowBtn] = useState(false);
+  const[fullHeight,setFullHeight]= useState();
+  const[fullWidth,setFullWidth] = useState();
 
 
 
@@ -69,7 +73,7 @@ export default function TutorialScreen() {
     // console.log(id,"id")
     useCaseDataApi(id)
       .then((res) => {
-        console.log(res?.data.data,"res data")
+        // console.log(res?.data.data,"res data")
         if(res?.data){
         setTutorialData(res?.data?.data?.attributes);
         }else {
@@ -147,7 +151,6 @@ export default function TutorialScreen() {
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
-      console.log("Response received");
       // console.log(res.json());
       if (res.status === 200) {
       }
@@ -163,7 +166,6 @@ export default function TutorialScreen() {
 
   function scrollToTarget(text) {
     const eleId= document.getElementById(text);
-    console.log(eleId,"eleId")
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
 
@@ -196,105 +198,96 @@ export default function TutorialScreen() {
   };
 
   const maxWidth = useResize(divRef);
-  console.log(maxWidth,"maxWidth")
+  // console.log(maxWidth,"maxWidth")
 
+    useEffect(()=> {
+    window.addEventListener('resize', ()=> {
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth);
+    })
+ }, [])
+  
+ console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
 
   return (
     <div>
-      <div className="api-reference-page overflow-hidden">
-
+      <div className="overflow-hidden" style={{maxHeight:fullHeight}}>
+      <HeaderTwo />
         <div
-          className="d-flex flex-column position-relative"
-          style={{ maxHeight: 800}}
+          className="d-flex flex-column"
+          style={{ maxHeight: fullHeight}}
         >
           {/* navbar */}
-          <div style={{paddingTop: 20}} className="d-block d-md-none position-relative">
-            <div className="d-flex overflow-x-scroll position-relative">
-              <button
-                className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
-                style={{minWidth:140}}
-                onClick={() => router.push("/integration-guides-new")}
-              >
-                {"<"} Back to home
-              </button>
-              <div className="d-flex position-relative" >
-              {tutorialsListData?.map((dropdown, index) => {
-                  return (
-                    <Dropdown className="bg-primary">
-                    <Dropdown.Toggle variant="basic" id={dropdown?.attributes?.Title} 
-                      className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
-                          queryData ==
-                          dropdown?.attributes?.Title.replace(/\s+/g, "")
-                            ? "bg-white text-primary"
-                            : "bg-primary text-white"
-                        }`}
-                        onClick={() => {
-                          console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
-                          UseCaseDataApiCall(
-                            dropdown?.attributes?.tutorials?.data[0]?.id
-                          )
-                          if (
-                            dropdown?.attributes?.tutorials?.data ==0
-                          ) {
-                            router.push(
-                              dropdown?.attributes?.tutorials?.data?.length >
-                                0
-                                ? `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
-                                    /\s+/g,
-                                    ""
-                                  )}&id=`
-                                : "/404"
-                            ); 
-                          }
-                        }}>
-                       {dropdown?.attributes?.Title}
-                    </Dropdown.Toggle>
-              
-                    <Dropdown.Menu style={{zIndex: 2147483647}}>
-                      {dropdown?.attributes?.tutorials?.data?.length > 0 &&
-                          dropdown?.attributes?.tutorials?.data?.map(
-                            (tutorial, index) => {
-                              return (
-                                <Dropdown.Item>
-                                <div
-                                  key={index}
-                                  className={`rounded-start p-2 ps-4 ${
-                                    queryData ==
-                                    tutorial?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    )
-                                      ? "fw-bold bg-primary"
-                                      : "bg-primary fw-normal"
-                                  }`}
-                                  onClick={() => {
-                                    UseCaseDataApiCall(
-                                      tutorial.id
-                                    );
-                                    console.log(tutorial.id,"inside accordion body");
-                                    router.push(
-                                      `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+          <div className="d-block d-lg-none">
+              <div className={`d-flex w-100 bg-primary`}>
+                <button
+                  className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
+                  style={{minWidth:140}}
+                  onClick={() => router.push("/integration-guides-new")}
+                >
+                  {"<"} Back to home
+                </button>
+                <div className="d-flex">
+                {tutorialsListData?.map((dropdown, index) => {
+                    return (
+                      <div  key={index}>
+                      <Dropdown className="bg-primary" >
+                      <Dropdown.Toggle id="dropdown-autoclose-true"
+                        className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
+                            queryData ==
+                            dropdown?.attributes?.Title.replace(/\s+/g, "")
+                              ? "text-white fw-bold"
+                              : "bg-primary text-white"
+                          }`}
+                          
+                          >
+                        {dropdown?.attributes?.Title}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {dropdown?.attributes?.tutorials?.data?.length > 0 &&
+                            dropdown?.attributes?.tutorials?.data?.map(
+                              (tutorial, index) => { 
+                                return (
+                                  <Dropdown.Item>
+                                  <div
+                                    key={index}
+                                    className={`rounded-start p-1 ps-2 ${
+                                      queryData ==
+                                      tutorial?.attributes?.Title.replace(
                                         /\s+/g,
                                         ""
-                                      )}&id=`
+                                      )
+                                        ? "fw-bold text-primary"
+                                        : "fw-normal"
+                                    }`}
+                                    onClick={() => {
+                                      UseCaseDataApiCall(
+                                        tutorial.id
+                                      );
+                                      router.push(
+                                        `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                          /\s+/g,
+                                          ""
+                                        )}&id=`
+                                      );
+                                    }}
+                                    >
+                                    {tutorial?.attributes?.Title}
+                                    </div>
+                                    </Dropdown.Item>
                                     );
-                                  }}>
-                                  {tutorial?.attributes?.Title}
-                                  </div>
-                                  </Dropdown.Item>
-                                  );
-                                }
-                              )}
-                        </Dropdown.Menu>
-                  </Dropdown>
-                  )})}
+                                  }
+                                )}
+                          </Dropdown.Menu>
+                    </Dropdown>
+                    </div>
+                    )})}
+                </div>
               </div>
             </div>
-          </div>
-
           {/* main 3 section started  */}
-          <div className="d-flex" style={{zIndex: 1}}>
-          <div style={{ width: 300, height:800 }} className="bg-primary pt-4 overflow-y-auto  d-md-block d-none">
+          <div className="d-flex">
+          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-1 overflow-y-auto  d-lg-block d-none">
             <div className="p-2">
               {" "}
               <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
@@ -336,7 +329,6 @@ export default function TutorialScreen() {
                               : "bg-primary text-white"
                           }`}
                           onClick={() => {
-                            console.log(dropdown?.attributes?.tutorials?.data[0]?.id,"inside accoridion header")
                             UseCaseDataApiCall(
                               dropdown?.attributes?.tutorials?.data[0]?.id
                             )
@@ -382,7 +374,6 @@ export default function TutorialScreen() {
                                     UseCaseDataApiCall(
                                       tutorial.id
                                     );
-                                    console.log(tutorial.id,"inside accordion body");
                                     router.push(
                                       `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
@@ -408,12 +399,12 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-md-5 mt-5 h-100 w-md-50 w-100" >
-            <div className="shadow p-md-5 p-4 overflow-y-auto" style={{maxHeight: 700}}>
+          <div className="p-lg-5 pt-lg-0 p-md-3 mt-5 h-100 w-md-50 w-100">
+            <div className="shadow p-lg-5 middle-section-shadow" style={{maxHeight:780}}>
               <div className="text-start">
                 {" "}
-                <h1 className="text-start" style={{fontSize:'calc(1.5rem + 1.5vw)'}}>{tutorialData?.Title}</h1>
-                <hr className="my-4 mb-2"></hr>
+                <h1 className="text-start title-font" >{tutorialData?.Title}</h1>
+                <hr className="my-md-4 my-2 mb-md-2 mb-1"></hr>
                 <div className="pb-3">
                   {" "}
                   <ReactMarkdown
@@ -431,18 +422,13 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="image my-md-5 my-3"  
-                              style={{
-                                  width: '50vw',
-                                  display:'flex',
-                                  justifyContent:'center',
-                              }}  
+                            <div className="image my-md-5 my-3 display-center image-ref-div"  
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                maxWidth={fullWidth}
+                                className="image-width"
                               />
                             </div>
                           );
@@ -455,20 +441,33 @@ export default function TutorialScreen() {
                         if (node.children[0].tagName == "img") {
                           const image = node.children[0];
                           return (
-                            <div className="my-md-5 my-3"  
-                              style={{
-                                  width: '50vw',
-                                  display:'flex',
-                                  justifyContent:'center',
-                              }}  
+                            <div className="my-md-5 my-3 display-center image-ref-div"   
                               ref={divRef}>
                               <img
                                 src={image.properties.src}
                                 alt={image.properties.alt}
-                                maxWidth={maxWidth}
-                                className="d-flex justify-content-center image-width overflow-hidden"
+                                maxWidth={fullWidth}
+                                className="image-width"
                               />
+                            </div>
+                          );
+                        }
 
+                        // Return default child if it's not an image
+                        return <div>{children}</div>;
+                      },
+                      a: ({ node, children }) => {
+                        if (node.children[0].tagName == "img") {
+                          const image = node.children[0];
+                          return (
+                            <div className="my-md-5 my-2 display-center image-ref-div" 
+                              ref={divRef}>
+                              <img
+                                src={image.properties.src}
+                                alt={image.properties.alt}
+                                maxWidth={fullWidth}
+                                className="image-width"
+                              />
                             </div>
                           );
                         }
@@ -494,14 +493,14 @@ export default function TutorialScreen() {
                                   justifyContent:'center',
                               }}  
                               ref={divRef}>
-                              <video controls poster={image.properties.src} maxWidth={maxWidth} 
-                               className="image-width overflow-hidden">
-                                <source src={node.properties.href} />
+                              <video controls poster={image.properties.src} maxWidth={fullWidth} 
+                               className="overflow-hidden">
+                                <source src={node.properties.href} maxWidth={fullWidth} />
                               </video>
                             </div>
                           );
                         } else if (node.properties.href.indexOf("youtube.com") != -1) {
-                          return <iframe src={node.properties.href} width="600" height="300"></iframe>;
+                          return <div className="display-center w-100 h-100" ><iframe src={node.properties.href} maxWidth={fullWidth}  className="image-width" ></iframe></div>;
                         } else {
                           return <a className="fst-italic text-primary text-decoration-underline" {...props} />;
                         }
@@ -521,7 +520,7 @@ export default function TutorialScreen() {
                       
                       div: ({ node, ...props }) => (
                         <div
-                          className="py-3"
+                          className="py-md-3 py-1"
                           {...props}
                         />
                       ),
@@ -530,17 +529,14 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h1 className="pt-4 pb-2 d-flex align-items-center pointer" 
+                            <h1 className="pt-md-4 pb-md-2 heading-styles" 
                             id={(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}>
                               <a
                                 {...props}
                                 href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
                                 className="pe-1"
-                              />
-                              <div className="show-link-icon">
-                               <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg>
-                              </div>
+                              >{node?.children[0]?.value} <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg></a>
                             </h1>
                           );
                         }
@@ -550,23 +546,13 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-
-                            <h2 className="pt-4 pb-2 d-flex align-items-center pointer">
+                            <h2 className="pt-md-4 pb-md-2 heading-styles">
                               <a
                                 {...props}
-                                id={`${node?.children[0]?.value.replace(
-                                  /\s+/g,
-                                  "-"
-                                )}`}
-                                ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
-                                href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
+                                href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
-                                className="pe-2"
-                              />
-                              <div className="show-link-icon">
-                              <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg>
-                              </div>
-
+                                className="pe-1"
+                              >{node?.children[0]?.value} <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg></a>
                             </h2>
                           );
                         }
@@ -574,7 +560,6 @@ export default function TutorialScreen() {
                       },
 
                       blockquote: ({ node, ...props }) => {
-                        console.log("blockquote", node, node?.children[1]?.children[0]?.children[0]);
                         if (node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "INFO" || node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() == "ERROR") {
                           return <blockquote {...props} className={node?.children[1]?.children[0]?.children[0]?.value?.toLowerCase()}></blockquote>;
                         } else {
@@ -586,28 +571,18 @@ export default function TutorialScreen() {
                         if (tutorialData?.Title) {
                          
                           return (
-                            <h3 className="pt-4 pb-2 d-flex align-items-center pointer">
-                              <a
+                            <h3 className="pt-md-4 pb-md-2 heading-styles">
+                             <a
                                 {...props}
-                                id={`${node?.children[0]?.value.replace(
-                                  /\s+/g,
-                                  "-"
-                                )}`}
-                                ref={React.useRef(`${node?.children[0]?.value.replace(/\s+/g, "-")}`)}
-                                href={`/tutorial-screen?data=${queryData.replace(/\s+/g, "")}&id=#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
+                                href={`#${node?.children[0]?.value.replace(/\s+/g, "-")}`}
                                 target="_self"
-                                className="pe-2"
-                              />
-                              <div className="show-link-icon">
-                              <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg>
-                              </div>
+                                className="pe-1"
+                              >{node?.children[0]?.value} <svg width="20" height="20" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg" className="text-primary"><path d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z" fill="#0072bc"></path><path d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z" fill="#0072bc"></path></svg></a>
                             </h3>
                           );
                         }
                         return <h3 {...props} />;
                       },
-                      
-
                     }}
                   >
                     {tutorialData?.default_tutorial ? tutorialData?.default_tutorial?.data?.attributes?.Content : tutorialData?.Content}

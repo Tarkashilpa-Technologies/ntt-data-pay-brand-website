@@ -9,12 +9,15 @@ import Footer from "../Components/Footer";
 import "../styles/globals.scss";
 import React, { useEffect } from "react";
 import "../styles/nextjs-jsoneditor.css";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap");
   }, []);
 
+  const  router = useRouter();
+  console.log(router?.pathname,"router");
   return (
     <>
       <Head>
@@ -62,10 +65,20 @@ function MyApp({ Component, pageProps }) {
           style={{ display: "none", visibility: "hidden" }}
         ></iframe>
       </noscript>
-
-      <Header></Header>
-      <Component {...pageProps} />
-      <Footer></Footer>
+      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen") ?
+        (
+          <Component {...pageProps} />
+        )  
+        :
+        (
+          <>
+          <Header />
+            <Component {...pageProps} />
+          <Footer />
+        </>
+        
+        )
+        }
     </>
   );
 }
