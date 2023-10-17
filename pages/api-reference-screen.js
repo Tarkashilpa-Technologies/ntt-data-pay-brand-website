@@ -18,6 +18,7 @@ const ApiReferenceScreen = () => {
   const divRef = useRef(null);
   const[fullHeight,setFullHeight]= useState();
   const[fullWidth,setFullWidth] = useState();
+  const [isReady, setIsReady] = useState(false);
   
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
 
@@ -75,15 +76,21 @@ const ApiReferenceScreen = () => {
       setFullHeight(window.innerHeight);
       setFullWidth(window.innerWidth);
     });
-
-    const h1Elements = document.querySelectorAll('h1');
-  // Now h1Elements contains all the <h1> elements on the page
-  h1Elements.forEach((element) => {
-    // console.log(element.innerText,"h1 tag");
-  });
-
+    if (typeof window !== 'undefined') {
+      setIsReady(true);
+    }
+    
  }, [])
   
+ useEffect(() => {
+  const h1Elements = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  // Now h1Elements contains all the <h1> elements on the page
+  h1Elements.forEach((element) => {
+    console.log(element.innerText,"h1 tag");
+  });
+ },[isReady])
+
+ console.log(isReady,"isREady");
   return (
     <div>
       <div className=" overflow-hidden w-100" style={{maxHeight:fullHeight}}>
@@ -156,7 +163,7 @@ const ApiReferenceScreen = () => {
           </div>
           {/* mid section starts */}
           <div className="h-100 w-75 middle-section-width">
-          <div className="p-xl-5 middle-section-shadow" style={{maxHeight: fullHeight-200}}>
+          <div className="p-xl-5 middle-section-shadow" style={{maxHeight: fullHeight-150}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start pb-3 title-font">{apiData?.attributes?.Title}</h1>
