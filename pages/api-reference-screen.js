@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "./services/services";
+import { apisDataApi, singleApiDataApi, singleApiDataApi } from "./services/services";
 import ReactMarkdown from "react-markdown";
 import JSONPretty from 'react-json-pretty';
 import { generateExampleFromSchema } from "../utils/schema";
@@ -155,7 +155,7 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
           {/* mid section starts */}
-          <div className="p-xl-5 p-md-3 h-100 w-75 middle-section-width">
+          <div className="h-100 w-75 middle-section-width">
           <div className="p-xl-5 middle-section-shadow" style={{maxHeight: fullHeight-200}}>
               <div className="text-start">
                 {" "}
