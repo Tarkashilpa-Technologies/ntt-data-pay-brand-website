@@ -90,7 +90,7 @@ const HeaderTwo = () => {
     },[fullWidth])
 
   return (
-    <div className="py-lg-3 py-2 px-2 d-flex align-items-center">
+    <div className="py-lg-3 py-2 px-3 d-flex align-items-center">
       <div className="logo">
         <Link href="/">
           <Image

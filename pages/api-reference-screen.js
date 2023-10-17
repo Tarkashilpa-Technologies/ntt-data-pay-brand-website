@@ -155,7 +155,7 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
           {/* mid section starts */}
-          <div className="p-xl-5 p-md-3 h-100 w-75 middle-section-width">
+          <div className="h-100 w-75 middle-section-width">
           <div className="p-xl-5 middle-section-shadow" style={{maxHeight: fullHeight-200}}>
               <div className="text-start">
                 {" "}
