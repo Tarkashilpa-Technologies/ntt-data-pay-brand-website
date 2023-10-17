@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi } from "./services/services";
+import { apisDataApi, makeAnyMethodAPICall } from "./services/services";
 import dynamic from "next/dynamic";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
+import axios from "axios";
+import {
+  PRODUCTION_ATOM_TECH_URL,
+  UAT_ATOM_TECH_URL,
+} from "./config/APIConfig";
 const TryItOutApiScreen = () => {
   const [apisData, setApisData] = useState([]);
   const envList = [{ label: "UAT", value: "UAT" }];
@@ -16,11 +21,10 @@ const TryItOutApiScreen = () => {
     label: "Select...",
     value: "",
   });
-
   const [selectedFunction, setSelectedFunction] = useState();
-
   const [functionList, setFunctionList] = useState();
   const [json, setJson] = useState();
+  const [responseJSON, setResponseJSON] = useState();
   const apisDataApiCall = () => {
     apisDataApi()
       .then((res) => {
@@ -66,7 +70,23 @@ const TryItOutApiScreen = () => {
       setFunctionList(tempArr);
     }
   }, [selectedAPI]);
-
+  async function handleSendRequestClick() {
+    try {
+      const res = await axios.post("/api/try-it-out", {
+        jsonData: `${JSON.stringify(json)}`,
+        method: selectedFunction?.method,
+        host:
+          selectedEnv?.value === "UAT"
+            ? UAT_ATOM_TECH_URL
+            : PRODUCTION_ATOM_TECH_URL,
+        endpoint: selectedFunction?.api,
+      });
+      setResponseJSON(JSON.parse(res?.data?.data));
+      console.log(JSON.parse(res?.data?.data));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
   return (
     <div className="api-reference-page bg-white">
       <div style={{ minHeight: 600 }} className="bg-white">
@@ -200,9 +220,8 @@ const TryItOutApiScreen = () => {
                       placeholder={json}
                       onChange={(newJSON) => {
                         console.log(newJSON);
-                        setJson(newJSON);
+                        setJson(newJSON?.jsObject);
                       }}
-                      locale={`react-json-editor-ajrm/locale/en`}
                     />
                   </div>
                   <div className="pt-3">
@@ -210,7 +229,10 @@ const TryItOutApiScreen = () => {
                       <button className="bg-black p-1 px-4 text-white">
                         Reset
                       </button>
-                      <button className="bg-black p-1 px-4 text-white">
+                      <button
+                        onClick={handleSendRequestClick}
+                        className="bg-black p-1 px-4 text-white"
+                      >
                         Send
                       </button>
                     </div>
@@ -219,7 +241,15 @@ const TryItOutApiScreen = () => {
                     <div className="pb-2">
                       <label> Response</label>
                     </div>
-                    <div className="text-white d-flex flex-column justify-content-center"></div>
+                    <div className="text-white d-flex flex-column justify-content-center">
+                      <AjrmJsonEditor
+                        width="100%"
+                        height="320px"
+                        placeholder={responseJSON}
+                        viewOnly={true}
+                        locale={`react-json-editor-ajrm/locale/en`}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

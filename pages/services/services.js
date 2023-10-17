@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   APIS_API_ENDPOINT,
   TUTORIAL_API_ENDPOINT,
@@ -39,4 +40,35 @@ export const useCaseDataApi = async (id) => {
   } catch (error) {
     return error;
   }
+};
+
+// Define a function that makes an API request based on the HTTP method.
+export const makeAnyMethodAPICall = (
+  method,
+  url,
+  data = null,
+  headers = {}
+) => {
+  const config = {
+    method, // HTTP method (GET, POST, PUT, DELETE, etc.)
+    url, // API endpoint URL
+    headers, // Request headers (optional)
+  };
+
+  // Add data to the request if it's provided (for POST, PUT, etc. requests).
+  if (data) {
+    config.encData = data;
+  }
+
+  // Use Axios to make the API request.
+  return axios(config)
+    .then((response) => {
+      console.log(response);
+      // Handle the successful response here
+      return response;
+    })
+    .catch((error) => {
+      // Handle any errors here
+      throw error;
+    });
 };
