@@ -1,59 +1,63 @@
-var crypto = require("crypto");
-const req_enc_key = "58BE879B7DD635698764745511C704AB";
-const req_salt = "7813E3E5E93548B096675AC27FE2C850";
-const res_dec_key = "7813E3E5E93548B096675AC27FE2C850";
-const res_salt = "7813E3E5E93548B096675AC27FE2C850";
-const merchId = "9135";
-const algorithm = "aes-256-cbc";
-const iv = Buffer.from(
-  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-  "utf8"
-);
+const encrypt = require("../../utils/encrypt-decrypt").encrypt; // Replace with the correct path to your AtomAES file
+const decrypt = require("../../utils/encrypt-decrypt").decrypt; // Replace with the correct path to your AtomAES file
+const axios = require("axios");
 
-const password = Buffer.from(req_enc_key, "utf8");
-const salt = Buffer.from(req_salt, "utf8");
-const respassword = Buffer.from(res_dec_key, "utf8");
-const ressalt = Buffer.from(res_salt, "utf8");
-
-const encrypt = (text) => {
-  var derivedKey = crypto.pbkdf2Sync(password, salt, 65536, 32, "sha512");
-  const cipher = crypto.createCipheriv(algorithm, derivedKey, iv);
-  let encrypted = cipher.update(text);
-  encrypted = Buffer.concat([encrypted, cipher.final()]);
-  return `${encrypted.toString("hex")}`;
-};
-
-const decrypt = (text) => {
-  const encryptedText = Buffer.from(text, "hex");
-  var derivedKey = crypto.pbkdf2Sync(respassword, ressalt, 65536, 32, "sha512");
-  const decipher = crypto.createDecipheriv(algorithm, derivedKey, iv);
-  let decrypted = decipher.update(encryptedText);
-  decrypted = Buffer.concat([decrypted, decipher.final()]);
-  return decrypted.toString();
-};
-
-export default async (req, res) => {
+module.exports = async (req, res) => {
   const { jsonData, method, host, endpoint } = req.body;
-  console.log(jsonData, method, host, endpoint);
-  const JSONString = jsonData;
-  const encDataR = encrypt(JSONString);
-  console.log("Encrypted Data", encDataR);
-  const Authurl = `https://caller.atomtech.in/ots/payment/status?merchId=${merchId}&encData=${encDataR}`;
-  console.log(Authurl);
-  const response = await fetch(Authurl, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  });
-  const data = await response.text();
-  // Process and respond to the data as needed
-  console.log(data);
-  const searchParams = new URLSearchParams(data);
-  const decryptData = searchParams.get("encData");
-  const finalResponse = decrypt(decryptData.toString());
+  const merchantId = "317159";
+  const encKey = "A4476C2062FFA58980DC8F79EB6A799E";
+  const decKey = "75AEF0FA1B94B3C10D4F5B268F757F11";
+  const sortedObject = sortObjectAlphabetically(
+    JSON.parse(JSON.stringify(jsonData))
+  );
+  const dataJson = JSON.stringify(sortedObject, null, 2);
+  const enc = encrypt(dataJson, encKey, encKey);
+  const url = `${host}${endpoint}`; // Replace with your actual URL
+  async function httpAPICall(url, merchantId, enc, method) {
+    try {
+      const data = `merchId=${merchantId}&encData=${enc}`;
+      const headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
+      let response;
+      if (method === "post") {
+        response = await axios.post(url, data, { headers });
+      } else if (method === "get") {
+        response = await axios.get(`${url}?${data}`, { headers });
+      } else if (method === "put") {
+        response = await axios.put(`${url}?${data}`, { headers });
+      } else if (method === "delete") {
+        response = await axios.delete(`${url}?${data}`, { headers });
+      } else {
+        throw new Error("Invalid HTTP method");
+      }
+      const responseData = response.data;
+      const searchParams = new URLSearchParams(responseData);
+      const decryptData = searchParams.get("encData");
+      const dec = decrypt(decryptData, decKey, decKey);
+      return dec;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  const responseData = await httpAPICall(url, merchantId, enc, method);
   res.status(200).json({
-    message: "Data sent to Authurl for encryption.",
-    data: finalResponse,
+    message: "Success",
+    data: responseData,
   });
 };
+
+function sortObjectAlphabetically(obj) {
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map((item) => sortObjectAlphabetically(item));
+  }
+  const sortedKeys = Object.keys(obj).sort();
+  const sortedObject = Object.fromEntries(
+    sortedKeys.map((key) => [key, sortObjectAlphabetically(obj[key])])
+  );
+  return sortedObject;
+}

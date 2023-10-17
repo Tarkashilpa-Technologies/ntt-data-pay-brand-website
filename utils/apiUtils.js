@@ -1,7 +1,9 @@
 export function generateExampleFromSchema(schema) {
   const example = {};
+  const orderedProps = [];
   for (const propName in schema) {
     const propInfo = schema[propName];
+    orderedProps.push(propName);
     if (propInfo.type === "object") {
       example[propName] = generateExampleFromSchema(propInfo.properties);
     } else if (propInfo.type === "array") {
@@ -19,7 +21,11 @@ export function generateExampleFromSchema(schema) {
         propInfo.example || typeToDefault[propInfo.type] || null;
     }
   }
-  return example;
+  const orderedExample = {};
+  for (const propName of orderedProps) {
+    orderedExample[propName] = example[propName];
+  }
+  return orderedExample;
 }
 
 export function generateSchema(data) {

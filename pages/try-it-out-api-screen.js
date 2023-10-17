@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { apisDataApi, makeAnyMethodAPICall } from "./services/services";
-import dynamic from "next/dynamic";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
@@ -10,6 +9,7 @@ import {
   PRODUCTION_ATOM_TECH_URL,
   UAT_ATOM_TECH_URL,
 } from "./config/APIConfig";
+import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
 const TryItOutApiScreen = () => {
   const [apisData, setApisData] = useState([]);
   const envList = [{ label: "UAT", value: "UAT" }];
@@ -45,6 +45,7 @@ const TryItOutApiScreen = () => {
         item?.requestBody?.content?.["application/json"]?.schema?.$ref;
       if (url?.includes(searchString)) {
         setJson(generateExampleFromSchema(schemaData?.properties));
+        console.log(schemaData?.properties);
       }
     });
   }
@@ -72,8 +73,8 @@ const TryItOutApiScreen = () => {
   }, [selectedAPI]);
   async function handleSendRequestClick() {
     try {
-      const res = await axios.post("/api/try-it-out", {
-        jsonData: `${JSON.stringify(json)}`,
+      const res = await axios.post(TRY_IT_OUT_ENDOINT, {
+        jsonData: json,
         method: selectedFunction?.method,
         host:
           selectedEnv?.value === "UAT"
@@ -82,7 +83,6 @@ const TryItOutApiScreen = () => {
         endpoint: selectedFunction?.api,
       });
       setResponseJSON(JSON.parse(res?.data?.data));
-      console.log(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
     }
