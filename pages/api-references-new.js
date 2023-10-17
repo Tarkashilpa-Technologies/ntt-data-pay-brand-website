@@ -2,40 +2,14 @@ import React, { useEffect, useState } from "react";
 import { apisDataApi } from "./services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { useRouter } from "next/router";
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([]);
-  // const tutorialsData = [
-  //   {
-  //     title: "Accept Payments",
-  //     desc:
-  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-  //   },
-  //   {
-  //     title: "Generate invoice",
-  //     desc:
-  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-  //   },
-  //   {
-  //     title: "Accept Payments",
-  //     desc:
-  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-  //   },
-  //   {
-  //     title: "Accept Payments",
-  //     desc:
-  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-  //   },
-  //   {
-  //     title: "Accept Payments",
-  //     desc:
-  //       "Learn how to integrate our payment gateway with your website or mobile app checkout flow",
-  //   },
-  // ];
+
 
   const apisDataApiCall = () => {
     // setShowLoader(true);
-
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
@@ -70,12 +44,12 @@ const ApiReferences = () => {
             </div>
 
             <div className="pb-3">
-              <div className="row row-gap-2 col-gap-1 align-items-center justify-content-center">
+              <div className="d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 ">
                 {apisData?.length > 0 &&
                   apisData?.map((api, index) => {
                     return (
                       <div
-                        className="card p-4 col-lg-3  m-2 col-md-4 col-sm-6 col-12 border-0 shadow"
+                        className="card p-4 m-2 col-lg-3 col-md-4 col-sm-6 col-12 border-0 shadow h-100"
                         key={index}
                       >
                         <div
@@ -102,6 +76,7 @@ const ApiReferences = () => {
                                       /\s+/g,
                                       ""
                                     ),
+                                    id:api?.id,
                                   },
                                 }}
                               >
