@@ -217,11 +217,12 @@ const TryItOutApiScreen = () => {
                     <AjrmJsonEditor
                       width="100%"
                       height="320px"
-                      placeholder={json}
+                      placeholder={json} // Default Value
                       onChange={(newJSON) => {
-                        console.log(newJSON);
                         setJson(newJSON?.jsObject);
                       }}
+                      onKeyPressUpdate={true} // Do you want Auto Format??
+                      waitAfterKeyPress={2000} // Auto format timing
                     />
                   </div>
                   <div className="pt-3">
@@ -245,8 +246,8 @@ const TryItOutApiScreen = () => {
                       <AjrmJsonEditor
                         width="100%"
                         height="320px"
-                        placeholder={responseJSON}
-                        viewOnly={true}
+                        placeholder={responseJSON} // Default Value
+                        viewOnly={true} // Do you want to View Only?
                         locale={`react-json-editor-ajrm/locale/en`}
                       />
                     </div>
