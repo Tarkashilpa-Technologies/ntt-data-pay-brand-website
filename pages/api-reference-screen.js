@@ -19,6 +19,7 @@ const ApiReferenceScreen = () => {
   const[fullWidth,setFullWidth] = useState();
   const [isReady, setIsReady] = useState(false);
   const[headerListData,setHeaderListData]= useState([]);
+    const [selectedUrl, setSelectedUrl] = useState(0);
 
   const apisListDataApiCall = () => {
     // setShowLoader(true);
@@ -91,7 +92,7 @@ const ApiReferenceScreen = () => {
 
     setHeaderListData(headersData);
   }
-}, [isReady]);
+}, [isReady,selectedTitle]);
 
 useEffect(() => {
   console.log(headerListData,"header list data");
@@ -243,13 +244,13 @@ useEffect(() => {
                 </div>
                 {apiData?.attributes?.Defination?.info?.termsOfService &&
                 <div className="pt-3">
-                  <h1 className="pb-3" id={('Terms-Of-Services')}>Terms Of Service</h1>
+                  <h1 className="pb-3" id={('Terms-Of-Service')}>Terms Of Service</h1>
                   <p>{apiData?.attributes?.Defination?.info?.termsOfService}</p>
                 </div>
                 }
                 
                 <div>
-                  {apiData?.attributes?.Defination?.tags && <h3 className="pb-2" id="tags">Tags :</h3> }
+                  {apiData?.attributes?.Defination?.tags?.length > 0 && <h3 className="pb-2" id="tags">Tags </h3> }
                   {apiData?.attributes?.Defination?.tags?.length > 0 &&
                 
                   apiData?.attributes?.Defination?.tags.map((tag,index) => {
@@ -288,7 +289,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          <div className="d-lg-block d-none" style={{width: 400,maxHeight:fullHeight-200}}>
+          <div className="d-lg-block d-none" style={{width: 400, height:fullHeight-200}}>
           <div className="p-3 pt-4">
               <div className="fw-bold fs-6">ON THIS PAGE</div>
               {console.log(headerListData,"data inside array")}
@@ -296,9 +297,15 @@ useEffect(() => {
                   return (
                     <div
                       key={index}
-                      className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
+                      onClick={() => {
+                        setSelectedUrl(index);
+                      }}
+                      className={`border-2 ps-2 py-1 border-start-primary fw-semibold pointer`}
                     >
-                      <a href={`#${data.replace(/\s+/g,'-')}`}>{data}</a>
+                      <a href={`#${data.replace(/\s+/g,'-')}`}  
+                      className={`${
+                        selectedUrl == index ? "text-primary" : "text-Black"
+                      }`}>{data}</a>
                     </div>
                   );
                 })}
