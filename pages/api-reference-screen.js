@@ -92,7 +92,7 @@ const ApiReferenceScreen = () => {
 
     setHeaderListData(headersData);
   }
-}, [isReady,selectedTitle]);
+}, [apisListData,selectedTitle]);
 
 useEffect(() => {
   console.log(headerListData,"header list data");
@@ -289,7 +289,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          <div className="d-lg-block d-none" style={{width: 400, height:fullHeight-200}}>
+          <div className="d-lg-block d-none overflow-y-scroll" style={{width: 400, height:fullHeight-200}}>
           <div className="p-3 pt-4">
               <div className="fw-bold fs-6">ON THIS PAGE</div>
               {console.log(headerListData,"data inside array")}

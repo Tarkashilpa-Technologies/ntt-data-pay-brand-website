@@ -73,7 +73,7 @@ const ApiEndpoint = ({apiData}) => {
                                         </tbody>                                                                                                                                            
                                         </table>
                                         
-                                        <p>Example : </p>
+                                        <p className='pt-3 fw-bold'>Example : </p>
                                         <JSONPretty
                                         id="json-pretty"
                                         data={generateExampleFromSchema(item[1]?.properties)}
@@ -106,7 +106,7 @@ const ApiEndpoint = ({apiData}) => {
                         {apiName[1].responses && Object.entries(apiName[1].responses)?.map((item,index) => {
                         // if(item[0] == 'application/json')
                         return(
-                          <div>  
+                          <div key={index}>  
                             <div className='py-2'><b>{item[0]}</b>  :  {item[1].description}</div>
                             {item[1].content && Object.entries(item[1].content)?.map((item,index) => {
                             if(item[0] == 'application/json')
