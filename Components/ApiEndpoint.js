@@ -60,7 +60,7 @@ const ApiEndpoint = ({apiData}) => {
                                     <div className="w-100 react-markdown">
                                         <p className="py-2 fs-5 fw-bold px-0">Specifications of API Request : </p>
                                         <table className="table table-hover p-2">
-                                            <thead>
+                                            <thead className='table-light'>
                                                 <tr>
                                                     <td className='fw-bold'>Field</td>
                                                     <td className='fw-bold'>Description</td>
