@@ -207,7 +207,6 @@ export default function TutorialScreen() {
     })
  }, [])
   
- console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
 
   return (
     <div>

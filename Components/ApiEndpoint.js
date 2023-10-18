@@ -14,11 +14,10 @@ const ApiEndpoint = ({apiData}) => {
             <div key={index}>
             {/* <div className="py-2 fs-5"><b>Pathname :</b> <span className="text-decoration-underline">""</span></div> */}
             {Object.entries(path[1])?.map((apiName,index) => {
-            console.log(apiName[1],"item data")
                 return(
                 <div key={index}>
                     <div>
-                    <h2 className="py-3 m-0" id={apiName[1]?.summary.replace(/\s+/g, "-")}>{apiName[1]?.summary}</h2>
+                    <h2 className="py-3 m-0 pt-4" id={apiName[1]?.summary.replace(/\s+/g, "-")}>{apiName[1]?.summary}</h2>
                     <div className="fw-bold fs-6 rounded-1 border border-primary d-flex my-3"> 
                         <div className='border-end p-2 bg-primary text-white px-3'>{apiName[0].charAt(0).toUpperCase() + apiName[0].slice(1)} </div>
                         <div className='text-decoration-underline p-2 text-primary'>{path[0]}</div>
@@ -57,8 +56,6 @@ const ApiEndpoint = ({apiData}) => {
                                         return fields;
                                     };
                                     const fieldDetails = getFieldDetails(tableData);
-                                    
-                                    console.log(fieldDetails,"fieldDetails")
                                     return(
                                     <div className="w-100 react-markdown">
                                         <p className="py-2 fs-5 fw-bold px-0">Specifications of API Request : </p>

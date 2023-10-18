@@ -86,17 +86,12 @@ const ApiReferenceScreen = () => {
     const headingElements = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
     const headersData = [];
     headingElements.forEach((element) => {
-      console.log(element.innerText,"element")
       headersData.push(element.innerText);
     });
 
     setHeaderListData(headersData);
   }
 }, [apisListData,selectedTitle]);
-
-useEffect(() => {
-  console.log(headerListData,"header list data");
-},[headerListData])
 
   return (
 
@@ -292,7 +287,6 @@ useEffect(() => {
           <div className="d-lg-block d-none overflow-y-scroll" style={{width: 400, height:fullHeight-200}}>
           <div className="p-3 pt-4">
               <div className="fw-bold fs-6">ON THIS PAGE</div>
-              {console.log(headerListData,"data inside array")}
                 {headerListData?.length > 0 && headerListData?.map((data, index) => {
                   return (
                     <div
