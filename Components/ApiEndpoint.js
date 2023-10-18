@@ -18,7 +18,7 @@ const ApiEndpoint = ({apiData}) => {
                 <div key={index}>
                     <div>
                     <h2 className="py-3 m-0 pt-4" id={apiName[1]?.summary.replace(/\s+/g, "-")}>{apiName[1]?.summary}</h2>
-                    <div className="fw-bold fs-6 rounded-1 border border-primary d-flex my-3"> 
+                    <div className="fw-bold fs-6 rounded-1 border border-primary d-flex my-3" style={{width:'95%'}}> 
                         <div className='border-end p-2 bg-primary text-white px-3'>{apiName[0].charAt(0).toUpperCase() + apiName[0].slice(1)} </div>
                         <div className='text-decoration-underline p-2 text-primary'>{path[0]}</div>
                     </div>
@@ -77,12 +77,14 @@ const ApiEndpoint = ({apiData}) => {
                                         </table>
                                         
                                         <p className='pt-3 fw-bold'>Example : </p>
-                                        <JSONPretty
-                                        id="json-pretty"
-                                        data={generateExampleFromSchema(item[1]?.properties)}
-                                        theme={JSONPrettyMon}
-                                        themeClassName="p-4 fixed-height-data"
-                                        ></JSONPretty>
+                                        <div className='w-100'>
+                                            <JSONPretty
+                                            id="json-pretty"
+                                            data={generateExampleFromSchema(item[1]?.properties)}
+                                            theme={JSONPrettyMon}
+                                            themeClassName="p-4 fixed-height-data"
+                                            ></JSONPretty>
+                                        </div>
                                         <div>
                                         </div>
                                     </div>

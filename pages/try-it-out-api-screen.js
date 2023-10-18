@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, makeAnyMethodAPICall } from "./services/services";
+import { apisDataApi, makeAnyMethodAPICall, singleApiDataApi } from "./services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
@@ -10,6 +10,7 @@ import {
   UAT_ATOM_TECH_URL,
 } from "./config/APIConfig";
 import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
+import ApiEndpoint from "../Components/ApiEndpoint";
 const TryItOutApiScreen = () => {
   const [apisData, setApisData] = useState([]);
   const envList = [{ label: "UAT", value: "UAT" }];
@@ -25,6 +26,9 @@ const TryItOutApiScreen = () => {
   const [functionList, setFunctionList] = useState();
   const [json, setJson] = useState();
   const [responseJSON, setResponseJSON] = useState();
+  const [apiData, setApiData] = useState();
+  const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
+
   const apisDataApiCall = () => {
     apisDataApi()
       .then((res) => {
@@ -87,6 +91,34 @@ const TryItOutApiScreen = () => {
       console.error("Error:", error);
     }
   }
+
+  const singleApisDataApiCall = (id) => {
+    // setShowLoader(true);
+    singleApiDataApi(id)
+      .then((res) => {
+        // setPageNumber(pageNo ? pageNo : pageNumber);
+        setApiData(res?.data?.data);
+        // setShowLoader(false);
+        console.log(apiData,"apidata")
+      })
+      .catch((err) => {
+        console.log("err", err);
+        // setShowLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    if(selectedAPI){
+      singleApisDataApiCall(selectedAPI?.id);
+    }
+  }, [selectedAPI]);
+
+  useEffect(()=> {
+    window.addEventListener('resize', ()=> {
+      setFullHeight(window.innerHeight);
+    });
+  },[]);
+
   return (
     <div className="api-reference-page bg-white">
       <div style={{ minHeight: 600 }} className="bg-white">
@@ -213,7 +245,7 @@ const TryItOutApiScreen = () => {
               <div className="w-lg-50 w-100">
                 <div className="p-2">
                   <div className="pb-2">Request</div>
-                  <div className="text-white d-flex flex-column justify-content-center  ">
+                  <div className="text-white d-flex flex-column justify-content-center w-100">
                     <AjrmJsonEditor
                       width="100%"
                       height="320px"
@@ -255,9 +287,11 @@ const TryItOutApiScreen = () => {
                 </div>
               </div>
               <div className="w-lg-50 w-100 p-3">
-                <div>
-                  <div className="h2 fw-bold">Dummy Data</div>
-                  <div>
+                <div className='overflow-y-scroll' style={{height: fullHeight-100}}>
+                  {apiData &&
+                  <ApiEndpoint apiData={apiData}/>}
+                  {/* <div className="h2 fw-bold">Dummy Data</div> */}
+                  {/* <div>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
@@ -285,7 +319,7 @@ const TryItOutApiScreen = () => {
                       accident, sometimes on purpose (injected humour and the
                       like).
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
