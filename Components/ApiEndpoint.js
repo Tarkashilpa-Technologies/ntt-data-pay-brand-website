@@ -62,7 +62,7 @@ const ApiEndpoint = ({apiData}) => {
                                         <table className="table table-hover p-2">
                                             <thead className='table-light'>
                                                 <tr>
-                                                    <td className='fw-bold'>Field</td>
+                                                    <td className='fw-bold'>Field Name</td>
                                                     <td className='fw-bold'>Description</td>
                                                 </tr>
                                             </thead>
