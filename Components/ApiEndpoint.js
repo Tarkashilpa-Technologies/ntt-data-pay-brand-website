@@ -49,7 +49,7 @@ const ApiEndpoint = ({apiData}) => {
                                         } else {
                                             fields.push({
                                             id: `${key}`,
-                                            description: obj.description,
+                                            description: obj.description ? obj.description :  `This field represents the value of object ${key}`,
                                             });
                                         }
                                         }
@@ -60,6 +60,12 @@ const ApiEndpoint = ({apiData}) => {
                                     <div className="w-100 react-markdown">
                                         <p className="py-2 fs-5 fw-bold px-0">Specifications of API Request : </p>
                                         <table className="table table-hover p-2">
+                                            <thead>
+                                                <tr>
+                                                    <td className='fw-bold'>Field</td>
+                                                    <td className='fw-bold'>Description</td>
+                                                </tr>
+                                            </thead>
                                             <tbody>
                                         {fieldDetails.map((field, index) => (
                                             <tr key={index}>
