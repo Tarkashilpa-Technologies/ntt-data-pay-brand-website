@@ -51,3 +51,38 @@ export function generateExampleFromSchema(schema) {
     return schema;
    }
 
+
+   export function generateSchemaForTable(jsonData) {
+    const schema = {};
+   
+    if (typeof jsonData === "object") {
+    schema.type = "object";
+    schema.properties = {};
+   
+    for (const key in jsonData) {
+    if (jsonData.hasOwnProperty(key)) {
+    const value = jsonData[key];
+    if (typeof value === "object") {
+    schema.properties[key] = generateSchemaForTable(value);
+    } else {
+    schema.properties[key] = { type: typeof value };
+    if (typeof value === "number") {
+    if (Number.isInteger(value)) {
+    schema.properties[key].format = "int64";
+    } else {
+    schema.properties[key].format = "double(12,2)";
+    }
+    }
+    if (typeof value === "string") {
+    schema.properties[key].example = value;
+    }
+    if (jsonData[key].description) {
+    schema.properties[key].description = jsonData[key].description;
+    }
+    }
+    }
+    }
+    }
+   
+    return schema;
+   }
