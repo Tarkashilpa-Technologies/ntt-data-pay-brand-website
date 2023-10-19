@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
-import {
-  apisDataApi,
-  makeAnyMethodAPICall,
-  singleApiDataApi,
-} from "./services/services";
+import { apisDataApi, singleApiDataApi } from "./services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
@@ -14,7 +10,6 @@ import {
   UAT_ATOM_TECH_URL,
 } from "./config/APIConfig";
 import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
-import APISpecsWithOutReqRes from "../Components/ApiSpecWithOutReqRes";
 import ApiEndpoint from "../Components/ApiEndpoint";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
