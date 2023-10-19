@@ -21,7 +21,6 @@ const TryItOutApiScreen = () => {
   ];
   // State Declarations
   const [apisData, setApisData] = useState([]);
-
   const [selectedEnv, setSelectedEnv] = useState({
     label: "UAT",
     value: "UAT",

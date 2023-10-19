@@ -24,7 +24,7 @@ export default function TutorialScreen() {
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
   const divRef = useRef(null);
   const [overflowBtn,setOverflowBtn] = useState(false);
-  const[fullHeight,setFullHeight]= useState();
+  const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
   const[fullWidth,setFullWidth] = useState();
 
 
@@ -207,7 +207,6 @@ export default function TutorialScreen() {
     })
  }, [])
   
- console.log(fullHeight,"fullheight", fullWidth,"fullwidth");
 
   return (
     <div>

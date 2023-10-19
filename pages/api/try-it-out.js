@@ -5,13 +5,7 @@ const axios = require("axios");
 module.exports = async (req, res) => {
   const { jsonData, method, host, endpoint, encKey, merchId, decKey } =
     req.body;
-  console.log(JSON.stringify(jsonData));
-
-  // const sortedObject = sortObjectAlphabetically(
-  //   JSON.parse(JSON.stringify(jsonData))
-  // );
   const dataJson = JSON.stringify(jsonData, null, 2);
-  console.log(dataJson);
   const enc = encrypt(dataJson, encKey, encKey);
   const url = `${host}${endpoint}`; // Replace with your actual URL
   async function httpAPICall(url, merchId, enc, method) {
@@ -43,23 +37,8 @@ module.exports = async (req, res) => {
     }
   }
   const responseData = await httpAPICall(url, merchId, enc, method);
-  console.log("API CALL RESPONSE", responseData);
   res.status(200).json({
     message: "Success",
     data: responseData,
   });
 };
-
-// function sortObjectAlphabetically(obj) {
-//   if (typeof obj !== "object" || obj === null) {
-//     return obj;
-//   }
-//   if (Array.isArray(obj)) {
-//     return obj.map((item) => sortObjectAlphabetically(item));
-//   }
-//   const sortedKeys = Object.keys(obj).sort();
-//   const sortedObject = Object.fromEntries(
-//     sortedKeys.map((key) => [key, sortObjectAlphabetically(obj[key])])
-//   );
-//   return sortedObject;
-// }

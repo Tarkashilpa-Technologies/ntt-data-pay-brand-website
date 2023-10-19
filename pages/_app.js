@@ -17,7 +17,6 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   const  router = useRouter();
-  console.log(router?.pathname,"router");
   return (
     <>
       <Head>
