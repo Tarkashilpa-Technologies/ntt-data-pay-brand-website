@@ -1,8 +1,12 @@
-import React from 'react'
-import { generateExampleFromSchema, generateSchema, generateSchemaForTable } from '../utils/schema';
-import JSONPretty from 'react-json-pretty';
+import React from "react";
+import {
+  generateExampleFromSchema,
+  generateSchema,
+  generateSchemaForTable,
+} from "../utils/schema";
+import JSONPretty from "react-json-pretty";
 
-const ApiEndpoint = ({ apiData, hideReqRes }) => {
+const APISpecsWithOutReqRes = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   return (
     <div>
@@ -156,25 +160,6 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                                                           )}
                                                         </tbody>
                                                       </table>
-                                                      {!hideReqRes && (
-                                                        <>
-                                                          <p className="pt-3 fw-bold">
-                                                            Example :{" "}
-                                                          </p>
-                                                          <JSONPretty
-                                                            id="json-pretty"
-                                                            data={generateExampleFromSchema(
-                                                              item[1]
-                                                                ?.properties
-                                                            )}
-                                                            theme={
-                                                              JSONPrettyMon
-                                                            }
-                                                            themeClassName="p-4 fixed-height-data"
-                                                          ></JSONPretty>
-                                                          <div></div>
-                                                        </>
-                                                      )}
                                                     </div>
                                                   );
                                                 }
@@ -198,9 +183,7 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                           >
                             Responses-{apiName[1]?.summary}{" "}
                           </h5>
-                          <p className="m-0">
-                            {apiName[1].responses?.description}
-                          </p>
+                          <p>{apiName[1].responses?.description}</p>
                           <div>
                             {apiName[1].responses &&
                               Object.entries(apiName[1].responses)?.map(
@@ -211,87 +194,6 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                                       <div className="py-2">
                                         <b>{item[0]}</b> : {item[1].description}
                                       </div>
-                                      {item[1].content &&
-                                        Object.entries(item[1].content)?.map(
-                                          (item, index) => {
-                                            if (item[0] == "application/json") {
-                                              return (
-                                                <div>
-                                                  {item[0] &&
-                                                    Object.entries(
-                                                      item[1]
-                                                    )?.map((item, index) => {
-                                                      const result = `${
-                                                        item[0] &&
-                                                        Object.entries(item[1])
-                                                          ?.map(
-                                                            (item, index) => {
-                                                              return `${Object.entries(
-                                                                item[1]
-                                                              )
-                                                                ?.map(
-                                                                  (
-                                                                    item,
-                                                                    index
-                                                                  ) => {
-                                                                    return `${item[1].replace(
-                                                                      / \n/g,
-                                                                      ""
-                                                                    )}`;
-                                                                  }
-                                                                )
-                                                                .join("")}`;
-                                                            }
-                                                          )
-                                                          .join("")
-                                                      }`;
-                                                      const finalResult =
-                                                        result.replace(
-                                                          /#\/components\/schemas\//g,
-                                                          ""
-                                                        );
-                                                      const data =
-                                                        !hideReqRes &&
-                                                        apiData?.attributes
-                                                          ?.Defination
-                                                          ?.components
-                                                          ?.schemas &&
-                                                        Object.entries(
-                                                          apiData?.attributes
-                                                            ?.Defination
-                                                            ?.components
-                                                            ?.schemas
-                                                        )?.map(
-                                                          (item, index) => {
-                                                            if (
-                                                              finalResult ===
-                                                              item[0]
-                                                            ) {
-                                                              return (
-                                                                <div className="w-100">
-                                                                  <JSONPretty
-                                                                    id="json-pretty"
-                                                                    data={generateExampleFromSchema(
-                                                                      item[1]
-                                                                        ?.properties
-                                                                    )}
-                                                                    theme={
-                                                                      JSONPrettyMon
-                                                                    }
-                                                                    themeClassName="p-4 fixed-height-data"
-                                                                  ></JSONPretty>
-                                                                </div>
-                                                              );
-                                                            }
-                                                          }
-                                                        );
-                                                      return <div>{data}</div>;
-                                                    })}
-                                                </div>
-                                              );
-                                            }
-                                          }
-                                        )}
                                     </div>
                                   );
                                 }
@@ -310,4 +212,4 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
   );
 };
 
-export default ApiEndpoint
+export default APISpecsWithOutReqRes;

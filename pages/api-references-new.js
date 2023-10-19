@@ -13,7 +13,6 @@ const ApiReferences = () => {
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setApisData(res?.data?.data);
         // setShowLoader(false);
       })
@@ -76,7 +75,7 @@ const ApiReferences = () => {
                                       /\s+/g,
                                       ""
                                     ),
-                                    id:api?.id,
+                                    id: api?.id,
                                   },
                                 }}
                               >

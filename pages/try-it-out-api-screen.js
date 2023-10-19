@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
-import { apisDataApi, makeAnyMethodAPICall } from "./services/services";
+import {
+  apisDataApi,
+  makeAnyMethodAPICall,
+  singleApiDataApi,
+} from "./services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
@@ -10,6 +14,8 @@ import {
   UAT_ATOM_TECH_URL,
 } from "./config/APIConfig";
 import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
+import APISpecsWithOutReqRes from "../Components/ApiSpecWithOutReqRes";
+import ApiEndpoint from "../Components/ApiEndpoint";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -20,6 +26,9 @@ const TryItOutApiScreen = () => {
     },
   ];
   // State Declarations
+  const [apiSpecification, setApiSpecification] = useState();
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const arrowClass = isCollapsed ? "down" : "up";
   const [apisData, setApisData] = useState([]);
   const [selectedEnv, setSelectedEnv] = useState({
     label: "UAT",
@@ -77,7 +86,6 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey,
         decKey: formData?.decKey,
       });
-      console.log(res);
       setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
@@ -109,10 +117,25 @@ const TryItOutApiScreen = () => {
       });
   };
 
+  const singleApisDataApiCall = (id) => {
+    singleApiDataApi(id)
+      .then((res) => {
+        setApiSpecification(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
+
   //Use Effects Function
+
   useEffect(() => {
     apisDataApiCall();
   }, []);
+
+  useEffect(() => {
+    singleApisDataApiCall(selectedAPI?.id);
+  }, [selectedAPI]);
 
   useEffect(() => {
     const nestedObject = selectedAPI?.attributes?.Defination?.paths;
@@ -383,61 +406,35 @@ const TryItOutApiScreen = () => {
                     </div>
                   </div>
                 </div>
-                <div>
-                  <p className="d-inline-flex gap-1">
+                <div className="d-block d-md-none">
+                  <p className="d-inline-flex gap-1 w-100">
                     <a
-                      className="btn btn-primary"
+                      className="btn btn-primary w-100 d-flex justify-content-between"
                       data-bs-toggle="collapse"
                       href="#collapseExample"
                       role="button"
-                      aria-expanded="false"
+                      aria-expanded={isCollapsed ? "false" : "true"}
                       aria-controls="collapseExample"
+                      onClick={() => {
+                        setIsCollapsed(!isCollapsed);
+                      }}
                     >
-                      Endpoint Documentation
-                      <img src="/images/down-arrow.svg" color="white" />
+                      API Documentation
+                      <img
+                        src={`/images/${arrowClass}-arrow.svg`}
+                        alt={`Arrow ${arrowClass}`}
+                      />
                     </a>
                   </p>
-                  <div className="collapse" id="collapseExample">
-                    <div className="card card-body">
-                      Some placeholder content for the collapse component. This
-                      panel is hidden by default but revealed when the user
-                      activates the relevant trigger.
-                    </div>
+                  <div
+                    className={`collapse ${isCollapsed ? "" : "show"} mb-4`}
+                    id="collapseExample"
+                  >
+                    <ApiEndpoint apiData={apiSpecification} hideReqRes={true} />
                   </div>
                 </div>
-                <div className="w-lg-50 w-100 ps-md-3">
-                  <div>
-                    <div className="h2 fw-bold">Dummy Data</div>
-                    <div>
-                      <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into
-                        electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of
-                        Letraset sheets containing Lorem Ipsum passages, and
-                        more recently with desktop publishing software like
-                        Aldus PageMaker including versions of Lorem Ipsum.
-                      </p>
-                      <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is
-                        that it has a more-or-less normal distribution of
-                        letters, as opposed to using 'Content here, content
-                        here', making it look like readable English. Many
-                        desktop publishing packages and web page editors now use
-                        Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in
-                        their infancy. Various versions have evolved over the
-                        years, sometimes by accident, sometimes on purpose
-                        (injected humour and the like).
-                      </p>
-                    </div>
-                  </div>
+                <div className="w-lg-50 w-100 ps-md-3 d-none d-md-block overflow-auto mb-4">
+                  <ApiEndpoint apiData={apiSpecification} hideReqRes={true} />
                 </div>
               </div>
             </div>
