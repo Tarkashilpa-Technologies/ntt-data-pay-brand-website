@@ -152,7 +152,7 @@ const ApiEndpoint = ({apiData}) => {
                         // if(item[0] == 'application/json')
                         return(
                           <div key={index}>  
-                            <div className='py-2'><b>{item[0]}</b>  :  {item[1].description}</div>
+                            <div className='py-2'><b className='bg-light p-1 rounded-1 fw-semibold px-2'>{item[0]}</b>  :  {item[1].description}</div>
                             {item[1].content && Object.entries(item[1].content)?.map((item,index) => {
                             if(item[0] == 'application/json')
                             {
