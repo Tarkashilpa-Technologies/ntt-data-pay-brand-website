@@ -83,6 +83,7 @@ const ApiEndpoint = ({apiData}) => {
                                             data={generateExampleFromSchema(item[1]?.properties)}
                                             theme={JSONPrettyMon}
                                             themeClassName="p-4 fixed-height-data"
+                                            style={{ maxWidth: '100%'}}
                                             ></JSONPretty>
                                         </div>
                                         <div>
@@ -137,7 +138,7 @@ const ApiEndpoint = ({apiData}) => {
                                         data={generateExampleFromSchema(item[1]?.properties)}
                                         theme={JSONPrettyMon}
                                         themeClassName="p-4 fixed-height-data"
-                                        
+                                        style={{ maxWidth: '100%'}}
                                         ></JSONPretty>
                                     </div>
                                     );
