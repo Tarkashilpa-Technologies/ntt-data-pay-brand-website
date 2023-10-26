@@ -8,7 +8,7 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
     <div>
       <div className="w-100">
         <h1 className="pt-4" id={"Api-Endpoints"}>
-          Api Endpoints{" "}
+          Endpoint{" "}
         </h1>
         {apiData?.attributes?.Defination?.paths &&
           Object.entries(apiData?.attributes?.Defination?.paths)?.map(
@@ -189,15 +189,7 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                           </div>
                         </div>
                         <div>
-                          <h5
-                            className="py-3"
-                            id={`Responses-${apiName[1]?.summary.replace(
-                              /\s+/g,
-                              "-"
-                            )}`}
-                          >
-                            Responses-{apiName[1]?.summary}{" "}
-                          </h5>
+                          <h5 className="py-3">Responses</h5>
                           <p className="m-0">
                             {apiName[1].responses?.description}
                           </p>

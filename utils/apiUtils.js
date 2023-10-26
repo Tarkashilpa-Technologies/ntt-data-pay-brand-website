@@ -33,24 +33,25 @@ export function generateSchema(data) {
     type: "object",
     properties: {},
   };
-
   for (const key in data) {
     if (data.hasOwnProperty(key)) {
       const propertyData = data[key];
       const propertySchema = {
         type: propertyData.type,
-        example: propertyData.example,
       };
-
       if (propertyData.format) {
         propertySchema.format = propertyData.format;
       }
-
+      if (propertyData.example) {
+        propertySchema.example = propertyData.example;
+      }
       if (propertyData.description) {
         propertySchema.description = propertyData.description;
       }
-
       schema.properties[key] = propertySchema;
+      if (propertyData.type === "object" && propertyData.properties) {
+        propertySchema.properties = generateSchema(propertyData.properties);
+      }
     }
   }
 

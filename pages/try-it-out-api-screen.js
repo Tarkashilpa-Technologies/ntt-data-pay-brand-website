@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
 import { apisDataApi, singleApiDataApi } from "./services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
-import { NO_DATA_FOUND } from "../utils/messages";
+import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
 import axios from "axios";
 import {
@@ -10,7 +10,12 @@ import {
   UAT_ATOM_TECH_URL,
 } from "./config/APIConfig";
 import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
-import ApiEndpoint from "../Components/ApiEndpoint";
+import ApiTryItOutDescription from "../Components/ApiTryItOutDescription";
+import {
+  disableShouldErrorShow,
+  enableShouldErrorShow,
+  onFormFeildsChange,
+} from "../utils/formValidator";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -33,11 +38,32 @@ const TryItOutApiScreen = () => {
     label: "Select...",
     value: "",
   });
+
   const initialFormData = {
-    merchId: 317159,
-    encKey: "A4476C2062FFA58980DC8F79EB6A799E",
-    saltKey: "75AEF0FA1B94B3C10D4F5B268F757F11",
-    decKey: "75AEF0FA1B94B3C10D4F5B268F757F11",
+    merchId: {
+      value: null, // Test Merch Id - 317159
+      error: "",
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
+    encKey: {
+      value: "A4476C2062FFA58980DC8F79EB6A799E",
+      error: "",
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
+    saltKey: {
+      value: "75AEF0FA1B94B3C10D4F5B268F757F11",
+      error: "",
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
+    decKey: {
+      value: "75AEF0FA1B94B3C10D4F5B268F757F11",
+      error: "",
+      check: [REQUIRED],
+      shouldShowError: false,
+    },
   };
   const [formData, setFormData] = useState(initialFormData);
   const [selectedFunction, setSelectedFunction] = useState();
@@ -77,9 +103,9 @@ const TryItOutApiScreen = () => {
             ? UAT_ATOM_TECH_URL
             : PRODUCTION_ATOM_TECH_URL,
         endpoint: selectedFunction?.api,
-        merchId: formData?.merchId,
-        encKey: formData?.encKey,
-        decKey: formData?.decKey,
+        merchId: formData?.merchId?.value,
+        encKey: formData?.encKey?.value,
+        decKey: formData?.decKey?.value,
       });
       setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
@@ -147,6 +173,9 @@ const TryItOutApiScreen = () => {
         });
       });
       setFunctionList(tempArr);
+    }
+    if (!selectedAPI) {
+      setFunctionList();
     }
   }, [selectedAPI]);
   useEffect(() => {
@@ -303,9 +332,37 @@ const TryItOutApiScreen = () => {
                           type="number"
                           placeholder="Enter Merchant ID"
                           required
-                          value={formData?.merchId}
-                          onChange={handleChange}
+                          value={formData?.merchId?.value}
+                          onBlur={($event) => {
+                            enableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          onFocus={($event) => {
+                            disableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          className={
+                            (formData?.merchId?.error &&
+                            formData?.merchId?.shouldShowError
+                              ? "border border-danger"
+                              : "") + " form-control"
+                          }
+                          onChange={($event) => {
+                            onFormFeildsChange($event, formData, setFormData);
+                          }}
                         />
+                        {formData.merchId.error &&
+                          formData.merchId.shouldShowError && (
+                            <div className="text-danger mt-1">
+                              {formData.merchId.error}
+                            </div>
+                          )}
                       </Form.Group>
                     </Col>
                     <Col sm={12} md={12} lg={6}>
@@ -317,25 +374,84 @@ const TryItOutApiScreen = () => {
                           type="text"
                           placeholder="Enter Encryption Key"
                           required
-                          value={formData?.encKey}
-                          onChange={handleChange}
+                          value={formData?.encKey?.value}
+                          onBlur={($event) => {
+                            enableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          onFocus={($event) => {
+                            disableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          className={
+                            (formData?.encKey?.error &&
+                            formData?.encKey?.shouldShowError
+                              ? "border border-danger"
+                              : "") + " form-control"
+                          }
+                          onChange={($event) => {
+                            onFormFeildsChange($event, formData, setFormData);
+                          }}
                         />
+                        {formData.encKey.error &&
+                          formData.encKey.shouldShowError && (
+                            <div className="text-danger mt-1">
+                              {formData.encKey.error}
+                            </div>
+                          )}
                       </Form.Group>
                     </Col>
                   </Row>
                   <Row className="gap-1 gap-lg-0 mt-1">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Salt</Form.Label>
+                        <Form.Label className="my-1 d-flex">
+                          Salt
+                          <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           disabled={selectedEnv?.value === "UAT"}
                           name="saltKey"
                           required
                           type="text"
                           placeholder="Enter Salt Key"
-                          value={formData?.saltKey}
-                          onChange={handleChange}
+                          value={formData?.saltKey?.value}
+                          onBlur={($event) => {
+                            enableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          onFocus={($event) => {
+                            disableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          className={
+                            (formData?.saltKey?.error &&
+                            formData?.saltKey?.shouldShowError
+                              ? "border border-danger"
+                              : "") + " form-control"
+                          }
+                          onChange={($event) => {
+                            onFormFeildsChange($event, formData, setFormData);
+                          }}
                         />
+                        {formData.saltKey.error &&
+                          formData.saltKey.shouldShowError && (
+                            <div className="text-danger mt-1">
+                              {formData.saltKey.error}
+                            </div>
+                          )}
                       </Form.Group>
                     </Col>
                     <Col sm={12} md={12} lg={6}>
@@ -347,15 +463,43 @@ const TryItOutApiScreen = () => {
                           required
                           type="text"
                           placeholder="Enter Decryption Key"
-                          value={formData?.decKey}
-                          onChange={handleChange}
+                          value={formData?.decKey?.value}
+                          onBlur={($event) => {
+                            enableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          onFocus={($event) => {
+                            disableShouldErrorShow(
+                              $event,
+                              formData,
+                              setFormData
+                            );
+                          }}
+                          className={
+                            (formData?.decKey?.error &&
+                            formData?.decKey?.shouldShowError
+                              ? "border border-danger"
+                              : "") + " form-control"
+                          }
+                          onChange={($event) => {
+                            onFormFeildsChange($event, formData, setFormData);
+                          }}
                         />
+                        {formData.decKey.error &&
+                          formData.decKey.shouldShowError && (
+                            <div className="text-danger mt-1">
+                              {formData.decKey.error}
+                            </div>
+                          )}
                       </Form.Group>
                     </Col>
                   </Row>
-                  <div className="py-2">
-                    <div className="pb-2">Request</div>
-                    <div className="text-white d-flex flex-column justify-content-center  ">
+                  <div className="py-2 w-100">
+                    <div className="pb-2 fw-bold">Request</div>
+                    <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50">
                       <AjrmJsonEditor
                         width="100%"
                         height="320px"
@@ -367,10 +511,10 @@ const TryItOutApiScreen = () => {
                         waitAfterKeyPress={2000} // Auto format timing
                       />
                     </div>
-                    <div className="pt-3">
+                    <div className="pt-3 me-md-4 me-0">
                       <div className="d-flex justify-content-end gap-3">
                         <button
-                          className="bg-black p-1 px-4 text-white"
+                          className="bg-black p-1 px-4 text-white rounded-pill border-0"
                           onClick={handleReset}
                           type="buttom"
                         >
@@ -379,14 +523,14 @@ const TryItOutApiScreen = () => {
                         <button
                           disabled={!selectedAPI && !selectedFunction}
                           type="submit"
-                          className="bg-black p-1 px-4 text-white"
+                          className="bg-black p-1 px-4 text-white rounded-pill border-0"
                         >
                           Send
                         </button>
                       </div>
                     </div>
                     <div className="mt-4">
-                      <div className="pb-2">
+                      <div className="pb-2 fw-bold">
                         <label> Response</label>
                       </div>
                       <div className="text-white d-flex flex-column justify-content-center">
@@ -401,7 +545,7 @@ const TryItOutApiScreen = () => {
                     </div>
                   </div>
                 </div>
-                <div className="d-block d-md-none">
+                <div className="d-block d-md-none w-100 w-lg-50">
                   <p className="d-inline-flex gap-1 w-100">
                     <a
                       className="btn btn-primary w-100 d-flex justify-content-between"
@@ -422,14 +566,34 @@ const TryItOutApiScreen = () => {
                     </a>
                   </p>
                   <div
-                    className={`collapse ${isCollapsed ? "" : "show"} mb-4`}
+                    className={`collapse ${isCollapsed ? "" : "show"} mb-4 `}
                     id="collapseExample"
                   >
-                    <ApiEndpoint apiData={apiSpecification} hideReqRes={true} />
+                    <ApiTryItOutDescription
+                      apiData={apiSpecification}
+                      selectedFunction={selectedFunction}
+                    />
+                    <div className="d-flex justify-content-end">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsCollapsed(!isCollapsed);
+                        }}
+                        className="btn bg-primary rounded-1 text-white px-3 py-1"
+                      >
+                        Hide
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="w-lg-50 w-100 ps-md-3 d-none d-md-block overflow-auto mb-4">
-                  <ApiEndpoint apiData={apiSpecification} hideReqRes={true} />
+                <div
+                  className="w-lg-50 w-100 ps-md-3 d-none d-md-block overflow-auto mb-4 "
+                  style={{ maxHeight: 925 }}
+                >
+                  <ApiTryItOutDescription
+                    apiData={apiSpecification}
+                    selectedFunction={selectedFunction}
+                  />
                 </div>
               </div>
             </div>

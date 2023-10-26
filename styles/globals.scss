@@ -6220,3 +6220,33 @@ blockquote.error > div > strong {
   //   display: none;
   // }
 }
+
+/* Hide number input arrows */
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Hide the increment and decrement buttons in Chrome */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.w-lg-50 {
+  width: 50% !important;
+  max-width: 960px; /* You can adjust the maximum width as needed */
+  margin: 0 auto;
+}
+
+/* Media query for screens narrower than a laptop (adjust the max-width to your preferred breakpoint) */
+@media (max-width: 1024px) {
+  .w-lg-50 {
+    width: 100% !important;
+    padding: 0 20px; /* Add some padding for better readability on smaller screens */
+  }
+}
+.bg-theme{
+  background-color: #0072bc !important;
+}
