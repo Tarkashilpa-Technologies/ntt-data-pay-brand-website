@@ -282,7 +282,7 @@ const ApiReferenceScreen = () => {
                     apiData?.attributes?.Defination?.servers?.map((env,index) => {
                       return(                      
                             <tr className="text-start" key={index}>
-                              <td className="border-end">{env?.description}</td>
+                              <td className="border-end">{env?.description ? env?.description : 'UAT'}</td>
                               <td className="ps-3">{env?.url}</td>
                             </tr>                                            
                       )

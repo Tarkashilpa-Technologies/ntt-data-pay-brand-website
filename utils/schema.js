@@ -52,37 +52,33 @@ export function generateExampleFromSchema(schema) {
    }
 
 
-   export function generateSchemaForTable(jsonData) {
-    const schema = {};
-   
-    if (typeof jsonData === "object") {
-    schema.type = "object";
-    schema.properties = {};
-   
-    for (const key in jsonData) {
-    if (jsonData.hasOwnProperty(key)) {
-    const value = jsonData[key];
-    if (typeof value === "object") {
-    schema.properties[key] = generateSchemaForTable(value);
-    } else {
-    schema.properties[key] = { type: typeof value };
-    if (typeof value === "number") {
-    if (Number.isInteger(value)) {
-    schema.properties[key].format = "int64";
-    } else {
-    schema.properties[key].format = "double(12,2)";
-    }
-    }
-    if (typeof value === "string") {
-    schema.properties[key].example = value;
-    }
-    if (jsonData[key].description) {
-    schema.properties[key].description = jsonData[key].description;
-    }
-    }
-    }
-    }
-    }
-   
-    return schema;
-   }
+    export function generateSchemaForTable(schema) {
+        const example = {};
+        for (const propName in schema) {
+        const propInfo = schema[propName];
+        if (propInfo.type === "object") {
+        example[propName] = generateSchemaForTable(propInfo.properties);
+        } else if (propInfo.type === "array") {
+        if (propInfo.items && propInfo.items.example) {
+        example[propName] = [propInfo.items.example];
+        } else {
+        example[propName] = [];
+        }
+        } else {
+        const typeToDefault = {
+        string: "",
+        integer: 0,
+        };
+        example[propName] = {
+            name: propName, 
+            type: propInfo.type,       // Extracting name
+            description: propInfo.description || "",  // Extracting description
+            example: propInfo.example || typeToDefault[propInfo.type] || null  // Extracting example
+        };
+        }
+        }
+        console.log(example,"jgfjikdsho")
+        return example;
+       }
+       
+     

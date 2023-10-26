@@ -41,6 +41,8 @@ const ApiEndpoint = ({apiData}) => {
                                 const data = apiData?.attributes?.Defination?.components?.schemas && Object.entries(apiData?.attributes?.Defination?.components?.schemas)?.map((item,index) => {                                                                                              
                                     if(finalResult === item[0]){
                                     const tableData = generateExampleFromSchema(item[1]?.properties);
+                                   console.log(generateSchemaForTable(item[1]?.properties),"hfjkhjghhvv");
+                                   const mainTableData = generateSchemaForTable(item[1]?.properties);
                                     const getFieldDetails = (obj, prefix = '') => {
                                         const fields = [];
                                         for (const key in obj) {
@@ -49,6 +51,7 @@ const ApiEndpoint = ({apiData}) => {
                                         } else {
                                             fields.push({
                                             id: `${key}`,
+                                            example: obj[key]  ? obj[key] : '-',
                                             description: obj.description ? obj.description :  `This field represents the value of object ${key}`,
                                             });
                                         }
@@ -58,11 +61,46 @@ const ApiEndpoint = ({apiData}) => {
                                     const fieldDetails = getFieldDetails(tableData);
                                     return(
                                     <div className="w-100 react-markdown">
-                                        <p className="py-2 fs-5 fw-bold px-0">Specifications of API Request : </p>
-                                        <table className="table table-hover p-2">
+                                        <div>
+                                            {Object.keys(mainTableData).map((section, index) => (
+                                              <div key={index}>
+                                                <p className="py-2 fs-5 fw-bold px-0">Specifications of API Request : </p>
+                                                <table className="table table-hover p-2">
+                                                <thead className='table-light'>
+                                                    <tr>
+                                                        <td className='fw-bold'>Field Name</td>
+                                                        <td className='fw-bold'> Type </td>
+                                                        <td className='fw-bold'> Example </td>
+                                                        <td className='fw-bold'>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {Object.keys(mainTableData[section]).map((field) => (
+                                                    Object?.keys(mainTableData[section][field]).map((property, propIndex) => {
+                                                        if((mainTableData[section][field][property].name))
+                                                        {
+                                                        return(                                                        
+                                                        <tr key={propIndex}>
+                                                         <td className="text-break" style={{minWidth: 100}}> {(mainTableData[section][field][property].name)}</td>
+                                                         <td className="text-break" style={{minWidth: 100}}> {(mainTableData[section][field][property].type)}</td>
+                                                         <td className="text-break"> {(mainTableData[section][field][property].example) ?(mainTableData[section][field][property].example) : '-'}</td>
+                                                         <td className="text-break"> {(mainTableData[section][field][property].description) ?(mainTableData[section][field][property].description) : '-'}</td>
+                                                      </tr>   
+                                                    )}})
+                                                ))}
+                                                  
+                                                </tbody>                                                                                                                                            
+                                                </table>
+                                                
+                                                </div>
+                                            ))}
+                                        </div>
+                                       
+                                        {/* <table className="table table-hover p-2">
                                             <thead className='table-light'>
                                                 <tr>
                                                     <td className='fw-bold'>Field Name</td>
+                                                    <td className='fw-bold'> Example </td>
                                                     <td className='fw-bold'>Description</td>
                                                 </tr>
                                             </thead>
@@ -70,11 +108,12 @@ const ApiEndpoint = ({apiData}) => {
                                         {fieldDetails.map((field, index) => (
                                             <tr key={index}>
                                                 <td>{field.id.split('.').pop()}</td>
+                                                <td className="text-break">{field.example}</td>
                                                 <td className="text-break">{field.description}</td>
                                             </tr>    
                                         ))}    
                                         </tbody>                                                                                                                                            
-                                        </table>
+                                        </table> */}
                                         
                                         <p className='pt-3 fw-bold'>Example : </p>
                                         <div className='w-100'>
