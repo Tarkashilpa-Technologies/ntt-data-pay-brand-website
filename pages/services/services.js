@@ -3,7 +3,7 @@ import {
   APIS_API_ENDPOINT,
   TUTORIAL_API_ENDPOINT,
   TUTORIAL_GROUPS_API_ENDPOINT,
-} from "../config/APIEndpoints";
+} from "../../Messages/messages";
 import instance from "./api";
 
 export const tutorialDataApi = async () => {
@@ -43,7 +43,7 @@ export const useCaseDataApi = async (id) => {
 };
 
 // Define a function that makes an API request based on the HTTP method.
-export const makeAnyMethodAPICall = (
+export const makeAnyMethodAPICall = async (
   method,
   url,
   data = null,

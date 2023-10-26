@@ -1,5 +1,5 @@
-import { DEFAULT_API_CONFIG } from "../config/APIConfig";
 import axios from "axios";
+import { DEFAULT_API_CONFIG } from "../../Messages/messages";
 
 const instance = axios.create({
   baseURL: DEFAULT_API_CONFIG?.url,

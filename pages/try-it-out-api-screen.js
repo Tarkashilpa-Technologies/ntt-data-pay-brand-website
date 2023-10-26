@@ -8,8 +8,8 @@ import axios from "axios";
 import {
   PRODUCTION_ATOM_TECH_URL,
   UAT_ATOM_TECH_URL,
-} from "./config/APIConfig";
-import { TRY_IT_OUT_ENDOINT } from "./config/APIEndpoints";
+  TRY_IT_OUT_ENDOINT,
+} from "../Messages/messages";
 import ApiTryItOutDescription from "../Components/ApiTryItOutDescription";
 import {
   disableShouldErrorShow,
