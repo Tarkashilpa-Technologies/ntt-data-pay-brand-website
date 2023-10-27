@@ -9,7 +9,7 @@ import {
   PRODUCTION_ATOM_TECH_URL,
   UAT_ATOM_TECH_URL,
   TRY_IT_OUT_ENDOINT,
-} from "../Messages/messages";
+} from "../Messages/Endpoints";
 import ApiTryItOutDescription from "../Components/ApiTryItOutDescription";
 import {
   disableShouldErrorShow,
