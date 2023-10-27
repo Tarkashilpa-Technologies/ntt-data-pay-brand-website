@@ -6289,3 +6289,14 @@ input[type="number"]::-webkit-outer-spin-button {
 .text-orange{
   color:coral !important;
 }
+
+.custom-scroll-bar{
+  overflow-y: scroll;
+}
+.custom-scroll-bar::-webkit-scrollbar {
+  width: .5rem; 
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  background-color: #0072bc !important; 
+}
