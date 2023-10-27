@@ -51,7 +51,7 @@ const ParametersTable = ({ data }) => {
 
   console.log(requiredParameters);
   return (
-    <table className="table table-hover p-2  ">
+    <table className="table table-hover ">
       <thead className="bg-theme">
         <tr>
           <td className="fw-bold bg-theme text-white ">Field Name </td>
@@ -63,7 +63,7 @@ const ParametersTable = ({ data }) => {
           parameters?.map((field, index) => (
             <tr key={index} className="">
               <td className="align-top">
-                <p className="m-0">
+                <p className="m-0 fs-15">
                   {field.fieldname}
                   {requiredParameters?.includes(field.fieldname) && (
                     <span
@@ -86,7 +86,7 @@ const ParametersTable = ({ data }) => {
               </td>
 
               <td className=" align-top">
-                <div>
+                <div className="fs-14">
                   {field.description ? (
                     field.description
                   ) : (

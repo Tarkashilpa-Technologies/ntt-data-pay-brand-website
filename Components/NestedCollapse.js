@@ -17,7 +17,7 @@ export const NestedCollapse = ({
   };
 
   return (
-    <div className=" fs-14 ml-30 overflow-auto">
+    <div className=" fs-14  overflow-auto">
       {propertyName}
 
       <button
