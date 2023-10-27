@@ -170,6 +170,7 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                                                             theme={
                                                               JSONPrettyMon
                                                             }
+                                                            maxWidth={'100%'}
                                                             themeClassName="p-4 fixed-height-data"
                                                           ></JSONPretty>
                                                           <div></div>
@@ -270,6 +271,7 @@ const ApiEndpoint = ({ apiData, hideReqRes }) => {
                                                                     theme={
                                                                       JSONPrettyMon
                                                                     }
+                                                                    maxWidth={'100%'}
                                                                     themeClassName="p-4 fixed-height-data"
                                                                   ></JSONPretty>
                                                                 </div>

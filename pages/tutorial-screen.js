@@ -285,8 +285,8 @@ export default function TutorialScreen() {
               </div>
             </div>
           {/* main 3 section started  */}
-          <div className="d-flex">
-          <div style={{ width: 300, height:fullHeight }} className="bg-primary pt-1 overflow-y-auto  d-lg-block d-none">
+          <div className="d-flex d-flex w-100 h-100">
+          <div style={{height:fullHeight }} className="bg-primary pt-1 overflow-y-auto first-section-width d-lg-block d-none">
             <div className="p-2">
               {" "}
               <button className="w-100 btn bg-primary text-white text-start rounded-0 link-primary" onClick={() => router.push("/integration-guides-new")}>
@@ -398,8 +398,8 @@ export default function TutorialScreen() {
           </div>
 
           {/* middle section  */}
-          <div className="p-lg-5 pt-lg-0 p-md-3 mt-5 h-100 w-md-50 w-100">
-            <div className="shadow p-lg-5 middle-section-shadow" style={{maxHeight:780}}>
+          <div className="p-xl-5 pt-xl-0 pt-lg-0 p-md-3 mt-5 h-100 w-lg-50 w-100">
+            <div className="shadow p-xl-5 middle-section-shadow" style={{maxHeight:780}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start title-font" >{tutorialData?.Title}</h1>

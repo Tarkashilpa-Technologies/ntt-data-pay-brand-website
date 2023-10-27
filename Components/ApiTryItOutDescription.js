@@ -98,6 +98,7 @@ const ApiTryItOutDescription = ({ apiData, selectedFunction }) => {
                                               item[1]?.properties
                                             )}
                                             theme={JSONPrettyMon}
+                                            maxWidth={'100%'}
                                             themeClassName="p-4 fixed-height-data"
                                           ></JSONPretty>
                                           <div></div>
@@ -173,6 +174,7 @@ const ApiTryItOutDescription = ({ apiData, selectedFunction }) => {
                                                           item[1]?.properties
                                                         )}
                                                         theme={JSONPrettyMon}
+                                                        maxWidth={'100%'}
                                                         themeClassName="p-4 fixed-height-data"
                                                       ></JSONPretty>
                                                     </div>
