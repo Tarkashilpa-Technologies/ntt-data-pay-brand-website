@@ -151,7 +151,7 @@ const ApiReferenceScreen = () => {
           </div>
           {/* mid section starts */}
           <div className="h-100 w-lg-50 w-100 middle-section-width">
-          <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-150}}>
+          <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-120}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.replace(/\s+/g,'-')}>{apiData?.attributes?.Title}</h1>
