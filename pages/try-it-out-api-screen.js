@@ -322,7 +322,7 @@ const TryItOutApiScreen = () => {
             {/* divider section start here */}
             <div className="container_1300">
               <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 px-3">
-                <div className="w-lg-50 w-100 ">
+                <div className="w-lg-50 w-100 overflow-auto">
                   <Row className="gap-1 gap-lg-0">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
@@ -545,7 +545,7 @@ const TryItOutApiScreen = () => {
                     </div>
                   </div>
                 </div>
-                <div className="d-block d-md-none w-100 w-lg-50">
+                <div className="d-block d-md-none w-100 overflow-auto">
                   <p className="d-inline-flex gap-1 w-100">
                     <a
                       className="btn btn-primary w-100 d-flex justify-content-between"
@@ -587,7 +587,7 @@ const TryItOutApiScreen = () => {
                   </div>
                 </div>
                 <div
-                  className="w-lg-50 w-100 ps-md-3 d-none d-md-block overflow-auto mb-4 "
+                  className="w-lg-50 w-100 ps-md-3 d-none d-md-block custom-scroll-bar mb-4 pe-2"
                   style={{ maxHeight: 925 }}
                 >
                   <ApiTryItOutDescription
