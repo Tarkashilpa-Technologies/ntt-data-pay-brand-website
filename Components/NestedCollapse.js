@@ -36,7 +36,7 @@ export const NestedCollapse = ({
         <div className="ml-30">
           {dataType && (
             <p className="p-0 m-0 text-danger ">
-              dataType :
+              dataType :{" "}
               <span className={` text-break ${getColorByDataType(dataType)}`}>
                 {dataType && dataType}
                 {format && (

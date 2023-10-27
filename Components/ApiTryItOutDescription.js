@@ -81,39 +81,6 @@ const ApiTryItOutDescription = ({ apiData, selectedFunction }) => {
                                       ?.schemas
                                   )?.map((item, index) => {
                                     if (finalResult === item[0]) {
-                                      const tableData = generateSchema(
-                                        item[1]?.properties
-                                      );
-
-                                      const getFieldDetails = (
-                                        obj,
-                                        prefix = ""
-                                      ) => {
-                                        const fields = [];
-                                        for (const key in obj) {
-                                          if (
-                                            typeof obj[key] === "object" &&
-                                            obj[key] !== null
-                                          ) {
-                                            fields.push(
-                                              ...getFieldDetails(
-                                                obj[key],
-                                                `${prefix}${key}.`
-                                              )
-                                            );
-                                          } else {
-                                            fields.push({
-                                              id: `${key}`,
-                                              description: obj.description
-                                                ? obj.description
-                                                : `This field represents the of object ${key}`,
-                                            });
-                                          }
-                                        }
-                                        return fields;
-                                      };
-                                      const fieldDetails =
-                                        getFieldDetails(tableData);
                                       return (
                                         <div className="w-100 react-markdown">
                                           <p className="py-2 fs-5 fw-bold px-0">

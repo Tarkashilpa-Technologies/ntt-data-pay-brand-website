@@ -6272,8 +6272,20 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 18px;
 }
 .bg-lightgray{
-  background-color: lightgray;
+  background-color: lightgray !important;
 }
 .text-purple{
-  color: purple;
+  color: purple !important;
+}
+.text-green{
+  color: green !important;
+}
+.text-lightblue{
+  color: lightblue !important;
+}
+.text-lightgray{
+  color: lightgray !important;
+}
+.text-orange{
+  color:coral !important;
 }
