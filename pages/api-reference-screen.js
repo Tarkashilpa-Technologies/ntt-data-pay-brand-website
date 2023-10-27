@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "./services/services";
+import { apisDataApi, singleApiDataApi } from "../services/services";
 import ReactMarkdown from "react-markdown";
 import HeaderTwo from "../Components/HeaderTwo";
 import ApiEndpoint from "../Components/ApiEndpoint";

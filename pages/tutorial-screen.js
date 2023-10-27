@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from 'react-bootstrap';
-import { tutorialDataApi, tutorialGroupDataApi, useCaseDataApi } from "./services/services";
+import {
+  tutorialDataApi,
+  tutorialGroupDataApi,
+  useCaseDataApi,
+} from "../services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
 import remarkGfm from "remark-gfm";

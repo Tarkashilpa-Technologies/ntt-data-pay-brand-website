@@ -3,7 +3,7 @@ import {
   APIS_API_ENDPOINT,
   TUTORIAL_API_ENDPOINT,
   TUTORIAL_GROUPS_API_ENDPOINT,
-} from "../../Messages/messages";
+} from "../Messages/messages";
 import instance from "./api";
 
 export const tutorialDataApi = async () => {

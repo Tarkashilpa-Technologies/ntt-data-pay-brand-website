@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { tutorialDataApi, tutorialGroupDataApi } from "./services/services";
+import { tutorialDataApi, tutorialGroupDataApi } from "../services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
