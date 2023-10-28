@@ -17,3 +17,6 @@ export const PASSWORD_VALIDATION_MESSAGE =
 export const ISCHECKED = 'Please Check this field';
 export const MIN_6_DIGITS = 'Your input must be at least 6 characters long.';
 export const NO_DATA_FOUND = "No Data Found";
+export const SELECT_FUNCTION_MESSAGE =
+  "Please select the function to load it's documentation";
+export const NO_DESCRIPTION_AVAILABLE = "--"; 

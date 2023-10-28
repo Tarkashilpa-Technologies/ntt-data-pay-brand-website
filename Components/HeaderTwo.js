@@ -10,7 +10,7 @@ const HeaderTwo = () => {
   let ham = React.createRef();
   let checkboxmenu = React.createRef();
   const[fullHeight,setFullHeight]= useState();
-  const[fullWidth,setFullWidth] = useState();
+  const[fullWidth,setFullWidth] = useState(typeof window !== 'undefined' && window.innerWidth);
   const[hamClicked,setHamClicked]= useState();
 
   function handleMenuToggle(e) {
