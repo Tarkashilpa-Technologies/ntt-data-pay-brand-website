@@ -310,7 +310,9 @@ const TryItOutApiScreen = () => {
                   <Row className="gap-1 gap-lg-0">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Merchant ID</Form.Label>
+                        <Form.Label className="my-1">
+                          Merchant ID <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           name="merchId"
                           type="number"
@@ -351,7 +353,9 @@ const TryItOutApiScreen = () => {
                     </Col>
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Encryption Key</Form.Label>
+                        <Form.Label className="my-1">
+                          Encryption Key <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           disabled={selectedEnv?.value === "UAT"}
                           name="encKey"
@@ -440,7 +444,9 @@ const TryItOutApiScreen = () => {
                     </Col>
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Decryption Key</Form.Label>
+                        <Form.Label className="my-1">
+                          Decryption Key <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           disabled={selectedEnv?.value === "UAT"}
                           name="decKey"

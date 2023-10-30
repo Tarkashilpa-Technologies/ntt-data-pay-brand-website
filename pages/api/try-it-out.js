@@ -39,13 +39,13 @@ module.exports = async (req, res) => {
         return {
           data: {
             status: error.response.status,
-            message: errorMessage || "Something went wrong",
+            data: errorData,
           },
         };
       } else {
         return {
           status: 500,
-          message: errorMessage || "Something went wrong",
+          data: errorMessage || "Something went wrong",
         };
       }
     }
