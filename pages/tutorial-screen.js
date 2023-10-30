@@ -216,11 +216,13 @@ export default function TutorialScreen() {
   return (
     <div>
       <div className="overflow-hidden" style={{maxHeight:fullHeight}}>
-      <HeaderTwo />
+        <div className="d-flex flex-column">
+        <div style={{height:90}}><HeaderTwo /></div>
         <div
-          className="d-flex flex-column"
-          style={{ maxHeight: fullHeight}}
+        style={{flex: 1}}
+         
         >
+          <div className="d-flex flex-column w-100">
           {/* navbar */}
           <div className="d-block d-lg-none">
               <div className={`d-flex w-100 bg-primary`}>
@@ -750,6 +752,8 @@ export default function TutorialScreen() {
             </div>
           </div>
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </div>
