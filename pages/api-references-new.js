@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apisDataApi } from "./services/services";
+import { apisDataApi } from "../services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
@@ -13,7 +13,6 @@ const ApiReferences = () => {
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        console.log(res?.data, "res?.data");
         setApisData(res?.data?.data);
         // setShowLoader(false);
       })
@@ -76,7 +75,7 @@ const ApiReferences = () => {
                                       /\s+/g,
                                       ""
                                     ),
-                                    id:api?.id,
+                                    id: api?.id,
                                   },
                                 }}
                               >

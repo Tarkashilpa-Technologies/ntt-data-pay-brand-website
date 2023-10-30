@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "./services/services";
+import { apisDataApi, singleApiDataApi } from "../services/services";
 import ReactMarkdown from "react-markdown";
 import HeaderTwo from "../Components/HeaderTwo";
 import ApiEndpoint from "../Components/ApiEndpoint";
@@ -124,7 +124,7 @@ const ApiReferenceScreen = () => {
             </div>
           
         <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
-          <div style={{ width: 300, height:fullHeight }} className="bg-primary overflow-y-auto  d-lg-block d-none">
+          <div style={{ height:fullHeight }} className="bg-primary overflow-y-auto first-section-width d-lg-block d-none">
             <div>
               {apisListData?.map((dropdown, index) => {
                 return (
@@ -150,8 +150,8 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
           {/* mid section starts */}
-          <div className="h-100 w-75 middle-section-width">
-          <div className="p-xl-5 pt-xl-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: 800}}>
+          <div className="h-100 w-lg-50 w-100 middle-section-width">
+          <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-120}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.replace(/\s+/g,'-')}>{apiData?.attributes?.Title}</h1>

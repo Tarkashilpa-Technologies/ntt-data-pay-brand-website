@@ -30,3 +30,8 @@ export const DEFAULT_API_CONFIG = {
   url: API_URL,
   timeout: 10000,
 };
+
+export const TUTORIAL_API_ENDPOINT = "/tutorials";
+export const TUTORIAL_GROUPS_API_ENDPOINT = "/tutorial-groups?populate=*";
+export const APIS_API_ENDPOINT = "/apis";
+export const TRY_IT_OUT_ENDOINT = "/api/try-it-out";
