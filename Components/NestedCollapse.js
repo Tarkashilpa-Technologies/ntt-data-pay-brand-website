@@ -9,38 +9,51 @@ export const NestedCollapse = ({
   description,
   dataType,
   format,
+  requiredList,
 }) => {
   const [open, setOpen] = useState(false);
-
   const toggleCollapse = () => {
     setOpen(!open);
   };
-
   return (
-    <div className=" fs-14  overflow-auto">
-      {propertyName}
-
-      <button
-        onClick={toggleCollapse}
-        className="toggle-button btn border-0"
-        type="button"
-      >
-        {!open ? (
-          <img src="/images/chevron-right.svg" />
-        ) : (
-          <img src="/images/chevron-down.svg" />
+    <div className="fs-14 overflow-auto ms-1 ">
+      <p className="m-0 mt-1 ">
+        {propertyName}
+        {requiredList?.length > 0 && requiredList?.includes(propertyName) && (
+          <span className="text-danger fs-18 ms-1">*</span>
         )}
-      </button>
+        <button
+          onClick={toggleCollapse}
+          className="toggle-button btn border-0 m-0 p-0"
+          type="button"
+        >
+          {!open ? (
+            <img
+              style={{ marginBottom: 5 }}
+              height={17}
+              src="/images/chevron-right.svg"
+              alt="Collapse"
+            />
+          ) : (
+            <img
+              style={{ marginBottom: 5, marginLeft: 3 }}
+              height={17}
+              src="/images/chevron-down.svg"
+              alt="Expand"
+            />
+          )}
+        </button>
+      </p>
 
       <Collapse in={open}>
-        <div className="ml-30">
+        <div className="ml-20">
           {dataType && (
-            <p className="p-0 m-0 text-danger ">
+            <p className="p-0 m-0 text-danger">
               dataType :{" "}
-              <span className={` text-break ${getColorByDataType(dataType)}`}>
+              <span className={`text-break text-purple`}>
                 {dataType && dataType}
                 {format && (
-                  <span className=" text-break ">
+                  <span className="text-break">
                     {"  "} ({format && format})
                   </span>
                 )}
@@ -48,37 +61,33 @@ export const NestedCollapse = ({
             </p>
           )}
           {example && (
-            <p className="p-0 m-0 text-danger ">
+            <p className="p-0 m-0 text-danger">
               example :{" "}
-              <span className="text-dark text-break ">
-                {example && example}
-              </span>
+              <span className="text-dark text-break">{example && example}</span>
             </p>
           )}
           {description && (
-            <p className="p-0 m-0 text-danger ">
+            <p className="p-0 m-0 text-danger">
               description :{" "}
-              <span className="text-dark text-break ">
+              <span className="text-dark text-break">
                 {description && description}
               </span>
             </p>
           )}
 
           {typeof propertyValue === "object"
-            ? Object.entries(propertyValue).map((key) => {
-                if (key)
-                  return (
-                    <NestedCollapse
-                      key={key[0]}
-                      propertyName={key[0]}
-                      propertyValue={key[1]?.properties}
-                      example={key[1]?.example}
-                      description={key[1]?.description}
-                      dataType={key[1]?.type}
-                      format={key[1]?.format}
-                    />
-                  );
-              })
+            ? Object.entries(propertyValue).map(([key, value]) => (
+                <NestedCollapse
+                  key={key}
+                  propertyName={key}
+                  propertyValue={value?.properties}
+                  example={value?.example}
+                  description={value?.description}
+                  dataType={value?.type}
+                  format={value?.format}
+                  requiredList={requiredList}
+                />
+              ))
             : propertyValue}
         </div>
       </Collapse>

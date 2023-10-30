@@ -5,8 +5,7 @@ const axios = require("axios");
 module.exports = async (req, res) => {
   const { jsonData, method, host, endpoint, encKey, merchId, decKey } =
     req.body;
-  console.log(jsonData, method, host, endpoint, encKey, merchId, decKey);
-  const dataJson = JSON.stringify(jsonData, null, 2);
+  const dataJson = JSON.stringify(jsonData);
   const enc = encrypt(dataJson, encKey, encKey);
   const url = `${host}${endpoint}`; // Replace with your actual URL
   async function httpAPICall(url, merchId, enc, method) {
@@ -15,7 +14,6 @@ module.exports = async (req, res) => {
       const headers = {
         "Content-Type": "application/x-www-form-urlencoded",
       };
-      console.log("Data --------", data);
       let response;
       if (method === "post") {
         response = await axios.post(url, data, { headers });
@@ -28,26 +26,38 @@ module.exports = async (req, res) => {
       } else {
         throw new Error("Invalid HTTP method");
       }
-      const responseData = response.data;
+      const responseData = response?.data;
       const searchParams = new URLSearchParams(responseData);
       const decryptData = searchParams.get("encData");
       const dec = decrypt(decryptData, decKey, decKey);
-      // console.log(dec);
       return dec;
     } catch (error) {
-      console.error("Error: 52", error.response);
-      return error?.response;
+      if (error.response) {
+        const errorData = error.response.data;
+        const errorMessage = errorData && errorData.message;
+
+        return {
+          data: {
+            status: error.response.status,
+            message: errorMessage || "Something went wrong",
+          },
+        };
+      } else {
+        return {
+          status: 500,
+          message: errorMessage || "Something went wrong",
+        };
+      }
     }
   }
   const responseData = await httpAPICall(url, merchId, enc, method);
-  // if (responseData?.status === 403) {
-  //   res.status(403).json({
-  //     message: responseData?.statusText,
-  //     data: responseData,
-  //   });
-  // }
-  res.status(200).json({
-    message: "Success",
-    data: responseData,
-  });
+  console.log(responseData);
+  if (responseData?.data?.status) {
+    res.status(responseData?.data?.status).json(responseData?.data);
+  } else {
+    res.status(200).json({
+      message: "Success",
+      data: responseData,
+    });
+  }
 };
