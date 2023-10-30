@@ -151,7 +151,7 @@ const ApiReferenceScreen = () => {
           </div>
           {/* mid section starts */}
           <div className="h-100 w-75 middle-section-width">
-          <div className="p-xl-5 pt-xl-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-150}}>
+          <div className="p-xl-5 pt-xl-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: 800}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.replace(/\s+/g,'-')}>{apiData?.attributes?.Title}</h1>
@@ -168,6 +168,7 @@ const ApiReferenceScreen = () => {
                 }
                 <div className="w-100 overflow-auto">
                   <ReactMarkdown
+                  linkTarget="_blank"
                     components={{
                       p:({ node, ...props }) => (
                         <p

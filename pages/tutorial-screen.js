@@ -54,14 +54,15 @@ export default function TutorialScreen() {
     if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
 
-        const title = data?.attributes?.tutorials?.data[0]?.attributes?.Title;
-        if (title != undefined && title.replace(/\s+/g, "") == queryData) {
-          return  data.attributes?.tutorials?.data[0]?.attributes != undefined ?  UseCaseDataApiCall(
-            data.attributes?.tutorials?.data[0]?.id
-          ) : router?.push('/404')
-        } 
-      
-
+        data?.attributes?.tutorials?.data?.map((title) => {
+          console.log(title)
+          if(title?.attributes?.Title.replace(/\s+/g, "") == queryData)
+          {
+            return  title?.attributes != undefined ?  UseCaseDataApiCall(
+              title?.id
+            ) : router?.push('/404')
+          }
+        });
       });
     }
   }, [tutorialsListData,queryData]);
@@ -407,6 +408,7 @@ export default function TutorialScreen() {
                 <div className="pb-3">
                   {" "}
                   <ReactMarkdown
+                  linkTarget="_blank"
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]} 
                  className="react-markdown"
