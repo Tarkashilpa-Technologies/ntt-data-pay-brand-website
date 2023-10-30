@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
       const headers = {
         "Content-Type": "application/x-www-form-urlencoded",
       };
+      console.log("Data --------", data);
       let response;
       if (method === "post") {
         response = await axios.post(url, data, { headers });
@@ -30,6 +31,7 @@ module.exports = async (req, res) => {
       const searchParams = new URLSearchParams(responseData);
       const decryptData = searchParams.get("encData");
       const dec = decrypt(decryptData, decKey, decKey);
+      // console.log(dec);
       return dec;
     } catch (error) {
       if (error.response) {

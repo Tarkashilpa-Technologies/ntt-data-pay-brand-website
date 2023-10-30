@@ -161,7 +161,6 @@ const TryItOutApiScreen = () => {
       setFunctionList();
     }
   }, [selectedAPI]);
-
   useEffect(() => {
     setRefresh(!refresh);
   }, [json]);
