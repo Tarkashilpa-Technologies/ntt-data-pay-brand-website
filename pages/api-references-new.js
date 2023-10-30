@@ -66,7 +66,7 @@ const ApiReferences = () => {
                             </p>
                           </div>
                           <div className="d-flex gap-3 align-items-center justify-content-end">
-                            <a className="btn btn_style1 p-2 px-4">
+                           
                               <Link
                                 href={{
                                   pathname: "/api-reference-screen",
@@ -79,9 +79,11 @@ const ApiReferences = () => {
                                   },
                                 }}
                               >
-                                Explore
+                                <a className="btn btn_style1 p-2 px-4">
+                                 Explore
+                                </a>
                               </Link>
-                            </a>
+                           
                           </div>
                         </div>
                       </div>
