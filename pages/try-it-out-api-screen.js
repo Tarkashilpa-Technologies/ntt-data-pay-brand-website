@@ -573,7 +573,7 @@ const TryItOutApiScreen = () => {
                   </div>
                 </div>
                 <div
-                  className="w-lg-50 w-100 ps-md-3 d-none d-md-block custom-scroll-bar mb-4 pe-2"
+                  className="w-lg-50 w-100 ps-md-3 overflow-auto d-none d-md-block  mb-4 pe-2"
                   style={{ maxHeight: 925 }}
                 >
                   <ApiEndpoint apiData={apiSpecification} />

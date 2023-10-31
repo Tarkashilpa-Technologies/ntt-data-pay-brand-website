@@ -97,7 +97,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                         </h4>
 
                                                         <h6 className="pt-2 m-0 mb-2">
-                                                          Schema :-{" "}
+                                                          Schema 
                                                         </h6>
                                                         <div className=" bg-lightblue p-3">
                                                           {Object?.entries(
@@ -124,7 +124,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                           })}
                                                         </div>
                                                         <h6 className="pt-2 m-0 mb-2">
-                                                          Example :-{" "}
+                                                          Example 
                                                         </h6>
 
                                                         <JSONPretty
