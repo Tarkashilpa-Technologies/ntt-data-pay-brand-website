@@ -41,7 +41,7 @@ const IntegrationGuides = () => {
           <div className="container_1300" style={{ minHeight: 600 }}>
             <div className="pt-4 pt-md-5 pt-lg-2 mt-4">
             <div className="p-5 pb-4 w-100">
-              <h1 className="text-center">Integrate Our Payment Solution</h1>
+              <h1 className="text-center title-font">Integrate Our Payment Solution</h1>
               <h3 className="text-center pt-3 text-primary">
                 Learn with our step by step tutorials how to integrate with our
                 solutions

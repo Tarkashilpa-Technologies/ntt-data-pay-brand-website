@@ -32,7 +32,7 @@ const ApiReferences = () => {
         <div className="pb-4">
           <div className="container_1300 d-block ">
             <div className="p-5 pb-4">
-              <h1 className="text-center mb-0">Learn about our API</h1>
+              <h1 className="text-center mb-0 title-font">Learn about our API</h1>
               <h3 className="text-center pt-3 text-primary">
                 Learn with our API endpoints, request, params and response
               </h3>
