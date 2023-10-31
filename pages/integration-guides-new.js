@@ -41,7 +41,7 @@ const IntegrationGuides = () => {
           <div className="container_1300" style={{ minHeight: 600 }}>
             <div className="pt-4 pt-md-5 pt-lg-2 mt-4">
             <div className="p-5 pb-4 w-100">
-              <h1 className="text-center">Integrate Our Payment Solution</h1>
+              <h1 className="text-center title-font">Integrate Our Payment Solution</h1>
               <h3 className="text-center pt-3 text-primary">
                 Learn with our step by step tutorials how to integrate with our
                 solutions
@@ -83,23 +83,19 @@ const IntegrationGuides = () => {
                             </p>
                           </div>
                           <div className="d-flex gap-3 align-items-center justify-content-end">
-                            <a className="btn btn_style1 p-2 px-4">
+                            
                               <Link
                                 href={
                                   (tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != undefined || tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != null) ?
-                                  {pathname: "/tutorial-screen",
-                                  query: {
-                                    data: tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    ),
-                                    id: ''
-                                  }} : {pathname:'/404'}
+                                  {pathname: `/tutorial-screen/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(/\s+/g,"")}`
+                                  } : {pathname:'/404'}
                                 }
                               >
-                                Explore
+                                <a className="btn btn_style1 p-2 px-4">
+                                 Explore
+                                </a>
                               </Link>
-                            </a>
+                            
                           </div>
                         </div>
                       </div>

@@ -92,11 +92,11 @@ const HeaderTwo = () => {
   return (
     <div className="py-lg-3 py-2 px-3 d-flex align-items-center">
       <div className="logo">
-        <Link href="/">
+        <Link href="/" className='pointer'>
           <Image
             priority
             src="/images/logo.png"
-            //   className={utilStyles.borderCircle}
+            className={'pointer'}
             width={183}
             height={52}
             alt="Logo"

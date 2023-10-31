@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   const  router = useRouter();
+  console.log(router.pathname,"pathname")
   return (
     <>
       <Head>
@@ -64,7 +65,7 @@ function MyApp({ Component, pageProps }) {
           style={{ display: "none", visibility: "hidden" }}
         ></iframe>
       </noscript>
-      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen") ?
+      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen"|| router?.pathname == "/tutorial-screen/[query]") ?
         (
           <Component {...pageProps} />
         )  

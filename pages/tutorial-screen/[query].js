@@ -1,78 +1,72 @@
+import HeaderTwo from '../../Components/HeaderTwo'
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from 'react-bootstrap';
-import {
-  tutorialDataApi,
-  tutorialGroupDataApi,
-  useCaseDataApi,
-} from "../services/services";
 import ReactMarkdown from "react-markdown";
 import Accordion from "react-bootstrap/Accordion";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import HeaderTwo from "../Components/HeaderTwo";
+import {
+    tutorialDataApi,
+    tutorialGroupDataApi,
+    useCaseDataApi,
+  } from "../../services/services";
 
+const TutorialScreenPage = () => {
+    const router = useRouter();
+    const queryData = router.query?.query;
+    console.log(router.query.query,"router")
+    const [tutorialsListData, setTutorialsListData] = useState([]);
+    const [tutorialData, setTutorialData] = useState([]);
+    const [showHelpfulData, setShowHelpfulData] = useState([]);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedUrl, setSelectedUrl] = useState(0);
+    const [isPageHelpful, setIsPageHelpful] = useState();
+    const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
+    const divRef = useRef(null);
+    const [overflowBtn,setOverflowBtn] = useState(false);
+    const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
+    const[fullWidth,setFullWidth] = useState();
 
-
-
-export default function TutorialScreen() {
-  const router = useRouter();
-  const queryData = router.query?.data;
-  const queryId = router.query?.id;
-  const [tutorialsListData, setTutorialsListData] = useState([]);
-  const [tutorialData, setTutorialData] = useState([]);
-  const [showHelpfulData, setShowHelpfulData] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedUrl, setSelectedUrl] = useState(0);
-  const [isPageHelpful, setIsPageHelpful] = useState();
-  const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
-  const divRef = useRef(null);
-  const [overflowBtn,setOverflowBtn] = useState(false);
-  const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
-  const[fullWidth,setFullWidth] = useState();
-
-
-
-  const tutorialListDataApiCall = () => {
-    // setShowLoader(true);
-    tutorialGroupDataApi()
-      .then((res) => {
-        if(res?.data){
-        setTutorialsListData(res?.data?.data);
-        }else {
-          setTutorialsListData([])
+    const tutorialListDataApiCall = () => {
+        // setShowLoader(true);
+        tutorialGroupDataApi()
+          .then((res) => {
+            if(res?.data){
+            setTutorialsListData(res?.data?.data);
+            }else {
+              setTutorialsListData([])
+            }
+          })
+          .catch((err) => {
+            console.log("err", err);
+            // setShowLoader(false);
+          });
+      };
+    
+      useEffect(() => {
+        tutorialListDataApiCall();
+      }, []);
+    
+      useEffect(() => {
+        // console.log(queryData,"queryData")
+        if (tutorialsListData && queryData) {
+          tutorialsListData?.map((data) => {
+    
+            data?.attributes?.tutorials?.data?.map((title) => {
+              console.log(title)
+              if(title?.attributes?.Title.replace(/\s+/g, "") == queryData)
+              {
+                return  title?.attributes != undefined ?  UseCaseDataApiCall(
+                  title?.id
+                ) : router?.push('/404')
+              }
+            });
+          });
         }
-      })
-      .catch((err) => {
-        console.log("err", err);
-        // setShowLoader(false);
-      });
-  };
+      }, [tutorialsListData,queryData]);
 
-  useEffect(() => {
-    tutorialListDataApiCall();
-  }, []);
-
-  useEffect(() => {
-    // console.log(queryData,"queryData")
-    if (tutorialsListData && queryData) {
-      tutorialsListData?.map((data) => {
-
-        data?.attributes?.tutorials?.data?.map((title) => {
-          console.log(title)
-          if(title?.attributes?.Title.replace(/\s+/g, "") == queryData)
-          {
-            return  title?.attributes != undefined ?  UseCaseDataApiCall(
-              title?.id
-            ) : router?.push('/404')
-          }
-        });
-      });
-    }
-  }, [tutorialsListData,queryData]);
-  
- 
-  // use case data api
+       // use case data api
   const UseCaseDataApiCall = (id) => {
     // setShowLoader(true);
     // console.log(id,"id")
@@ -174,9 +168,6 @@ export default function TutorialScreen() {
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
 
-  // useEffect(() => {
-  //   scrollToTarget('Instant-Settlements');
-  // }, [queryId]);
 
   const useResize = (myRef) => {
     const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
@@ -205,22 +196,30 @@ export default function TutorialScreen() {
   const maxWidth = useResize(divRef);
   // console.log(maxWidth,"maxWidth")
 
-    useEffect(()=> {
+  useEffect(()=> {
+    if(typeof window !== 'undefined')
+    {
+      setFullHeight(window.innerHeight);
+    }
+
     window.addEventListener('resize', ()=> {
       setFullHeight(window.innerHeight);
       setFullWidth(window.innerWidth);
-    })
+    });
+    
  }, [])
   
 
   return (
-    <div>
-      <div className="overflow-hidden" style={{maxHeight:fullHeight}}>
-        <div className="d-flex flex-column">
-        <div style={{height:90}}><HeaderTwo /></div>
-         {/* navbar */}
+    <>{fullHeight &&
+    <div className='overflow-hidden' style={{maxHeight:fullHeight}}>
+    <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
+        <div>
+            <HeaderTwo />
+        </div>
+        <div>
         <div className="d-block d-lg-none">
-              <div className={`d-flex w-100 bg-primary`}>
+            <div className={`d-flex w-100 bg-primary`}>
                 <button
                   className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
                   style={{minWidth:140}}
@@ -266,10 +265,10 @@ export default function TutorialScreen() {
                                         tutorial.id
                                       );
                                       router.push(
-                                        `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                        `/tutorial-screen/${tutorial?.attributes?.Title.replace(
                                           /\s+/g,
                                           ""
-                                        )}&id=`
+                                        )}`
                                       );
                                     }}
                                     >
@@ -286,12 +285,9 @@ export default function TutorialScreen() {
                 </div>
               </div>
             </div>
-        <div
-        style={{flex: 1}}
-         
-        >
-          {/* main 3 section started  */}
-          <div className="d-flex d-flex w-100 h-100">
+        </div>
+        <div style={{flex: 1}}>
+        <div className="d-flex d-flex w-100 h-100">
           <div  className="bg-primary pt-1 overflow-y-auto first-section-width d-lg-block d-none">
             <div className="p-2">
               {" "}
@@ -333,25 +329,6 @@ export default function TutorialScreen() {
                               ? "fw-bold"
                               : "bg-primary text-white"
                           }`}
-                          // onClick={() => {
-                          //   UseCaseDataApiCall(
-                          //     dropdown?.attributes?.tutorials?.data[0]?.id
-                          //   )
-                          //   if (
-                          //     dropdown?.attributes?.tutorials?.data ==0
-                          //   ) {
-                          //     router.push(
-                          //       dropdown?.attributes?.tutorials?.data?.length >
-                          //         0
-                          //         ? `/tutorial-screen?data=${dropdown?.attributes?.Title.replace(
-                          //             /\s+/g,
-                          //             ""
-                          //           )}&id=`
-                          //         : "/404"
-                          //     ); 
-
-                          //   }
-                          // }}
                         >
                           <div className="d-flex justify-content-between w-100">
                             <div>{dropdown?.attributes?.Title}</div>
@@ -380,10 +357,10 @@ export default function TutorialScreen() {
                                       tutorial.id
                                     );
                                     router.push(
-                                      `/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                      `/tutorial-screen/${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
                                         ""
-                                      )}&id=`
+                                      )}`
                                     );
                                   }}
                                 >
@@ -405,7 +382,7 @@ export default function TutorialScreen() {
 
           {/* middle section  */}
           <div className="p-xl-5 pt-xl-0 pt-lg-0 p-md-3 mt-5 h-100 w-lg-50 w-100">
-            <div className="shadow p-xl-5 middle-section-shadow" style={{maxHeight:fullHeight-120}}>
+            <div className="shadow p-xl-5 middle-section-shadow" style={{maxHeight:fullHeight-135}}>
               <div className="text-start">
                 {" "}
                 <h1 className="text-start title-font" >{tutorialData?.Title}</h1>
@@ -751,9 +728,12 @@ export default function TutorialScreen() {
             </div>
           </div>
           </div>
+    
         </div>
-        </div>
-      </div>
     </div>
-  );
+    </div>
+     }</>
+  )
 }
+
+export default TutorialScreenPage

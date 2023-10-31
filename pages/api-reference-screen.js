@@ -168,6 +168,7 @@ const ApiReferenceScreen = () => {
                 }
                 <div className="w-100 overflow-auto">
                   <ReactMarkdown
+                  linkTarget="_blank"
                     components={{
                       p:({ node, ...props }) => (
                         <p
