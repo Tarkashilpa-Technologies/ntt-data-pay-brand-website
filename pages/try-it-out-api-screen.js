@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "../services/services";
+import { apisDataApi } from "../services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
@@ -10,12 +10,13 @@ import {
   UAT_ATOM_TECH_URL,
   TRY_IT_OUT_ENDOINT,
 } from "../Messages/Endpoints";
-import ApiTryItOutDescription from "../Components/ApiTryItOutDescription";
 import {
   disableShouldErrorShow,
   enableShouldErrorShow,
   onFormFeildsChange,
 } from "../utils/formValidator";
+import ApiEndpoint from "../Components/ApiEndpoint";
+import { updateSelectedApi } from "../utils/utils";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -41,7 +42,7 @@ const TryItOutApiScreen = () => {
 
   const initialFormData = {
     merchId: {
-      value: null, // Test Merch Id - 317159
+      value: null,
       error: "",
       check: [REQUIRED],
       shouldShowError: false,
@@ -118,14 +119,6 @@ const TryItOutApiScreen = () => {
     setResponseJSON();
   }
 
-  async function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-
   // Api Calls
 
   const apisDataApiCall = () => {
@@ -134,17 +127,7 @@ const TryItOutApiScreen = () => {
         setApisData(res?.data?.data);
       })
       .catch((err) => {
-        console.log("err", err);
-      });
-  };
-
-  const singleApisDataApiCall = (id) => {
-    singleApiDataApi(id)
-      .then((res) => {
-        setApiSpecification(res?.data?.data);
-      })
-      .catch((err) => {
-        console.log("err", err);
+        console.error("err", err);
       });
   };
 
@@ -155,8 +138,8 @@ const TryItOutApiScreen = () => {
   }, []);
 
   useEffect(() => {
-    singleApisDataApiCall(selectedAPI?.id);
-  }, [selectedAPI]);
+    setApiSpecification(updateSelectedApi(selectedAPI, selectedFunction));
+  }, [selectedFunction]);
 
   useEffect(() => {
     const nestedObject = selectedAPI?.attributes?.Defination?.paths;
@@ -326,7 +309,9 @@ const TryItOutApiScreen = () => {
                   <Row className="gap-1 gap-lg-0">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Merchant ID</Form.Label>
+                        <Form.Label className="my-1">
+                          Merchant ID <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           name="merchId"
                           type="number"
@@ -367,7 +352,9 @@ const TryItOutApiScreen = () => {
                     </Col>
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Encryption Key</Form.Label>
+                        <Form.Label className="my-1">
+                          Encryption Key <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           disabled={selectedEnv?.value === "UAT"}
                           name="encKey"
@@ -456,7 +443,9 @@ const TryItOutApiScreen = () => {
                     </Col>
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
-                        <Form.Label className="my-1">Decryption Key</Form.Label>
+                        <Form.Label className="my-1">
+                          Decryption Key <span className="text-danger ">*</span>
+                        </Form.Label>
                         <Form.Control
                           disabled={selectedEnv?.value === "UAT"}
                           name="decKey"
@@ -548,7 +537,7 @@ const TryItOutApiScreen = () => {
                 <div className="d-block d-md-none w-100 overflow-auto">
                   <p className="d-inline-flex gap-1 w-100">
                     <a
-                      className="btn btn-primary w-100 d-flex justify-content-between"
+                      className="btn bg-primary text-white w-100 d-flex justify-content-between"
                       data-bs-toggle="collapse"
                       href="#collapseExample"
                       role="button"
@@ -569,10 +558,7 @@ const TryItOutApiScreen = () => {
                     className={`collapse ${isCollapsed ? "" : "show"} mb-4 `}
                     id="collapseExample"
                   >
-                    <ApiTryItOutDescription
-                      apiData={apiSpecification}
-                      selectedFunction={selectedFunction}
-                    />
+                    <ApiEndpoint apiData={apiSpecification} />
                     <div className="d-flex justify-content-end">
                       <button
                         type="button"
@@ -590,10 +576,7 @@ const TryItOutApiScreen = () => {
                   className="w-lg-50 w-100 ps-md-3 d-none d-md-block custom-scroll-bar mb-4 pe-2"
                   style={{ maxHeight: 925 }}
                 >
-                  <ApiTryItOutDescription
-                    apiData={apiSpecification}
-                    selectedFunction={selectedFunction}
-                  />
+                  <ApiEndpoint apiData={apiSpecification} />
                 </div>
               </div>
             </div>

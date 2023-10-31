@@ -6223,15 +6223,15 @@ blockquote.error > div > strong {
 
 /* Hide number input arrows */
 input[type="number"] {
-    -moz-appearance: textfield;
-    -webkit-appearance: none;
-    appearance: none;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Hide the increment and decrement buttons in Chrome */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 .w-lg-50 {
@@ -6247,59 +6247,62 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 0 20px; /* Add some padding for better readability on smaller screens */
   }
 }
-.bg-theme{
+.bg-theme {
   background-color: #0072bc !important;
 }
-.fs-12{
+.fs-12 {
   font-size: 12px;
 }
-.fs-13{
+.fs-13 {
   font-size: 13px;
 }
-.fs-14{
+.fs-14 {
   font-size: 14px;
 }
-.fs-15{
+.fs-15 {
   font-size: 15px;
 }
-.fs-16{
+.fs-16 {
   font-size: 16px;
 }
-.fs-17{
+.fs-17 {
   font-size: 17px;
 }
-.fs-18{
+.fs-18 {
   font-size: 18px;
 }
-.bg-lightgray{
+.bg-lightgray {
   background-color: lightgray !important;
 }
-.text-purple{
+.bg-lightblue {
+  background-color: #e9ecef;
+}
+.text-purple {
   color: purple !important;
 }
-.text-green{
+.text-green {
   color: green !important;
 }
-.text-lightblue{
+.text-lightblue {
   color: lightblue !important;
 }
-.text-lightgray{
+.text-lightgray {
   color: lightgray !important;
 }
-.text-orange{
-  color:coral !important;
+.text-orange {
+  color: coral !important;
 }
 
 .first-section-width {
   width: 19rem !important;
 }
-.custom-scroll-bar{
+.custom-scroll-bar {
   overflow-y: scroll;
 }
 .custom-scroll-bar::-webkit-scrollbar {
-  width: .5rem; 
+  width: 0.5rem;
 }
 
 .custom-scroll-bar::-webkit-scrollbar-thumb {
-  background-color: #0072bc !important; 
+  background-color: #0072bc !important;
 }
