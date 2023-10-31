@@ -90,7 +90,6 @@ const ApiEndpoint = ({ apiData }) => {
                                                     ?.schemas
                                                 )?.map((item, index) => {
                                                   if (finalResult === item[0]) {
-                                                    console.log(item);
                                                     return (
                                                       <div className="w-100 ">
                                                         <h4 className="pt-2 mb-2">
