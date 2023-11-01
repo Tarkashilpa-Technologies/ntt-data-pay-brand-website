@@ -55,7 +55,7 @@ const TutorialScreenPage = () => {
     
             data?.attributes?.tutorials?.data?.map((title) => {
               console.log(title)
-              if(title?.attributes?.Title.replace(/\s+/g, "") == queryData)
+              if(title?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData)
               {
                 return  title?.attributes != undefined ?  UseCaseDataApiCall(
                   title?.id
@@ -265,10 +265,7 @@ const TutorialScreenPage = () => {
                                         tutorial.id
                                       );
                                       router.push(
-                                        `/tutorial-screen/${tutorial?.attributes?.Title.replace(
-                                          /\s+/g,
-                                          ""
-                                        )}`
+                                        `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
                                       );
                                     }}
                                     >
@@ -325,7 +322,7 @@ const TutorialScreenPage = () => {
 
                           className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-1 ps-2 ${
                             queryData ==
-                            dropdown?.attributes?.Title.replace(/\s+/g, "")
+                            dropdown?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")
                               ? "fw-bold"
                               : "bg-primary text-white"
                           }`}
@@ -345,10 +342,7 @@ const TutorialScreenPage = () => {
                                   key={index}
                                   className={`text-white rounded-start pointer p-2 ps-4 ${
                                     queryData ==
-                                    tutorial?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    )
+                                    tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")
                                       ? "fw-bold"
                                       : "bg-primary fw-normal"
                                   }`}
@@ -357,10 +351,7 @@ const TutorialScreenPage = () => {
                                       tutorial.id
                                     );
                                     router.push(
-                                      `/tutorial-screen/${tutorial?.attributes?.Title.replace(
-                                        /\s+/g,
-                                        ""
-                                      )}`
+                                      `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
                                     );
                                   }}
                                 >

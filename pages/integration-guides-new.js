@@ -87,7 +87,7 @@ const IntegrationGuides = () => {
                               <Link
                                 href={
                                   (tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != undefined || tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != null) ?
-                                  {pathname: `/tutorial-screen/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(/\s+/g,"")}`
+                                  {pathname: `/tutorial-screen/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
                                   } : {pathname:'/404'}
                                 }
                               >
