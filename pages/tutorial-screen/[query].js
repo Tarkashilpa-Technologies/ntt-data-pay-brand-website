@@ -15,7 +15,6 @@ import {
 const TutorialScreenPage = () => {
     const router = useRouter();
     const queryData = router.query?.query;
-    console.log(router.query.query,"router")
     const [tutorialsListData, setTutorialsListData] = useState([]);
     const [tutorialData, setTutorialData] = useState([]);
     const [showHelpfulData, setShowHelpfulData] = useState([]);
@@ -54,8 +53,7 @@ const TutorialScreenPage = () => {
           tutorialsListData?.map((data) => {
     
             data?.attributes?.tutorials?.data?.map((title) => {
-              console.log(title)
-              if(title?.attributes?.Title.replace(/\s+/g, "") == queryData)
+              if(title?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData)
               {
                 return  title?.attributes != undefined ?  UseCaseDataApiCall(
                   title?.id
@@ -85,8 +83,6 @@ const TutorialScreenPage = () => {
         // setShowLoader(false);
       });
   };
-
-
 
   // fetch on this page data
   const sidebarData = [];
@@ -167,7 +163,6 @@ const TutorialScreenPage = () => {
     const eleId= document.getElementById(text);
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
-
 
   const useResize = (myRef) => {
     const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
@@ -265,10 +260,7 @@ const TutorialScreenPage = () => {
                                         tutorial.id
                                       );
                                       router.push(
-                                        `/tutorial-screen/${tutorial?.attributes?.Title.replace(
-                                          /\s+/g,
-                                          ""
-                                        )}`
+                                        `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
                                       );
                                     }}
                                     >
@@ -325,7 +317,7 @@ const TutorialScreenPage = () => {
 
                           className={`w-100 mb-0 cursor-pointer rounded-0 text-start d-flex justify-content-between align-items-center border-0 py-1 ps-2 ${
                             queryData ==
-                            dropdown?.attributes?.Title.replace(/\s+/g, "")
+                            dropdown?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")
                               ? "fw-bold"
                               : "bg-primary text-white"
                           }`}
@@ -345,10 +337,7 @@ const TutorialScreenPage = () => {
                                   key={index}
                                   className={`text-white rounded-start pointer p-2 ps-4 ${
                                     queryData ==
-                                    tutorial?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    )
+                                    tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")
                                       ? "fw-bold"
                                       : "bg-primary fw-normal"
                                   }`}
@@ -357,10 +346,7 @@ const TutorialScreenPage = () => {
                                       tutorial.id
                                     );
                                     router.push(
-                                      `/tutorial-screen/${tutorial?.attributes?.Title.replace(
-                                        /\s+/g,
-                                        ""
-                                      )}`
+                                      `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
                                     );
                                   }}
                                 >
@@ -699,7 +685,7 @@ const TutorialScreenPage = () => {
           </div>
 
           {/* last section */}
-          <div style={{ width: 300 }} className="d-lg-block d-none">
+          <div style={{width: 400, height:fullHeight-200}} className="d-lg-block d-none">
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
               {sidebarData?.map((data, index) => {
