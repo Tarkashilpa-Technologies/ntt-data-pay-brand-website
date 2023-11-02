@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }) {
           style={{ display: "none", visibility: "hidden" }}
         ></iframe>
       </noscript>
-      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen"|| router?.pathname == "/tutorial-screen/[query]") ?
+      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen"|| router?.pathname == "/tutorial-screen/[query]" || router?.pathname == "/api-reference-screen/[query]") ?
         (
           <Component {...pageProps} />
         )  

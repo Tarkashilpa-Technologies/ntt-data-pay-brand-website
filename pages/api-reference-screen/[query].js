@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "../services/services";
+import { apisDataApi, singleApiDataApi } from "../../services/services";
 import ReactMarkdown from "react-markdown";
-import HeaderTwo from "../Components/HeaderTwo";
-import ApiEndpoint from "../Components/ApiEndpoint";
+import HeaderTwo from "../../Components/HeaderTwo";
+import ApiEndpoint from "../../Components/ApiEndpoint";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
-  const queryData = router.query?.data;
-  const queryId = router.query?.id;
+  const queryData = router.query?.query;
+  console.log(router.query?.query,"router.query?.query")
   const [selectedTitle, setSelectedTitle] = useState(0);
   const [apisListData, setApisListData] = useState([]);
   const [apiData, setApiData] = useState();
-  const[searchData,setSearchData]= useState();
   const divRef = useRef(null);
   const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
   const[fullWidth,setFullWidth] = useState();
@@ -35,23 +34,21 @@ const ApiReferenceScreen = () => {
       });
   };
 
-  useEffect(() => {
-    apisListDataApiCall();
-  }, []);
 
   useEffect(() => {
-    if (apisListData) {
+    if (apisListData && queryData) {
       apisListData?.map((data) => {
-        if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
-          return setApiData(data);
+        if (data?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData) {
+          return data?.attributes != undefined ? singleApisDataApiCall(data?.id) : router.push('/404');
         }
       });
     }
-  }, [setApisListData, queryData]);
+  }, [apisListData, queryData]);
  
 
   const singleApisDataApiCall = (id) => {
     // setShowLoader(true);
+    console.log(id,"id")
     singleApiDataApi(id)
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
@@ -64,11 +61,17 @@ const ApiReferenceScreen = () => {
       });
   };
 
-  useEffect(() => {
-    if(queryId){
-      singleApisDataApiCall(queryId);
-    }
-  }, [queryId]);
+  // useEffect(() => {
+  //   if(queryId){
+  //     singleApisDataApiCall(queryId);
+  //   }
+  // }, [queryId]);
+
+
+  function scrollToTarget(text) {
+    const eleId= document.getElementById(text);
+    eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
+  }
 
   useEffect(()=> {
     window.addEventListener('resize', ()=> {
@@ -78,7 +81,7 @@ const ApiReferenceScreen = () => {
     if (typeof window !== 'undefined') {
       setIsReady(true);
     }
-    
+    apisListDataApiCall();
  }, [])
   
  useEffect(() => {
@@ -94,12 +97,13 @@ const ApiReferenceScreen = () => {
 }, [apisListData,selectedTitle]);
 
   return (
-
-    <div>
-      {fullHeight &&  isReady ?
-      <div className=" overflow-hidden w-100" style={{maxHeight:fullHeight}}>
-        <HeaderTwo />
-          <div className="d-flex d-block d-lg-none overflow-x-scroll">
+    <>
+    {fullHeight &&  isReady ?
+    <div className=" overflow-hidden"  style={{maxHeight:fullHeight}}>
+      
+      <div className="d-flex flex-column h-100 w-100 overflow-hidden">
+        <div><HeaderTwo /></div>
+        <div className="d-flex d-block d-lg-none overflow-x-scroll">
               <div className="d-flex bg-primary w-100">
                 {apisListData?.map((dropdown, index) => {
                   return (
@@ -121,9 +125,9 @@ const ApiReferenceScreen = () => {
                   );
                 })}
               </div>
-            </div>
-          
-        <div className="d-flex w-100 h-100" style={{ minHeight: 600 }}>
+        </div>
+        <div style={{flex: 1}}>  
+        <div className="d-flex w-100 h-100">
           <div style={{ height:fullHeight }} className="bg-primary overflow-y-auto first-section-width d-lg-block d-none">
             <div>
               {apisListData?.map((dropdown, index) => {
@@ -139,6 +143,10 @@ const ApiReferenceScreen = () => {
                         onClick={() => {
                           setSelectedTitle(index);
                           setApiData(dropdown);
+                          singleApisDataApiCall(dropdown?.id);
+                          router.push(
+                            `/api-reference-screen/${dropdown?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
+                          );
                         }}
                       >
                         {dropdown?.attributes?.Title}
@@ -150,11 +158,11 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
           {/* mid section starts */}
-          <div className="h-100 w-lg-50 w-100 middle-section-width">
-          <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-120}}>
+          <div className="h-100 w-lg-50 w-100">
+          <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow" style={{maxHeight:fullHeight-135}}>
               <div className="text-start">
                 {" "}
-                <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.replace(/\s+/g,'-')}>{apiData?.attributes?.Title}</h1>
+                <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}>{apiData?.attributes?.Title}</h1>
                 {apiData?.attributes?.Description &&
                 <div>
                   <h1 id="Introduction">Introduction </h1>
@@ -309,7 +317,8 @@ const ApiReferenceScreen = () => {
                       }}
                       className={`border-2 ps-2 py-1 border-start-primary fw-semibold pointer`}
                     >
-                      <a href={`#${data.replace(/\s+/g,'-')}`}  
+                      <a href={`#${data.replace(/\s+/g,'-')}`} 
+                       onClick={() => scrollToTarget(`${data.replace(/\s+/g, "-")}`)} 
                       className={`${
                         selectedUrl == index ? "text-primary" : "text-Black"
                       }`}>{data}</a>
@@ -320,9 +329,11 @@ const ApiReferenceScreen = () => {
             </div>
           </div>
         </div>
+        </div>
+      </div>
       </div>
       :  <div className="p-5  fs-3 fw-bold d-flex justify-content-center"> Loading ...</div>}
-    </div>
+      </>
   );
 };
 

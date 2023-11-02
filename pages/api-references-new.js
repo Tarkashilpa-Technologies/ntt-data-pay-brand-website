@@ -68,16 +68,9 @@ const ApiReferences = () => {
                           <div className="d-flex gap-3 align-items-center justify-content-end">
                            
                               <Link
-                                href={{
-                                  pathname: "/api-reference-screen",
-                                  query: {
-                                    data: api?.attributes?.Title.replace(
-                                      /\s+/g,
-                                      ""
-                                    ),
-                                    id: api?.id,
-                                  },
-                                }}
+                                href={api?.attributes?.Title != undefined ? { 
+                                  pathname: `/api-reference-screen/${api?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`,
+                                } : {pathname:'/404'}}
                               >
                                 <a className="btn btn_style1 p-2 px-4">
                                  Explore

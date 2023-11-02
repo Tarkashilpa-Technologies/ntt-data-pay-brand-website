@@ -15,7 +15,6 @@ import {
 const TutorialScreenPage = () => {
     const router = useRouter();
     const queryData = router.query?.query;
-    console.log(router.query.query,"router")
     const [tutorialsListData, setTutorialsListData] = useState([]);
     const [tutorialData, setTutorialData] = useState([]);
     const [showHelpfulData, setShowHelpfulData] = useState([]);
@@ -54,7 +53,6 @@ const TutorialScreenPage = () => {
           tutorialsListData?.map((data) => {
     
             data?.attributes?.tutorials?.data?.map((title) => {
-              console.log(title)
               if(title?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData)
               {
                 return  title?.attributes != undefined ?  UseCaseDataApiCall(
@@ -85,8 +83,6 @@ const TutorialScreenPage = () => {
         // setShowLoader(false);
       });
   };
-
-
 
   // fetch on this page data
   const sidebarData = [];
@@ -167,7 +163,6 @@ const TutorialScreenPage = () => {
     const eleId= document.getElementById(text);
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
-
 
   const useResize = (myRef) => {
     const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
@@ -690,7 +685,7 @@ const TutorialScreenPage = () => {
           </div>
 
           {/* last section */}
-          <div style={{ width: 300 }} className="d-lg-block d-none">
+          <div style={{width: 400, height:fullHeight-200}} className="d-lg-block d-none">
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
               {sidebarData?.map((data, index) => {
