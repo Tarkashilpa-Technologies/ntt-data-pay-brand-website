@@ -15,7 +15,6 @@ import {
 const TutorialScreenPage = () => {
     const router = useRouter();
     const queryData = router.query?.query;
-    console.log(router.query.query,"router")
     const [tutorialsListData, setTutorialsListData] = useState([]);
     const [tutorialData, setTutorialData] = useState([]);
     const [showHelpfulData, setShowHelpfulData] = useState([]);
@@ -686,7 +685,7 @@ const TutorialScreenPage = () => {
           </div>
 
           {/* last section */}
-          <div style={{ width: 300 }} className="d-lg-block d-none">
+          <div style={{width: 400, height:fullHeight-200}} className="d-lg-block d-none">
             <div className="p-3 pt-4">
               <h6 className="fw-bold">ON THIS PAGE</h6>
               {sidebarData?.map((data, index) => {
