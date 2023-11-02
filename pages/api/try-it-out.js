@@ -28,30 +28,22 @@ module.exports = async (req, res) => {
       }
       const responseData = response?.data;
       const searchParams = new URLSearchParams(responseData);
-      const decryptData = searchParams.get("encData");
+      const decryptData = searchParams?.get("encData");
       const dec = decrypt(decryptData, decKey, decKey);
       return dec;
     } catch (error) {
-      if (error.response) {
-        const errorData = error.response.data;
-        const errorMessage = errorData && errorData.message;
-
-        return {
-          data: {
-            status: error.response.status,
-            data: errorData,
+      return {
+        payInstrument: {
+          responseDetails: {
+            statusCode: "OTS0951",
+            message: "FAILED",
+            description: "SOMETHING WENT WRONG",
           },
-        };
-      } else {
-        return {
-          status: 500,
-          data: errorMessage || "Something went wrong",
-        };
-      }
+        },
+      };
     }
   }
   const responseData = await httpAPICall(url, merchId, enc, method);
-  console.log(responseData);
   if (responseData?.data?.status) {
     res.status(responseData?.data?.status).json(responseData?.data);
   } else {

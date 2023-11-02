@@ -17,6 +17,7 @@ import {
 } from "../utils/formValidator";
 import ApiEndpoint from "../Components/ApiEndpoint";
 import { updateSelectedApi } from "../utils/utils";
+import JsonEditor from "../Components/JsonEditor";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -78,6 +79,7 @@ const TryItOutApiScreen = () => {
 
   //Handler Function
   function handleFunctionItemClick(item) {
+    setResponseJSON();
     setSelectedFunction(item);
     Object.entries(
       selectedAPI?.attributes?.Defination?.components?.schemas || {}
@@ -163,7 +165,7 @@ const TryItOutApiScreen = () => {
   }, [selectedAPI]);
   useEffect(() => {
     setRefresh(!refresh);
-  }, [json]);
+  }, [json, responseJSON]);
 
   return (
     <div className="api-reference-page bg-white">
@@ -241,6 +243,8 @@ const TryItOutApiScreen = () => {
                             onClick={() => {
                               setSelectedAPI(item);
                               setSelectedFunction();
+                              setJson(null);
+                              setResponseJSON(null);
                             }}
                           >
                             {item?.attributes?.Title}
@@ -489,15 +493,16 @@ const TryItOutApiScreen = () => {
                   <div className="py-2 w-100">
                     <div className="pb-2 fw-bold">Request</div>
                     <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50">
-                      <AjrmJsonEditor
+                      <JsonEditor
                         width="100%"
                         height="320px"
-                        placeholder={json} // Default Value
+                        json={json}
                         onChange={(newJSON) => {
                           setJson(newJSON?.jsObject);
                         }}
-                        onKeyPressUpdate={true} // Do you want Auto Format??
-                        waitAfterKeyPress={2000} // Auto format timing
+                        onKeyPressUpdate={true}
+                        waitAfterKeyPress={2000}
+                        viewOnly={false}
                       />
                     </div>
                     <div className="pt-3 me-md-4 me-0">
@@ -523,12 +528,16 @@ const TryItOutApiScreen = () => {
                         <label> Response</label>
                       </div>
                       <div className="text-white d-flex flex-column justify-content-center">
-                        <AjrmJsonEditor
+                        <JsonEditor
                           width="100%"
                           height="320px"
-                          placeholder={responseJSON} // Default Value
-                          viewOnly={true} // Do you want to View Only?
-                          locale={`react-json-editor-ajrm/locale/en`}
+                          json={responseJSON}
+                          onChange={(newJSON) => {
+                            setJson(newJSON?.jsObject);
+                          }}
+                          onKeyPressUpdate={true}
+                          waitAfterKeyPress={2000}
+                          viewOnly={true}
                         />
                       </div>
                     </div>
