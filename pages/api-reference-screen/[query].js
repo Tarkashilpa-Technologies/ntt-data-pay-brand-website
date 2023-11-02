@@ -1,19 +1,17 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "../services/services";
+import { apisDataApi, singleApiDataApi } from "../../services/services";
 import ReactMarkdown from "react-markdown";
-import HeaderTwo from "../Components/HeaderTwo";
-import ApiEndpoint from "../Components/ApiEndpoint";
+import HeaderTwo from "../../Components/HeaderTwo";
+import ApiEndpoint from "../../Components/ApiEndpoint";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
-  const queryData = router.query?.data;
-  const queryId = router.query?.id;
+  const queryData = router.query?.query;
   const [selectedTitle, setSelectedTitle] = useState(0);
   const [apisListData, setApisListData] = useState([]);
   const [apiData, setApiData] = useState();
-  const[searchData,setSearchData]= useState();
   const divRef = useRef(null);
   const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
   const[fullWidth,setFullWidth] = useState();
@@ -42,8 +40,9 @@ const ApiReferenceScreen = () => {
   useEffect(() => {
     if (apisListData) {
       apisListData?.map((data) => {
-        if ((data?.attributes?.Title).replace(/\s+/g, "") == queryData) {
-          return setApiData(data);
+        console.log(data?.id,data?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData,"id");
+        if (data?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData) {
+          return singleApisDataApiCall(data?.id);
         }
       });
     }
@@ -64,11 +63,11 @@ const ApiReferenceScreen = () => {
       });
   };
 
-  useEffect(() => {
-    if(queryId){
-      singleApisDataApiCall(queryId);
-    }
-  }, [queryId]);
+  // useEffect(() => {
+  //   if(queryId){
+  //     singleApisDataApiCall(queryId);
+  //   }
+  // }, [queryId]);
 
   useEffect(()=> {
     window.addEventListener('resize', ()=> {
@@ -139,6 +138,10 @@ const ApiReferenceScreen = () => {
                         onClick={() => {
                           setSelectedTitle(index);
                           setApiData(dropdown);
+                          singleApisDataApiCall(dropdown?.id);
+                          router.push(
+                            `/api-reference-screen/${dropdown?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
+                          );
                         }}
                       >
                         {dropdown?.attributes?.Title}
@@ -154,7 +157,7 @@ const ApiReferenceScreen = () => {
           <div className="p-xl-5 pt-xl-2 pt-lg-2 middle-section-shadow overflow-y-scroll" style={{maxHeight: fullHeight-120}}>
               <div className="text-start">
                 {" "}
-                <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.replace(/\s+/g,'-')}>{apiData?.attributes?.Title}</h1>
+                <h1 className="text-start pb-3 title-font" id={apiData?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}>{apiData?.attributes?.Title}</h1>
                 {apiData?.attributes?.Description &&
                 <div>
                   <h1 id="Introduction">Introduction </h1>

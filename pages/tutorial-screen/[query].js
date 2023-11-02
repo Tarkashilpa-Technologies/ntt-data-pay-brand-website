@@ -54,7 +54,6 @@ const TutorialScreenPage = () => {
           tutorialsListData?.map((data) => {
     
             data?.attributes?.tutorials?.data?.map((title) => {
-              console.log(title)
               if(title?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData)
               {
                 return  title?.attributes != undefined ?  UseCaseDataApiCall(
@@ -85,8 +84,6 @@ const TutorialScreenPage = () => {
         // setShowLoader(false);
       });
   };
-
-
 
   // fetch on this page data
   const sidebarData = [];
@@ -167,7 +164,6 @@ const TutorialScreenPage = () => {
     const eleId= document.getElementById(text);
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
   }
-
 
   const useResize = (myRef) => {
     const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
