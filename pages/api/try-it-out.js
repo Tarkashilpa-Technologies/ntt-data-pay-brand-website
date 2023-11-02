@@ -32,24 +32,12 @@ module.exports = async (req, res) => {
       const dec = decrypt(decryptData, decKey, decKey);
       return dec;
     } catch (error) {
-      return {
-        payInstrument: {
-          responseDetails: {
-            statusCode: "OTS0951",
-            message: "FAILED",
-            description: "SOMETHING WENT WRONG",
-          },
-        },
-      };
+      return error
     }
   }
   const responseData = await httpAPICall(url, merchId, enc, method);
-  if (responseData?.data?.status) {
-    res.status(responseData?.data?.status).json(responseData?.data);
-  } else {
-    res.status(200).json({
-      message: "Success",
-      data: responseData,
-    });
-  }
+  res.json({
+    message: "Success",
+    data: responseData,
+  });
 };

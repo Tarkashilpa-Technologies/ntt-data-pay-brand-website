@@ -79,13 +79,15 @@ const ApiReferenceScreen = () => {
         if (header?.tagName === "H1") {
           result.push({ text: header.textContent, children: [] });
         } else if (header?.tagName === "H2" && result?.length > 0) {
-          result[result?.length - 1]?.children?.push({ text: header?.textContent });
+          result[result?.length - 1]?.children?.push({
+            text: header?.textContent,
+          });
         }
         return result;
       }, []);
       setHeadersData(headersData);
     }
-  }, [apisListData, selectedTitle]);
+  }, [apisListData, selectedTitle,window]);
 
   return (
     <div>
@@ -127,12 +129,13 @@ const ApiReferenceScreen = () => {
             >
               <div>
                 {apisListData?.map((dropdown, index) => {
+                  console.log(index)
                   return (
                     <div key={index}>
                       <div
-                        className={`bg-primary border-bottom p-2 ${
+                        className={` border-bottom p-2 ${
                           selectedTitle == index
-                            ? "text-white fw-bold"
+                            ? "bg-primary text-white fw-bold"
                             : "bg-primary text-white"
                         }`}
                       >
@@ -329,9 +332,9 @@ const ApiReferenceScreen = () => {
                   </div>
                   {apiData?.attributes?.Defination?.info?.termsOfService && (
                     <div className="pt-3">
-                      <h1 className="pb-3" id={"Terms-Of-Service"}>
+                      <h2 className="pb-3" id={"Terms-Of-Service"}>
                         Terms Of Service
-                      </h1>
+                      </h2>
                       <p>
                         {apiData?.attributes?.Defination?.info?.termsOfService}
                       </p>
