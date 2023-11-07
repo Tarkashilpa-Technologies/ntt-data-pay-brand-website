@@ -498,6 +498,7 @@ const TryItOutApiScreen = () => {
                         height="320px"
                         json={json}
                         onChange={(newJSON) => {
+                          console.log(newJSON);
                           setJson(newJSON?.jsObject);
                         }}
                         onKeyPressUpdate={true}

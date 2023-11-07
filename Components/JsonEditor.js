@@ -27,6 +27,7 @@ const JsonEditor = ({
       onChange={onChange}
       waitAfterKeyPress={waitAfterKeyPress}
       onKeyPressUpdate={onKeyPressUpdate}
+      confirmGood={false}
     />
   );
 };

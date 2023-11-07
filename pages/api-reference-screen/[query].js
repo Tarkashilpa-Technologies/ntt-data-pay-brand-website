@@ -5,6 +5,7 @@ import { apisDataApi, singleApiDataApi } from "../../services/services";
 import ReactMarkdown from "react-markdown";
 import HeaderTwo from "../../Components/HeaderTwo";
 import ApiEndpoint from "../../Components/ApiEndpoint";
+import { useLayoutEffect } from "react";
 
 const ApiReferenceScreen = () => {
   const router = useRouter();
@@ -66,8 +67,8 @@ const ApiReferenceScreen = () => {
     }
     apisListDataApiCall();
   }, []);
-  
-  useEffect(() => {
+
+  function getTagsListData() {
     if (typeof window !== "undefined") {
       const headers = document.querySelectorAll("h1, h2");
       const headersData = Array.from(headers)?.reduce((result, header) => {
@@ -82,7 +83,13 @@ const ApiReferenceScreen = () => {
       }, []);
       setHeadersData(headersData);
     }
-  }, [apisListData, selectedTitle]);  
+  }
+
+  useEffect(() => {
+    if (!headersData?.length > 0) {
+      getTagsListData();
+    }
+  }, [apiData]);
 
   return (
     <>
@@ -130,14 +137,16 @@ const ApiReferenceScreen = () => {
                       return (
                         <div key={index}>
                           <div
-                            className={`bg-primary border-bottom p-2 ${
+                            className={` border-bottom p-2 ${
                               selectedTitle == index
-                                ? "text-white fw-bold"
-                                : "bg-primary text-white"
+                                ? "text-white "
+                                : " text-white"
                             }`}
                           >
                             <button
-                              className="btn w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white"
+                              className={`btn w-100 rounded-0 text-start d-flex justify-content-between align-items-center bg-primary border-0 p-1 text-white ${
+                                selectedTitle == index ? "fw-bold fs-17" : ""
+                              }`}
                               onClick={() => {
                                 setSelectedTitle(index);
                                 setApiData(dropdown);
@@ -166,15 +175,15 @@ const ApiReferenceScreen = () => {
                   >
                     <div className="text-start">
                       {" "}
-                      <h1
-                        className="text-start pb-3 title-font"
+                      <p
+                        className="text-start pb-3 title-font fw-bold"
                         id={apiData?.attributes?.Title.toLowerCase().replace(
                           /\s+/g,
                           "-"
                         )}
                       >
                         {apiData?.attributes?.Title}
-                      </h1>
+                      </p>
                       {apiData?.attributes?.Description && (
                         <div>
                           <h1 id="Introduction">Introduction </h1>
@@ -411,20 +420,25 @@ const ApiReferenceScreen = () => {
                     <div className="fw-bold fs-6">ON THIS PAGE</div>
                     {headersData &&
                       headersData?.map((h1Data, index) => {
+                        console.log(h1Data);
                         return (
-                          <div key={`#${h1Data?.text?.replace(/\s+/g, "-")}`}>
+                          <div key={index}>
                             <a
                               className={`ps-3 py-1  fw-bold  d-flex ${
-                                selectedUrl == `#${h1Data?.text?.replace(/\s+/g, "-")}`
+                                selectedUrl ==
+                                `#${h1Data?.text?.replace(/\s+/g, "")}`
                                   ? "text-primary "
                                   : "text-Black"
                               }`}
                               onClick={() => {
-                                setSelectedUrl(`#${h1Data?.text?.replace(/\s+/g, "-")}`);
+                                setSelectedUrl(
+                                  `#${h1Data?.text?.replace(/\s+/g, "")}`
+                                );
                               }}
-                              href={`#${h1Data?.text?.replace(/\s+/g, "-")}`}
+                              href={`#${h1Data?.text?.replace(/\s+/g, "")}`}
                             >
-                              {selectedUrl == `#${h1Data?.text?.replace(/\s+/g, "-")}` && (
+                              {selectedUrl ==
+                                `#${h1Data?.text?.replace(/\s+/g, "")}` && (
                                 <span
                                   className="border-start-primary border-2 "
                                   style={{ marginLeft: -15, marginRight: 13 }}
@@ -434,14 +448,8 @@ const ApiReferenceScreen = () => {
                             </a>
                             <div className="ps-4 ms-2">
                               {h1Data?.children?.map((h2Data, idx) => {
-                                console.log(idx)
                                 return (
-                                  <div
-                                    key={`#${h2Data?.text?.replace(
-                                      /\s+/g,
-                                      "-"
-                                    )}`}
-                                  >
+                                  <div key={idx}>
                                     <a
                                       href={`#${h2Data?.text?.replace(
                                         /\s+/g,
