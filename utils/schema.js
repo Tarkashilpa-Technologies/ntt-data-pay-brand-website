@@ -8,7 +8,7 @@ export function generateExampleFromSchema(schema) {
       if (propInfo.items && propInfo.items.example) {
         example[propName] = [propInfo.items.example];
       } else {
-        example[propName] = [];
+        example[propName] = [generateExampleFromSchema(propInfo.items?.properties)];
       }
     } else {
       const typeToDefault = {
