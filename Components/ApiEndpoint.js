@@ -8,22 +8,22 @@ import { extractRequiredArrays } from "../utils/utils";
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   function ResponsesComponent(data) {
-    return Object.entries(data)?.map((item, i) => {
+    console.log(data)
       return (
-        <div className="w-100" key={i}>
+        <div className="w-100">
           <p>
-            <b>{item[0]}</b> {" : "}
-            {item[1]?.message}
+            <b>{data[1]?.value?.payInstrument?.responseDetails?.statusCode}</b>{" "}
+            {" : "}
+            {data[0]}
           </p>
           <JSONPretty
             id="json-pretty"
-            data={item[1]?.content}
+            data={data[1]?.value}
             theme={JSONPrettyMon}
             themeClassName="p-4 fixed-height-data"
           ></JSONPretty>
         </div>
       );
-    });
   }
   return (
     <div>
@@ -218,24 +218,32 @@ const ApiEndpoint = ({ apiData }) => {
                                 (apiResponse, index) => {
                                   return (
                                     <div key={index}>
-                                      {apiResponse[1].content &&
-                                        Object.entries(
-                                          apiResponse[1].content?.[
+                                      {apiResponse[1].content && apiResponse[1].content?.[
                                             "application/json"
-                                          ]?.examples?.success
-                                        )?.map((successItem, index) => {
+                                          ] && apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples &&
+                                        Object.entries(
+                                          apiResponse[1]?.content?.[
+                                            "application/json"
+                                          ]?.examples
+                                      )?.map((successItem, index) => {
                                           return ResponsesComponent(
-                                            successItem[1]
+                                            successItem
                                           );
                                         })}
-                                      {apiResponse[1].content &&
+                                      {/* {apiResponse[1].content && apiResponse[1].content?.[
+                                            "application/json"
+                                          ] && apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples &&
                                         Object.entries(
                                           apiResponse[1].content?.[
                                             "application/json"
                                           ]?.examples?.failure
                                         )?.map((failure, index) => {
                                           return ResponsesComponent(failure[1]);
-                                        })}
+                                        })} */}
                                     </div>
                                   );
                                 }
