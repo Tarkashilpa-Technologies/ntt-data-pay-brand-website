@@ -7,7 +7,24 @@ import { extractRequiredArrays } from "../utils/utils";
 
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
-
+  function ResponsesComponent(data) {
+    return Object.entries(data)?.map((item, i) => {
+      return (
+        <div className="w-100" key={i}>
+          <p>
+            <b>{item[0]}</b> {" : "}
+            {item[1]?.message}
+          </p>
+          <JSONPretty
+            id="json-pretty"
+            data={item[1]?.content}
+            theme={JSONPrettyMon}
+            themeClassName="p-4 fixed-height-data"
+          ></JSONPretty>
+        </div>
+      );
+    });
+  }
   return (
     <div>
       <div className="w-100">
@@ -158,323 +175,71 @@ const ApiEndpoint = ({ apiData }) => {
                               Responses
                             </h4>
                             <h6 className="pt-2 m-0 mb-2">Schema</h6>
-                            <p>{apiName[1].responses?.description}</p>
-                            {apiName[1].responses &&
-                                Object.entries(apiName[1].responses)?.map(
-                                  (apiResponse, index) => {
-                                    // if(item[0] == 'application/json')
-                                    return (
-                                      <div key={index}>
-                                        
-                                        {apiResponse[1].content &&
-                                          Object.entries(apiResponse[1].content)?.map(
-                                            (content, index) => {
-                                              if (
-                                                content[0] == "application/json"
-                                              ) {
-                                                return (
-                                                  <div>
-                                                    {content[0] &&
-                                                      Object.entries(
-                                                        content[1]
-                                                      )?.map((contentObj, index) => {
-                                                        const result = `${
-                                                          contentObj[0] &&
-                                                          Object.entries(
-                                                            contentObj[1]
-                                                          )
-                                                            ?.map(
-                                                              (data, index) => {
-                                                                return `${Object.entries(
-                                                                  data[1]
-                                                                )
-                                                                  ?.map(
-                                                                    (
-                                                                      data,
-                                                                      index
-                                                                    ) => {
-                                                                      return `${data[1].replace(
-                                                                        / \n/g,
-                                                                        ""
-                                                                      )}`;
-                                                                    }
-                                                                  )
-                                                                  .join("")}`;
-                                                              }
-                                                            )
-                                                            .join("")
-                                                        }`;
-                                                        const finalResult =
-                                                          result.replace(
-                                                            /#\/components\/schemas\//g,
-                                                            ""
-                                                          );
-                                                        const data =
-                                                          apiData?.attributes
-                                                            ?.Defination
-                                                            ?.components
-                                                            ?.schemas &&
-                                                          Object.entries(
-                                                            apiData?.attributes
-                                                              ?.Defination
-                                                              ?.components
-                                                              ?.schemas
-                                                          )?.map(
-                                                            (item, index) => {
-                                                              if (
-                                                                finalResult ===
-                                                                item[0]
-                                                              ) {
-                                                                return (
-                                                                  <div className="w-100">
-                                                                    <div className=" bg-lightblue p-3">
-                                                                      {Object?.entries(
-                                                                        item[1]
-                                                                          ?.properties
-                                                                      )?.map(
-                                                                        (
-                                                                          key1
-                                                                        ) => {
-                                                                          let requireList =
-                                                                            extractRequiredArrays(
-                                                                              item
-                                                                            );
-                                                                          return (
-                                                                            <NestedCollapse
-                                                                              propertyName={
-                                                                                key1[0]
-                                                                              }
-                                                                              propertyValue={
-                                                                                key1[1]
-                                                                                  ?.properties
-                                                                              }
-                                                                              requiredList={
-                                                                                requireList
-                                                                              }
-                                                                            />
-                                                                          );
-                                                                        }
-                                                                      )}
-                                                                    </div>
-
-                                                                    <div className="py-2 mt-4">
-                                                                      <h6>
-                                                                        {
-                                                                          apiResponse[0]
-                                                                        }
-                                                                        :{" "}
-                                                                        <span className="fw-normal">
-                                                                          {
-                                                                            apiResponse[1]
-                                                                              .description
-                                                                          }
-                                                                        </span>
-                                                                      </h6>{" "}
-                                                                    </div>
-                                                                    <JSONPretty
-                                                                      id="json-pretty"
-                                                                      data={generateExampleFromSchema(
-                                                                        item[1]
-                                                                          ?.properties
-                                                                      )}
-                                                                      theme={
-                                                                        JSONPrettyMon
-                                                                      }
-                                                                      themeClassName="p-4 fixed-height-data"
-                                                                    ></JSONPretty>
-                                                                  </div>
-                                                                );
-                                                              }
-                                                            }
-                                                          );
-                                                        return (
-                                                          <div>{data}</div>
-                                                        );
-                                                      })}
-                                                  </div>
-                                                );
-                                              }
-                                            }
-                                          )}
-                                      </div>
-                                    );
-                                  }
-                                )}
-                            <div>
+                            <div className=" bg-lightblue p-3">
                               {apiName[1].responses &&
                                 Object.entries(apiName[1].responses)?.map(
                                   (item, index) => {
-                                    return (
-                                      <div key={index}>
-                                        
-                                        {item[1].content &&
-                                          Object.entries(item[1].content)?.map(
-                                            (contentEntry, contentIndex) => {
-                                              if (
-                                                contentEntry[0] ==
-                                                "application/json"
-                                              ) {
-                                                return (
-                                                  <div key={contentIndex}>
-                                                    {contentEntry[0] &&
-                                                      Object.entries(
-                                                        contentEntry[1]
-                                                      )?.map(
-                                                        (
-                                                          jsonEntry,
-                                                          jsonIndex
-                                                        ) => {
-                                                          console.log(jsonEntry)
-                                                          const result = `${
-                                                            jsonEntry[0] &&
-                                                            Object.entries(
-                                                              jsonEntry[1]
-                                                            )
-                                                              ?.map(
-                                                                (
-                                                                  innerEntry,
-                                                                  innerIndex
-                                                                ) => {
-                                                                  if (
-                                                                    innerEntry[0] ==
-                                                                    "ref"
-                                                                  ) {
-                                                                    return innerEntry[1];
-                                                                  }
-                                                                }
-                                                              )
-                                                              .join("")
-                                                          }`;
-                                                          const finalResult =
-                                                            result.replace(
-                                                              /#\/components\/schemas\//g,
-                                                              ""
-                                                            );
-                                                          const data =
-                                                            apiData?.attributes
-                                                              ?.Defination
-                                                              ?.components
-                                                              ?.schemas &&
-                                                            Object.entries(
-                                                              apiData
-                                                                ?.attributes
-                                                                ?.Defination
-                                                                ?.components
-                                                                ?.schemas
-                                                            )?.map(
-                                                              (
-                                                                schemaEntry,
-                                                                schemaIndex
-                                                              ) => {
-                                                                if (
-                                                                  finalResult ===
-                                                                  schemaEntry[0]
-                                                                ) {
-                                                                  return (
-                                                                    contentEntry[0] &&
-                                                                    Object.entries(
-                                                                      contentEntry[1]
-                                                                    )?.map(
-                                                                      (
-                                                                        jsonEntry,
-                                                                        jsonIndex
-                                                                      ) => {
-                                                                          if (
-                                                                            jsonEntry[0] ==
-                                                                            "example"
-                                                                          ) {
-                                                                            return Object.entries(
-                                                                              jsonEntry[1]
-                                                                            )?.map(
-                                                                              (
-                                                                                ex
-                                                                              ) => {
-                                                                                if (
-                                                                                  ex[0] !==
-                                                                                  "ref"
-                                                                                ) {
-                                                                                  schemaEntry[1].properties.payInstrument.properties.responseDetails.properties.description.example =
-                                                                                    ex[1]?.description;
-                                                                                  schemaEntry[1].properties.payInstrument.properties.responseDetails.properties.message.example =
-                                                                                    ex[1]?.message;
-                                                                                  schemaEntry[1].properties.payInstrument.properties.responseDetails.properties.statusCode.example =
-                                                                                    ex[0];
-                                                                                  return (
-                                                                                    <div
-                                                                                      className="w-100"
-                                                                                      key={
-                                                                                        schemaIndex
-                                                                                      }
-                                                                                    >
-                                                                                      <p>
-                                                                                        <b>
-                                                                                          {
-                                                                                            schemaEntry[1]
-                                                                                              .properties
-                                                                                              .payInstrument
-                                                                                              .properties
-                                                                                              .responseDetails
-                                                                                              .properties
-                                                                                              .statusCode
-                                                                                              .example
-                                                                                          }
-                                                                                        </b>{" "}
-                                                                                        {
-                                                                                          " : "
-                                                                                        }
-                                                                                        {
-                                                                                          schemaEntry[1]
-                                                                                            ?.properties
-                                                                                            ?.payInstrument
-                                                                                            ?.properties
-                                                                                            ?.responseDetails
-                                                                                            ?.properties
-                                                                                            ?.message
-                                                                                            ?.example
-                                                                                        }
-                                                                                      </p>
-                                                                                      <JSONPretty
-                                                                                        id="json-pretty"
-                                                                                        data={generateExampleFromSchema(
-                                                                                          schemaEntry[1]
-                                                                                            ?.properties
-                                                                                        )}
-                                                                                        theme={
-                                                                                          JSONPrettyMon
-                                                                                        }
-                                                                                        themeClassName="p-4 fixed-height-data"
-                                                                                      ></JSONPretty>
-                                                                                    </div>
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            );
-                                                                          }
-                                                                      }
-                                                                    )
-                                                                  );
-                                                                }
-                                                              }
-                                                            );
-                                                          return (
-                                                            <div
-                                                              key={jsonIndex}
-                                                            >
-                                                              {data}
-                                                            </div>
-                                                          );
-                                                        }
-                                                      )}
-                                                  </div>
-                                                );
-                                              }
-                                            }
-                                          )}
-                                      </div>
+                                    console.log(item);
+                                    const result = item[1]?.content?.[
+                                      "application/json"
+                                    ]?.schema?.["$ref"].replace(
+                                      /#\/components\/schemas\//g,
+                                      ""
                                     );
+                                    const data =
+                                      apiData?.attributes?.Defination
+                                        ?.components?.schemas &&
+                                      Object.entries(
+                                        apiData?.attributes?.Defination
+                                          ?.components?.schemas
+                                      )?.map((schemaEntry, schemaIndex) => {
+                                        if (schemaEntry[0] == result) {
+                                          console.log(schemaEntry);
+                                          let requireList =
+                                            extractRequiredArrays(schemaEntry);
+                                          return (
+                                            <NestedCollapse
+                                              propertyName={schemaEntry[0]}
+                                              propertyValue={
+                                                schemaEntry[1]?.properties
+                                              }
+                                              requiredList={requireList}
+                                            />
+                                          );
+                                        }
+                                      });
+                                    return <div>{data}</div>;
                                   }
                                 )}
                             </div>
+                            <p>{apiName[1].responses?.description}</p>
+                            {apiName[1].responses &&
+                              Object.entries(apiName[1].responses)?.map(
+                                (apiResponse, index) => {
+                                  return (
+                                    <div key={index}>
+                                      {apiResponse[1].content &&
+                                        Object.entries(
+                                          apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples?.success
+                                        )?.map((successItem, index) => {
+                                          return ResponsesComponent(
+                                            successItem[1]
+                                          );
+                                        })}
+                                      {apiResponse[1].content &&
+                                        Object.entries(
+                                          apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples?.failure
+                                        )?.map((failure, index) => {
+                                          return ResponsesComponent(failure[1]);
+                                        })}
+                                    </div>
+                                  );
+                                }
+                              )}
                           </div>
                         </div>
                       );
