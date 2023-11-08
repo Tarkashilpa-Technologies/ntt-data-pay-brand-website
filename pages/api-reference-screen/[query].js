@@ -47,7 +47,6 @@ const ApiReferenceScreen = () => {
   }, [apisListData, queryData]);
 
   const singleApisDataApiCall = (id) => {
-    console.log(id, "id");
     singleApiDataApi(id)
       .then((res) => {
         setApiData(res?.data?.data);
@@ -71,7 +70,12 @@ const ApiReferenceScreen = () => {
   function getTagsListData() {
     if (typeof window !== "undefined") {
       const headers = document.querySelectorAll("h1, h2");
-      const headersData = Array.from(headers)?.reduce((result, header) => {
+      const headersData = Array.from(headers)?.reduce((result, header,index) => {
+        
+        if (index == 0) {
+          setSelectedUrl(`#${header?.textContent}`);
+        }
+        
         if (header?.tagName === "H1") {
           result.push({ text: header.textContent, children: [] });
         } else if (header?.tagName === "H2" && result?.length > 0) {
@@ -82,23 +86,20 @@ const ApiReferenceScreen = () => {
         return result;
       }, []);
       setHeadersData(headersData);
+      return headersData;
     }
   }
 
   useEffect(() => {
-    if (!headersData?.length > 0) {
       getTagsListData();
-    }
-  }, [apiData]);
+  }, [apiData,selectedTitle]);
 
   return (
     <>
       {fullHeight && isReady ? (
         <div className=" overflow-hidden" style={{ maxHeight: fullHeight }}>
           <div className="d-flex flex-column h-100 w-100 overflow-hidden">
-            <div>
               <HeaderTwo />
-            </div>
             <div className="d-flex d-block d-lg-none overflow-x-scroll">
               <div className="d-flex bg-primary w-100">
                 {apisListData?.map((dropdown, index) => {
@@ -248,10 +249,7 @@ const ApiReferenceScreen = () => {
                                 <h1 className="pt-md-4 pb-md-2 heading-styles">
                                   <a
                                     {...props}
-                                    href={`#${node?.children[0]?.value.replace(
-                                      /\s+/g,
-                                      "-"
-                                    )}`}
+                                    href={`#${node?.children[0]?.value}`}
                                     target="_self"
                                     className="pe-1"
                                   >
@@ -281,10 +279,7 @@ const ApiReferenceScreen = () => {
                                 <h2 className="pt-md-4 pb-md-2 heading-styles">
                                   <a
                                     {...props}
-                                    href={`#${node?.children[0]?.value.replace(
-                                      /\s+/g,
-                                      "-"
-                                    )}`}
+                                    href={`#${node?.children[0]?.value}`}
                                     target="_self"
                                     className="pe-1"
                                   >
@@ -314,10 +309,7 @@ const ApiReferenceScreen = () => {
                                 <h3 className="pt-md-4 pb-md-2 heading-styles">
                                   <a
                                     {...props}
-                                    href={`#${node?.children[0]?.value.replace(
-                                      /\s+/g,
-                                      "-"
-                                    )}`}
+                                    href={`#${node?.children[0]?.value}`}
                                     target="_self"
                                     className="pe-1"
                                   >
@@ -420,25 +412,24 @@ const ApiReferenceScreen = () => {
                     <div className="fw-bold fs-6">ON THIS PAGE</div>
                     {headersData &&
                       headersData?.map((h1Data, index) => {
-                        console.log(h1Data);
                         return (
                           <div key={index}>
                             <a
                               className={`ps-3 py-1  fw-bold  d-flex ${
                                 selectedUrl ==
-                                `#${h1Data?.text?.replace(/\s+/g, "")}`
+                                `#${h1Data?.text}`
                                   ? "text-primary "
                                   : "text-Black"
                               }`}
                               onClick={() => {
                                 setSelectedUrl(
-                                  `#${h1Data?.text?.replace(/\s+/g, "")}`
+                                  `#${h1Data?.text}`
                                 );
                               }}
-                              href={`#${h1Data?.text?.replace(/\s+/g, "")}`}
+                              href={`#${h1Data?.text}`}
                             >
                               {selectedUrl ==
-                                `#${h1Data?.text?.replace(/\s+/g, "")}` && (
+                                `#${h1Data?.text}` && (
                                 <span
                                   className="border-start-primary border-2 "
                                   style={{ marginLeft: -15, marginRight: 13 }}

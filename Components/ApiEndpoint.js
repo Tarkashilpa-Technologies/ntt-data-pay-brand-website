@@ -8,7 +8,6 @@ import { extractRequiredArrays } from "../utils/utils";
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
   function ResponsesComponent(data) {
-    console.log(data)
       return (
         <div className="w-100">
           <p>
@@ -179,7 +178,6 @@ const ApiEndpoint = ({ apiData }) => {
                               {apiName[1].responses &&
                                 Object.entries(apiName[1].responses)?.map(
                                   (item, index) => {
-                                    console.log(item);
                                     const result = item[1]?.content?.[
                                       "application/json"
                                     ]?.schema?.["$ref"].replace(
@@ -194,7 +192,6 @@ const ApiEndpoint = ({ apiData }) => {
                                           ?.components?.schemas
                                       )?.map((schemaEntry, schemaIndex) => {
                                         if (schemaEntry[0] == result) {
-                                          console.log(schemaEntry);
                                           let requireList =
                                             extractRequiredArrays(schemaEntry);
                                           return (
