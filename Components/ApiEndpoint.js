@@ -11,9 +11,7 @@ const ApiEndpoint = ({ apiData }) => {
       return (
         <div className="w-100">
           <p>
-            <b>{data[1]?.value?.payInstrument?.responseDetails?.statusCode}</b>{" "}
-            {" : "}
-            {data[0]}
+            <b>{data[0]}</b>
           </p>
           <JSONPretty
             id="json-pretty"
