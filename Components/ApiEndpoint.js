@@ -7,7 +7,21 @@ import { extractRequiredArrays } from "../utils/utils";
 
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
-
+  function ResponsesComponent(data) {
+      return (
+        <div className="w-100">
+          <p>
+            <b>{data[0]}</b>
+          </p>
+          <JSONPretty
+            id="json-pretty"
+            data={data[1]?.value}
+            theme={JSONPrettyMon}
+            themeClassName="p-4 fixed-height-data"
+          ></JSONPretty>
+        </div>
+      );
+  }
   return (
     <div>
       <div className="w-100">
@@ -97,7 +111,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                         </h4>
 
                                                         <h6 className="pt-2 m-0 mb-2">
-                                                          Schema :-{" "}
+                                                          Schema
                                                         </h6>
                                                         <div className=" bg-lightblue p-3">
                                                           {Object?.entries(
@@ -124,7 +138,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                           })}
                                                         </div>
                                                         <h6 className="pt-2 m-0 mb-2">
-                                                          Example :-{" "}
+                                                          Example
                                                         </h6>
 
                                                         <JSONPretty
@@ -157,114 +171,78 @@ const ApiEndpoint = ({ apiData }) => {
                             >
                               Responses
                             </h4>
-
-                            <p>{apiName[1].responses?.description}</p>
-                            <div>
+                            <h6 className="pt-2 m-0 mb-2">Schema</h6>
+                            <div className=" bg-lightblue p-3">
                               {apiName[1].responses &&
                                 Object.entries(apiName[1].responses)?.map(
                                   (item, index) => {
-                                    // if(item[0] == 'application/json')
-                                    return (
-                                      <div key={index}>
-                                        <div className="py-2">
-                                          <h6>
-                                            {item[0]}:{" "}
-                                            <span className="fw-normal">
-                                              {item[1].description}
-                                            </span>
-                                          </h6>{" "}
-                                        </div>
-                                        {item[1].content &&
-                                          Object.entries(item[1].content)?.map(
-                                            (item, index) => {
-                                              if (
-                                                item[0] == "application/json"
-                                              ) {
-                                                return (
-                                                  <div>
-                                                    {item[0] &&
-                                                      Object.entries(
-                                                        item[1]
-                                                      )?.map((item, index) => {
-                                                        const result = `${
-                                                          item[0] &&
-                                                          Object.entries(
-                                                            item[1]
-                                                          )
-                                                            ?.map(
-                                                              (item, index) => {
-                                                                return `${Object.entries(
-                                                                  item[1]
-                                                                )
-                                                                  ?.map(
-                                                                    (
-                                                                      item,
-                                                                      index
-                                                                    ) => {
-                                                                      return `${item[1].replace(
-                                                                        / \n/g,
-                                                                        ""
-                                                                      )}`;
-                                                                    }
-                                                                  )
-                                                                  .join("")}`;
-                                                              }
-                                                            )
-                                                            .join("")
-                                                        }`;
-                                                        const finalResult =
-                                                          result.replace(
-                                                            /#\/components\/schemas\//g,
-                                                            ""
-                                                          );
-                                                        const data =
-                                                          apiData?.attributes
-                                                            ?.Defination
-                                                            ?.components
-                                                            ?.schemas &&
-                                                          Object.entries(
-                                                            apiData?.attributes
-                                                              ?.Defination
-                                                              ?.components
-                                                              ?.schemas
-                                                          )?.map(
-                                                            (item, index) => {
-                                                              if (
-                                                                finalResult ===
-                                                                item[0]
-                                                              ) {
-                                                                return (
-                                                                  <div className="w-100">
-                                                                    <JSONPretty
-                                                                      id="json-pretty"
-                                                                      data={generateExampleFromSchema(
-                                                                        item[1]
-                                                                          ?.properties
-                                                                      )}
-                                                                      theme={
-                                                                        JSONPrettyMon
-                                                                      }
-                                                                      themeClassName="p-4 fixed-height-data"
-                                                                    ></JSONPretty>
-                                                                  </div>
-                                                                );
-                                                              }
-                                                            }
-                                                          );
-                                                        return (
-                                                          <div>{data}</div>
-                                                        );
-                                                      })}
-                                                  </div>
-                                                );
-                                              }
-                                            }
-                                          )}
-                                      </div>
+                                    const result = item[1]?.content?.[
+                                      "application/json"
+                                    ]?.schema?.["$ref"].replace(
+                                      /#\/components\/schemas\//g,
+                                      ""
                                     );
+                                    const data =
+                                      apiData?.attributes?.Defination
+                                        ?.components?.schemas &&
+                                      Object.entries(
+                                        apiData?.attributes?.Defination
+                                          ?.components?.schemas
+                                      )?.map((schemaEntry, schemaIndex) => {
+                                        if (schemaEntry[0] == result) {
+                                          let requireList =
+                                            extractRequiredArrays(schemaEntry);
+                                          return (
+                                            <NestedCollapse
+                                              propertyName={schemaEntry[0]}
+                                              propertyValue={
+                                                schemaEntry[1]?.properties
+                                              }
+                                              requiredList={requireList}
+                                            />
+                                          );
+                                        }
+                                      });
+                                    return <div>{data}</div>;
                                   }
                                 )}
                             </div>
+                            <p>{apiName[1].responses?.description}</p>
+                            {apiName[1].responses &&
+                              Object.entries(apiName[1].responses)?.map(
+                                (apiResponse, index) => {
+                                  return (
+                                    <div key={index}>
+                                      {apiResponse[1].content && apiResponse[1].content?.[
+                                            "application/json"
+                                          ] && apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples &&
+                                        Object.entries(
+                                          apiResponse[1]?.content?.[
+                                            "application/json"
+                                          ]?.examples
+                                      )?.map((successItem, index) => {
+                                          return ResponsesComponent(
+                                            successItem
+                                          );
+                                        })}
+                                      {/* {apiResponse[1].content && apiResponse[1].content?.[
+                                            "application/json"
+                                          ] && apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples &&
+                                        Object.entries(
+                                          apiResponse[1].content?.[
+                                            "application/json"
+                                          ]?.examples?.failure
+                                        )?.map((failure, index) => {
+                                          return ResponsesComponent(failure[1]);
+                                        })} */}
+                                    </div>
+                                  );
+                                }
+                              )}
                           </div>
                         </div>
                       );

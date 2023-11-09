@@ -15,7 +15,7 @@ const HeaderTwo = () => {
 
   function handleMenuToggle(e) {
     e.preventDefault();
-    console.log(ham?.current?.classList,"current ");
+    console.log(ham?.current?.classList, "current ");
     if (ham?.current?.classList?.contains("open")) {
       menubox?.current?.classList?.add("hide");
       menubox?.current?.classList?.remove("show");
@@ -28,7 +28,6 @@ const HeaderTwo = () => {
       document.getElementById("checkbox4").checked = true;
     }
   }
-
   const dataArray = [
     {
       label: 'Integration Guides',

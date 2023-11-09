@@ -6296,13 +6296,3 @@ input[type="number"]::-webkit-outer-spin-button {
 .first-section-width {
   width: 19rem !important;
 }
-.custom-scroll-bar {
-  overflow-y: scroll;
-}
-.custom-scroll-bar::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-.custom-scroll-bar::-webkit-scrollbar-thumb {
-  background-color: #0072bc !important;
-}
