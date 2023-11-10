@@ -23,7 +23,6 @@ const JsonEditor = ({
       height={height ? height : "100%"}
       placeholder={jsonData} // Default Value
       viewOnly={viewOnly} // Do you want to View Only?
-      locale={`react-json-editor-ajrm/locale/en`}
       onChange={onChange}
       waitAfterKeyPress={waitAfterKeyPress}
       onKeyPressUpdate={onKeyPressUpdate}
