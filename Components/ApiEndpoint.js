@@ -190,17 +190,23 @@ const ApiEndpoint = ({ apiData }) => {
                                           ?.components?.schemas
                                       )?.map((schemaEntry, schemaIndex) => {
                                         if (schemaEntry[0] == result) {
-                                          let requireList =
-                                            extractRequiredArrays(schemaEntry);
-                                          return (
-                                            <NestedCollapse
-                                              propertyName={schemaEntry[0]}
-                                              propertyValue={
-                                                schemaEntry[1]?.properties
-                                              }
-                                              requiredList={requireList}
-                                            />
-                                          );
+                                          return Object?.entries(schemaEntry[1])?.map((schema1, idx1) => {
+                                            if (schema1[0] == 'properties') {
+                                              let requireList =
+                                                extractRequiredArrays(schema1);
+                                              return Object?.entries(
+                                                schema1[1]
+                                              )?.map((schema2, idx1) => {
+                                                  return (
+                                                    <NestedCollapse
+                                                      propertyName={schema2[0]}
+                                                      propertyValue={schema2[1]?.properties}
+                                                      requiredList={requireList}
+                                                    />
+                                                  );
+                                              });
+                                            }
+                                          })
                                         }
                                       });
                                     return <div>{data}</div>;
@@ -227,18 +233,6 @@ const ApiEndpoint = ({ apiData }) => {
                                             successItem
                                           );
                                         })}
-                                      {/* {apiResponse[1].content && apiResponse[1].content?.[
-                                            "application/json"
-                                          ] && apiResponse[1].content?.[
-                                            "application/json"
-                                          ]?.examples &&
-                                        Object.entries(
-                                          apiResponse[1].content?.[
-                                            "application/json"
-                                          ]?.examples?.failure
-                                        )?.map((failure, index) => {
-                                          return ResponsesComponent(failure[1]);
-                                        })} */}
                                     </div>
                                   );
                                 }

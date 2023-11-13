@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Dropdown, Form, Row } from "react-bootstrap";
+import { Col, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 import { apisDataApi } from "../services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
@@ -30,6 +30,7 @@ const TryItOutApiScreen = () => {
   // State Declarations
   const [apiSpecification, setApiSpecification] = useState();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [loader, setLoader] = useState(false);
   const arrowClass = isCollapsed ? "down" : "up";
   const [apisData, setApisData] = useState([]);
   const [selectedEnv, setSelectedEnv] = useState({
@@ -96,6 +97,7 @@ const TryItOutApiScreen = () => {
   }
 
   async function handleSendRequestClick(e) {
+    setLoader(true)
     e.preventDefault();
     try {
       const res = await axios.post(TRY_IT_OUT_ENDOINT, {
@@ -114,6 +116,7 @@ const TryItOutApiScreen = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+    setLoader(false)
   }
   function handleReset(e) {
     e.preventDefault(); // Prevent the default form submission
@@ -518,8 +521,11 @@ const TryItOutApiScreen = () => {
                         <button
                           disabled={!selectedAPI && !selectedFunction}
                           type="submit"
-                          className="bg-black p-1 px-4 text-white rounded-pill border-0"
+                          className="bg-black d-flex align-items-center gap-2 p-1 px-3 text-white rounded-pill border-0"
                         >
+                          {loader && (
+                            <Spinner animation="border" role="status" style={{fontSize:20, height:20,width:20}} />
+                          )}
                           Send
                         </button>
                       </div>
