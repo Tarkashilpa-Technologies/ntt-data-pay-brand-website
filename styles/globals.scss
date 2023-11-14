@@ -6071,6 +6071,11 @@ blockquote.error > div > strong {
       overflow-y: scroll;
       overflow-x: hidden;
     }
+    .first-section-width {
+      box-shadow: none !important;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
     div {
       padding: 5px !important;
       margin: 0px;
@@ -6159,6 +6164,11 @@ blockquote.error > div > strong {
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 1.5rem;
+}
+
+.first-section-width {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .display-center {
@@ -6293,6 +6303,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: coral !important;
 }
 
-.first-section-width {
-  width: 19rem !important;
+.third-section{
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
