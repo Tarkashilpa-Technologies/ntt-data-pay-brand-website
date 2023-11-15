@@ -1,96 +1,102 @@
 import HeaderTwo from '../../Components/HeaderTwo'
-import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Dropdown } from 'react-bootstrap';
-import ReactMarkdown from "react-markdown";
-import Accordion from "react-bootstrap/Accordion";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+import { useRouter } from 'next/router'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Breadcrumb, Dropdown } from 'react-bootstrap'
+import ReactMarkdown from 'react-markdown'
+import Accordion from 'react-bootstrap/Accordion'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import {
-    tutorialDataApi,
-    tutorialGroupDataApi,
-    useCaseDataApi,
-  } from "../../services/services";
+  tutorialDataApi,
+  tutorialGroupDataApi,
+  useCaseDataApi,
+} from '../../services/services'
+import Link from 'next/link'
 
 const TutorialScreenPage = () => {
-    const router = useRouter();
-    const queryData = router.query?.query;
-    const [tutorialsListData, setTutorialsListData] = useState([]);
-    const [tutorialData, setTutorialData] = useState([]);
-    const [showHelpfulData, setShowHelpfulData] = useState([]);
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [selectedUrl, setSelectedUrl] = useState(0);
-    const [isPageHelpful, setIsPageHelpful] = useState();
-    const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
-    const divRef = useRef(null);
-    const [overflowBtn,setOverflowBtn] = useState(false);
-    const[fullHeight,setFullHeight]= useState(typeof window !== 'undefined' && window.innerHeight);
-    const[fullWidth,setFullWidth] = useState();
-
-    const tutorialListDataApiCall = () => {
-        // setShowLoader(true);
-        tutorialGroupDataApi()
-          .then((res) => {
-            if(res?.data){
-            setTutorialsListData(res?.data?.data);
-            }else {
-              setTutorialsListData([])
-            }
-          })
-          .catch((err) => {
-            console.log("err", err);
-            // setShowLoader(false);
-          });
-      };
-    
-      useEffect(() => {
-        tutorialListDataApiCall();
-      }, []);
-    
-      useEffect(() => {
-        // console.log(queryData,"queryData")
-        if (tutorialsListData && queryData) {
-          tutorialsListData?.map((data) => {
-    
-            data?.attributes?.tutorials?.data?.map((title) => {
-              if(title?.attributes?.Title.toLowerCase().replace(/\s+/g,"-") == queryData)
-              {
-                return  title?.attributes != undefined ?  UseCaseDataApiCall(
-                  title?.id
-                ) : router?.push('/404')
-              }
-            });
-          });
+  const router = useRouter()
+  const queryData = router.query?.query
+  const [tutorialsListData, setTutorialsListData] = useState([])
+  const [tutorialData, setTutorialData] = useState([])
+  const [showHelpfulData, setShowHelpfulData] = useState([])
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedUrl, setSelectedUrl] = useState(0)
+  const [isPageHelpful, setIsPageHelpful] = useState()
+  const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([])
+  const divRef = useRef(null)
+  const [overflowBtn, setOverflowBtn] = useState(false)
+  const [fullHeight, setFullHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight
+  )
+  const [fullWidth, setFullWidth] = useState()
+  const pathSegments = router.asPath
+    .split('/')
+    .filter((segment) => segment !== '')
+  const tutorialListDataApiCall = () => {
+    // setShowLoader(true);
+    tutorialGroupDataApi()
+      .then((res) => {
+        if (res?.data) {
+          setTutorialsListData(res?.data?.data)
+        } else {
+          setTutorialsListData([])
         }
-      }, [tutorialsListData,queryData]);
+      })
+      .catch((err) => {
+        console.log('err', err)
+        // setShowLoader(false);
+      })
+  }
 
-       // use case data api
+  useEffect(() => {
+    tutorialListDataApiCall()
+  }, [])
+
+  useEffect(() => {
+    // console.log(queryData,"queryData")
+    if (tutorialsListData && queryData) {
+      tutorialsListData?.map((data) => {
+        data?.attributes?.tutorials?.data?.map((title) => {
+          if (
+            title?.attributes?.Title.toLowerCase().replace(/\s+/g, '-') ==
+            queryData
+          ) {
+            return title?.attributes != undefined
+              ? UseCaseDataApiCall(title?.id)
+              : router?.push('/404')
+          }
+        })
+      })
+    }
+  }, [tutorialsListData, queryData])
+
+  // use case data api
   const UseCaseDataApiCall = (id) => {
     // setShowLoader(true);
     // console.log(id,"id")
     useCaseDataApi(id)
       .then((res) => {
         // console.log(res?.data.data,"res data")
-        if(res?.data){
-        setTutorialData(res?.data?.data?.attributes);
-        }else {
-          setTutorialData([]);
+        if (res?.data) {
+          setTutorialData(res?.data?.data?.attributes)
+        } else {
+          setTutorialData([])
         }
       })
       .catch((err) => {
-        console.log("err", err);
-        setTutorialData([]);
+        console.log('err', err)
+        setTutorialData([])
         // setShowLoader(false);
-      });
-  };
+      })
+  }
 
   // fetch on this page data
-  const sidebarData = [];
+  const sidebarData = []
   if (tutorialData) {
-    const regex = /# ([^\n]+)/g;
-    let match;
+    const regex = /# ([^\n]+)/g
+    let match
     while ((match = regex.exec(tutorialData?.Content)) !== null) {
-      sidebarData.push(match[1]);
+      sidebarData.push(match[1])
     }
   }
 
@@ -98,112 +104,110 @@ const TutorialScreenPage = () => {
   const pageHelpfulData = [
     {
       id: 1,
-      value: "Issue with refund",
+      value: 'Issue with refund',
     },
     {
       id: 2,
-      value: "Issue with activation (delay in KYC, follow-ups)",
+      value: 'Issue with activation (delay in KYC, follow-ups)',
     },
     {
       id: 3,
-      value: "Issue with settlement",
+      value: 'Issue with settlement',
     },
     {
       id: 4,
-      value: "Issue with international payments",
+      value: 'Issue with international payments',
     },
     {
       id: 5,
-      value: "Unable to find information",
+      value: 'Unable to find information',
     },
     {
       id: 6,
-      value: "Difficult to understand",
+      value: 'Difficult to understand',
     },
     {
       id: 7,
-      value: "Other",
+      value: 'Other',
     },
-  ];
+  ]
 
   // submit page helpful form
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     // Get data from the form.
     const new_contact = {
-      subject: isPageHelpful ? "What was the most helpful ?" : "What can be improved ?",
+      subject: isPageHelpful
+        ? 'What was the most helpful ?'
+        : 'What can be improved ?',
       article: tutorialData?.Title,
       message: event.target.message.value,
       data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
-    };
+    }
 
-    await fetch("/api/formemail", {
-      method: "POST",
+    await fetch('/api/formemail', {
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
       // console.log(res.json());
       if (res.status === 200) {
       }
-    });
-    alert("Thank you for submitting your feedback to us.");
-    setShowHelpfulData(false);
-  };
+    })
+    alert('Thank you for submitting your feedback to us.')
+    setShowHelpfulData(false)
+  }
 
   const reasonSelectionFunction = (data) => {
-    setPageHelpfulFalseData((prevArray) => [...prevArray, data]);
-  };
-
+    setPageHelpfulFalseData((prevArray) => [...prevArray, data])
+  }
 
   function scrollToTarget(text) {
-    const eleId= document.getElementById(text);
-    eleId?.current?.scrollIntoView({ behavior: 'smooth', top:200});
+    const eleId = document.getElementById(text)
+    eleId?.current?.scrollIntoView({ behavior: 'smooth', top: 200 })
   }
 
   const useResize = (myRef) => {
-    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
-  
-    const [width, setWidth] = useState(undefined);
-  
-    useEffect(() => {
-        const handleResize = () => {
-            setWidth(getWidth());
-        };
-  
-        if (myRef.current) {
-            setWidth(getWidth());
-        }
-  
-        window.addEventListener('resize', handleResize);
-  
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [myRef, getWidth]);
-  
-    return width && width > 25 ? width - 25 : width;
-  };
+    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef])
 
-  const maxWidth = useResize(divRef);
+    const [width, setWidth] = useState(undefined)
+
+    useEffect(() => {
+      const handleResize = () => {
+        setWidth(getWidth())
+      }
+
+      if (myRef.current) {
+        setWidth(getWidth())
+      }
+
+      window.addEventListener('resize', handleResize)
+
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    }, [myRef, getWidth])
+
+    return width && width > 25 ? width - 25 : width
+  }
+
+  const maxWidth = useResize(divRef)
   // console.log(maxWidth,"maxWidth")
 
-  useEffect(()=> {
-    if(typeof window !== 'undefined')
-    {
-      setFullHeight(window.innerHeight);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setFullHeight(window.innerHeight)
     }
 
-    window.addEventListener('resize', ()=> {
-      setFullHeight(window.innerHeight);
-      setFullWidth(window.innerWidth);
-    });
-    
- }, [])
-  
+    window.addEventListener('resize', () => {
+      setFullHeight(window.innerHeight)
+      setFullWidth(window.innerWidth)
+    })
+  }, [])
 
   return (
     <>
@@ -219,7 +223,7 @@ const TutorialScreenPage = () => {
                   <button
                     className='w-100 btn bg-primary text-white text-start rounded-0 link-primary'
                     style={{ minWidth: 140 }}
-                    onClick={() => router.push('/integration-guides-new')}
+                    onClick={() => router.push('/integration-guide-main')}
                   >
                     {'<'} Back to home
                   </button>
@@ -260,7 +264,7 @@ const TutorialScreenPage = () => {
                                           onClick={() => {
                                             UseCaseDataApiCall(tutorial.id)
                                             router.push(
-                                              `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(
+                                              `/integration-guide-main/${tutorial?.attributes?.Title.toLowerCase().replace(
                                                 /\s+/g,
                                                 '-'
                                               )}`
@@ -293,7 +297,7 @@ const TutorialScreenPage = () => {
                       {' '}
                       <button
                         className='w-100 btn bg-primary text-white text-start rounded-0 link-primary'
-                        onClick={() => router.push('/integration-guides-new')}
+                        onClick={() => router.push('/integration-guide-main')}
                       >
                         {'<'} Back to home
                       </button>
@@ -386,7 +390,7 @@ const TutorialScreenPage = () => {
                                             onClick={() => {
                                               UseCaseDataApiCall(tutorial.id)
                                               router.push(
-                                                `/tutorial-screen/${tutorial?.attributes?.Title.toLowerCase().replace(
+                                                `/integration-guide-main/${tutorial?.attributes?.Title.toLowerCase().replace(
                                                   /\s+/g,
                                                   '-'
                                                 )}`
@@ -414,6 +418,26 @@ const TutorialScreenPage = () => {
                     className='shadow p-xl-5 pb-3 middle-section-shadow'
                     style={{ maxHeight: fullHeight - 90 }}
                   >
+                    <Breadcrumb>
+                      {pathSegments?.map((segment, index) => (
+                        <Breadcrumb.Item
+                          key={index}
+                          active={index === pathSegments?.length - 1}
+                        >
+                          {index === pathSegments?.length - 1 ? (
+                            segment
+                          ) : (
+                            <Link
+                              href={`/${pathSegments
+                                ?.slice(0, index + 1)
+                                ?.join('/')}`}
+                            >
+                              <a>{segment}</a>
+                            </Link>
+                          )}
+                        </Breadcrumb.Item>
+                      ))}
+                    </Breadcrumb>
                     <div className='text-start'>
                       {' '}
                       <h1 className='text-start title-font'>
@@ -817,7 +841,7 @@ const TutorialScreenPage = () => {
                                 return (
                                   <div className='p-1'>
                                     <a
-                                      href={`/tutorial-screen?data=${tutorial?.attributes?.Title.replace(
+                                      href={`/integration-guide-main?data=${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
                                         ''
                                       )}&id=`}

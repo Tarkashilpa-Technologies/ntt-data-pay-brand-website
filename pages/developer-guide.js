@@ -160,7 +160,7 @@ export default function product1() {
                       </div>
                     </div>
                     <div className="d-flex justify-content-center">
-                      <Link href="/integration-guides-new">
+                      <Link href="/integration-guide-main">
                         <a href="" className="btn_style1">
                           Know More
                         </a>
@@ -183,7 +183,7 @@ export default function product1() {
                       </div>
                     </div>
                     <div className="d-flex justify-content-center">
-                      <Link href="/api-references-new">
+                      <Link href="/integration-guide-main">
                         <a href="" className="btn_style1">
                           Know More
                         </a>

@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { tutorialDataApi, tutorialGroupDataApi } from "../services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { tutorialGroupDataApi } from "../../services/services";
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([]);

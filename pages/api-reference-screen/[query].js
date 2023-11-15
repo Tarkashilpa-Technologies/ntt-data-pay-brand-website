@@ -1,100 +1,104 @@
-import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Dropdown } from "react-bootstrap";
-import { apisDataApi, singleApiDataApi } from "../../services/services";
-import ReactMarkdown from "react-markdown";
-import HeaderTwo from "../../Components/HeaderTwo";
-import ApiEndpoint from "../../Components/ApiEndpoint";
-import { useLayoutEffect } from "react";
+import { useRouter } from 'next/router'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Breadcrumb, Dropdown } from 'react-bootstrap'
+import { apisDataApi, singleApiDataApi } from '../../services/services'
+import ReactMarkdown from 'react-markdown'
+import HeaderTwo from '../../Components/HeaderTwo'
+import ApiEndpoint from '../../Components/ApiEndpoint'
+import { useLayoutEffect } from 'react'
+import Link from 'next/link'
 
 const ApiReferenceScreen = () => {
-  const router = useRouter();
-  const queryData = router.query?.query;
-  const [headersData, setHeadersData] = useState([]);
-  const [selectedTitle, setSelectedTitle] = useState(0);
-  const [apisListData, setApisListData] = useState([]);
-  const [apiData, setApiData] = useState();
-  const divRef = useRef(null);
+  const router = useRouter()
+  const queryData = router.query?.query
+  const [headersData, setHeadersData] = useState([])
+  const [selectedTitle, setSelectedTitle] = useState(0)
+  const [apisListData, setApisListData] = useState([])
+  const [apiData, setApiData] = useState()
+  const divRef = useRef(null)
+  const pathSegments = router.asPath
+    .split('/')
+    .filter((segment) => segment !== '')
   const [fullHeight, setFullHeight] = useState(
-    typeof window !== "undefined" && window.innerHeight
-  );
-  const [fullWidth, setFullWidth] = useState();
-  const [isReady, setIsReady] = useState(false);
-  const [selectedUrl, setSelectedUrl] = useState(0);
+    typeof window !== 'undefined' && window.innerHeight
+  )
+  const [fullWidth, setFullWidth] = useState()
+  const [isReady, setIsReady] = useState(false)
+  const [selectedUrl, setSelectedUrl] = useState(0)
   const apisListDataApiCall = () => {
     apisDataApi()
       .then((res) => {
-        setApisListData(res?.data?.data);
+        setApisListData(res?.data?.data)
       })
       .catch((err) => {
-        console.log("err", err);
-      });
-  };
+        console.log('err', err)
+      })
+  }
 
   useEffect(() => {
     if (apisListData && queryData) {
       apisListData?.map((data) => {
         if (
-          data?.attributes?.Title.toLowerCase().replace(/\s+/g, "-") ==
+          data?.attributes?.Title.toLowerCase().replace(/\s+/g, '-') ==
           queryData
         ) {
           return data?.attributes != undefined
             ? singleApisDataApiCall(data?.id)
-            : router.push("/404");
+            : router.push('/404')
         }
-      });
+      })
     }
-  }, [apisListData, queryData]);
+  }, [apisListData, queryData])
 
   const singleApisDataApiCall = (id) => {
     singleApiDataApi(id)
       .then((res) => {
-        setApiData(res?.data?.data);
+        setApiData(res?.data?.data)
       })
       .catch((err) => {
-        console.log("err", err);
-      });
-  };
+        console.log('err', err)
+      })
+  }
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      setFullHeight(window.innerHeight);
-      setFullWidth(window.innerWidth);
-    });
-    if (typeof window !== "undefined") {
-      setIsReady(true);
+    window.addEventListener('resize', () => {
+      setFullHeight(window.innerHeight)
+      setFullWidth(window.innerWidth)
+    })
+    if (typeof window !== 'undefined') {
+      setIsReady(true)
     }
-    apisListDataApiCall();
-  }, []);
+    apisListDataApiCall()
+  }, [])
 
   function getTagsListData() {
-    if (typeof window !== "undefined") {
-      const headers = document.querySelectorAll("h1, h2");
+    if (typeof window !== 'undefined') {
+      const headers = document.querySelectorAll('h1, h2')
       const headersData = Array.from(headers)?.reduce(
         (result, header, index) => {
           if (index == 0) {
-            setSelectedUrl(`#${header?.textContent}`);
+            setSelectedUrl(`#${header?.textContent}`)
           }
 
-          if (header?.tagName === "H1") {
-            result.push({ text: header.textContent, children: [] });
-          } else if (header?.tagName === "H2" && result?.length > 0) {
+          if (header?.tagName === 'H1') {
+            result.push({ text: header.textContent, children: [] })
+          } else if (header?.tagName === 'H2' && result?.length > 0) {
             result[result?.length - 1]?.children?.push({
               text: header?.textContent,
-            });
+            })
           }
-          return result;
+          return result
         },
         []
-      );
-      setHeadersData(headersData);
-      return headersData;
+      )
+      setHeadersData(headersData)
+      return headersData
     }
   }
 
   useEffect(() => {
-    getTagsListData();
-  }, [apiData, selectedTitle]);
+    getTagsListData()
+  }, [apiData, selectedTitle])
 
   return (
     <>
@@ -169,6 +173,26 @@ const ApiReferenceScreen = () => {
                 className='px-4 px-xl-5 py-sm-3 pt-xl-2 pt-lg-2 '
                 style={{ maxHeight: fullHeight - 84 }}
               >
+                <Breadcrumb>
+                  {pathSegments?.map((segment, index) => (
+                    <Breadcrumb.Item
+                      key={index}
+                      active={index === pathSegments?.length - 1}
+                    >
+                      {index === pathSegments?.length - 1 ? (
+                        segment
+                      ) : (
+                        <Link
+                          href={`/${pathSegments
+                            ?.slice(0, index + 1)
+                            ?.join('/')}`}
+                        >
+                          <a>{segment}</a>
+                        </Link>
+                      )}
+                    </Breadcrumb.Item>
+                  ))}
+                </Breadcrumb>
                 <div className='text-start'>
                   {' '}
                   <p
@@ -390,7 +414,7 @@ const ApiReferenceScreen = () => {
                       </table>
                     </div>
                   )}
-                  <div className="mb-5 pb-5">
+                  <div className='mb-5 pb-5'>
                     <ApiEndpoint apiData={apiData} />
                   </div>
                 </div>
@@ -481,6 +505,6 @@ const ApiReferenceScreen = () => {
       )}
     </>
   )
-};
+}
 
-export default ApiReferenceScreen;
+export default ApiReferenceScreen

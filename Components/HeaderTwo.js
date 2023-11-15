@@ -31,12 +31,12 @@ const HeaderTwo = () => {
   const dataArray = [
     {
       label: 'Integration Guides',
-      url: '/integration-guides-new',
+      url: '/integration-guide-main',
       class:'header-btn',
     },
     {
       label: 'Api References',
-      url: '/api-references-new',
+      url: '/api-reference-screen',
       class:'header-btn',
     },
     {
