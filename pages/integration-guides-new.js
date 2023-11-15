@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { tutorialDataApi, tutorialGroupDataApi } from "../services/services";
 import Link from "next/link";

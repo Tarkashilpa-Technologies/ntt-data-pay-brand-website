@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { apisDataApi } from "../../services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import { useRouter } from "next/router";
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([]);
