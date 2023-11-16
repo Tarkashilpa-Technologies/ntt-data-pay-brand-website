@@ -39,59 +39,59 @@ const ApiEndpoint = ({ apiData }) => {
                           <div>
                             <h2
                               className="py-3 m-0 pt-2"
-                              id={apiName[1]?.summary.replace(/\s+/g, "-")}
+                              id={apiName[1]?.summary?.replace(/\s+/g, "-")}
                             >
                               {apiName[1]?.summary}
                             </h2>
                             <div className="fw-bold fs-6 rounded-1 border border-primary d-flex ">
                               <div className="border-end p-2 bg-primary text-white px-3">
-                                {apiName[0].charAt(0).toUpperCase() +
-                                  apiName[0].slice(1)}{" "}
+                                {apiName[0]?.charAt(0)?.toUpperCase() +
+                                  apiName[0]?.slice(1)}{" "}
                               </div>
                               <div className="text-decoration-underline p-2 text-primary">
                                 {path[0]}
                               </div>
                             </div>
-                            {apiName[1].requestBody?.summary && (
+                            {apiName[1]?.requestBody?.summary && (
                               <p className="py-3 mb-0">
-                                {apiName[1].requestBody?.summary}
+                                {apiName[1]?.requestBody?.summary}
                               </p>
                             )}
-                            {apiName[1].requestBody?.description && (
+                            {apiName[1]?.requestBody?.description && (
                               <p className="mt-2 mb-0">
-                                {apiName[1].requestBody?.description}
+                                {apiName[1]?.requestBody?.description}
                               </p>
                             )}
                             <div>
-                              {apiName[1].requestBody?.content &&
-                                Object.entries(
-                                  apiName[1].requestBody?.content
+                              {apiName[1]?.requestBody?.content &&
+                                Object?.entries(
+                                  apiName[1]?.requestBody?.content
                                 )?.map((item, index) => {
                                   if (item[0] == "application/json") {
                                     return (
                                       <div>
                                         {item[0] &&
-                                          Object.entries(item[1])?.map(
+                                          Object?.entries(item[1])?.map(
                                             (item, index) => {
                                               const result = `${
                                                 item[0] &&
-                                                Object.entries(item[1])
+                                                Object?.entries(item[1])
                                                   ?.map((item, index) => {
-                                                    return `${Object.entries(
+                                                    return `${Object?.entries(
                                                       item[1]
                                                     )
                                                       ?.map((item, index) => {
-                                                        return `${item[1].replace(
+                                                        return `${item[1]?.replace(
                                                           / \n/g,
                                                           ""
                                                         )}`;
                                                       })
-                                                      .join("")}`;
+                                                      ?.join("")}`;
                                                   })
-                                                  .join("")
+                                                  ?.join("")
                                               }`;
                                               const finalResult =
-                                                result.replace(
+                                                result?.replace(
                                                   /#\/components\/schemas\//g,
                                                   ""
                                                 );
@@ -133,6 +133,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                                 requiredList={
                                                                   requireList
                                                                 }
+                                                                isOpen={true}
                                                               />
                                                             );
                                                           })}
@@ -164,7 +165,7 @@ const ApiEndpoint = ({ apiData }) => {
                           </div>
                           <div>
                             <h4
-                              id={`Responses-${apiName[1]?.summary.replace(
+                              id={`Responses-${apiName[1]?.summary?.replace(
                                 /\s+/g,
                                 "-"
                               )}`}
@@ -173,12 +174,12 @@ const ApiEndpoint = ({ apiData }) => {
                             </h4>
                             <h6 className="pt-2 m-0 mb-2">Schema</h6>
                             <div className=" bg-lightblue p-3">
-                              {apiName[1].responses &&
-                                Object.entries(apiName[1].responses)?.map(
+                              {apiName[1]?.responses &&
+                                Object?.entries(apiName[1]?.responses)?.map(
                                   (item, index) => {
                                     const result = item[1]?.content?.[
                                       "application/json"
-                                    ]?.schema?.["$ref"].replace(
+                                    ]?.schema?.["$ref"]?.replace(
                                       /#\/components\/schemas\//g,
                                       ""
                                     );
@@ -190,32 +191,39 @@ const ApiEndpoint = ({ apiData }) => {
                                           ?.components?.schemas
                                       )?.map((schemaEntry, schemaIndex) => {
                                         if (schemaEntry[0] == result) {
-                                          let requireList =
-                                            extractRequiredArrays(schemaEntry);
-                                          return (
-                                            <NestedCollapse
-                                              propertyName={schemaEntry[0]}
-                                              propertyValue={
-                                                schemaEntry[1]?.properties
-                                              }
-                                              requiredList={requireList}
-                                            />
-                                          );
+                                          return Object?.entries(schemaEntry[1])?.map((schema1, idx1) => {
+                                            if (schema1[0] == 'properties') {
+                                              let requireList =
+                                                extractRequiredArrays(schema1);
+                                              return Object?.entries(
+                                                schema1[1]
+                                              )?.map((schema2, idx1) => {
+                                                  return (
+                                                    <NestedCollapse
+                                                      isOpen={true}
+                                                      propertyName={schema2[0]}
+                                                      propertyValue={schema2[1]?.properties}
+                                                      requiredList={requireList}
+                                                    />
+                                                  );
+                                              });
+                                            }
+                                          })
                                         }
                                       });
                                     return <div>{data}</div>;
                                   }
                                 )}
                             </div>
-                            <p>{apiName[1].responses?.description}</p>
-                            {apiName[1].responses &&
-                              Object.entries(apiName[1].responses)?.map(
+                            <p>{apiName[1]?.responses?.description}</p>
+                            {apiName[1]?.responses &&
+                              Object.entries(apiName[1]?.responses)?.map(
                                 (apiResponse, index) => {
                                   return (
                                     <div key={index}>
-                                      {apiResponse[1].content && apiResponse[1].content?.[
+                                      {apiResponse[1]?.content && apiResponse[1]?.content?.[
                                             "application/json"
-                                          ] && apiResponse[1].content?.[
+                                          ] && apiResponse[1]?.content?.[
                                             "application/json"
                                           ]?.examples &&
                                         Object.entries(
@@ -227,18 +235,6 @@ const ApiEndpoint = ({ apiData }) => {
                                             successItem
                                           );
                                         })}
-                                      {/* {apiResponse[1].content && apiResponse[1].content?.[
-                                            "application/json"
-                                          ] && apiResponse[1].content?.[
-                                            "application/json"
-                                          ]?.examples &&
-                                        Object.entries(
-                                          apiResponse[1].content?.[
-                                            "application/json"
-                                          ]?.examples?.failure
-                                        )?.map((failure, index) => {
-                                          return ResponsesComponent(failure[1]);
-                                        })} */}
                                     </div>
                                   );
                                 }

@@ -95,7 +95,7 @@ export default function product1() {
         />
       </Head>
 
-      <div className="bnr-home-wrp integration-guides-bnr">
+      <div className="bnr-home-wrp integration-guide-main-bnr">
         <div className="container_1300">
           <div className="bnr-caption">
             <h2>
@@ -493,7 +493,7 @@ export default function product1() {
             <div className="col-md-5">
               <div className="wch-rhs text-end">
                 <img
-                  src="/images/integration-guides-btm-pic.svg"
+                  src="/images/integration-guide-main-btm-pic.svg"
                   alt=""
                   className="img-fluid"
                 />

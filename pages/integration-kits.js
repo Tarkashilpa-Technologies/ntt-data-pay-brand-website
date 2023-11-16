@@ -950,7 +950,7 @@ useEffect(() => {
           </div>
           <div className="col-md-5">
           <div className="wch-rhs text-end">
-            <img src="/images/integration-guides-btm-pic.svg" alt="" className="img-fluid" />  
+            <img src="/images/integration-guide-main-btm-pic.svg" alt="" className="img-fluid" />  
           </div>   
         </div>    
       </div>     

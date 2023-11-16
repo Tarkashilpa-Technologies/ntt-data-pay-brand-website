@@ -21,19 +21,19 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='shortcut icon' href='/favicon.ico' />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional"
-          rel="stylesheet"
+          href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional'
+          rel='stylesheet'
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
-          rel="stylesheet"
+          href='https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap'
+          rel='stylesheet'
         ></link>
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-223921365-1"
+          src='https://www.googletagmanager.com/gtag/js?id=UA-223921365-1'
         />
         <script
           dangerouslySetInnerHTML={{
@@ -59,28 +59,26 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <noscript>
         <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-NRTMWRN"
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
+          src='https://www.googletagmanager.com/ns.html?id=GTM-NRTMWRN'
+          height='0'
+          width='0'
+          style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
-      {(router?.pathname == "/api-reference-screen" || router?.pathname == "/tutorial-screen"|| router?.pathname == "/tutorial-screen/[query]" || router?.pathname == "/api-reference-screen/[query]") ?
-        (
-          <Component {...pageProps} />
-        )  
-        :
-        (
-          <>
+      {router?.pathname == '/api-reference-screen/index' ||
+      router?.pathname == '/integration-guide-main/index' ||
+      router?.pathname == '/integration-guide-main/[query]' ||
+      router?.pathname == '/api-reference-screen/[query]' ? (
+        <Component {...pageProps} />
+      ) : (
+        <>
           <Header />
-            <Component {...pageProps} />
+          <Component {...pageProps} />
           <Footer />
         </>
-        
-        )
-        }
+      )}
     </>
-  );
+  )
 }
 
 export default MyApp;
