@@ -183,7 +183,7 @@ export default function product1() {
                       </div>
                     </div>
                     <div className="d-flex justify-content-center">
-                      <Link href="/integration-guide-main">
+                      <Link href="/api-reference-screen">
                         <a href="" className="btn_style1">
                           Know More
                         </a>
