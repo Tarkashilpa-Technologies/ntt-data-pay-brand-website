@@ -264,7 +264,7 @@ modules={[Autoplay ]}
           </form>
 
           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
-          <div className="error-message" id="errormessage">Invalid captcha value.</div>
+          <div className="error-message" id="errormessage">Please select valid captcha value.</div>
 
           
           </div>
