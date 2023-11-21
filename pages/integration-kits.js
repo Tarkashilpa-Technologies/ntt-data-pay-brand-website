@@ -251,7 +251,6 @@ export default function product1() {
     }
     else {
       document.getElementById("errormessage")?.style.display = 'inline-block'; 
-      alert("invalid Captcha value")
     }
     }
       return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
@@ -758,11 +757,20 @@ useEffect(() => {
                                 </select>
                               </div>
                             }
+                            <div className="pb-3 pt-2"> 
+                              <ReCAPTCHA
+                                size="normal"
+                                sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                                onChange={onCaptchaChange}
+                                ref={recaptcha}
+                              />
+                            </div>
                             <div className='d-flex justify-content-end mt-3'>
+                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
                               <button type="submit" className='btn text-white btn_style1'
                                 onClick={(e) => {
                                   handleDownloadKit(e, data);
-                                }} > Download</button>
+                                }}> Download</button>
                             </div>
                           </form>
                           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
@@ -939,17 +947,24 @@ useEffect(() => {
                             )}
                           </div>
 
-                        
-                          <div className='d-flex justify-content-end mt-3'>
-                            {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                            <button type="submit" className='btn text-white btn_style1'
-                              onClick={(e) => {
-                                handleDownloadKit(e, data);
-                              }} > Download</button>
-                          </div>
+                          <div className="pb-3 pt-2"> 
+                              <ReCAPTCHA
+                                size="normal"
+                                sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                                onChange={onCaptchaChange}
+                                ref={recaptcha}
+                              />
+                            </div>
+                            <div className='d-flex justify-content-end mt-3'>
+                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                              <button type="submit" className='btn text-white btn_style1'
+                                onClick={(e) => {
+                                  handleDownloadKit(e, data);
+                                }}> Download</button>
+                            </div>
                         </form>
                         <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
-                        <div className="error-message" id="errormessage">Invalid captcha value.</div>
+                        <div className="error-message" id="errormessage">Please select captcha value.</div>
                       </Modal.Body>
                     </Modal>
                   }
