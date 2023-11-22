@@ -14,7 +14,7 @@ export default async function (req, res) {
 
     const mailData = {
       from: 'noreply@atomtech.in',
-      to: 'poshelpdesk@atomtech.in',
+      to: req.body.mail ? req.body.mail : 'web-leads@atomtech.in',
       subject: req?.body?.subject ? req?.body?.subject : "",
       message: req?.body?.message ? req?.body?.message :"",
     }
