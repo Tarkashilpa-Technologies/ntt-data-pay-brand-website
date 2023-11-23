@@ -1,7 +1,7 @@
 import HeaderTwo from '../../Components/HeaderTwo'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Breadcrumb, Dropdown } from 'react-bootstrap'
+import { Breadcrumb, Dropdown, Toast } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import Accordion from 'react-bootstrap/Accordion'
 import remarkGfm from 'remark-gfm'
@@ -12,9 +12,11 @@ import {
   useCaseDataApi,
 } from '../../services/services'
 import Link from 'next/link'
+import ScrollToTopButton from '../../Components/ScrollToTop'
 
 const TutorialScreenPage = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const containerRef = useRef()
   const queryData = router.query?.query
   const [tutorialsListData, setTutorialsListData] = useState([])
   const [tutorialData, setTutorialData] = useState([])
@@ -24,7 +26,6 @@ const TutorialScreenPage = () => {
   const [isPageHelpful, setIsPageHelpful] = useState()
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([])
   const divRef = useRef(null)
-  const [overflowBtn, setOverflowBtn] = useState(false)
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
   )
@@ -53,7 +54,6 @@ const TutorialScreenPage = () => {
   }, [])
 
   useEffect(() => {
-    // console.log(queryData,"queryData")
     if (tutorialsListData && queryData) {
       tutorialsListData?.map((data) => {
         data?.attributes?.tutorials?.data?.map((title) => {
@@ -73,10 +73,8 @@ const TutorialScreenPage = () => {
   // use case data api
   const UseCaseDataApiCall = (id) => {
     // setShowLoader(true);
-    // console.log(id,"id")
     useCaseDataApi(id)
       .then((res) => {
-        // console.log(res?.data.data,"res data")
         if (res?.data) {
           setTutorialData(res?.data?.data?.attributes)
         } else {
@@ -132,21 +130,31 @@ const TutorialScreenPage = () => {
     },
   ]
 
+  function getHtmlFromCheckBox(data) {
+    return (
+      <div>
+        <ul>
+          {data?.map((item, key) => {
+            return <li key={key}>{item}</li>
+          })}
+        </ul>
+      </div>
+    )
+  }
+
   // submit page helpful form
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    // Get data from the form.
     const new_contact = {
       subject: isPageHelpful
         ? 'What was the most helpful ?'
         : 'What can be improved ?',
-      article: tutorialData?.Title,
-      message: event.target.message.value,
-      data: pageHelpfulFalseData ? pageHelpfulFalseData : [],
+      message: event?.target?.message?.value,
     }
-
-    await fetch('/api/formemail', {
+    if (pageHelpfulFalseData?.length > 0) {
+      new_contact.html = getHtmlFromCheckBox(pageHelpfulFalseData)
+    }
+    await fetch('/api/integrationEmail', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -154,11 +162,9 @@ const TutorialScreenPage = () => {
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
-      // console.log(res.json());
-      if (res.status === 200) {
-      }
+      // if (res.status === 200) {
+      // }
     })
-    alert('Thank you for submitting your feedback to us.')
     setShowHelpfulData(false)
   }
 
@@ -195,9 +201,6 @@ const TutorialScreenPage = () => {
     return width && width > 25 ? width - 25 : width
   }
 
-  const maxWidth = useResize(divRef)
-  // console.log(maxWidth,"maxWidth")
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setFullHeight(window.innerHeight)
@@ -212,28 +215,28 @@ const TutorialScreenPage = () => {
   return (
     <>
       {fullHeight && (
-        <div className='overflow-hidden' style={{ maxHeight: fullHeight }}>
-          <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
+        <div className="" style={{ maxHeight: fullHeight }}>
+          <div className="d-flex  flex-column h-100 w-100 overflow-hidden">
             <div>
               <HeaderTwo />
             </div>
             <div>
-              <div className='d-block d-lg-none overflow-auto'>
+              <div className="d-block d-lg-none overflow-auto">
                 <div className={`d-flex w-100 bg-primary`}>
                   <button
-                    className='w-100 btn bg-primary text-white text-start rounded-0 link-primary'
+                    className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
                     style={{ minWidth: 140 }}
                     onClick={() => router.push('/integration-guide-main')}
                   >
                     {'<'} Back to home
                   </button>
-                  <div className='d-flex'>
+                  <div className="d-flex">
                     {tutorialsListData?.map((dropdown, index) => {
                       return (
                         <div key={index}>
-                          <Dropdown className='bg-primary'>
+                          <Dropdown className="bg-primary">
                             <Dropdown.Toggle
-                              id='dropdown-autoclose-true'
+                              id="dropdown-autoclose-true"
                               className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
                                 queryData ==
                                 dropdown?.attributes?.Title.replace(/\s+/g, '')
@@ -287,32 +290,31 @@ const TutorialScreenPage = () => {
               </div>
             </div>
             <div>
-              <div className='row gap-1'>
-                <div className='mt-5 d-flex overflow-auto col-lg-2 col-xl-2 col-xxl-2'>
+              <div className="row gap-1">
+                <div className="mt-5 d-flex overflow-auto col-lg-2 col-xl-2 col-xxl-2">
                   <div
-                    className='col-12 bg-primary pt-1 first-section-width d-lg-block d-none '
+                    className="col-12 bg-primary pt-1 first-section-width d-lg-block d-none "
                     style={{ maxHeight: fullHeight - 90 }}
                   >
-                    <div className='p-2'>
+                    <div className="p-2">
                       {' '}
                       <button
-                        className='w-100 btn bg-primary text-white text-start rounded-0 link-primary'
+                        className="w-100 btn bg-primary text-white text-start rounded-0 link-primary"
                         onClick={() => router.push('/integration-guide-main')}
                       >
                         {'<'} Back to home
                       </button>
                     </div>
 
-                    <hr className='p-0 bg-white text-white m-0'></hr>
+                    <hr className="p-0 bg-white text-white m-0"></hr>
                     <div>
                       {' '}
                       <Accordion
-                        defaultActiveKey='0'
-                        className='border-0 bg-primary shadow-none rounded-0 p-0 m-0 hide-accordion-btn'
+                        defaultActiveKey="0"
+                        className="border-0 bg-primary shadow-none rounded-0 p-0 m-0 hide-accordion-btn"
                         flush
                       >
                         {tutorialsListData?.map((dropdown, index) => {
-                          console.log(dropdown?.id, selectedIndex)
                           return (
                             <div key={index}>
                               {/* <hr className="p-0 bg-white text-white m-0"></hr> */}
@@ -343,7 +345,7 @@ const TutorialScreenPage = () => {
                                       : 'bg-primary text-white'
                                   }`}
                                 >
-                                  <div className='d-flex justify-content-between w-100'>
+                                  <div className="d-flex justify-content-between w-100">
                                     <div
                                       className={`${
                                         dropdown?.id === selectedIndex
@@ -355,19 +357,19 @@ const TutorialScreenPage = () => {
                                     </div>
                                     <div>
                                       <svg
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        width='24'
-                                        height='24'
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
                                       >
                                         <path
-                                          d='M12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293 1.414 1.414L12 17.414z'
-                                          fill='#fff'
+                                          d="M12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293 1.414 1.414L12 17.414z"
+                                          fill="#fff"
                                         />
                                       </svg>
                                     </div>
                                   </div>
                                 </Accordion.Header>
-                                <Accordion.Body className='m-0 p-0 py-2 ps-4 pb-3'>
+                                <Accordion.Body className="m-0 p-0 py-2 ps-4 pb-3">
                                   {dropdown?.attributes?.tutorials?.data
                                     ?.length > 0 &&
                                     dropdown?.attributes?.tutorials?.data?.map(
@@ -403,7 +405,7 @@ const TutorialScreenPage = () => {
                                       }
                                     )}
                                 </Accordion.Body>
-                                <hr className='p-0 m-0'></hr>
+                                <hr className="p-0 m-0"></hr>
                               </Accordion.Item>
                             </div>
                           )
@@ -413,10 +415,17 @@ const TutorialScreenPage = () => {
                   </div>
                 </div>
                 {/* middle section  */}
-                <div className='h-100 col'>
+                <div
+                  className="h-100 col"
+                  style={{
+                    flex: 3,
+                    position: 'relative',
+                  }}
+                >
                   <div
-                    className='shadow p-xl-5 pb-3 middle-section-shadow'
+                    className="shadow p-xl-5 pb-3 middle-section-shadow"
                     style={{ maxHeight: fullHeight - 90 }}
+                    ref={containerRef}
                   >
                     <Breadcrumb>
                       {pathSegments?.map((segment, index) => (
@@ -438,23 +447,23 @@ const TutorialScreenPage = () => {
                         </Breadcrumb.Item>
                       ))}
                     </Breadcrumb>
-                    <div className='text-start'>
+                    <div className="text-start">
                       {' '}
-                      <h1 className='text-start title-font'>
+                      <h1 className="text-start title-font">
                         {tutorialData?.Title}
                       </h1>
-                      <hr className='my-md-4 my-2 mb-md-2 mb-1'></hr>
-                      <div className='pb-3'>
+                      <hr className="my-md-4 my-2 mb-md-2 mb-1"></hr>
+                      <div className="pb-3">
                         {' '}
                         <ReactMarkdown
-                          linkTarget='_blank'
+                          linkTarget="_blank"
                           remarkPlugins={[remarkGfm]}
                           rehypePlugins={[rehypeRaw]}
-                          className='react-markdown'
+                          className="react-markdown"
                           components={{
                             p: ({ node, ...props }) => (
                               <p
-                                className='py-md-3 py-2 text-secondary'
+                                className="py-md-3 py-2 text-secondary"
                                 {...props}
                               />
                             ),
@@ -463,14 +472,14 @@ const TutorialScreenPage = () => {
                                 const image = node.children[0]
                                 return (
                                   <div
-                                    className='image my-md-5 my-3 display-center image-ref-div'
+                                    className="image my-md-5 my-3 display-center image-ref-div"
                                     ref={divRef}
                                   >
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
                                       maxWidth={fullWidth}
-                                      className='image-width'
+                                      className="image-width"
                                     />
                                   </div>
                                 )
@@ -484,14 +493,14 @@ const TutorialScreenPage = () => {
                                 const image = node.children[0]
                                 return (
                                   <div
-                                    className='my-md-5 my-3 display-center image-ref-div'
+                                    className="my-md-5 my-3 display-center image-ref-div"
                                     ref={divRef}
                                   >
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
                                       maxWidth={fullWidth}
-                                      className='image-width'
+                                      className="image-width"
                                     />
                                   </div>
                                 )
@@ -505,14 +514,14 @@ const TutorialScreenPage = () => {
                                 const image = node.children[0]
                                 return (
                                   <div
-                                    className='my-md-5 my-2 display-center image-ref-div'
+                                    className="my-md-5 my-2 display-center image-ref-div"
                                     ref={divRef}
                                   >
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
                                       maxWidth={fullWidth}
-                                      className='image-width'
+                                      className="image-width"
                                     />
                                   </div>
                                 )
@@ -523,7 +532,7 @@ const TutorialScreenPage = () => {
                             },
                             a: ({ node, ...props }) => (
                               <a
-                                className='fst-italic text-primary text-decoration-underline'
+                                className="fst-italic text-primary text-decoration-underline"
                                 {...props}
                               />
                             ),
@@ -533,7 +542,7 @@ const TutorialScreenPage = () => {
                                 const image = node.children[0]
                                 return (
                                   <div
-                                    className='my-md-5 my-3'
+                                    className="my-md-5 my-3"
                                     style={{
                                       width: '50vw',
                                       display: 'flex',
@@ -545,7 +554,7 @@ const TutorialScreenPage = () => {
                                       controls
                                       poster={image.properties.src}
                                       maxWidth={fullWidth}
-                                      className='overflow-hidden'
+                                      className="overflow-hidden"
                                     >
                                       <source
                                         src={node.properties.href}
@@ -559,18 +568,18 @@ const TutorialScreenPage = () => {
                                 -1
                               ) {
                                 return (
-                                  <div className='display-center w-100 h-100'>
+                                  <div className="display-center w-100 h-100">
                                     <iframe
                                       src={node.properties.href}
                                       maxWidth={fullWidth}
-                                      className='image-width'
+                                      className="image-width"
                                     ></iframe>
                                   </div>
                                 )
                               } else {
                                 return (
                                   <a
-                                    className='fst-italic text-primary text-decoration-underline'
+                                    className="fst-italic text-primary text-decoration-underline"
                                     {...props}
                                   />
                                 )
@@ -578,23 +587,23 @@ const TutorialScreenPage = () => {
                             },
                             table: ({ node, ...props }) => (
                               <table
-                                className='table table-hover p-2'
+                                className="table table-hover p-2"
                                 {...props}
                               />
                             ),
                             thead: ({ node, ...props }) => (
-                              <thead className='table-light' {...props} />
+                              <thead className="table-light" {...props} />
                             ),
 
                             div: ({ node, ...props }) => (
-                              <div className='py-md-3 py-1' {...props} />
+                              <div className="py-md-3 py-1" {...props} />
                             ),
 
                             h1: ({ node, ...props }) => {
                               if (tutorialData?.Title) {
                                 return (
                                   <h1
-                                    className='pt-md-4 pb-md-2 heading-styles'
+                                    className="pt-md-4 pb-md-2 heading-styles"
                                     id={`${node?.children[0]?.value.replace(
                                       /\s+/g,
                                       '-'
@@ -606,24 +615,24 @@ const TutorialScreenPage = () => {
                                         /\s+/g,
                                         '-'
                                       )}`}
-                                      target='_self'
-                                      className='pe-1'
+                                      target="_self"
+                                      className="pe-1"
                                     >
                                       {node?.children[0]?.value}{' '}
                                       <svg
-                                        width='20'
-                                        height='20'
-                                        viewBox='0 0 24 24'
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        className='text-primary'
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-primary"
                                       >
                                         <path
-                                          d='M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z'
-                                          fill='#0072bc'
+                                          d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z"
+                                          fill="#0072bc"
                                         ></path>
                                         <path
-                                          d='M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z'
-                                          fill='#0072bc'
+                                          d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z"
+                                          fill="#0072bc"
                                         ></path>
                                       </svg>
                                     </a>
@@ -636,7 +645,7 @@ const TutorialScreenPage = () => {
                               if (tutorialData?.Title) {
                                 return (
                                   <h2
-                                    className='pt-md-4 pb-md-2 heading-styles'
+                                    className="pt-md-4 pb-md-2 heading-styles"
                                     id={`${node?.children[0]?.value.replace(
                                       /\s+/g,
                                       '-'
@@ -648,24 +657,24 @@ const TutorialScreenPage = () => {
                                         /\s+/g,
                                         '-'
                                       )}`}
-                                      target='_self'
-                                      className='pe-1'
+                                      target="_self"
+                                      className="pe-1"
                                     >
                                       {node?.children[0]?.value}{' '}
                                       <svg
-                                        width='20'
-                                        height='20'
-                                        viewBox='0 0 24 24'
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        className='text-primary'
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-primary"
                                       >
                                         <path
-                                          d='M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z'
-                                          fill='#0072bc'
+                                          d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z"
+                                          fill="#0072bc"
                                         ></path>
                                         <path
-                                          d='M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z'
-                                          fill='#0072bc'
+                                          d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z"
+                                          fill="#0072bc"
                                         ></path>
                                       </svg>
                                     </a>
@@ -697,7 +706,7 @@ const TutorialScreenPage = () => {
                               if (tutorialData?.Title) {
                                 return (
                                   <h3
-                                    className='pt-md-4 pb-md-2 heading-styles'
+                                    className="pt-md-4 pb-md-2 heading-styles"
                                     id={`${node?.children[0]?.value.replace(
                                       /\s+/g,
                                       '-'
@@ -709,24 +718,24 @@ const TutorialScreenPage = () => {
                                         /\s+/g,
                                         '-'
                                       )}`}
-                                      target='_self'
-                                      className='pe-1'
+                                      target="_self"
+                                      className="pe-1"
                                     >
                                       {node?.children[0]?.value}{' '}
                                       <svg
-                                        width='20'
-                                        height='20'
-                                        viewBox='0 0 24 24'
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        className='text-primary'
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-primary"
                                       >
                                         <path
-                                          d='M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z'
-                                          fill='#0072bc'
+                                          d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z"
+                                          fill="#0072bc"
                                         ></path>
                                         <path
-                                          d='M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z'
-                                          fill='#0072bc'
+                                          d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z"
+                                          fill="#0072bc"
                                         ></path>
                                       </svg>
                                     </a>
@@ -739,7 +748,7 @@ const TutorialScreenPage = () => {
                               if (tutorialData?.Title) {
                                 return (
                                   <h4
-                                    className='pt-md-4 pb-md-2 heading-styles'
+                                    className="pt-md-4 pb-md-2 heading-styles"
                                     id={`${node?.children[0]?.value.replace(
                                       /\s+/g,
                                       '-'
@@ -751,24 +760,24 @@ const TutorialScreenPage = () => {
                                         /\s+/g,
                                         '-'
                                       )}`}
-                                      target='_self'
-                                      className='pe-1'
+                                      target="_self"
+                                      className="pe-1"
                                     >
                                       {node?.children[0]?.value}{' '}
                                       <svg
-                                        width='20'
-                                        height='20'
-                                        viewBox='0 0 24 24'
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        className='text-primary'
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-primary"
                                       >
                                         <path
-                                          d='M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z'
-                                          fill='#0072bc'
+                                          d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z"
+                                          fill="#0072bc"
                                         ></path>
                                         <path
-                                          d='M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z'
-                                          fill='#0072bc'
+                                          d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z"
+                                          fill="#0072bc"
                                         ></path>
                                       </svg>
                                     </a>
@@ -781,7 +790,7 @@ const TutorialScreenPage = () => {
                               if (tutorialData?.Title) {
                                 return (
                                   <h5
-                                    className='pt-md-4 pb-md-2 heading-styles'
+                                    className="pt-md-4 pb-md-2 heading-styles"
                                     id={`${node?.children[0]?.value.replace(
                                       /\s+/g,
                                       '-'
@@ -793,24 +802,24 @@ const TutorialScreenPage = () => {
                                         /\s+/g,
                                         '-'
                                       )}`}
-                                      target='_self'
-                                      className='pe-1'
+                                      target="_self"
+                                      className="pe-1"
                                     >
                                       {node?.children[0]?.value}{' '}
                                       <svg
-                                        width='20'
-                                        height='20'
-                                        viewBox='0 0 24 24'
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        className='text-primary'
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-primary"
                                       >
                                         <path
-                                          d='M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z'
-                                          fill='#0072bc'
+                                          d="M21.1863 2.82377C18.8719 0.509364 15.1296 0.476845 12.7753 2.75068L12.765 2.7608L11.045 4.4708C10.6534 4.86019 10.6515 5.49335 11.0409 5.88501C11.4303 6.27667 12.0634 6.27852 12.4551 5.88913L14.1697 4.18451C15.7395 2.67341 18.2307 2.69666 19.772 4.23798C21.313 5.77898 21.3366 8.26948 19.8265 9.83934L16.833 12.8329C16.0124 13.6537 14.8758 14.0778 13.7181 13.9949C12.5605 13.9119 11.496 13.3303 10.8008 12.401C10.47 11.9587 9.84333 11.8684 9.40108 12.1992C8.95883 12.53 8.86849 13.1567 9.1993 13.5989C10.242 14.993 11.8388 15.8654 13.5753 15.9897C15.3117 16.1141 17.0165 15.4782 18.2473 14.2469L21.2472 11.2471L21.2593 11.2347C23.5332 8.8804 23.5007 5.13817 21.1863 2.82377Z"
+                                          fill="#0072bc"
                                         ></path>
                                         <path
-                                          d='M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z'
-                                          fill='#0072bc'
+                                          d="M10.4247 8.01016C8.68837 7.8858 6.9836 8.52171 5.75285 9.75283L2.75285 12.7528L2.74067 12.7652C0.466835 15.1195 0.499354 18.8617 2.81376 21.1761C5.12816 23.4905 8.8704 23.5231 11.2247 21.2492L11.2371 21.237L12.9471 19.527C13.3376 19.1365 13.3376 18.5034 12.9471 18.1128C12.5565 17.7223 11.9234 17.7223 11.5329 18.1128L9.82933 19.8164C8.25947 21.3265 5.76897 21.3029 4.22797 19.7619C2.68697 18.2209 2.66341 15.7304 4.17354 14.1606L7.16719 11.1669C7.9877 10.3461 9.12425 9.92214 10.2819 10.005C11.4395 10.088 12.504 10.6696 13.1992 11.5989C13.53 12.0412 14.1567 12.1315 14.5989 11.8007C15.0412 11.4699 15.1315 10.8432 14.8007 10.401C13.758 9.00693 12.1612 8.13452 10.4247 8.01016Z"
+                                          fill="#0072bc"
                                         ></path>
                                       </svg>
                                     </a>
@@ -831,21 +840,21 @@ const TutorialScreenPage = () => {
                       {/* related tutorials */}
                       <div>
                         {tutorialData?.tutorials?.data?.length > 0 && (
-                          <div className='pb-3'>
-                            <hr className='text-secondary'></hr>
-                            <label className='fs-5 fw-bold pt-3 pb-2'>
+                          <div className="pb-3">
+                            <hr className="text-secondary"></hr>
+                            <label className="fs-5 fw-bold pt-3 pb-2">
                               Related Tutorials{' '}
                             </label>
                             {tutorialData?.tutorials?.data?.map(
                               (tutorial, index) => {
                                 return (
-                                  <div className='p-1'>
+                                  <div className="p-1">
                                     <a
                                       href={`/integration-guide-main?data=${tutorial?.attributes?.Title.replace(
                                         /\s+/g,
                                         ''
                                       )}&id=`}
-                                      className='text-primary text-decoration-underline'
+                                      className="text-primary text-decoration-underline"
                                     >
                                       {tutorial?.attributes?.Title}
                                     </a>
@@ -856,16 +865,16 @@ const TutorialScreenPage = () => {
                           </div>
                         )}
                       </div>
-                      <hr className='text-secondary'></hr>
+                      <hr className="text-secondary"></hr>
                       {showHelpfulData &&
                         (isPageHelpful == null ? (
-                          <div className='d-flex flex-sm-row flex-column gap-3 align-items-center w-100'>
-                            <label className='fw-bold fs-6'>
+                          <div className="d-flex flex-sm-row flex-column gap-3 align-items-center w-100">
+                            <label className="fw-bold fs-6">
                               Was this page helpful?
                             </label>
-                            <div className='d-flex gap-2'>
+                            <div className="d-flex gap-2">
                               <button
-                                className='btn border-primary rounded-0 text-primary px-4'
+                                className="btn border-primary rounded-0 text-primary px-4"
                                 style={{ backgroundColor: '#F3FFFF' }}
                                 onClick={() => setIsPageHelpful(true)}
                               >
@@ -873,7 +882,7 @@ const TutorialScreenPage = () => {
                                 Yes{' '}
                               </button>
                               <button
-                                className='btn border-danger text-danger rounded-0 px-4'
+                                className="btn border-danger text-danger rounded-0 px-4"
                                 style={{ backgroundColor: '#FFEAE9' }}
                                 onClick={() => setIsPageHelpful(false)}
                               >
@@ -892,20 +901,20 @@ const TutorialScreenPage = () => {
                               {isPageHelpful == false ? (
                                 <div>
                                   <div>
-                                    <label className='fw-bold fs-6 pt-2'>
+                                    <label className="fw-bold fs-6 pt-2">
                                       Let us know what went wrong.
                                     </label>
                                   </div>
-                                  <div className='p-2 ps-0'>
+                                  <div className="p-2 ps-0">
                                     {pageHelpfulData?.map((data, index) => {
                                       return (
                                         <div
-                                          className='d-flex align-items-center gap-2 p-1'
+                                          className="d-flex align-items-center gap-2 p-1"
                                           key={index}
-                                          id={data.value.replace(/\s+/g, '-')}
+                                          id={data?.value?.replace(/\s+/g, '-')}
                                         >
                                           <input
-                                            type='checkbox'
+                                            type="checkbox"
                                             onClick={(e) => {
                                               // e.preventDefault();
                                               reasonSelectionFunction(
@@ -922,25 +931,33 @@ const TutorialScreenPage = () => {
                               ) : (
                                 ''
                               )}
-                              <div className='py-3 d-flex flex-column gap-2'>
-                                <label className='fw-bold fs-6'>
+                              <div className="py-3 d-flex flex-column gap-2">
+                                <label className="fw-bold fs-6">
                                   {isPageHelpful
                                     ? 'What was most useful?'
                                     : 'What can be improved?'}
                                 </label>
                                 <textarea
-                                  id='message'
+                                  id="message"
                                   required
-                                  className='w-50 p-2 border-0 bg-lighgray border-bottom border-secondary'
+                                  className="w-50 p-2 border-0 bg-lighgray border-bottom border-secondary"
                                 ></textarea>
                               </div>
-                              <button className='btn btn-primary px-4 mt-2 mb-2'>
-                                Submit
-                              </button>
+                              <div className="d-flex gap-2">
+                                <button
+                                  onClick={() => setIsPageHelpful(null)}
+                                  className="btn bg-secondary text-white px-4 mt-2 mb-2"
+                                >
+                                  Cancel
+                                </button>
+                                <button className="btn bg-primary text-white px-4 mt-2 mb-2">
+                                  Submit
+                                </button>
+                              </div>
                             </form>
                           </div>
                         ))}
-                      {showHelpfulData && <hr className='text-secondary'></hr>}
+                      {showHelpfulData && <hr className="text-secondary"></hr>}
                     </div>
                   </div>
                 </div>
@@ -948,10 +965,10 @@ const TutorialScreenPage = () => {
                 {/* last section */}
                 <div
                   style={{ height: fullHeight - 90 }}
-                  className='d-lg-block d-none third-section col-lg-2 col-xl-2 col-xxl-2'
+                  className="d-lg-block d-none third-section col-lg-2 col-xl-2 col-xxl-2"
                 >
-                  <div className='p-3 pt-4'>
-                    <h6 className='fw-bold'>ON THIS PAGE</h6>
+                  <div className="p-3 pt-4">
+                    <h6 className="fw-bold">ON THIS PAGE</h6>
                     {sidebarData?.map((data, index) => {
                       return (
                         <div
@@ -959,7 +976,7 @@ const TutorialScreenPage = () => {
                           onClick={() => {
                             setSelectedUrl(index)
                           }}
-                          className='border-2 ps-2 py-1 border-start-primary fw-semibold pointer'
+                          className="border-2 ps-2 py-1 border-start-primary fw-semibold pointer"
                         >
                           <a
                             href={`#${data.replace(/\s+/g, '-')}`}
@@ -982,6 +999,7 @@ const TutorialScreenPage = () => {
               </div>
             </div>
           </div>
+          <ScrollToTopButton scrollContainerRef={containerRef} />
         </div>
       )}
     </>

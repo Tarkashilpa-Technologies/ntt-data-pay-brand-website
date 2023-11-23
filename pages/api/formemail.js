@@ -42,15 +42,27 @@ export default function (req, res) {
       from: 'noreply@atomtech.in',
       to: req.body.mail ? req.body.mail : 'web-leads@atomtech.in',
       //cc:'abhijeet@digitalvibe.in',
-      subject: req.body.subject ? req.body.subject : 'NTTDATA - Sign Up User Details',
-      html: '<table style="border-collapse: collapse;">'+
-      '<tr><td>First Name: <td><td>'+req.body.first_name+'</td></tr>'+
-      '<tr><td>Last Name: <td><td>'+req.body.last_name+'</td></tr>'+
-      '<tr><td>Mobile: <td><td>'+req.body.mobile+'</td></tr>'+
-      '<tr><td>Email: <td><td>'+req.body.email+'</td></tr>'+
-      '<tr><td>Product: <td><td>'+req.body.products_required+'</td></tr>'+
-      '</table>'
-      
+      subject: req.body.subject
+        ? req.body.subject
+        : 'NTTDATA - Sign Up User Details',
+      html:
+        '<table style="border-collapse: collapse;">' +
+        '<tr><td>First Name: <td><td>' +
+        req.body.first_name +
+        '</td></tr>' +
+        '<tr><td>Last Name: <td><td>' +
+        req.body.last_name +
+        '</td></tr>' +
+        '<tr><td>Mobile: <td><td>' +
+        req.body.mobile +
+        '</td></tr>' +
+        '<tr><td>Email: <td><td>' +
+        req.body.email +
+        '</td></tr>' +
+        '<tr><td>Product: <td><td>' +
+        req.body.products_required +
+        '</td></tr>' +
+        '</table>',
     }
     transporter.sendMail(mailData, function (err, info) {
       if(err)
