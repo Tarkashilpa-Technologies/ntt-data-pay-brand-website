@@ -65,10 +65,10 @@ function MyApp({ Component, pageProps }) {
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
-      {router?.pathname == '/api-reference-screen/index' ||
-      router?.pathname == '/integration-guide-main/index' ||
-      router?.pathname == '/integration-guide-main/[query]' ||
-      router?.pathname == '/api-reference-screen/[query]' ? (
+      {router?.pathname == '/Api-References/index' ||
+      router?.pathname == '/Integration-Guides/index' ||
+      router?.pathname == '/Integration-Guides/[query]' ||
+      router?.pathname == '/Api-References/[query]' ? (
         <Component {...pageProps} />
       ) : (
         <>

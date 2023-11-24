@@ -31,35 +31,35 @@ const HeaderTwo = () => {
   const dataArray = [
     {
       label: 'Integration Guides',
-      url: '/integration-guide-main',
-      class:'header-btn',
+      url: '/Integration-Guides',
+      class: 'header-btn',
     },
     {
       label: 'Api References',
-      url: '/api-reference-screen',
-      class:'header-btn',
+      url: '/Api-References',
+      class: 'header-btn',
     },
     {
       label: 'Api Explorer',
       url: '/try-it-out-api-screen',
-      class:'header-btn',
+      class: 'header-btn',
     },
     {
       label: 'Contact Us',
       url: '/contact-us',
-      class:'header-btn',
+      class: 'header-btn',
     },
     {
       label: 'Sign Up',
       url: '/sign-up',
-      class: 'btn_style2'
+      class: 'btn_style2',
     },
     {
       label: 'Login',
       url: 'https://pgreports.atomtech.in/titan_merchant_console/home#no-back-button',
-      class: 'btn_style2'
+      class: 'btn_style2',
     },
-  ];
+  ]
 
 
   function handleMenuClick(e){

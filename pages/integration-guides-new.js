@@ -3,7 +3,7 @@ import { tutorialDataApi, tutorialGroupDataApi } from "../services/services";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-const IntegrationGuides = () => {
+const Integration-Guides = () => {
   const [tutorialsData, setTutorialsData] = useState([]);
 
   const tutorialDataApiCall = () => {
@@ -86,7 +86,7 @@ const IntegrationGuides = () => {
                               <Link
                                 href={
                                   (tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != undefined || tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title != null) ?
-                                  {pathname: `/integration-guide-main/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.toLowerCase().replace(/\s+/g,"-")}`
+                                  {pathname: `/integration-guide-main/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(/\s+/g,"-")}`
                                   } : {pathname:'/404'}
                                 }
                               >
@@ -110,4 +110,4 @@ const IntegrationGuides = () => {
   );
 };
 
-export default IntegrationGuides;
+export default Integration-Guides;
