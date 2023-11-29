@@ -260,15 +260,26 @@ useEffect(() => {
     setSelectedValue(event.target.value);
   }
 
-  return isBrowser && (
-    <div className="product-payment pd-lr-15">
-      <Head>
-        <title>Best Online Payment Gateway in India | Online Payment Aggregators and Service provider in India</title>
-        <meta name="description" content="Get Secure Online Payment Gateway for Your Business in India. Accept payments through Links, BNPL, UPI, BharatQR, EMI and 100+ Payment options, Simple payment gateway Integration API for 25+ platforms. Bank-Level Security, Merchant Dashboard, Best Success Rates, Servicing 6+ million merchants. Customized solutions to perfectly fit your business&#39; payment acceptance needs. " />
-        <link rel="stylesheet" href="https://www.atomtech.in/uat/assets/css/fontawesome/css/all.css"/>
-        <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: `
+  return (
+    isBrowser && (
+      <div className='product-payment pd-lr-15'>
+        <Head>
+          <title>
+            Best Online Payment Gateway in India | Online Payment Aggregators
+            and Service provider in India
+          </title>
+          <meta
+            name='description'
+            content='Get Secure Online Payment Gateway for Your Business in India. Accept payments through Links, BNPL, UPI, BharatQR, EMI and 100+ Payment options, Simple payment gateway Integration API for 25+ platforms. Bank-Level Security, Merchant Dashboard, Best Success Rates, Servicing 6+ million merchants. Customized solutions to perfectly fit your business&#39; payment acceptance needs. '
+          />
+          <link
+            rel='stylesheet'
+            href='https://www.atomtech.in/uat/assets/css/fontawesome/css/all.css'
+          />
+          <script
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{
+              __html: `
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -330,634 +341,1014 @@ useEffect(() => {
         }
       }]		
     }
-    ` }}
-  /> 
-      </Head>
+    `,
+            }}
+          />
+        </Head>
 
- 
-    <div className="bnr-home-wrp integration-kit-bnr">
-    <div className="container_1300">
-     <div className="bnr-caption">
-       <h2>Payment Gateway Integration kits for Website, Mobile Apps and e-commerce for 25+ platforms!</h2>
-     </div>
-     </div>
-    </div>
+        <div className='bnr-home-wrp integration-kit-bnr'>
+          <div className='container_1300'>
+            <div className='bnr-caption'>
+              <h2>
+                Payment Gateway Integration kits for Website, Mobile Apps and
+                e-commerce for 25+ platforms!
+              </h2>
+            </div>
+          </div>
+        </div>
 
-<nav className='bread-wrp minus-top-40' aria-label="breadcrumb">
-<div className="container_1300 d-block">
-  <ol className="breadcrumb">
-    <li className="breadcrumb-item"><Link href="/"><a >Home</a></Link></li>
-    <li className="breadcrumb-item"><a href="/developer-guide">Developers</a></li>
-    <li className="breadcrumb-item active" aria-current="page">Integration Kits</li>
-  </ol>
-</div>
-</nav>
+        <nav className='bread-wrp minus-top-40' aria-label='breadcrumb'>
+          <div className='container_1300 d-block'>
+            <ol className='breadcrumb'>
+              <li className='breadcrumb-item'>
+                <Link href='/'>
+                  <a>Home</a>
+                </Link>
+              </li>
+              <li className='breadcrumb-item'>
+                <a href='/developer-guide'>Developers</a>
+              </li>
+              <li className='breadcrumb-item active' aria-current='page'>
+                Integration Kits
+              </li>
+            </ol>
+          </div>
+        </nav>
 
-<div className="powerful-gateway ik-fold1">
-<div className="container_1300 d-block">
-<h2 className="common-ttle text-center">Seamless Payment Gateway Integration</h2>
+        <div className='powerful-gateway ik-fold1'>
+          <div className='container_1300 d-block'>
+            <h2 className='common-ttle text-center'>
+              Seamless Payment Gateway Integration
+            </h2>
 
-<div className="ig-input-bx">
-<input type="text" placeholder="Search docs for payments, API and more" />
-</div>
-<ul className="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-  <li className="nav-item" role="presentation">
-    <button className="nav-link active btn1" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Website</button>
-  </li>
-  <li className="nav-item" role="presentation">
-    <button className="nav-link btn2" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Mobile App</button>
-  </li>
-  <li className="nav-item" role="presentation">
-    <button className="nav-link btn3" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">E-Commerce</button>
-  </li>
-</ul>
-<div className="tab-content" id="pills-tabContent">
-  {/* Website section starts */}
-  <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <div className="spg-cvr">
-      <div className='row'>
-              {WebsiteData?.map((data,index) => {
-                return (
-                  <>
-                    <div className="col-md-3 col-6 pointer" key={index}>
-                      <p onClick={() => {
-                        setIsShow(true);
-                        setModalOpen(data.id);
-                      }
-                    }>
-                      <a className="spg-box">
-                        <span><img src={data.url} alt="" width={data.width ? data.width: 30} className="img-fluid" /></span>
-                          <p>{data?.name}</p>
-                      </a>
-                    </p>
-                    </div>  
-                    {modalOpen == data.id && isShow &&
-                      <Modal show={isShow} className={'modal-lg'} backdrop="static" centered onHide={() => setIsShow(false)}>
-                        <Modal.Header closeButton className='p-4'>
-                          <Modal.Title>
-                            <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
-                          </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className='p-4'>
-                          <form >
-                            <div className='row'>
-                              <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
-                                <input autoFocus={true}
-                                  onPaste={(e) => {
-                                    e.preventDefault();
-                                  }}
-                                  
-                                  type="text"
-                                  onBlur={($event) => {
-                                    enableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  onFocus={($event) => {
-                                    disableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  className={
-                                    (formData?.Firstname?.error &&
-                                      formData?.Firstname?.shouldShowError
-                                      ? "border border-danger"
-                                      : "") + " form-control"
-                                  }
-                                  name="Firstname"
-                                  value={formData.Firstname.value}
-                                  onChange={($event) => {
-                                    onFormFeildsChange($event, formData, setFormData);
-                                  }}
-                                />
-                                {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                  <div className="text-danger mt-1">
-                                    {formData.Firstname.error}
+            <div className='ig-input-bx'>
+              <input
+                type='text'
+                placeholder='Search docs for payments, API and more'
+              />
+            </div>
+            <ul
+              className='nav nav-pills mb-3 justify-content-center'
+              id='pills-tab'
+              role='tablist'
+            >
+              <li className='nav-item' role='presentation'>
+                <button
+                  className='nav-link active btn1'
+                  id='pills-home-tab'
+                  data-bs-toggle='pill'
+                  data-bs-target='#pills-home'
+                  type='button'
+                  role='tab'
+                  aria-controls='pills-home'
+                  aria-selected='true'
+                >
+                  Website
+                </button>
+              </li>
+              <li className='nav-item' role='presentation'>
+                <button
+                  className='nav-link btn2'
+                  id='pills-profile-tab'
+                  data-bs-toggle='pill'
+                  data-bs-target='#pills-profile'
+                  type='button'
+                  role='tab'
+                  aria-controls='pills-profile'
+                  aria-selected='false'
+                >
+                  Mobile App
+                </button>
+              </li>
+              <li className='nav-item' role='presentation'>
+                <button
+                  className='nav-link btn3'
+                  id='pills-contact-tab'
+                  data-bs-toggle='pill'
+                  data-bs-target='#pills-contact'
+                  type='button'
+                  role='tab'
+                  aria-controls='pills-contact'
+                  aria-selected='false'
+                >
+                  E-Commerce
+                </button>
+              </li>
+            </ul>
+            <div className='tab-content' id='pills-tabContent'>
+              {/* Website section starts */}
+              <div
+                className='tab-pane fade show active'
+                id='pills-home'
+                role='tabpanel'
+                aria-labelledby='pills-home-tab'
+              >
+                <div className='spg-cvr'>
+                  <div className='row'>
+                    {WebsiteData?.map((data, index) => {
+                      return (
+                        <>
+                          <div className='col-md-3 col-6 pointer' key={index}>
+                            <p
+                              onClick={() => {
+                                setIsShow(true)
+                                setModalOpen(data.id)
+                              }}
+                            >
+                              <a className='spg-box'>
+                                <span>
+                                  <img
+                                    src={data.url}
+                                    alt=''
+                                    width={data.width ? data.width : 30}
+                                    className='img-fluid'
+                                  />
+                                </span>
+                                <p>{data?.name}</p>
+                              </a>
+                            </p>
+                          </div>
+                          {modalOpen == data.id && isShow && (
+                            <Modal
+                              show={isShow}
+                              className={'modal-lg'}
+                              backdrop='static'
+                              centered
+                              onHide={() => setIsShow(false)}
+                            >
+                              <Modal.Header closeButton className='p-4'>
+                                <Modal.Title>
+                                  <h5
+                                    className='modal-title fw-bold'
+                                    id={data.id}
+                                  >
+                                    {data.name} INTEGRATION KIT
+                                  </h5>
+                                </Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body className='p-4'>
+                                <form>
+                                  <div className='row'>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        First Name
+                                      </label>
+                                      <input
+                                        autoFocus={true}
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Firstname?.error &&
+                                          formData?.Firstname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Firstname'
+                                        value={formData.Firstname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Firstname.error &&
+                                        formData.Firstname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Firstname.error}
+                                          </div>
+                                        )}
+                                    </div>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        Last Name
+                                      </label>
+                                      <input
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Lastname?.error &&
+                                          formData?.Lastname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Lastname'
+                                        value={formData.Lastname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Lastname.error &&
+                                        formData.Lastname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Lastname.error}
+                                          </div>
+                                        )}
+                                    </div>
                                   </div>
-                                )}
-                              </div>
-                              <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input
-                                  onPaste={(e) => {
-                                    e.preventDefault();
-                                  }}
-                                    
-                                  type="text"
-                                  onBlur={($event) => {
-                                    enableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  onFocus={($event) => {
-                                    disableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  className={
-                                    (formData?.Lastname?.error &&
-                                      formData?.Lastname?.shouldShowError
-                                      ? "border border-danger"
-                                      : "") + " form-control"
-                                  }
-                                  name="Lastname"
-                                  value={formData.Lastname.value}
-                                  onChange={($event) => {
-                                    onFormFeildsChange($event, formData, setFormData);
-                                  }
-                                  }
-                                />
-                                {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                  <div className="text-danger mt-1">
-                                    {formData.Lastname.error}
+
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Mobile
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.MobilePhone?.error &&
+                                        formData?.MobilePhone?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='MobilePhone'
+                                      value={formData.MobilePhone.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.MobilePhone.error &&
+                                      formData.MobilePhone.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.MobilePhone.error}
+                                        </div>
+                                      )}
                                   </div>
-                                )}
-                              </div>
-                            </div>
 
-                            <div className="col-md-12 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                              <input 
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                   
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.MobilePhone?.error &&
-                                    formData?.MobilePhone?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="MobilePhone"
-                                value={formData.MobilePhone.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }}
-                              />
-                              {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.MobilePhone.error}
-                                </div>
-                              )}
-                            </div>
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Email
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.Email?.error &&
+                                        formData?.Email?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='Email'
+                                      value={formData.Email.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.Email.error &&
+                                      formData.Email.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.Email.error}
+                                        </div>
+                                      )}
+                                  </div>
 
-
-                            <div className="col-md-12 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                              <input 
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                    
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.Email?.error &&
-                                    formData?.Email?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="Email"
-                                value={formData.Email.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }}
-                              />
-                              {formData.Email.error && formData.Email.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.Email.error}
-                                </div>
-                              )}
-                            </div>
-
-                            {/* <div className="col-md-12 mb-10">
+                                  {/* <div className="col-md-12 mb-10">
                             <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                             </div> */}
-                            <div className='d-flex justify-content-end mt-3'>
-                              {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                              <button type="submit" className='btn text-white btn_style1'
-                                onClick={(e) => {
-                                  handleDownloadKit(e, data);
-                                }}> Download</button>
-                            </div>
-                          </form>
-                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
-                        </Modal.Body>
-                      </Modal>
-                    }
-                  </>
-                );
-              })}
-        </div>
-      </div>
-    </div>
-  
-  {/* Website section ends */}        
-
-
-{/* Mobile App section starts */}
-  <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-      <div className="spg-cvr">
-          <div className="row">
-              {MobileData?.map((data,index) => {
-                return (
-                  <>
-                    <div className="col-md-3 col-6 pointer" key={index}>
-                      <p onClick={() => {
-                        setIsShowMobileModal(true);
-                        setModalOpen(data.id);
-                      }}>
-                    <a className="spg-box">
-                     
-                          <span><img src={data.url} alt="" width={35} className="img-fluid" /></span>
-                            <p>{data?.name}</p>
-                      
-                      </a>
-                      </p>
-                    </div>
-                    {modalOpen == data.id && isShowMobileModal &&
-                      <Modal show={isShowMobileModal} className={'modal-lg'} backdrop='static' centered onHide={() => setIsShowMobileModal(false)}>
-                        <Modal.Header closeButton className='p-4'>
-                          <Modal.Title>
-                            <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
-                          </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className='p-4'>
-                          <form >
-                            <div className='row'>
-                              <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
-                                <input autoFocus={true}
-                                  onPaste={(e) => {
-                                    e.preventDefault();
-                                  }}
-                                  
-                                  type="text"
-                                  onBlur={($event) => {
-                                    enableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  onFocus={($event) => {
-                                    disableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  className={
-                                    (formData?.Firstname?.error &&
-                                      formData?.Firstname?.shouldShowError
-                                      ? "border border-danger"
-                                      : "") + " form-control"
-                                  }
-                                  name="Firstname"
-                                  value={formData.Firstname.value}
-                                  onChange={($event) => {
-                                    onFormFeildsChange($event, formData, setFormData);
-                                  }}
-                                />
-                                {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                  <div className="text-danger mt-1">
-                                    {formData.Firstname.error}
+                                  <div className='d-flex justify-content-end mt-3'>
+                                    {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                                    <button
+                                      type='submit'
+                                      className='btn text-white btn_style1'
+                                      onClick={(e) => {
+                                        handleDownloadKit(e, data)
+                                      }}
+                                    >
+                                      {' '}
+                                      Download
+                                    </button>
                                   </div>
-                                )}
-                              </div>
-                              <div className="col-md-6 mb-10">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                                <input 
-                                  onPaste={(e) => {
-                                    e.preventDefault();
-                                  }}
-                                    
-                                  type="text"
-                                  onBlur={($event) => {
-                                    enableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  onFocus={($event) => {
-                                    disableShouldErrorShow($event, formData, setFormData);
-                                  }}
-                                  className={
-                                    (formData?.Lastname?.error &&
-                                      formData?.Lastname?.shouldShowError
-                                      ? "border border-danger"
-                                      : "") + " form-control"
-                                  }
-                                  name="Lastname"
-                                  value={formData.Lastname.value}
-                                  onChange={($event) => {
-                                    onFormFeildsChange($event, formData, setFormData);
-                                  }
-                                  }
-                                />
-                                {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                  <div className="text-danger mt-1">
-                                    {formData.Lastname.error}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-
-                            <div className="col-md-12 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                              <input 
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                   
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.MobilePhone?.error &&
-                                    formData?.MobilePhone?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="MobilePhone"
-                                value={formData.MobilePhone.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }}
-                              />
-                              {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.MobilePhone.error}
+                                </form>
+                                <div
+                                  className='thankyou-message'
+                                  id='tymessage'
+                                >
+                                  Thank you for submitting details.
                                 </div>
-                              )}
-                            </div>
-
-
-                            <div className="col-md-12 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                              <input
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                    
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.Email?.error &&
-                                    formData?.Email?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="Email"
-                                value={formData.Email.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }}
-                              />
-                              {formData.Email.error && formData.Email.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.Email.error}
-                                </div>
-                              )}
-                            </div>
-                            {data?.href2 &&
-                              <div className="col-md-12 mb-10 mt-1">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Which Kit to download ? </label>
-                                <select className="form-control" id="kits" onChange={handleSelectedOption}>
-                                  <option value={data?.text}>{data?.text}</option>
-                                  <option value={data?.text2}>{data?.text2}</option>
-                                </select>
-                              </div>
-                            }
-                            <div className='d-flex justify-content-end mt-3'>
-                              <button type="submit" className='btn text-white btn_style1'
-                                onClick={(e) => {
-                                  handleDownloadKit(e, data);
-                                }} > Download</button>
-                            </div>
-                          </form>
-                          <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
-                        </Modal.Body>
-                      </Modal>
-                    }
-                  </>
-                );
-              })}
-        </div>
-      </div>
-  </div>
-{/* Mobile App  section ends*/}              
-
-  {/* Ecom section starts */}
-  <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-    <div className="spg-cvr">
-        <div className="row justify-content-center">
-            {EcomData?.map((data,index) => {
-              return (
-                <>
-                  <div className="col-md-3 col-6 pointer" key={index}>
-                    <p onClick={() => {
-                      setIsShowEcomModal(true);
-                      setModalOpen(data.id);
-                    }}>
-                      <a className="spg-box">
-                        <span><img src={data.url} alt="" width={data.width ? 50: 30} className="img-fluid" /></span>
-                          <p>{data?.name}</p>
-                      </a>
-                    </p>
+                              </Modal.Body>
+                            </Modal>
+                          )}
+                        </>
+                      )
+                    })}
                   </div>
-                  {modalOpen == data.id && isShowEcomModal &&
-                    <Modal show={isShowEcomModal} className={'modal-lg'} backdrop='static' centered onHide={() => setIsShowEcomModal(false)}>
-                      <Modal.Header closeButton className='p-4'>
-                        <Modal.Title>
-                          <h5 className="modal-title fw-bold" id={data.id}>{data.name} INTEGRATION KIT</h5>
-                        </Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body className='p-4'>
-                        <form >
-                          <div className='row'>
-                            <div className="col-md-6 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
-                              <input autoFocus={true}
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                  
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.Firstname?.error &&
-                                    formData?.Firstname?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="Firstname"
-                                value={formData.Firstname.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }}
-                              />
-                              {formData.Firstname.error && formData.Firstname.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.Firstname.error}
+                </div>
+              </div>
+
+              {/* Website section ends */}
+
+              {/* Mobile App section starts */}
+              <div
+                className='tab-pane fade'
+                id='pills-profile'
+                role='tabpanel'
+                aria-labelledby='pills-profile-tab'
+              >
+                <div className='spg-cvr'>
+                  <div className='row'>
+                    {MobileData?.map((data, index) => {
+                      return (
+                        <>
+                          <div className='col-md-3 col-6 pointer' key={index}>
+                            <p
+                              onClick={() => {
+                                setIsShowMobileModal(true)
+                                setModalOpen(data.id)
+                              }}
+                            >
+                              <a className='spg-box'>
+                                <span>
+                                  <img
+                                    src={data.url}
+                                    alt=''
+                                    width={35}
+                                    className='img-fluid'
+                                  />
+                                </span>
+                                <p>{data?.name}</p>
+                              </a>
+                            </p>
+                          </div>
+                          {modalOpen == data.id && isShowMobileModal && (
+                            <Modal
+                              show={isShowMobileModal}
+                              className={'modal-lg'}
+                              backdrop='static'
+                              centered
+                              onHide={() => setIsShowMobileModal(false)}
+                            >
+                              <Modal.Header closeButton className='p-4'>
+                                <Modal.Title>
+                                  <h5
+                                    className='modal-title fw-bold'
+                                    id={data.id}
+                                  >
+                                    {data.name} INTEGRATION KIT
+                                  </h5>
+                                </Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body className='p-4'>
+                                <form>
+                                  <div className='row'>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        First Name
+                                      </label>
+                                      <input
+                                        autoFocus={true}
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Firstname?.error &&
+                                          formData?.Firstname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Firstname'
+                                        value={formData.Firstname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Firstname.error &&
+                                        formData.Firstname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Firstname.error}
+                                          </div>
+                                        )}
+                                    </div>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        Last Name
+                                      </label>
+                                      <input
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Lastname?.error &&
+                                          formData?.Lastname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Lastname'
+                                        value={formData.Lastname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Lastname.error &&
+                                        formData.Lastname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Lastname.error}
+                                          </div>
+                                        )}
+                                    </div>
+                                  </div>
+
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Mobile
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.MobilePhone?.error &&
+                                        formData?.MobilePhone?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='MobilePhone'
+                                      value={formData.MobilePhone.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.MobilePhone.error &&
+                                      formData.MobilePhone.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.MobilePhone.error}
+                                        </div>
+                                      )}
+                                  </div>
+
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Email
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.Email?.error &&
+                                        formData?.Email?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='Email'
+                                      value={formData.Email.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.Email.error &&
+                                      formData.Email.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.Email.error}
+                                        </div>
+                                      )}
+                                  </div>
+                                  {data?.href2 && (
+                                    <div className='col-md-12 mb-10 mt-1'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        Which Kit to download ?{' '}
+                                      </label>
+                                      <select
+                                        className='form-control'
+                                        id='kits'
+                                        onChange={handleSelectedOption}
+                                      >
+                                        <option value={data?.text}>
+                                          {data?.text}
+                                        </option>
+                                        <option value={data?.text2}>
+                                          {data?.text2}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  )}
+                                  <div className='d-flex justify-content-end mt-3'>
+                                    <button
+                                      type='submit'
+                                      className='btn text-white btn_style1'
+                                      onClick={(e) => {
+                                        handleDownloadKit(e, data)
+                                      }}
+                                    >
+                                      {' '}
+                                      Download
+                                    </button>
+                                  </div>
+                                </form>
+                                <div
+                                  className='thankyou-message'
+                                  id='tymessage'
+                                >
+                                  Thank you for submitting details.
                                 </div>
-                              )}
-                            </div>
-                            <div className="col-md-6 mb-10">
-                              <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-                              <input
-                                onPaste={(e) => {
-                                  e.preventDefault();
-                                }}
-                                    
-                                type="text"
-                                onBlur={($event) => {
-                                  enableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                onFocus={($event) => {
-                                  disableShouldErrorShow($event, formData, setFormData);
-                                }}
-                                className={
-                                  (formData?.Lastname?.error &&
-                                    formData?.Lastname?.shouldShowError
-                                    ? "border border-danger"
-                                    : "") + " form-control"
-                                }
-                                name="Lastname"
-                                value={formData.Lastname.value}
-                                onChange={($event) => {
-                                  onFormFeildsChange($event, formData, setFormData);
-                                }
-                                }
-                              />
-                              {formData.Lastname.error && formData.Lastname.shouldShowError && (
-                                <div className="text-danger mt-1">
-                                  {formData.Lastname.error}
-                                </div>
-                              )}
-                            </div>
+                              </Modal.Body>
+                            </Modal>
+                          )}
+                        </>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+              {/* Mobile App  section ends*/}
+
+              {/* Ecom section starts */}
+              <div
+                className='tab-pane fade'
+                id='pills-contact'
+                role='tabpanel'
+                aria-labelledby='pills-contact-tab'
+              >
+                <div className='spg-cvr'>
+                  <div className='row justify-content-center'>
+                    {EcomData?.map((data, index) => {
+                      return (
+                        <>
+                          <div className='col-md-3 col-6 pointer' key={index}>
+                            <p
+                              onClick={() => {
+                                setIsShowEcomModal(true)
+                                setModalOpen(data.id)
+                              }}
+                            >
+                              <a className='spg-box'>
+                                <span>
+                                  <img
+                                    src={data.url}
+                                    alt=''
+                                    width={data.width ? 50 : 30}
+                                    className='img-fluid'
+                                  />
+                                </span>
+                                <p>{data?.name}</p>
+                              </a>
+                            </p>
                           </div>
+                          {modalOpen == data.id && isShowEcomModal && (
+                            <Modal
+                              show={isShowEcomModal}
+                              className={'modal-lg'}
+                              backdrop='static'
+                              centered
+                              onHide={() => setIsShowEcomModal(false)}
+                            >
+                              <Modal.Header closeButton className='p-4'>
+                                <Modal.Title>
+                                  <h5
+                                    className='modal-title fw-bold'
+                                    id={data.id}
+                                  >
+                                    {data.name} INTEGRATION KIT
+                                  </h5>
+                                </Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body className='p-4'>
+                                <form>
+                                  <div className='row'>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        First Name
+                                      </label>
+                                      <input
+                                        autoFocus={true}
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Firstname?.error &&
+                                          formData?.Firstname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Firstname'
+                                        value={formData.Firstname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Firstname.error &&
+                                        formData.Firstname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Firstname.error}
+                                          </div>
+                                        )}
+                                    </div>
+                                    <div className='col-md-6 mb-10'>
+                                      <label
+                                        htmlFor='exampleFormControlInput1'
+                                        className='form-label'
+                                      >
+                                        Last Name
+                                      </label>
+                                      <input
+                                        onPaste={(e) => {
+                                          e.preventDefault()
+                                        }}
+                                        type='text'
+                                        onBlur={($event) => {
+                                          enableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        onFocus={($event) => {
+                                          disableShouldErrorShow(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                        className={
+                                          (formData?.Lastname?.error &&
+                                          formData?.Lastname?.shouldShowError
+                                            ? 'border border-danger'
+                                            : '') + ' form-control'
+                                        }
+                                        name='Lastname'
+                                        value={formData.Lastname.value}
+                                        onChange={($event) => {
+                                          onFormFeildsChange(
+                                            $event,
+                                            formData,
+                                            setFormData
+                                          )
+                                        }}
+                                      />
+                                      {formData.Lastname.error &&
+                                        formData.Lastname.shouldShowError && (
+                                          <div className='text-danger mt-1'>
+                                            {formData.Lastname.error}
+                                          </div>
+                                        )}
+                                    </div>
+                                  </div>
 
-                          <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-                            <input
-                              onPaste={(e) => {
-                                e.preventDefault();
-                              }}
-                                   
-                              type="text"
-                              onBlur={($event) => {
-                                enableShouldErrorShow($event, formData, setFormData);
-                              }}
-                              onFocus={($event) => {
-                                disableShouldErrorShow($event, formData, setFormData);
-                              }}
-                              className={
-                                (formData?.MobilePhone?.error &&
-                                  formData?.MobilePhone?.shouldShowError
-                                  ? "border border-danger"
-                                  : "") + " form-control"
-                              }
-                              name="MobilePhone"
-                              value={formData.MobilePhone.value}
-                              onChange={($event) => {
-                                onFormFeildsChange($event, formData, setFormData);
-                              }}
-                            />
-                            {formData.MobilePhone.error && formData.MobilePhone.shouldShowError && (
-                              <div className="text-danger mt-1">
-                                {formData.MobilePhone.error}
-                              </div>
-                            )}
-                          </div>
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Mobile
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.MobilePhone?.error &&
+                                        formData?.MobilePhone?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='MobilePhone'
+                                      value={formData.MobilePhone.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.MobilePhone.error &&
+                                      formData.MobilePhone.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.MobilePhone.error}
+                                        </div>
+                                      )}
+                                  </div>
 
+                                  <div className='col-md-12 mb-10'>
+                                    <label
+                                      htmlFor='exampleFormControlInput1'
+                                      className='form-label'
+                                    >
+                                      Email
+                                    </label>
+                                    <input
+                                      onPaste={(e) => {
+                                        e.preventDefault()
+                                      }}
+                                      type='text'
+                                      onBlur={($event) => {
+                                        enableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      onFocus={($event) => {
+                                        disableShouldErrorShow(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                      className={
+                                        (formData?.Email?.error &&
+                                        formData?.Email?.shouldShowError
+                                          ? 'border border-danger'
+                                          : '') + ' form-control'
+                                      }
+                                      name='Email'
+                                      value={formData.Email.value}
+                                      onChange={($event) => {
+                                        onFormFeildsChange(
+                                          $event,
+                                          formData,
+                                          setFormData
+                                        )
+                                      }}
+                                    />
+                                    {formData.Email.error &&
+                                      formData.Email.shouldShowError && (
+                                        <div className='text-danger mt-1'>
+                                          {formData.Email.error}
+                                        </div>
+                                      )}
+                                  </div>
 
-                          <div className="col-md-12 mb-10">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                            <input 
-                              onPaste={(e) => {
-                                e.preventDefault();
-                              }}
-                                    
-                              type="text"
-                              onBlur={($event) => {
-                                enableShouldErrorShow($event, formData, setFormData);
-                              }}
-                              onFocus={($event) => {
-                                disableShouldErrorShow($event, formData, setFormData);
-                              }}
-                              className={
-                                (formData?.Email?.error &&
-                                  formData?.Email?.shouldShowError
-                                  ? "border border-danger"
-                                  : "") + " form-control"
-                              }
-                              name="Email"
-                              value={formData.Email.value}
-                              onChange={($event) => {
-                                onFormFeildsChange($event, formData, setFormData);
-                              }}
-                            />
-                            {formData.Email.error && formData.Email.shouldShowError && (
-                              <div className="text-danger mt-1">
-                                {formData.Email.error}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* <div className="col-md-12 mb-10">
+                                  {/* <div className="col-md-12 mb-10">
                           <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                           </div> */}
-                          <div className='d-flex justify-content-end mt-3'>
-                            {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
-                            <button type="submit" className='btn text-white btn_style1'
-                              onClick={(e) => {
-                                handleDownloadKit(e, data);
-                              }} > Download</button>
-                          </div>
-                        </form>
-                        <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
-                      </Modal.Body>
-                    </Modal>
-                  }
-                </>
-              );
-            })}
-      </div>
-      </div>
-    </div>
-  </div>
-{/* Ecom section ends*/}
-</div>
-</div>
-
-  <div className="wch-wrp">
-    <div className="container_1300 d-block">
-      <div className="row">
-        <div className="col-md-7">
-          <div className="wch-lhs">
-            <h2 className="common-ttle blue-clr">Need assistance with integration or unable to find the API for your platform?</h2>   
-            <a href="/contact-us" className="btn_style1">Contact Us</a>  
-          </div>   
+                                  <div className='d-flex justify-content-end mt-3'>
+                                    {/* <a href={data.href} className='btn_style1'><button type="submit" className='btn p-0 text-white'> Download</button> </a>  */}
+                                    <button
+                                      type='submit'
+                                      className='btn text-white btn_style1'
+                                      onClick={(e) => {
+                                        handleDownloadKit(e, data)
+                                      }}
+                                    >
+                                      {' '}
+                                      Download
+                                    </button>
+                                  </div>
+                                </form>
+                                <div
+                                  className='thankyou-message'
+                                  id='tymessage'
+                                >
+                                  Thank you for submitting details.
+                                </div>
+                              </Modal.Body>
+                            </Modal>
+                          )}
+                        </>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Ecom section ends*/}
           </div>
-          <div className="col-md-5">
-          <div className="wch-rhs text-end">
-            <img src="/images/integration-guide-main-btm-pic.svg" alt="" className="img-fluid" />  
-          </div>   
-        </div>    
-      </div>     
-    </div>   
-  </div>
+        </div>
 
-</div>
+        <div className='wch-wrp'>
+          <div className='container_1300 d-block'>
+            <div className='row'>
+              <div className='col-md-7'>
+                <div className='wch-lhs'>
+                  <h2 className='common-ttle blue-clr'>
+                    Need assistance with integration or unable to find the API
+                    for your platform?
+                  </h2>
+                  <a href='/contact-us' className='btn_style1'>
+                    Contact Us
+                  </a>
+                </div>
+              </div>
+              <div className='col-md-5'>
+                <div className='wch-rhs text-end'>
+                  <img
+                    src='/images/Integration-Guides-btm-pic.svg'
+                    alt=''
+                    className='img-fluid'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   )
 }
 
