@@ -33,7 +33,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -2499,6 +2499,14 @@ a {
   }
 }
 
+.error-message {
+  & {
+    color: rgb(229, 43, 43);
+    padding: 3px 5px;
+    border: 1px solid rgb(229, 43, 43);
+    display: none;
+  }
+}
 /* Abhijeet css end */
 
 ol li {
@@ -2697,6 +2705,7 @@ ol li {
         height: 304px;
         padding: 25px;
         border-radius: 15px;
+        overflow: hidden;
       }
     }
 
@@ -3448,6 +3457,7 @@ ol li {
           line-height: 34px;
           font-weight: $fw-bold;
           color: #1d1e1f;
+          margin-bottom: 30px;
         }
       }
     }
@@ -3804,7 +3814,7 @@ ol li {
 
     .tab-content {
       & {
-        width: 625px;
+        width: "100%";
       }
 
       .tab-pane {
@@ -4024,7 +4034,6 @@ ol li {
   .container_1100 {
     max-width: 1100px;
   }
-
   .bnr-home-wrp .container_1300 .bnr-caption h2,
   .bnr-about-wrp .container_1100 .bnr-caption h2 {
     font-size: 36px;
@@ -4241,6 +4250,8 @@ ol li {
   }
   .api-reference-page {
     padding-top: 70px !important;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .Header_header__ubBbX {
     padding: 0px 20px;
@@ -4400,6 +4411,8 @@ ol li {
   }
   .container_1100 {
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .Header_header__ubBbX {
     padding: 0px 20px;
@@ -4755,10 +4768,10 @@ ol li {
   }
   .bnr-home-wrp.bnr-about-wrp {
     background-image: url(/images/about-mob-bnr.png);
-    height: 700px;
+    height: 750px;
   }
   .bnr-home-wrp.bnr-about-wrp .container_1100 {
-    height: 700px;
+    height: 600px;
   }
 
   .brand-logos-wrp div {
@@ -5758,6 +5771,8 @@ ol li {
   .container_1100 {
     width: 100%;
     display: block;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .brand-logos-wrp {
     width: 100%;
@@ -6327,4 +6342,48 @@ input[type='number']::-webkit-outer-spin-button {
 
 .scrollToTopButton.visible {
   opacity: 1;
+}
+
+@media screen and (max-width: 1000px) {
+  .product-payment-bnr {
+    background-image: none !important;
+  }
+  .dev-landing-bnr {
+    background-position: right bottom !important;
+  }
+  .product-ivr-bnr{
+    background-image: none !important;
+  }
+  .pricing-pgc-bnr2{
+    background-image: none !important;
+  }
+  .pricing-pgc-bnr
+  {
+    background-image: none !important;
+  }
+  .ig-f2-lhs {
+    height: auto !important;
+    padding-bottom: 10px;
+  }
+  .integration-kit-bnr {
+    background-position: bottom right !important;
+  }
+  .customer-care-bnr {
+    background-position: bottom center !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .integration-kit-bnr {
+    background-position: center center !important;
+  }
+  .customer-care-bnr {
+    background-position: bottom center !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .product-pos-bnr{
+    background-image: none !important;
+  }
 }

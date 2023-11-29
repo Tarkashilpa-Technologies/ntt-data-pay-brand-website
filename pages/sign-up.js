@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Head from 'next/head'
 import Script from 'next/script'
@@ -9,16 +9,18 @@ import 'swiper/css';
 import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/autoplay";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function SignUp() {
   
   var new_contact;
   var email;
+  const [tokenData,setTokenData] = useState()
+  const recaptcha = useRef(null);
+
   const handleSubmit = async (event) => {
-    
     // Stop the form from submitting and refreshing the page.
     event.preventDefault()
-
     // Get data from the form.
       new_contact = {
       first_name: event.target.first_name.value,
@@ -26,30 +28,44 @@ export default function SignUp() {
       mobile: event.target.mobile.value,
       email: event.target.email.value,
       products_required: event.target.products_required.value,
-    
     }
-    email=event.target.email.value;
-    mycontact(new_contact,email);
-      
+    
+
+    if(tokenData){
+      email=event.target.email.value;
+      mycontact(new_contact,email);
+
      await fetch('/api/formemail', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(new_contact)
-    }).then((res) => {
-      console.log('Response received')
-      console.log(res.json())
-      if (res.status === 200) {
-       
-       
-      }
-    }) 
-
-
+        body: JSON.stringify(new_contact)
+      }).then((res) => {
+        console.log('Response received')
+        console.log(res.json())
+        if (res.status === 200) {
+          setTokenData(null);
+          document.getElementById("errormessage")?.style.display = 'none'; 
+          recaptcha?.current?.reset();
+        
+        }
+      }) 
+    }else {
+      document.getElementById("errormessage").style.display = 'inline-block'; 
+      // alert("invalid Captcha value")
+    }
    return false;
   }
+
+  const onCaptchaChange = (token) => {
+    // Set the captcha token when the user completes the reCAPTCHA
+    if (token) {
+      setTokenData(token);
+    }
+    // console.log(token);
+  };
 
   return (
 
@@ -87,6 +103,7 @@ export default function SignUp() {
                   document.getElementById("mobile").value = "";
                   document.getElementById("email").value = "";
                   document.getElementById("tymessage").style.display = 'inline-block'; 
+                  document.getElementById("errormessage").style.display = 'none'; 
                   }
               `,
             }}
@@ -222,7 +239,7 @@ modules={[Autoplay ]}
 
             <div className="col-md-12 mb-10">
             <label htmlFor="exampleFormControlInput1" className="form-label">Mobile</label>
-            <input type="text" className="form-control" required id="mobile" min="10" max="10" />    
+            <input type="tel" className="form-control" required id="mobile"  pattern="\d{10}" />    
             </div>  
 
 
@@ -231,6 +248,14 @@ modules={[Autoplay ]}
             <input type="email" className="form-control" required id="email" />    
             </div> 
 
+            <div className="pb-3 pt-2"> 
+              <ReCAPTCHA
+                size="normal"
+                sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                onChange={onCaptchaChange}
+                ref={recaptcha}
+              />
+            </div>
             <div className="col-md-12 mb-10">
             <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
             </div>
@@ -239,6 +264,8 @@ modules={[Autoplay ]}
           </form>
 
           <div className="thankyou-message" id="tymessage">Thank you for submitting details.</div>
+          <div className="error-message" id="errormessage">Please select valid captcha value.</div>
+
           
           </div>
 </div>
