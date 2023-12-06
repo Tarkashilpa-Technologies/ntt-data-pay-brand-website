@@ -118,12 +118,15 @@ const TryItOutApiScreen = () => {
     }
     setLoader(false)
   }
-  function handleReset(e) {
-    e.preventDefault(); // Prevent the default form submission
-    setJson(selectedFunctionResetData);
-    setResponseJSON();
-  }
 
+  function handleReset(e) {
+    e.preventDefault()
+    let promise = setJson({})
+    Promise.all([promise])?.then(() => {
+      setJson(selectedFunctionResetData)
+      setResponseJSON()
+    })
+  }
   // Api Calls
 
   const apisDataApiCall = () => {
