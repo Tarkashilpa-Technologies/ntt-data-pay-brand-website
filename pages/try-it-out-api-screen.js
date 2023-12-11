@@ -120,7 +120,10 @@ const TryItOutApiScreen = () => {
   }
   function handleReset(e) {
     e.preventDefault(); // Prevent the default form submission
-    setJson(selectedFunctionResetData);
+    const promise = setJson({});
+    Promise?.all([promise]).then(() => { 
+       setJson(selectedFunctionResetData)
+    })
     setResponseJSON();
   }
 
