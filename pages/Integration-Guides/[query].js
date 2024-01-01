@@ -685,9 +685,9 @@ const TutorialScreenPage = () => {
 
                             blockquote: ({ node, ...props }) => {
                               if (
-                                node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() ==
+                                node?.children[1]?.children[0]?.value?.toUpperCase() ==
                                   'INFO' ||
-                                node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() ==
+                                node?.children[1]?.children[0]?.value?.toUpperCase() ==
                                   'ERROR'
                               ) {
                                 return (
