@@ -4,7 +4,6 @@ const ScrollToTopButton = ({ scrollContainerRef }) => {
   const [isVisible, setIsVisible] = useState(false)
   const handleScroll = () => {
     const scrollY = scrollContainerRef?.current?.scrollTop;
-    console.log(scrollY)
     setIsVisible(scrollY > 100) // Adjust the value based on when you want the button to appear
   }
 
