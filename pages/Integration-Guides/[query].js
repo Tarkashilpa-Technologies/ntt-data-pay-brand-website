@@ -852,8 +852,8 @@ const TutorialScreenPage = () => {
                               (tutorial, index) => {
                                 console.log(tutorial?.attributes?.Title,"tutorial?.attributes?.Title")
                                 return (
-                                  <li>
-                                    <div className='p-1'  key={index}>
+                                  <li key={index}>
+                                    <div className='p-1'  >
                                       <a
                                         href={`/Integration-Guides/${tutorial?.attributes?.Title.replace(
                                           /\s+/g,
