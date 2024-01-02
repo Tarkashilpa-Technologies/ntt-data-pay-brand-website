@@ -58,9 +58,9 @@ const TutorialScreenPage = () => {
       tutorialsListData?.map((data) => {
         data?.attributes?.tutorials?.data?.map((title) => {
           if (title?.attributes?.Title.replace(/\s+/g, '-') == queryData) {
-            return title?.attributes != undefined
+            return (title?.attributes != undefined
               ? UseCaseDataApiCall(title?.id)
-              : router?.push('/404')
+              : router?.push('/404'))
           }
         })
       })
@@ -841,29 +841,34 @@ const TutorialScreenPage = () => {
                       {/* was this page helpful section */}
                       {/* related tutorials */}
                       <div>
-                        {tutorialData?.tutorials?.data?.length > 0 && (
+                        {tutorialData?.Related_Tutorials?.data?.length > 0 && (
                           <div className='pb-3'>
                             <hr className='text-secondary'></hr>
                             <label className='fs-5 fw-bold pt-3 pb-2'>
                               Related Tutorials{' '}
                             </label>
-                            {tutorialData?.tutorials?.data?.map(
+                            <ul>
+                            {tutorialData?.Related_Tutorials?.data?.map(
                               (tutorial, index) => {
+                                console.log(tutorial?.attributes?.Title,"tutorial?.attributes?.Title")
                                 return (
-                                  <div className='p-1'>
-                                    <a
-                                      href={`/Integration-Guides?data=${tutorial?.attributes?.Title.replace(
-                                        /\s+/g,
-                                        '-'
-                                      )}&id=`}
-                                      className='text-primary text-decoration-underline'
-                                    >
-                                      {tutorial?.attributes?.Title}
-                                    </a>
-                                  </div>
+                                  <li>
+                                    <div className='p-1'  key={index}>
+                                      <a
+                                        href={`/Integration-Guides/${tutorial?.attributes?.Title.replace(
+                                          /\s+/g,
+                                          '-'
+                                        )}`}
+                                        className='text-primary text-decoration-underline'
+                                      >
+                                        {tutorial?.attributes?.Title}
+                                      </a>
+                                    </div>
+                                  </li>
                                 )
                               }
                             )}
+                            </ul>
                           </div>
                         )}
                       </div>
