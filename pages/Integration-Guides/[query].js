@@ -850,7 +850,6 @@ const TutorialScreenPage = () => {
                             <ul>
                             {tutorialData?.Related_Tutorials?.data?.map(
                               (tutorial, index) => {
-                                console.log(tutorial?.attributes?.Title,"tutorial?.attributes?.Title")
                                 return (
                                   <li key={index}>
                                     <div className='p-1'  >
