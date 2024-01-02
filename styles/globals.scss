@@ -6032,8 +6032,12 @@ blockquote.error > div > strong {
     padding: 10px !important;
     margin: 0px;
   }
+  h1,h2,h3,h4,h5,h6 {
+    margin-left: 5px;
+  }
   ul,
   ol {
+    margin-left: 20px;
     padding: 10px 5px 10px 5px;
     li {
       padding: 5px;
