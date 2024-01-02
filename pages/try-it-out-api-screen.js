@@ -359,7 +359,7 @@ const TryItOutApiScreen = () => {
                           Encryption Key <span className="text-danger ">*</span>
                         </Form.Label>
                         <Form.Control
-                          disabled={selectedEnv?.value === 'UAT'}
+                          // disabled={selectedEnv?.value === 'UAT'}
                           name="encKey"
                           type="text"
                           placeholder="Enter Encryption Key"
@@ -402,7 +402,7 @@ const TryItOutApiScreen = () => {
                           <span className="text-danger ">*</span>
                         </Form.Label>
                         <Form.Control
-                          disabled={selectedEnv?.value === 'UAT'}
+                          // disabled={selectedEnv?.value === 'UAT'}
                           name="saltKey"
                           required
                           type="text"
@@ -442,7 +442,7 @@ const TryItOutApiScreen = () => {
                           Decryption Key <span className="text-danger ">*</span>
                         </Form.Label>
                         <Form.Control
-                          disabled={selectedEnv?.value === 'UAT'}
+                          // disabled={selectedEnv?.value === 'UAT'}
                           name="decKey"
                           required
                           type="text"
