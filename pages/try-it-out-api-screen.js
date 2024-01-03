@@ -182,10 +182,10 @@ const TryItOutApiScreen = () => {
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 pt-4 h-100">
           <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <label>Environment</label>
               <div className="border border-primary ps-2 env-style">UAT</div>
-              {/* <div>
+              <div>
                 <Dropdown
                   size="full"
                   className="bg-primary"
@@ -223,8 +223,8 @@ const TryItOutApiScreen = () => {
                     )}
                   </Dropdown.Menu>
                 </Dropdown>
-              </div> */}
-            </div>
+              </div>
+            </div> */}
 
             <div className="flex-1 ">
               <label>API</label>
