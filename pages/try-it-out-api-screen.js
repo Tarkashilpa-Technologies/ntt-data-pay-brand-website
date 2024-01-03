@@ -140,6 +140,12 @@ const TryItOutApiScreen = () => {
 
   useEffect(() => {
     apisDataApiCall();
+      setSelectedEnv('UAT')
+      setSelectedFunction()
+      setSelectedAPI()
+      setJson()
+      setResponseJSON()
+      setFormData(initialFormData)
   }, []);
 
   useEffect(() => {
@@ -169,6 +175,7 @@ const TryItOutApiScreen = () => {
   useEffect(() => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
+  
 
   return (
     <div className="api-reference-page bg-white">
@@ -177,7 +184,8 @@ const TryItOutApiScreen = () => {
           <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
             <div className="flex-1">
               <label>Environment</label>
-              <div>
+              <div className="border border-primary ps-2 env-style">UAT</div>
+              {/* <div>
                 <Dropdown
                   size="full"
                   className="bg-primary"
@@ -215,7 +223,7 @@ const TryItOutApiScreen = () => {
                     )}
                   </Dropdown.Menu>
                 </Dropdown>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex-1 ">
