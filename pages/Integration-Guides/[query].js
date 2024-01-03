@@ -690,7 +690,7 @@ const TutorialScreenPage = () => {
                                     {...props}
                                     className={
                                       node?.children[1]?.children[0]
-                                        ?.children[0]?.value.toLowerCase()
+                                        ?.children[0]?.value?.toLowerCase()
                                     }
                                   ></blockquote>
                                 )
