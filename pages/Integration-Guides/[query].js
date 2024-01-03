@@ -680,9 +680,9 @@ const TutorialScreenPage = () => {
 
                             blockquote: ({ node, ...props }) => {
                               if (
-                                node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() ==
+                                (node?.children[1]?.children[0]?.value  ?  node?.children[1]?.children[0]?.value?.toUpperCase() : node?.children[1]?.children[0]?.children[0]?.value.toUpperCase())  ==
                                   'INFO' ||
-                                node?.children[1]?.children[0]?.children[0]?.value?.toUpperCase() ==
+                                  (node?.children[1]?.children[0]?.value ?  node?.children[1]?.children[0]?.value?.toUpperCase() :node?.children[1]?.children[0]?.children[0]?.value.toUpperCase() ) ==
                                   'ERROR'
                               ) {
                                 return (
@@ -690,12 +690,12 @@ const TutorialScreenPage = () => {
                                     {...props}
                                     className={
                                       node?.children[1]?.children[0]
-                                        ?.children[0]?.value
+                                        ?.children[0]?.value.toLowerCase()
                                     }
                                   ></blockquote>
                                 )
                               } else {
-                                return <blockquote {...props}></blockquote>
+                                return <blockquote {...props}  className='other-blockquotes'></blockquote>
                               }
                             },
 
