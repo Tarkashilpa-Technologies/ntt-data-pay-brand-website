@@ -127,7 +127,7 @@ const TutorialScreenPage = () => {
       <div>
         <ul>
           {data?.map((item, index) => {
-            return <li key={index}>{item}</li>
+            return <li key={item?.id}>{item}</li>
           })}
         </ul>
       </div>
@@ -154,8 +154,6 @@ const TutorialScreenPage = () => {
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
-      // if (res.status === 200) {
-      // }
     })
     setShowHelpfulData(false)
   }
@@ -167,30 +165,6 @@ const TutorialScreenPage = () => {
   function scrollToTarget(text) {
     const eleId = document.getElementById(text)
     eleId?.current?.scrollIntoView({ behavior: 'smooth', top: 200 })
-  }
-
-  const useResize = (myRef) => {
-    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef])
-
-    const [width, setWidth] = useState(undefined)
-
-    useEffect(() => {
-      const handleResize = () => {
-        setWidth(getWidth())
-      }
-
-      if (myRef.current) {
-        setWidth(getWidth())
-      }
-
-      window.addEventListener('resize', handleResize)
-
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
-    }, [myRef, getWidth])
-
-    return width && width > 25 ? width - 25 : width
   }
 
   useEffect(() => {
@@ -207,7 +181,7 @@ const TutorialScreenPage = () => {
   return (
     <>
       {fullHeight && (
-        <div className='' style={{ maxHeight: fullHeight }}>
+        <div style={{ maxHeight: fullHeight }}>
           <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
             <div>
               <HeaderTwo />
@@ -225,7 +199,7 @@ const TutorialScreenPage = () => {
                   <div className='d-flex'>
                     {tutorialsListData?.map((dropdown, index) => {
                       return (
-                        <div key={`k + ${index}`}>
+                        <div key={dropdown?.id}>
                           <Dropdown className='bg-primary'>
                             <Dropdown.Toggle
                               id='dropdown-autoclose-true'
@@ -244,9 +218,9 @@ const TutorialScreenPage = () => {
                                 dropdown?.attributes?.tutorials?.data?.map(
                                   (tutorial, index) => {
                                     return (
-                                      <Dropdown.Item key={index}>
+                                    <div key={tutorial?.id}>
+                                      <Dropdown.Item key={tutorial?.id}>
                                         <div
-                                          key={index}
                                           className={`rounded-start p-1 ps-2 ${
                                             queryData ==
                                             tutorial?.attributes?.Title.replace(
@@ -269,6 +243,7 @@ const TutorialScreenPage = () => {
                                           {tutorial?.attributes?.Title}
                                         </div>
                                       </Dropdown.Item>
+                                    </div>
                                     )
                                   }
                                 )}
@@ -308,9 +283,7 @@ const TutorialScreenPage = () => {
                       >
                         {tutorialsListData?.map((dropdown, index) => {
                           return (
-                            <div key={index}>
-                              {/* <hr className="p-0 bg-white text-white m-0"></hr> */}
-
+                            <div key={dropdown?.id}>
                               <Accordion.Item
                                 eventKey={index}
                                 className={`p-0 m-0 border-0 bg-primary rounded-0 ${
@@ -365,10 +338,10 @@ const TutorialScreenPage = () => {
                                   {dropdown?.attributes?.tutorials?.data
                                     ?.length > 0 &&
                                     dropdown?.attributes?.tutorials?.data?.map(
-                                      (tutorial, index) => {
+                                      (tutorial) => {
                                         return (
                                           <div
-                                            key={index}
+                                            key={tutorial?.id}
                                             style={{
                                               borderLeft: '1px solid white',
                                             }}

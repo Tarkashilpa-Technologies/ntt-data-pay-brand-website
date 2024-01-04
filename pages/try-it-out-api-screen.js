@@ -499,7 +499,7 @@ const TryItOutApiScreen = () => {
                           navigator.clipboard.writeText(JSON.stringify(json));
                           setCopyText(true);
                         }} 
-                        disabled={json ? false: true}
+                        disabled={!json}
                         > 
                           <span className={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
                           <img src="images/paste.png" width={20}  alt="clipboard-icon"/>  
@@ -525,7 +525,7 @@ const TryItOutApiScreen = () => {
                           {loader && (
                             <Spinner
                               animation="border"
-                              role="status"
+                              role="output"
                               style={{ fontSize: 20, height: 20, width: 20 }}
                             />
                           )}
@@ -559,14 +559,13 @@ const TryItOutApiScreen = () => {
                       className="btn bg-primary text-white w-100 d-flex justify-content-between"
                       data-bs-toggle="collapse"
                       href="#collapseExample"
-                      role="button"
                       aria-expanded={isCollapsed ? 'false' : 'true'}
                       aria-controls="collapseExample"
                       onClick={() => {
                         setIsCollapsed(!isCollapsed)
                       }}
                     >
-                      API Documentation
+                      <span>API Documentation</span>
                       <img
                         src={`/images/${arrowClass}-arrow.svg`}
                         alt={`Arrow ${arrowClass}`}

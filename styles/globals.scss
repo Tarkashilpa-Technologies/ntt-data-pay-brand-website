@@ -99,7 +99,6 @@ a {
 .btn_style2::after {
   content: '';
   background: url(/images/arrow-right-white.svg) no-repeat center center;
-  /* background-size: cover; */
   position: absolute;
   width: 16px;
   margin-left: 8px;
@@ -126,7 +125,6 @@ a {
 .btn_style3::after {
   content: '';
   background: url(/images/arrow-right-blue.svg) no-repeat center center;
-  /* background-size: cover; */
   position: absolute;
   width: 16px;
   margin-left: 8px;
@@ -171,14 +169,11 @@ a {
 .bnr-home-wrp {
   // &{ width: 100%; height: 100vh; position: relative;
   //   background-image: url(/images/ntt-bnr-hme.jpg); background-repeat: no-repeat; background-position: top right; background-size: cover;}
-
-  & {
     width: 100%;
     height: 100vh;
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-  }
 
   &.product-payment-bnr {
     background-image: url(/images/product-bnr1.jpg);
@@ -248,9 +243,7 @@ a {
   }
 
   &.signup-bnr {
-    & {
       background-image: url(/images/sign-up-banner.jpg);
-    }
 
     .bnr-caption {
       h2 {
@@ -262,20 +255,16 @@ a {
   }
 
   .container_1300 {
-    & {
       height: 100vh;
       position: relative;
-    }
 
     .bnr-caption {
-      & {
         max-width: 540px;
         position: absolute;
         top: 50%;
         left: 0;
         transform: translate(0%, -50%);
         z-index: 1;
-      }
       h2 {
         color: $black-clr;
         font-weight: $fw-bold;
@@ -301,7 +290,6 @@ a {
         margin-bottom: 30px;
       }
       h3 {
-        & {
           font-size: 48px;
           font-weight: $fw-bold;
           letter-spacing: -0.01em;
@@ -310,17 +298,14 @@ a {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           text-fill-color: transparent;
-        }
       }
       .btn_style4 {
         margin-left: 20px;
       }
 
       .cap-list {
-        & {
           width: 100%;
           margin-top: 70px;
-        }
         ul {
           list-style: none;
           list-style-type: none;
@@ -343,22 +328,17 @@ a {
   }
 
   .banner-vid {
-    & {
       max-width: 940px;
       height: 760px;
       position: absolute;
       right: 0px;
       bottom: 0px;
-    }
     video {
-      & {
         width: 100%;
-      }
     }
   }
 
   .campaign-bnr-wrp {
-    & {
       max-width: 650px;
       position: absolute;
       top: 50%;
@@ -367,7 +347,6 @@ a {
       padding: 23px 40px;
       background-color: #f5f8ff;
       box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.8);
-    }
 
     .btn-primary {
       background-color: #6785c1;
@@ -376,20 +355,15 @@ a {
     }
 
     .gp-frm-patch {
-      & {
         padding: 0px 0px;
-      }
 
       ul {
-        & {
           padding: 15px 2px;
           margin: 0px 0px 0px;
           display: flex;
           list-style: none;
           list-style-type: none;
-        }
         li {
-          & {
             font-size: 16px;
             font-weight: $fw-bold;
             line-height: 18px;
@@ -399,7 +373,6 @@ a {
             background-size: 6px;
             width: 33.33%;
             position: relative;
-          }
 
           &::before {
             content: '';
@@ -420,12 +393,10 @@ a {
     }
 
     p.tc {
-      & {
         margin-top: 0px;
         margin-bottom: 0px;
         padding: 0px 0px 0px;
         color: #999999;
-      }
       small {
         font-size: 12px;
       }
@@ -434,7 +405,6 @@ a {
 }
 
 .brand-logos-wrp {
-  & {
     max-width: 1030px;
     height: 94px;
     margin: -50px auto 0px;
@@ -445,12 +415,9 @@ a {
     position: relative;
     display: block;
     padding: 0px 0px;
-  }
 
   .swiper {
-    & {
       padding: 0px 0px;
-    }
 
     .swiper-wrapper {
       webkit-transition-timing-function: linear !important;
@@ -459,12 +426,10 @@ a {
     }
 
     div {
-      & {
         margin: 0rem 0rem;
         align-items: center;
         text-align: center;
         width: 150px;
-      }
       img {
         max-width: 100%;
       }
@@ -473,31 +438,25 @@ a {
 }
 
 .common-ttle {
-  & {
     color: $black-clr;
     font-weight: $fw-bold;
     font-size: $fs-48;
     line-height: 116%;
     letter-spacing: -0.02em;
     margin-bottom: 20px;
-  }
 }
 
 .common-desc {
-  & {
     font-size: $fs-18;
     line-height: 158%;
     font-weight: $fw-regular;
     color: $black-clr;
-  }
 }
 
 .hassel-free-wrp {
-  & {
     padding: 150px 0px 70px;
     background-color: #f4f7fb;
     margin-top: -44px;
-  }
 }
 
 .spacer-30 {
@@ -506,11 +465,9 @@ a {
 }
 
 .card-style1 {
-  & {
     padding: 45px;
     background-color: $white-clr;
     border-radius: 10px;
-  }
 
   h2.ttle {
     font-size: $fs-24;
@@ -545,29 +502,23 @@ a {
     height: 591px;
   }
   .card-link-cvr {
-    & {
       margin-top: 20px;
-    }
     span {
       margin: 0rem 0.5rem;
       display: inline-block;
     }
     .card-links {
-      & {
         color: $black-clr;
         font-size: $fs-14;
         font-weight: $fw-regular;
-      }
     }
   }
 }
 
 .card-style2 {
-  & {
     padding: 45px;
     background-color: $white-clr;
     border-radius: 10px;
-  }
 
   h2.ttle {
     font-size: $fs-24;
@@ -589,30 +540,24 @@ a {
   }
 
   .card-link-cvr {
-    & {
       margin-top: 20px;
-    }
     span {
       margin: 0rem 0.5rem;
       display: inline-block;
       color: $white-clr;
     }
     .card-links {
-      & {
         color: $white-clr;
         font-size: $fs-14;
         font-weight: $fw-regular;
-      }
     }
   }
 }
 
 .card-style3 {
-  & {
     padding: 45px;
     background-color: $white-clr;
     border-radius: 10px;
-  }
   h2.ttle {
     font-size: $fs-24;
     font-weight: $fw-semi-bold;
@@ -655,7 +600,6 @@ a {
 }
 
 .why-choose-wrp {
-  & {
     padding: 70px 0px;
     background: linear-gradient(107.97deg, #006c96 0%, #0082b4 100.63%),
       linear-gradient(109.21deg, #6785c1 22.7%, #cd3728 100.65%),
@@ -663,12 +607,9 @@ a {
     overflow: hidden;
     position: relative;
     height: 1000px;
-  }
 
   .why-choose-lhs {
-    & {
       padding-top: 30px;
-    }
 
     .btn_style_white {
       margin-top: 20px;
@@ -680,18 +621,14 @@ a {
   }
 
   .circle-card {
-    & {
       width: 296px;
       height: 296px;
       border-radius: 50%;
       padding: 60px 0px;
-    }
 
     &.circle-style1 {
-      & {
         background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
         box-shadow: 0px 4px 70px rgba(0, 0, 0, 0.25);
-      }
 
       .sept-bar {
         width: 100%;
@@ -702,10 +639,8 @@ a {
     }
 
     &.circle-style2 {
-      & {
         background: #fff;
         margin-left: -95px;
-      }
       .sept-bar {
         width: 100%;
         height: 1px;
@@ -715,9 +650,7 @@ a {
     }
 
     .crcle-numb-cvr {
-      & {
         padding: 15px 60px 15px 75px;
-      }
 
       h2 {
         font-size: $fs-48;
@@ -744,21 +677,16 @@ a {
   }
 
   .why-sldr-cvr {
-    & {
       position: absolute;
       display: flex;
       width: 100%;
       padding-right: 350px;
       cursor: url(/images/drag-cursor.png) 15 15, move;
-    }
 
     .why-choose-sldr {
-      & {
         padding: 50px 100px 50px 0px;
-      }
 
       .swiper-slide {
-        & {
           width: 478px;
           height: 494px;
           display: inline-table;
@@ -769,7 +697,6 @@ a {
           background-size: cover;
           padding: 35px;
           position: relative;
-        }
         &.wcbg1 {
           background-image: url(/images/why-choose-bg1.jpg);
         }
@@ -777,9 +704,7 @@ a {
           background-image: url(/images/why-choose-bg2.jpg);
         }
         &.wcbg3 {
-          & {
             background-image: url(/images/why-choose-bg3.jpg);
-          }
           h2 {
             color: $black-clr;
           }
@@ -855,10 +780,8 @@ a {
 }
 
 .real-time-report-wrp {
-  & {
     padding: 70px 0px 0px;
     background-color: #f4f7fb;
-  }
 
   .rtr-pic-wrp {
     .rtr-vid {
@@ -869,15 +792,11 @@ a {
 }
 
 .quick-easy-wrp {
-  & {
     background-color: #fff;
     padding: 70px 0px 0px;
-  }
 
   .quick-rhs {
-    & {
       padding-top: 100px;
-    }
 
     .grp-logo-cvr {
       span:nth-child(1) {
@@ -888,7 +807,6 @@ a {
 }
 
 .tailor-made-wrp {
-  & {
     padding: 155px 0px 70px;
     background: #f4f7fb url(/images/tailor-desg.svg);
     background-repeat: no-repeat;
@@ -897,44 +815,36 @@ a {
     overflow: hidden;
     position: relative;
     height: 800px;
-  }
+
   .tmw-lhs {
     padding-right: 160px;
   }
 
   .tmw-rhs {
-    & {
       width: 100%;
       position: relative;
       height: 565px;
-    }
 
     .tmw-sldr {
-      & {
         width: 100%;
         padding-top: 75px;
         display: flex;
-      }
 
       .swiper-slide {
-        & {
           max-width: 398px;
           display: inline-table;
           height: 480px;
           background: #ffffff;
           box-shadow: 0px 4px 25px rgba(0, 128, 177, 0.25);
           border-radius: 10px;
-        }
         img {
           border-radius: 10px 10px 0px 0px;
         }
 
         .desc-card {
-          & {
             width: 100%;
             height: 250px;
             padding: 30px;
-          }
           .btn_style4::after {
             margin-top: 5px;
           }
@@ -990,28 +900,22 @@ a {
 }
 
 .dp-main-wrp {
-  & {
     padding: 70px 0px;
     background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .dp-bx-lrg {
-    & {
       border-radius: 10px;
       box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
-    }
     img {
       border-radius: 10px 10px 0px 0px;
     }
 
     .desc-bx {
-      & {
         width: 100%;
         height: 230px;
         background-color: #080f2c;
         padding: 30px;
         border-radius: 0px 0px 10px 10px;
-      }
       h6 {
         color: $white-clr;
         font-weight: $fw-bold;
@@ -1024,10 +928,8 @@ a {
         line-height: 121%;
       }
       a {
-        & {
           margin-top: 15px;
           display: inline-block;
-        }
         &::after {
           margin-top: 5px;
         }
@@ -1036,15 +938,12 @@ a {
   }
 
   .dp-bx-smll {
-    & {
       margin-bottom: 50px;
-    }
 
     .desc-bx {
-      & {
         width: 100%;
         padding-right: 125px;
-      }
+
       h6 {
         color: #7198cf;
         font-weight: $fw-bold;
@@ -1057,10 +956,8 @@ a {
         line-height: 100%;
       }
       a {
-        & {
           margin-top: 5px;
           display: inline-block;
-        }
         &::after {
           margin-top: 5px;
         }
@@ -1070,16 +967,11 @@ a {
 }
 
 .elevate-main-wrp {
-  // &{ width: 100%; padding: 70px 0px; background: url(/images/elevate-desg.svg); background-repeat: no-repeat; background-position: right top; background-size: auto;}
-  & {
     background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
     padding: 70px 0px;
-  }
 
   .elevate-lhs {
-    & {
       padding-top: 100px;
-    }
 
     h2.common-ttle {
       color: $white-clr;
@@ -1088,12 +980,9 @@ a {
 
   .testi-sldr-cvr {
     .swiper {
-      & {
         padding: 20px;
-      }
 
       .elevate-rhs {
-        & {
           width: 100%;
           height: 500px;
           background-color: $white-clr;
@@ -1103,7 +992,7 @@ a {
           background-image: url(/images/quote.svg);
           background-repeat: no-repeat;
           background-position: top 20px left 20px;
-        }
+        
         .desc {
           font-weight: $fw-regular;
           font-size: 18px;
@@ -1113,11 +1002,10 @@ a {
         }
 
         .name {
-          & {
             font-weight: $fw-bold;
             color: $black-clr;
             font-size: 18px;
-          }
+          
           span {
             font-weight: $fw-regular;
             display: block;
@@ -1136,29 +1024,22 @@ a {
 }
 
 .powerful-gateway {
-  & {
     padding: 100px 0px 0px;
     background-color: #f4f7fb;
-  }
 }
 
 .product-feature-wrp {
-  & {
     padding: 70px 0px;
     background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .feat-main-wrp {
-    & {
       margin-top: 50px;
       padding: 0px 50px;
-    }
 
     .feat-card {
-      & {
         margin-top: 50px;
         padding-right: 50px;
-      }
+      
       .ttle {
         color: $white-clr;
         font-size: $fs-24;
@@ -1180,9 +1061,7 @@ a {
       padding: 0px;
     }
     .feat-card {
-      & {
         padding-right: 30px;
-      }
       .ttle {
         font-size: 22px;
       }
@@ -1191,21 +1070,13 @@ a {
 }
 
 .boost-product-wrp {
-  & {
     padding: 150px 0px 100px;
     position: relative;
     overflow: hidden;
-  }
-
-  // &::before{content: ''; width: 920px; height: 350px; background-image: url(/images/boost-desg-1.svg); background-repeat: no-repeat; background-position: 0px 0px; background-size: contain; position: absolute; top:0%; right: 35%; transform: translate(50%,0%);}
-
-  // &::after{content: ''; width: 414px; height: 195px; background-image: url(/images/boost-desg-2.svg); background-repeat: no-repeat; background-position: 0px 0px; background-size: contain; position: absolute; bottom:0%; right: 0%; transform: translate(0%,0%);}
 
   .boost-sldr-wrp {
     .boost-card {
-      & {
         margin-top: 50px;
-      }
 
       h2 {
         font-size: $fs-24;
@@ -1228,14 +1099,11 @@ a {
     }
 
     .swiper {
-      & {
         padding-bottom: 50px;
-      }
 
       .swiper-pagination {
-        & {
           text-align: left;
-        }
+        
         .swiper-pagination-bullet-active {
           background-color: $black-clr;
         }
@@ -1244,11 +1112,10 @@ a {
   }
 
   .boost-rhs-wrp {
-    & {
       width: 100%;
       height: 100%;
       position: relative;
-    }
+    
     img {
       position: absolute;
       bottom: 0px;
@@ -1257,28 +1124,21 @@ a {
 }
 
 .smoother-main-wrp {
-  & {
     padding: 70px 0px;
     background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .smooth-lhs {
-    & {
       padding-right: 120px;
-    }
   }
 }
 
 .intell-wrp {
-  & {
     padding: 70px 0px;
-  }
 
   .intell-rhs {
-    & {
       width: 100%;
       padding-top: 80px;
-    }
+    
     .ttle {
       font-size: $fs-24;
       font-weight: $fw-bold;
@@ -1288,9 +1148,7 @@ a {
     }
 
     .swiper {
-      & {
         padding-bottom: 50px;
-      }
 
       .swiper-slide {
         .desc {
@@ -1304,9 +1162,8 @@ a {
       }
 
       .swiper-pagination {
-        & {
           text-align: left;
-        }
+        
         .swiper-pagination-bullet-active {
           background-color: $black-clr;
         }
@@ -1316,24 +1173,19 @@ a {
 }
 
 .ppo-wrp {
-  & {
     padding: 70px 0px;
     background-color: #f4f7fb;
     position: relative;
-  }
 
   .ppo-grid-cvr {
-    & {
       margin-top: 50px;
-    }
 
     .ppo-card {
-      & {
         width: 100%;
         height: 372px;
         position: relative;
         padding: 30px;
-      }
+
       h2 {
         font-size: $fs-24;
         font-weight: $fw-bold;
@@ -1347,11 +1199,10 @@ a {
         color: $grey-clr;
       }
       &.ppo-card1 {
-        & {
           background-color: #d6e1f1;
           border-radius: 10px 0px 0px;
           padding-top: 150px;
-        }
+        
         &::before {
           content: '01';
           font-size: 144px;
@@ -1372,12 +1223,11 @@ a {
       }
 
       &.ppo-card2 {
-        & {
           background: linear-gradient(115.41deg, #6785c1 22.57%, #cd3728 64.01%),
             #cd3728;
           border-radius: 0px 0px 0px;
           padding: 50px 340px 50px 50px;
-        }
+        
         &::before {
           content: '02';
           font-size: 144px;
@@ -1414,12 +1264,11 @@ a {
       }
 
       &.ppo-card3 {
-        & {
           background: linear-gradient(327.57deg, #0082b4 19.46%, #000c41 95.27%),
             #000c41;
           border-radius: 0px 10px 0px 0px;
           padding-top: 150px;
-        }
+        
         &::before {
           content: '03';
           font-size: 144px;
@@ -1445,12 +1294,11 @@ a {
       }
 
       &.ppo-card4 {
-        & {
           background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%),
             #0f1c50;
           border-radius: 0px 0px 0px 10px;
           padding: 50px 340px 50px 50px;
-        }
+        
         &::before {
           content: '04';
           font-size: 144px;
@@ -1487,11 +1335,10 @@ a {
       }
 
       &.ppo-card5 {
-        & {
           background-color: #d6e1f1;
           border-radius: 0px 0px 0px;
           padding-top: 150px;
-        }
+        
         &::before {
           content: '05';
           font-size: 144px;
@@ -1512,12 +1359,11 @@ a {
       }
 
       &.ppo-card6 {
-        & {
           background: linear-gradient(122.29deg, #6785c1 19.47%, #cd3728 72.14%),
             #cd3728;
           border-radius: 0px 0px 10px 0px;
           padding-top: 150px;
-        }
+        
         &::before {
           content: '06';
           font-size: 144px;
@@ -1550,27 +1396,20 @@ a {
     position: relative;
     z-index: 1;
   }
-
-  & {
     padding: 70px 0px;
     position: relative;
     background-color: #fff;
-  }
-  // &::before{ content: ''; width: 565px; height: 393px; position: absolute; top:0px; left:5rem; background-image: url(/images/insta-desg1.svg); background-repeat: no-repeat; background-position: 0px 0px; background-size: contain;}
-  // &::after{ content: ''; width: 778px; height: 102px; position: absolute; bottom:0px; left:10rem; background-image: url(/images/insta-desg2.svg); background-repeat: no-repeat; background-position: 0px 0px; background-size: contain;}
-  .insta-tabs-cvr {
-    & {
+
+    .insta-tabs-cvr {
       width: 100%;
       margin-top: 20px;
-    }
+    
     .nav-tabs {
-      & {
         border-bottom: none;
         justify-content: center;
-      }
+      
       .nav-item {
         button.nav-link {
-          & {
             max-width: 260px;
             height: 52px;
             font-size: $fs-18;
@@ -1579,7 +1418,7 @@ a {
             border-radius: 6px;
             color: #0082b4;
             margin: 0.5rem 0.5rem;
-          }
+          
           &.active {
             background-color: #0082b4;
             color: $white-clr;
@@ -1589,9 +1428,8 @@ a {
     }
 
     .tab-content {
-      & {
         padding: 30px 15px;
-      }
+      
       .accordion-item {
         border-top: none;
         border-left: none;
@@ -1621,23 +1459,16 @@ a {
 }
 
 .why-ntt-wrp {
-  & {
     padding: 70px 0px;
     background-color: #f4f7fb;
-  }
 
   .why-lhs {
-    & {
       padding-top: 1rem;
-    }
 
     .nav-pills {
-      & {
         padding-right: 10rem;
-      }
 
       .nav-link {
-        & {
           font-weight: $fw-bold;
           font-size: $fs-24;
           line-height: 116%;
@@ -1646,7 +1477,7 @@ a {
           color: #121a38;
           position: relative;
           padding: 1.25rem 0rem;
-        }
+        
         &::before {
           content: '';
           width: 100%;
@@ -1665,27 +1496,23 @@ a {
   }
 
   .dhl-card {
-    & {
       max-width: 1130px;
       height: 325px;
       margin: 0 auto;
       background-color: #fff;
       border-radius: 10px;
       margin-top: 30px;
-    }
 
     .swiper {
-      & {
         width: 100%;
         height: 325px;
-      }
+      
       .swiper-slide {
-        & {
           width: 100%;
           height: 100%;
           padding: 45px;
           border-radius: 10px;
-        }
+        
         &.case-study-bg1 {
           background-image: url(/images/gradient-bg-why-ntt.png);
           background-repeat: no-repeat;
@@ -1720,11 +1547,9 @@ a {
       }
 
       .swiper-pagination {
-        & {
           bottom: 20px;
           text-align: left;
           padding-left: 45px;
-        }
 
         .swiper-pagination-bullet {
           background-color: rgba(255, 255, 255, 0.8);
@@ -1734,14 +1559,13 @@ a {
   }
 
   .dhl-logo-wrp {
-    & {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 3rem 0rem 0rem;
       max-width: 1130px;
       margin: 0 auto;
-    }
+    
     div {
       margin: 0rem 5rem;
     }
@@ -1750,9 +1574,7 @@ a {
 
 .exp-wrp {
   .exp-lhs {
-    & {
       padding-top: 50px;
-    }
   }
 
   .feat-main-wrp {
@@ -1762,9 +1584,7 @@ a {
 }
 
 .product-faq-wrp {
-  & {
     padding: 70px 0px;
-  }
 
   .faq-rhs {
     .accordion-item {
@@ -1795,26 +1615,21 @@ a {
 }
 
 .explore-other-wrp {
-  & {
     padding: 70px 0px;
     background-color: #f1f1f1;
-  }
 
   .explore-grid-wrp {
-    & {
       width: 100%;
       margin-top: 50px;
-    }
 
     .explore-card {
-      & {
         width: 100%;
         height: 332px;
         background: #ffffff;
         box-shadow: 0px 30px 50px rgba(0, 0, 0, 0.15);
         border-radius: 10px;
         padding: 30px;
-      }
+
       &.explore1 {
         background-image: url(/images/explore1.svg);
         background-repeat: no-repeat;
@@ -1840,12 +1655,11 @@ a {
         background-size: contain;
       }
       h2 {
-        & {
           font-size: $fs-24;
           font-weight: $fw-bold;
           color: #121a38;
           line-height: 116%;
-        }
+        
         span {
           display: block;
           font-size: 14px;
@@ -1853,12 +1667,11 @@ a {
       }
 
       h3 {
-        & {
           font-size: $fs-24;
           font-weight: $fw-bold;
           color: #121a38;
           line-height: 116%;
-        }
+        
         span {
           display: block;
           font-size: 14px;
@@ -1870,13 +1683,12 @@ a {
         color: #404041;
       }
       a {
-        & {
           font-size: $fs-14;
           font-weight: $fw-bold;
           color: $black-clr;
           position: relative;
           padding-right: 25px;
-        }
+        
         &::after {
           content: '';
           width: 14px;
@@ -1893,11 +1705,9 @@ a {
   }
 
   .boost-card {
-    & {
       margin: 2rem 0rem;
       padding: 0rem 3rem;
       text-align: center;
-    }
 
     h2 {
       font-size: 24px;
@@ -2073,7 +1883,6 @@ a {
 }
 
 .bnr-about-wrp {
-  & {
     width: 100%;
     height: 90vh;
     position: relative;
@@ -2081,26 +1890,22 @@ a {
     background-repeat: no-repeat;
     background-position: top right;
     background-size: cover;
-  }
 
   &.product-payment-bnr {
     background-image: url(/images/product-bnr1.jpg);
   }
 
   .container_1300 {
-    & {
       height: 100vh;
       position: relative;
-    }
 
     .bnr-caption {
-      & {
         max-width: 540px;
         position: absolute;
         top: 50%;
         left: 0;
         transform: translate(0%, -50%);
-      }
+      
       h2 {
         color: $black-clr;
         font-weight: $fw-bold;
@@ -2122,10 +1927,9 @@ a {
       }
 
       .cap-list {
-        & {
           width: 100%;
           margin-top: 70px;
-        }
+        
         ul {
           list-style: none;
           list-style-type: none;
@@ -2148,19 +1952,16 @@ a {
   }
 
   .container_1100 {
-    & {
       height: 100vh;
       position: relative;
-    }
 
     .bnr-caption {
-      & {
         max-width: 540px;
         position: absolute;
         top: 50%;
         left: 0;
         transform: translate(0%, -50%);
-      }
+      
       h2 {
         color: $black-clr;
         font-weight: $fw-bold;
@@ -2182,10 +1983,9 @@ a {
       }
 
       .cap-list {
-        & {
           width: 100%;
           margin-top: 70px;
-        }
+        
         ul {
           list-style: none;
           list-style-type: none;
@@ -2209,20 +2009,17 @@ a {
 }
 
 .about-ntt-service-section {
-  & {
     padding-top: 75px;
     background-color: #f4f7fb;
-  }
 }
 
 .about-global-connectivity {
-  & {
     position: relative;
     background-image: url(/images/global_connectivity_banner.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-  }
+  
   .global-connectivity-box {
     padding: 30px;
     position: absolute;
@@ -2279,30 +2076,23 @@ a {
 }
 
 .our-journey {
-  & {
     background-image: url(/images/our_journey.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     padding: 100px 0px;
-  }
 
   .journey-main-wrp {
-    & {
       width: 100%;
       margin-top: 50px;
-    }
 
     .swiper {
-      & {
         padding: 0px 50px 50px;
-      }
 
       .swiper-slide {
         &.swiper-slide-active {
           .journo-card {
-            & {
               padding-top: 0px;
-            }
+            
             h2 {
               opacity: 1;
             }
@@ -2313,12 +2103,11 @@ a {
         }
 
         .journo-card {
-          & {
             width: 100%;
             text-align: center;
             padding-top: 50px;
             @include anim1;
-          }
+          
           h2 {
             color: $white-clr;
             font-weight: $fw-black;
@@ -2350,14 +2139,13 @@ a {
         }
 
         .swiper-pagination-bullet {
-          & {
             background-color: #05b3fe;
             opacity: 1;
             width: 10px;
             height: 10px;
             margin: 0rem 1.6rem;
             z-index: 1;
-          }
+          
           &.swiper-pagination-bullet-active {
             background-color: #fff;
           }
@@ -2384,9 +2172,7 @@ a {
 }
 
 .our-team {
-  & {
     padding-bottom: 70px;
-  }
 
   .team-container {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
@@ -2447,10 +2233,8 @@ a {
 }
 
 .bread-wrp {
-  & {
     padding: 70px 0px;
     background-color: #f4f7fb;
-  }
 
   .breadcrumb {
     margin: 0px;
@@ -2459,10 +2243,8 @@ a {
 
 .contactpage {
   .bread-wrp {
-    & {
       padding: 20px 0px;
       background-color: #f4f7fb;
-    }
 
     .breadcrumb {
       margin: 0px;
@@ -2472,10 +2254,8 @@ a {
 
 .signuppage {
   .bread-wrp {
-    & {
       padding: 20px 0px;
       background-color: #f4f7fb;
-    }
 
     .breadcrumb {
       margin: 0px;
@@ -2483,29 +2263,23 @@ a {
   }
 
   .brand-logos-wrp {
-    & {
       margin: 50px auto 0px;
       height: 75px;
-    }
   }
 }
 
 .thankyou-message {
-  & {
     color: darkgreen;
     padding: 3px 5px;
     border: 1px solid darkgreen;
     display: none;
-  }
 }
 
 .error-message {
-  & {
     color: rgb(229, 43, 43);
     padding: 3px 5px;
     border: 1px solid rgb(229, 43, 43);
     display: none;
-  }
 }
 /* Abhijeet css end */
 
@@ -2522,16 +2296,12 @@ ol li {
 }
 
 .contact-main-bnr-wrp {
-  & {
     padding: 200px 0px 50px;
     background-color: #fff;
-  }
 }
 
 .contact-grid-cvr {
-  & {
     padding: 70px 0px;
-  }
 
   .common-ttle {
     font-size: 38px;
@@ -2563,9 +2333,7 @@ ol li {
   }
 
   .regional-off-cvr {
-    & {
       padding: 70px 0px;
-    }
 
     .accordion-button {
       font-weight: $fw-bold;
@@ -2588,14 +2356,11 @@ ol li {
 }
 
 .signup-grid-wrp {
-  & {
     padding: 70px 0px;
-  }
 
   .common-ttle {
-    & {
       font-size: 36px;
-    }
+    
     span {
       color: #6785c1;
     }
@@ -2607,43 +2372,35 @@ ol li {
 }
 
 .retail-fold1 {
-  & {
     padding-bottom: 100px;
     padding-top: 0px;
-  }
+
   .container_1300 {
     max-width: 770px;
   }
 }
 
 .data-payment-indus {
-  & {
     padding: 100px 0px;
-  }
 
   .data-payment-grid-main {
-    & {
       width: 100%;
       margin-top: 50px;
-    }
 
     .dp-bx {
-      & {
         border-top: 1.5px solid #fff;
         border-bottom: 1.5px solid #fff;
         border-left: 7.5px solid #fff;
         border-right: 7.5px solid #fff;
-      }
 
       .ttle {
-        & {
           font-size: $fs-24;
           font-weight: $fw-semi-bold;
           line-height: 116%;
           padding-right: 65px;
           padding-bottom: 15px;
           margin: 0px;
-        }
+        
         &.icn-ipg {
           background-image: url(/images/ipg-icn.svg);
           background-repeat: no-repeat;
@@ -2700,22 +2457,18 @@ ol li {
     }
 
     .dp-box-smll {
-      & {
         width: 100%;
         height: 304px;
         padding: 25px;
         border-radius: 15px;
         overflow: hidden;
-      }
     }
 
     .dp-box-big {
-      & {
         width: 100%;
         height: 623px;
         padding: 25px;
         border-radius: 15px;
-      }
     }
 
     .mb15 {
@@ -2723,9 +2476,8 @@ ol li {
     }
 
     .blue-light-bg {
-      & {
         background-color: #7493ca;
-      }
+      
       .ttle {
         color: $white-clr;
       }
@@ -2735,9 +2487,8 @@ ol li {
     }
 
     .blue-dark-bg {
-      & {
         background-color: #121a38;
-      }
+      
       .ttle {
         color: $white-clr;
       }
@@ -2747,25 +2498,20 @@ ol li {
     }
 
     .grey-light-bg {
-      & {
         background-color: #d5ddeb;
-      }
     }
   }
 
   .insta-tabs-cvr {
-    & {
       width: 100%;
       margin-top: 20px;
-    }
+    
     .nav-tabs {
-      & {
         border-bottom: none;
         justify-content: center;
-      }
+      
       .nav-item {
         button.nav-link {
-          & {
             max-width: 260px;
             height: 52px;
             font-size: $fs-18;
@@ -2774,7 +2520,7 @@ ol li {
             border-radius: 6px;
             color: #0082b4;
             margin: 0.5rem 0.5rem;
-          }
+
           &.active {
             background-color: #0082b4;
             color: $white-clr;
@@ -2784,9 +2530,8 @@ ol li {
     }
 
     .tab-content {
-      & {
         padding: 30px 15px;
-      }
+      
       .accordion-item {
         border-top: none;
         border-left: none;
@@ -2816,18 +2561,14 @@ ol li {
 }
 
 .hdn-wrp {
-  & {
     width: 100%;
     padding: 100px 0px;
     background: linear-gradient(107.97deg, #006c96 0%, #0082b4 100.63%),
       linear-gradient(109.21deg, #6785c1 22.7%, #cd3728 100.65%),
       linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .hdn-cvr {
-    & {
       margin-top: 70px;
-    }
 
     .accordion-item {
       border-top: none;
@@ -2864,14 +2605,10 @@ ol li {
 }
 
 .okc-wrp {
-  & {
     padding: 100px 0px;
-  }
 
   .swiper {
-    & {
       padding: 0px 0px;
-    }
 
     .swiper-wrapper {
       webkit-transition-timing-function: linear !important;
@@ -2880,12 +2617,10 @@ ol li {
     }
 
     div {
-      & {
         margin: 0rem 0rem;
         align-items: center;
         text-align: center;
         width: 150px;
-      }
       img {
         max-width: 100%;
       }
@@ -2894,15 +2629,11 @@ ol li {
 }
 
 .wch-wrp {
-  & {
     padding: 50px 0px;
     background-color: #f4f8fe;
-  }
 
   .wch-lhs {
-    & {
       padding: 50px 0px 0px 50px;
-    }
     .common-ttle {
       font-size: 40px;
       line-height: 135%;
@@ -2919,10 +2650,8 @@ ol li {
 }
 
 .pg-block {
-  & {
     margin-top: 50px;
     padding-right: 50px;
-  }
   h2 {
     font-size: $fs-24;
     color: #121a38;
@@ -2938,25 +2667,20 @@ ol li {
 }
 
 .faq-parent-wrp {
-  & {
     padding: 70px 0px;
     background-color: #f4f7fb;
-  }
 
   .faq-group-cvr {
-    & {
       background-color: $white-clr;
       padding: 25px;
       border: 1px solid #eee;
-    }
 
     .accordion-button {
-      & {
         outline: none;
         outline-style: none;
         font-weight: $fw-semi-bold;
         font-size: $fs-18;
-      }
+
       &:focus {
         box-shadow: none;
       }
@@ -2967,25 +2691,19 @@ ol li {
 
     .accordion {
       .accordion-item {
-        & {
           width: 100%;
-        }
       }
 
       .accordion-body {
-        & {
           word-break: break-word;
-        }
       }
     }
   }
 }
 
 .privacy-cvr-wrp {
-  & {
     width: 100%;
     padding: 70px 0px;
-  }
 
   h3 {
     margin-top: 30px;
@@ -3030,24 +2748,18 @@ ol li {
 }
 
 .media-cntr-wrp {
-  & {
     padding: 0px 0px 70px;
     background-color: #f4f7fb;
-  }
 
   .media-cntr-box {
-    & {
       box-shadow: 3px 5px 9px rgba(0, 0, 0, 0.1);
       margin-top: 50px;
       display: block;
       border-radius: 20px;
-    }
 
     &.alternate-box {
       .media-pic {
-        & {
           border-radius: 0px 20px 20px 0px;
-        }
         img {
           border-radius: 0px 20px 20px 0px;
         }
@@ -3063,22 +2775,18 @@ ol li {
     }
 
     .media-pic {
-      & {
         border-radius: 20px 0px 0px 20px;
-      }
       img {
         border-radius: 20px 0px 0px 20px;
       }
     }
 
     .media-desc-box {
-      & {
         background-color: $white-clr;
         padding: 35px;
         border-radius: 0px 20px 20px 0px;
         overflow: hidden;
         height: 410px;
-      }
 
       h6 {
         color: #b3b6c3;
@@ -3099,11 +2807,10 @@ ol li {
       }
 
       .media-text-box {
-        & {
           height: 188px;
           padding-right: 10px;
           overflow-y: scroll;
-        }
+        
         &::-webkit-scrollbar {
           width: 8px;
           height: 8px;
@@ -3131,15 +2838,12 @@ ol li {
 }
 
 .back-top {
-  & {
     position: fixed;
     right: 30px;
     bottom: 200px;
     z-index: 10;
-  }
 
   span {
-    & {
       width: 50px;
       height: 50px;
       font-size: 45px;
@@ -3149,14 +2853,12 @@ ol li {
       border-radius: 50%;
       text-align: center;
       line-height: 49px;
-    }
   }
 }
 
 .pricing-fold1 {
-  & {
     padding: 0px 0px 70px;
-  }
+  
   .container_1300 {
     max-width: 1045px;
     margin: 0 auto;
@@ -3182,15 +2884,11 @@ ol li {
 }
 
 .pricing-faq-wrp {
-  & {
     padding: 100px 0px;
-  }
 
   .pricing-faq-inner {
-    & {
       width: 100%;
       margin-top: 50px;
-    }
 
     .accordion-item {
       border-top: none;
@@ -3220,27 +2918,18 @@ ol li {
 }
 
 .no-hidden-charge-wrp {
-  & {
     padding: 100px 0px;
-  }
 
   .no-hcw-inner {
-    & {
       margin-top: 50px;
-    }
 
     .hcw-table-wrp {
-      & {
         width: 100%;
-      }
       table {
-        & {
           width: 100%;
           border: 1px solid #017cab;
-        }
         tr {
           th {
-            & {
               text-transform: uppercase;
               background: linear-gradient(
                 91.29deg,
@@ -3251,19 +2940,17 @@ ol li {
               text-align: center;
               font-size: 36px;
               font-weight: $fw-bold;
-            }
+            
             &:nth-child(1) {
               border-right: 1px solid $white-clr;
             }
           }
           td {
-            & {
               font-size: 30px;
               line-height: 40px;
               font-weight: $fw-regular;
               text-align: center;
               width: 50%;
-            }
             &:nth-child(1) {
               text-align: left;
               font-weight: $fw-bold;
@@ -3277,23 +2964,17 @@ ol li {
     }
 
     .hcw-rhs {
-      & {
         width: 100%;
-      }
 
       .hcw-table-wrp {
-        & {
           width: 100%;
-        }
         table {
-          & {
             width: 100%;
             border: 1px solid #017cab;
             margin-top: 75px;
-          }
+          
           tr {
             th {
-              & {
                 text-transform: uppercase;
                 background: linear-gradient(
                   91.29deg,
@@ -3304,19 +2985,18 @@ ol li {
                 text-align: center;
                 font-size: 36px;
                 font-weight: $fw-bold;
-              }
+              
               &:nth-child(1) {
                 border-right: 1px solid $white-clr;
               }
             }
             td {
-              & {
                 font-size: 30px;
                 line-height: 40px;
                 font-weight: $fw-regular;
                 text-align: center;
                 width: 50%;
-              }
+              
               &:nth-child(1) {
                 text-align: left;
                 font-weight: $fw-regular;
@@ -3342,9 +3022,7 @@ ol li {
 }
 
 .tc-main-wrp {
-  & {
     padding: 100px 0px;
-  }
 
   p {
     font-size: 18px;
@@ -3353,11 +3031,10 @@ ol li {
     color: #000;
   }
   h4 {
-    & {
       font-size: 24px;
       font-weight: $fw-bold;
       color: $black-clr;
-    }
+    
     span {
       font-size: 18px;
       line-height: 158%;
@@ -3386,20 +3063,16 @@ ol li {
     margin-top: 20px;
 
     li {
-      & {
         counter-increment: tc;
         padding-left: 32px;
         position: relative;
         margin-bottom: 30px;
-      }
 
       ol {
         margin-left: 0px;
 
         li {
-          & {
             padding-left: 52px;
-          }
 
           ol {
             margin-left: 0px;
@@ -3422,36 +3095,30 @@ ol li {
 }
 
 .dev-fold2 {
-  & {
     padding: 100px 0px 100px;
     background-color: $white-clr;
-  }
+  
   .fold2-inner {
     max-width: 975px;
     margin: 0 auto;
   }
 
   .fold2-grid-cvr {
-    & {
       padding: 0px 70px;
       margin-top: 70px;
-    }
 
     .f2grid-bx {
-      & {
         text-align: center;
-      }
       .grd-pic {
         height: 180px;
       }
       .desc-hldr {
-        & {
           background-color: #f4f8fe;
           max-width: 300px;
           margin: 0 auto;
           padding: 40px;
           height: 280px;
-        }
+        
         p {
           font-size: 30px;
           line-height: 34px;
@@ -3465,15 +3132,11 @@ ol li {
 }
 
 .expectation-wrp {
-  & {
     padding: 100px 0px;
-  }
   .expectation-inner {
-    & {
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
-    }
     h2 {
       background: linear-gradient(90deg, #213367 30.08%, #6488be 72.11%);
       -webkit-background-clip: text;
@@ -3485,25 +3148,20 @@ ol li {
 }
 
 .psp-wrp {
-  & {
     padding: 100px 0px;
     background: linear-gradient(107.97deg, #006c96 0%, #0082b4 100.63%),
       linear-gradient(109.21deg, #6785c1 22.7%, #cd3728 100.65%),
       linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .psp-top-cvr {
-    & {
       max-width: 9960px;
       margin: 0 auto;
-    }
   }
 
   .psp-lhs {
-    & {
       width: 100%;
       padding-top: 100px;
-    }
+    
     ul {
       li {
         color: $white-clr;
@@ -3521,9 +3179,7 @@ ol li {
 }
 
 .csd-wrp {
-  & {
     padding: 100px 0px;
-  }
 
   h2 {
     background: linear-gradient(90deg, #213367 30.08%, #6488be 72.11%);
@@ -3534,18 +3190,15 @@ ol li {
   }
 
   .csd-cntr-box {
-    & {
       max-width: 666px;
       position: relative;
       margin: 0 auto;
-    }
+    
     a.csd-anchor {
-      & {
         font-size: 30px;
         font-weight: $fw-semi-bold;
         color: $black-clr;
         position: absolute;
-      }
       &.csd-anchor1 {
         top: 60px;
         left: -160px;
@@ -3564,21 +3217,16 @@ ol li {
   }
 
   .cds-tabs-wrp {
-    & {
       width: 100%;
       margin-top: 50px;
-    }
 
     ul.nav-tabs {
-      & {
         border-bottom: none;
         margin: 0 auto;
         max-width: 1140px;
-      }
 
       li {
         button {
-          & {
             width: 360px;
             height: 85px;
             background-color: #b4b4b4;
@@ -3587,9 +3235,8 @@ ol li {
             font-weight: $fw-bold;
             border-radius: 0px;
             border: none;
-            border: none;
             margin: 0px 10px;
-          }
+          
           &:hover {
             border: none;
           }
@@ -3602,15 +3249,12 @@ ol li {
 
     .tab-content {
       .tab-pane {
-        & {
           padding: 65px 0px;
-        }
 
         .cds-tab-desc {
-          & {
             max-width: 700px;
             margin: 0 auto;
-          }
+          
           .ttle {
             font-size: 30px;
             line-height: 34px;
@@ -3634,24 +3278,18 @@ ol li {
 }
 
 .gr-main-wr {
-  & {
     padding: 100px 0px;
     background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
-  }
 
   .gr-inner-cvr {
-    & {
       max-width: 900px;
       margin: 50px auto 0px;
       padding: 0px 20px;
-    }
 
     .gr-rhs {
-      & {
         width: 100%;
-      }
+      
       p.human {
-        & {
           color: $white-clr;
           font-size: 36px;
           line-height: 116%;
@@ -3660,7 +3298,7 @@ ol li {
           background-image: url(/images/human.png);
           background-repeat: no-repeat;
           background-position: top left;
-        }
+        
         span {
           display: block;
           font-size: 20px;
@@ -3696,14 +3334,10 @@ ol li {
 }
 
 .cc-faq-wrp {
-  & {
     padding: 100px 20px;
-  }
 
   .cc-faq-in {
-    & {
       margin-top: 50px;
-    }
 
     .accordion-item {
       border-top: none;
@@ -3733,17 +3367,12 @@ ol li {
 }
 
 .ig-fold1 {
-  & {
     padding: 0px 0px 70px;
-  }
   .ig-input-bx {
-    & {
       max-width: 620px;
       margin: 0 auto;
-    }
     input:not([type]),
     input[type='text'] {
-      & {
         width: 100%;
         height: 68px;
         background-color: transparent;
@@ -3753,7 +3382,6 @@ ol li {
         background-image: url(/images/ig-search.svg);
         background-repeat: no-repeat;
         background-position: left 20px center;
-      }
       &:focus {
         background-image: none;
       }
@@ -3765,26 +3393,19 @@ ol li {
 }
 
 .ig-fold2 {
-  & {
     width: 100%;
-  }
 
   .ig-f2-lhs {
-    & {
       width: 100%;
       height: 1000px;
       padding: 50px 100px;
       background: linear-gradient(121.66deg, #000c41 6.77%, #0082b4 100.56%);
       justify-content: right;
       display: flex;
-    }
 
     #v-pills-tab {
-      & {
         width: 540px;
-      }
       .nav-link {
-        & {
           text-align: left;
           font-size: $fs-18;
           font-weight: $fw-semi-bold;
@@ -3795,7 +3416,7 @@ ol li {
           background-image: url(/images/keyboard_arrow_right-blue.svg);
           background-repeat: no-repeat;
           background-position: right center;
-        }
+        
         &.active {
           background-color: transparent;
           color: $white-clr;
@@ -3807,15 +3428,11 @@ ol li {
   }
 
   .ig-f2-rhs {
-    & {
       width: 100%;
       padding: 50px 100px;
-    }
 
     .tab-content {
-      & {
         width: "100%";
-      }
 
       .tab-pane {
         h3 {
@@ -3849,19 +3466,15 @@ ol li {
 }
 
 .ik-fold1 {
-  & {
     background-color: $white-clr;
     padding: 70px 0px;
-  }
 
   .ig-input-bx {
-    & {
       max-width: 620px;
       margin: 0 auto;
-    }
+    
     input:not([type]),
     input[type='text'] {
-      & {
         width: 100%;
         height: 68px;
         background-color: transparent;
@@ -3871,7 +3484,7 @@ ol li {
         background-image: url(/images/ig-search.svg);
         background-repeat: no-repeat;
         background-position: left 20px center;
-      }
+      
       &:focus {
         background-image: none;
       }
@@ -3882,13 +3495,10 @@ ol li {
   }
 
   #pills-tab {
-    & {
       margin-top: 50px;
-    }
 
     .nav-item {
       button {
-        & {
           width: 260px;
           height: 260px;
           border: 1px solid #bebebe;
@@ -3896,7 +3506,6 @@ ol li {
           font-size: 24px;
           color: #0082b4;
           position: relative;
-        }
 
         &::before {
           content: '';
@@ -3918,10 +3527,9 @@ ol li {
         }
 
         &.active {
-          & {
             background-color: #0082b4;
             color: $white-clr;
-          }
+          
           &.btn1::before {
             background-image: url(/images/mg-white-1.png);
           }
@@ -3939,12 +3547,9 @@ ol li {
   #pills-tabContent {
     .tab-pane {
       .spg-cvr {
-        & {
           margin-top: 50px;
-        }
 
         .spg-box {
-          & {
             width: 100%;
             height: 125px;
             text-align: center;
@@ -3956,7 +3561,6 @@ ol li {
             border-radius: 5px;
             padding-top: 15px;
             margin-top: 30px;
-          }
 
           span {
             display: block;
@@ -3982,16 +3586,12 @@ ol li {
 }
 
 .white-paper-main {
-  & {
     padding: 70px 0px;
-  }
 
   .wp-rhs {
     ul {
-      & {
         margin: 0px;
         padding: 0px 0px 0px 20px;
-      }
 
       li {
         font-size: 18px;
@@ -4009,13 +3609,6 @@ ol li {
 }
 
 // responsive css //
-
-@media (min-width: 1920px) and (max-width: 2560px) {
-}
-
-@media (min-width: 1600px) and (max-width: 1919px) {
-}
-
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
   .bnr-home-wrp .banner-vid {
     max-width: 700px;
@@ -4057,8 +3650,6 @@ ol li {
     line-height: 140%;
   }
 
-  // .tailor-made-wrp .tmw-rhs{ padding-right: 300px;}
-
   .bnr-home-wrp .banner-vid {
     max-width: 700px;
     height: 565px;
@@ -4066,7 +3657,6 @@ ol li {
 }
 
 .bnr-home-wrp .container_1300 .bnr-caption.banner-thankyou {
-  & {
     max-width: 1100px;
     text-align: center;
     position: absolute;
@@ -4074,7 +3664,6 @@ ol li {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-  }
   h2 {
     font-size: 42px;
     line-height: 1.2;
@@ -4670,7 +4259,6 @@ ol li {
   .api-reference-page {
     padding-top: 60px !important;
   }
-  // .logo:before{content: ''; width: ;}
 
   .ham-menu {
     display: block;
@@ -4805,12 +4393,12 @@ ol li {
     margin-top: 0px;
     padding: 0px 0px;
   }
-  .product-feature-wrp .feat-main-wrp .feat-card {
-    margin-top: 20px;
+  .product-feature-wrp .feat-main-wrp .feat-card { 
     padding-right: 0px;
     max-width: 250px;
     text-align: center;
     margin: 25px auto;
+    margin-top: 20px;
   }
   .boost-product-wrp::before {
     display: none;
@@ -4889,16 +4477,7 @@ ol li {
     position: relative;
     z-index: 2;
   }
-  .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card1 {
-    border-radius: 0px;
-  }
-  .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card2 {
-    border-radius: 0px;
-  }
-  .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card3 {
-    border-radius: 0px;
-  }
-  .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card4 {
+  .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card1, .ppo-card2,.ppo-card3,.ppo-card4   {
     border-radius: 0px;
   }
   .ppo-wrp .ppo-grid-cvr .ppo-card.ppo-card5 {
@@ -4937,7 +4516,6 @@ ol li {
     margin: 0.1rem 0.1rem;
     text-align: revert;
     border: none;
-    display: inline-block;
   }
   .why-ntt-wrp .why-lhs .nav-pills .nav-link::after {
     float: right;
@@ -5206,7 +4784,6 @@ ol li {
   }
   .elevate-main-wrp {
     padding: 30px 15px;
-    background-image: none;
     background: linear-gradient(115.41deg, #6785c1 22.57%, #cd3728 64.01%);
   }
   .elevate-main-wrp .elevate-lhs {
@@ -5741,27 +5318,6 @@ ol li {
 .font-weight-bold {
   font-weight: 500;
 }
-// reponsive css end//
-// @media (min-width: 800px) and (max-width: 1100px)
-// {
-
-//   .container_1300{
-//     display: flex;
-//     justify-content: space-between;
-
-//       .ham-menu {
-//         display: block;
-//       }
-
-//     .menubox {
-//       display: none;
-//     }
-//     .menubox.show{
-//       display: block;
-
-//     }
-//   }
-// }
 
 @media (min-width: 767px) and (max-width: 1100px) {
   .container_1300 {
@@ -5795,7 +5351,6 @@ ol li {
     padding: 15px 0px;
   }
 
-  // .logo:before{content: ''; width: ;}
   .menubox-div {
     width: 100%;
     display: flex;
@@ -5863,18 +5418,15 @@ ol li {
   }
 
   .csd-cntr-box {
-    & {
       max-width: 500px;
       position: relative;
       margin: 0 auto;
-    }
     a.csd-anchor {
-      & {
         font-size: 30px;
         font-weight: $fw-semi-bold;
         color: $black-clr;
         position: absolute;
-      }
+      
       &.csd-anchor1 {
         top: 10px !important;
         left: -60px !important;
@@ -5926,10 +5478,6 @@ ol li {
 .shadow {
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1) !important;
 }
-// .show-link-icon
-// {
-//   display: none;
-// }
 .show-link-icon:hover {
   display: block !important;
 }
@@ -5961,7 +5509,6 @@ html {
 }
 
 .image-width {
-  // max-width: 600px !important;
   min-height: 15rem;
   max-height: 20rem;
   min-width: 60%;
@@ -5983,18 +5530,15 @@ html {
 blockquote.info,
 blockquote.error {
   border-radius: 1px;
-  /* background-size: 30px 30px;
-  background-position: left; */
-  padding-left: 42px !important;
   background-position: 15px 15px;
   background-repeat: no-repeat;
   text-align: justify;
   padding: 12px 15px;
+  padding-left: 42px !important;
   border: 0px solid;
   margin: 15px 0 15px 0;
   color: #444343;
   line-height: 22px;
-  // font-size: 15px;
   border-left-width: 4px;
   div {
     font-weight: 600;
@@ -6131,9 +5675,6 @@ blockquote.error > div > strong {
   .middle-section-width {
     width: 100% !important;
   }
-  // .menubox-header-two{
-  //   display: none;
-  // }
 }
 
 .api-integration-dropdown {
@@ -6248,9 +5789,6 @@ blockquote.error > div > strong {
   .middle-section-width {
     width: 60% !important;
   }
-  // .menubox-header-two{
-  //   display: none;
-  // }
 }
 
 /* Hide number input arrows */
