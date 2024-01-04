@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 import { apisDataApi } from "../services/services";
-import AjrmJsonEditor from "react-json-editor-ajrm";
 import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
 import axios from "axios";
@@ -19,14 +18,6 @@ import ApiEndpoint from "../Components/ApiEndpoint";
 import { updateSelectedApi } from "../utils/utils";
 import JsonEditor from "../Components/JsonEditor";
 const TryItOutApiScreen = () => {
-  // hardcoded Variables
-  const envList = [
-    { label: "UAT", value: "UAT" },
-    {
-      label: "PRODUCTION",
-      value: "PROD",
-    },
-  ];
   // State Declarations
   const [apiSpecification, setApiSpecification] = useState();
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -166,6 +157,7 @@ const TryItOutApiScreen = () => {
             ...item[1],
           });
         });
+        return false;
       });
       setFunctionList(tempArr);
     }
@@ -227,7 +219,7 @@ const TryItOutApiScreen = () => {
             </div> */}
 
             <div className="flex-1 ">
-              <label>API</label>
+              <div>API</div>
               <div>
                 <Dropdown
                   size="full"
@@ -258,6 +250,7 @@ const TryItOutApiScreen = () => {
                               setCopyText(false);
                               setResponseJSON(null);
                             }}
+                            key={item?.id}
                           >
                             {item?.attributes?.Title}
                           </Dropdown.Item>
@@ -272,7 +265,7 @@ const TryItOutApiScreen = () => {
             </div>
 
             <div className="flex-1">
-              <label>Function</label>
+              <div>Function</div>
               <div>
                 <Dropdown
                   size="full"
@@ -296,7 +289,7 @@ const TryItOutApiScreen = () => {
                     {functionList ? (
                       functionList.map((item, index) => (
                         <Dropdown.Item
-                          key={index}
+                          key={item?.id}
                           onClick={() => handleFunctionItemClick(item)}
                         >
                           {item.summary}
@@ -407,8 +400,7 @@ const TryItOutApiScreen = () => {
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
                         <Form.Label className="my-1 d-flex">
-                          Salt
-                          <span className="text-danger ">*</span>
+                          Salt <span className="text-danger ">*</span>
                         </Form.Label>
                         <Form.Control
                           // disabled={selectedEnv?.value === 'UAT'}
@@ -509,8 +501,8 @@ const TryItOutApiScreen = () => {
                         }} 
                         disabled={json ? false: true}
                         > 
-                          <span class={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
-                          <img src="images/paste.png" width={20}/>  
+                          <span className={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
+                          <img src="images/paste.png" width={20}  alt="clipboard-icon"/>  
                         </button>
                     
                     </div>
@@ -543,7 +535,7 @@ const TryItOutApiScreen = () => {
                     </div>
                     <div className="mt-4">
                       <div className="pb-2 fw-bold">
-                        <label> Response</label>
+                        <div> Response</div>
                       </div>
                       <div className="text-white d-flex flex-column justify-content-center">
                         <JsonEditor
@@ -563,7 +555,7 @@ const TryItOutApiScreen = () => {
                 </div>
                 <div className="d-block d-md-none w-100 overflow-auto">
                   <p className="d-inline-flex gap-1 w-100">
-                    <a
+                    <button
                       className="btn bg-primary text-white w-100 d-flex justify-content-between"
                       data-bs-toggle="collapse"
                       href="#collapseExample"
@@ -579,7 +571,7 @@ const TryItOutApiScreen = () => {
                         src={`/images/${arrowClass}-arrow.svg`}
                         alt={`Arrow ${arrowClass}`}
                       />
-                    </a>
+                    </button>
                   </p>
                   <div
                     className={`collapse ${isCollapsed ? '' : 'show'} mb-4 `}
