@@ -77,6 +77,7 @@ const TryItOutApiScreen = () => {
   const [selectedFunctionResetData, setSelectedFunctionResetData] = useState(
     {}
   );
+  const [copyText,  setCopyText]  = useState(false);
 
   //Handler Function
   function handleFunctionItemClick(item) {
@@ -176,7 +177,6 @@ const TryItOutApiScreen = () => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
   
-
   return (
     <div className="api-reference-page bg-white">
       <div style={{ minHeight: 600 }} className="bg-white">
@@ -487,7 +487,7 @@ const TryItOutApiScreen = () => {
                   </Row>
                   <div className="py-2 w-100">
                     <div className="pb-2 fw-bold">Request</div>
-                    <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50">
+                    <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50  position-relative">
                       <JsonEditor
                         width="100%"
                         height="320px"
@@ -500,6 +500,18 @@ const TryItOutApiScreen = () => {
                         waitAfterKeyPress={2000}
                         viewOnly={false}
                       />
+                     
+                        <button className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                        onClick={() =>  {
+                          navigator.clipboard.writeText(JSON.stringify(json));
+                          setCopyText(true);
+                        }} 
+                        disabled={json ? false: true}
+                        > 
+                          <span class={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
+                          <img src="images/paste.png" width={20}/>  
+                        </button>
+                    
                     </div>
                     <div className="pt-3 me-md-4 me-0">
                       <div className="d-flex justify-content-end gap-3">

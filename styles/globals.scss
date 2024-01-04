@@ -6401,3 +6401,18 @@ input[type='number']::-webkit-outer-spin-button {
   border: 0px solid;
   border-left-width: 4px;
 }
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+tooltip-btn {
+  .tooltiptext {
+    display: none  !important;
+  }
+}
+
+tooltip-btn:hover  {
+  .tooltiptext{
+    display: block  !important;
+  }
+}
