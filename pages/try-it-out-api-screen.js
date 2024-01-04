@@ -252,10 +252,11 @@ const TryItOutApiScreen = () => {
                           <Dropdown.Item
                             className="me-4"
                             onClick={() => {
-                              setSelectedAPI(item)
-                              setSelectedFunction()
-                              setJson(null)
-                              setResponseJSON(null)
+                              setSelectedAPI(item);
+                              setSelectedFunction();
+                              setJson(null);
+                              setCopyText(false);
+                              setResponseJSON(null);
                             }}
                           >
                             {item?.attributes?.Title}
