@@ -382,7 +382,6 @@ const ApiReferenceScreen = () => {
                         ),
 
                         h1: ({ node, ...props }) => {
-                          if (tutorialData?.Title) {
                             return (
                               <h1
                                 className='pt-md-4 pb-md-2 heading-styles'
@@ -420,11 +419,8 @@ const ApiReferenceScreen = () => {
                                 </a>
                               </h1>
                             )
-                          }
-                          return <h1 {...props} />
                         },
                         h2: ({ node, ...props }) => {
-                          if (tutorialData?.Title) {
                             return (
                               <h2
                                 className='pt-md-4 pb-md-2 heading-styles'
@@ -462,8 +458,6 @@ const ApiReferenceScreen = () => {
                                 </a>
                               </h2>
                             )
-                          }
-                          return <h2 {...props} />
                         },
 
                         blockquote: ({ node, ...props }) => {
@@ -488,7 +482,6 @@ const ApiReferenceScreen = () => {
                         },
 
                         h3: ({ node, ...props }) => {
-                          if (tutorialData?.Title) {
                             return (
                               <h3
                                 className='pt-md-4 pb-md-2 heading-styles'
@@ -526,11 +519,8 @@ const ApiReferenceScreen = () => {
                                 </a>
                               </h3>
                             )
-                          }
-                          return <h3 {...props} />
                         },
                         h4: ({ node, ...props }) => {
-                          if (tutorialData?.Title) {
                             return (
                               <h4
                                 className='pt-md-4 pb-md-2 heading-styles'
@@ -568,11 +558,8 @@ const ApiReferenceScreen = () => {
                                 </a>
                               </h4>
                             )
-                          }
-                          return <h4 {...props} />
                         },
                         h5: ({ node, ...props }) => {
-                          if (tutorialData?.Title) {
                             return (
                               <h5
                                 className='pt-md-4 pb-md-2 heading-styles'
@@ -610,7 +597,6 @@ const ApiReferenceScreen = () => {
                                 </a>
                               </h5>
                             )
-                          }
                         }
                       }}
                     >
