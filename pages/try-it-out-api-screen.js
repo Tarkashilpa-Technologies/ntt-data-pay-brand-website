@@ -18,6 +18,7 @@ import {
 import ApiEndpoint from "../Components/ApiEndpoint";
 import { updateSelectedApi } from "../utils/utils";
 import JsonEditor from "../Components/JsonEditor";
+import HeaderTwo from "../Components/HeaderTwo";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -78,6 +79,11 @@ const TryItOutApiScreen = () => {
     {}
   );
   const [copyText,  setCopyText]  = useState(false);
+
+  const [fullHeight, setFullHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight
+  )
+  const [fullWidth, setFullWidth] = useState()
 
   //Handler Function
   function handleFunctionItemClick(item) {
@@ -176,9 +182,48 @@ const TryItOutApiScreen = () => {
   useEffect(() => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
+
+  const useResize = (myRef) => {
+    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef])
+
+    const [width, setWidth] = useState(undefined)
+
+    useEffect(() => {
+      const handleResize = () => {
+        setWidth(getWidth())
+      }
+
+      if (myRef.current) {
+        setWidth(getWidth())
+      }
+
+      window.addEventListener('resize', handleResize)
+
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    }, [myRef, getWidth])
+
+    return width && width > 25 ? width - 25 : width
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth-500);
+    }
+    console.log(fullWidth,window.innerWidth,"full width")
+
+    window.addEventListener('resize', () => {
+      setFullHeight(window.innerHeight)
+      setFullWidth(window.innerWidth)
+    })
+  }, [])
   
   return (
-    <div className="api-reference-page bg-white">
+    <div className='position-relative d-flex  flex-column' style={{maxHeight: fullHeight}}>
+      <HeaderTwo />
+      <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 pt-4 h-100">
           <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
@@ -610,6 +655,7 @@ const TryItOutApiScreen = () => {
           </Form>
         </div>
       </div>
+    </div>
     </div>
   )
 };

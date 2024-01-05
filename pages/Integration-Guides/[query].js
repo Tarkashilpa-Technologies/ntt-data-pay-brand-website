@@ -195,8 +195,10 @@ const TutorialScreenPage = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setFullHeight(window.innerHeight)
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth-500);
     }
+    console.log(fullWidth,window.innerWidth,"full width")
 
     window.addEventListener('resize', () => {
       setFullHeight(window.innerHeight)
@@ -206,7 +208,7 @@ const TutorialScreenPage = () => {
 
   return (
     <>
-      {fullHeight && (
+      {fullHeight && fullWidth  && (
         <div className='' style={{ maxHeight: fullHeight }}>
           <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
             <div>
@@ -472,7 +474,7 @@ const TutorialScreenPage = () => {
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
-                                      maxWidth={fullWidth}
+                                      style={{maxWidth: 800}}
                                       className='image-width'
                                     />
                                   </div>
@@ -493,7 +495,7 @@ const TutorialScreenPage = () => {
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
-                                      maxWidth={fullWidth}
+                                      style={{maxWidth: 800}}
                                       className='image-width'
                                     />
                                   </div>
@@ -514,7 +516,7 @@ const TutorialScreenPage = () => {
                                     <img
                                       src={image.properties.src}
                                       alt={image.properties.alt}
-                                      maxWidth={fullWidth}
+                                      style={{maxWidth: 800}}
                                       className='image-width'
                                     />
                                   </div>
