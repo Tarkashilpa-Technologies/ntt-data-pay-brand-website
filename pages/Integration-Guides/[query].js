@@ -463,20 +463,32 @@ const TutorialScreenPage = () => {
                                 {...props}
                               />
                             ),
+                            img: ({node, ...props} ) => (
+                              <div className='w-100 d-flex justify-content-center'>
+                                <img
+                                  className='image-width'
+                                  maxWidth={fullWidth}
+                                  alt='image'
+                                  {...props}
+                                />
+                              </div>
+                            ),
                             p: ({ node, children }) => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='image my-md-5 my-3 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      style={{maxWidth: 800}}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='image my-md-5 my-3 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
@@ -488,16 +500,18 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='my-md-5 my-3 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      style={{maxWidth: 800}}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='my-md-5 my-3 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
@@ -509,16 +523,18 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='my-md-5 my-2 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      style={{maxWidth: 800}}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='my-md-5 my-2 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
