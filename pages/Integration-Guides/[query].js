@@ -287,7 +287,7 @@ const TutorialScreenPage = () => {
               <div className='row gap-1'>
                 <div className='mt-5 d-flex overflow-auto col-lg-2 col-xl-2 col-xxl-2'>
                   <div
-                    className='col-12 bg-primary pt-1 first-section-width d-lg-block d-none '
+                    className='col-12 bg-primary pt-1 first-section-width d-lg-block d-none'
                     style={{ maxHeight: fullHeight - 90 }}
                   >
                     <div className='p-2'>

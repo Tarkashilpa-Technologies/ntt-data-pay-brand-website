@@ -21,7 +21,7 @@ const JsonEditor = ({
     <AjrmJsonEditor
       width={width ? width : '100%'}
       height={height ? height : '100%'}
-      placeholder={jsonData} // Default Value
+      placeholder={json} // Default Value
       viewOnly={viewOnly} // Do you want to View Only?
       onChange={onChange}
       waitAfterKeyPress={waitAfterKeyPress}
