@@ -68,7 +68,8 @@ function MyApp({ Component, pageProps }) {
       {router?.pathname == '/Api-References/index' ||
       router?.pathname == '/Integration-Guides/index' ||
       router?.pathname == '/Integration-Guides/[query]' ||
-      router?.pathname == '/Api-References/[query]' ? (
+      router?.pathname == '/Api-References/[query]' ||
+      router?.pathname == '/try-it-out-api-screen' ? (
         <Component {...pageProps} />
       ) : (
         <>

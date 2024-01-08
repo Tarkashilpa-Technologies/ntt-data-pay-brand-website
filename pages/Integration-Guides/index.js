@@ -65,7 +65,7 @@ const IntegrationGuides = () => {
                           style={{ width: 300 }}
                         >
                           <div
-                            className='d-flex flex-column justify-content-between'
+                            className='d-flex flex-column justify-content-between  h-100'
                             style={{ minHeight: 200 }}
                           >
                             <div>
@@ -74,7 +74,7 @@ const IntegrationGuides = () => {
                               </h4>
                             </div>
                             <div>
-                              <p className='numberOfLinesThree'>
+                              <p className='numberOfLinesThree text-center'>
                                 {/* <MarkdownPreview
                                 source={tutorial?.attributes?.Content}
                               /> */}
@@ -83,7 +83,7 @@ const IntegrationGuides = () => {
                                 </ReactMarkdown>
                               </p>
                             </div>
-                            <div className='d-flex gap-3 align-items-center justify-content-end'>
+                            <div className='d-flex gap-3 align-items-center justify-content-center'>
                               <Link
                                 href={
                                   tutorial?.attributes?.tutorials?.data[0]

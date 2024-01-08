@@ -5963,7 +5963,7 @@ html {
 .image-width {
   // max-width: 600px !important;
   min-height: 15rem;
-  max-height: 20rem;
+  max-height: 22rem;
   min-width: 60%;
   max-width: 100%;
   object-position: center;
@@ -6022,7 +6022,7 @@ blockquote.error > div > strong {
 }
 @media (min-width: 2560px) {
   .image-width {
-    max-width: 800px !important;
+    max-width: 850px !important;
     max-height: 500px !important;
   }
 }
@@ -6392,5 +6392,27 @@ input[type='number']::-webkit-outer-spin-button {
 @media screen and (max-width: 800px) {
   .product-pos-bnr{
     background-image: none !important;
+  }
+}
+
+.other-blockquotes {
+  padding: 10px;
+  background-color: rgb(247, 244, 244);
+  border: 0px solid;
+  border-left-width: 4px;
+}
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+tooltip-btn {
+  .tooltiptext {
+    display: none  !important;
+  }
+}
+
+tooltip-btn:hover  {
+  .tooltiptext{
+    display: block  !important;
   }
 }

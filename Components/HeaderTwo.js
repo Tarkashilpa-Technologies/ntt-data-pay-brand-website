@@ -35,12 +35,12 @@ const HeaderTwo = () => {
       class: 'header-btn',
     },
     {
-      label: 'Api References',
+      label: 'API References',
       url: '/Api-References',
       class: 'header-btn',
     },
     {
-      label: 'Api Explorer',
+      label: 'API Explorer',
       url: '/try-it-out-api-screen',
       class: 'header-btn',
     },

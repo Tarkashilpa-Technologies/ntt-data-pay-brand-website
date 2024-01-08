@@ -1,13 +1,12 @@
 import HeaderTwo from '../../Components/HeaderTwo'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Breadcrumb, Dropdown, Toast } from 'react-bootstrap'
+import { Breadcrumb, Dropdown} from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import Accordion from 'react-bootstrap/Accordion'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import {
-  tutorialDataApi,
   tutorialGroupDataApi,
   useCaseDataApi,
 } from '../../services/services'
@@ -34,7 +33,6 @@ const TutorialScreenPage = () => {
     .split('/')
     .filter((segment) => segment !== '')
   const tutorialListDataApiCall = () => {
-    // setShowLoader(true);
     tutorialGroupDataApi()
       .then((res) => {
         if (res?.data) {
@@ -45,7 +43,6 @@ const TutorialScreenPage = () => {
       })
       .catch((err) => {
         console.log('err', err)
-        // setShowLoader(false);
       })
   }
 
@@ -69,7 +66,6 @@ const TutorialScreenPage = () => {
 
   // use case data api
   const UseCaseDataApiCall = (id) => {
-    // setShowLoader(true);
     useCaseDataApi(id)
       .then((res) => {
         if (res?.data) {
@@ -81,7 +77,6 @@ const TutorialScreenPage = () => {
       .catch((err) => {
         console.log('err', err)
         setTutorialData([])
-        // setShowLoader(false);
       })
   }
 
@@ -131,8 +126,8 @@ const TutorialScreenPage = () => {
     return (
       <div>
         <ul>
-          {data?.map((item, key) => {
-            return <li key={key}>{item}</li>
+          {data?.map((item, index) => {
+            return <li key={index}>{item}</li>
           })}
         </ul>
       </div>
@@ -200,8 +195,10 @@ const TutorialScreenPage = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setFullHeight(window.innerHeight)
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth-500);
     }
+    console.log(fullWidth,window.innerWidth,"full width")
 
     window.addEventListener('resize', () => {
       setFullHeight(window.innerHeight)
@@ -211,7 +208,7 @@ const TutorialScreenPage = () => {
 
   return (
     <>
-      {fullHeight && (
+      {fullHeight && fullWidth  && (
         <div className='' style={{ maxHeight: fullHeight }}>
           <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
             <div>
@@ -230,7 +227,7 @@ const TutorialScreenPage = () => {
                   <div className='d-flex'>
                     {tutorialsListData?.map((dropdown, index) => {
                       return (
-                        <div key={index}>
+                        <div key={`k + ${index}`}>
                           <Dropdown className='bg-primary'>
                             <Dropdown.Toggle
                               id='dropdown-autoclose-true'
@@ -249,7 +246,7 @@ const TutorialScreenPage = () => {
                                 dropdown?.attributes?.tutorials?.data?.map(
                                   (tutorial, index) => {
                                     return (
-                                      <Dropdown.Item>
+                                      <Dropdown.Item key={index}>
                                         <div
                                           key={index}
                                           className={`rounded-start p-1 ps-2 ${
@@ -290,7 +287,7 @@ const TutorialScreenPage = () => {
               <div className='row gap-1'>
                 <div className='mt-5 d-flex overflow-auto col-lg-2 col-xl-2 col-xxl-2'>
                   <div
-                    className='col-12 bg-primary pt-1 first-section-width d-lg-block d-none '
+                    className='col-12 bg-primary pt-1 first-section-width d-lg-block d-none'
                     style={{ maxHeight: fullHeight - 90 }}
                   >
                     <div className='p-2'>
@@ -438,9 +435,9 @@ const TutorialScreenPage = () => {
                                 ?.slice(0, index + 1)
                                 ?.join('/')}`}
                             >
-                              <a className='text-primary text-decoration-underline '>
+                              <span className='text-primary text-decoration-underline '>
                                 {segment && segment?.replace(/-/g, ' ')}
-                              </a>
+                              </span>
                             </Link>
                           )}
                         </Breadcrumb.Item>
@@ -466,20 +463,32 @@ const TutorialScreenPage = () => {
                                 {...props}
                               />
                             ),
+                            img: ({node, ...props} ) => (
+                              <div className='w-100 d-flex justify-content-center'>
+                                <img
+                                  className='image-width'
+                                  maxWidth={fullWidth}
+                                  alt='image'
+                                  {...props}
+                                />
+                              </div>
+                            ),
                             p: ({ node, children }) => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='image my-md-5 my-3 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      maxWidth={fullWidth}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='image my-md-5 my-3 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
@@ -491,16 +500,18 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='my-md-5 my-3 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      maxWidth={fullWidth}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='my-md-5 my-3 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
@@ -512,16 +523,18 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div
-                                    className='my-md-5 my-2 display-center image-ref-div'
-                                    ref={divRef}
-                                  >
-                                    <img
-                                      src={image.properties.src}
-                                      alt={image.properties.alt}
-                                      maxWidth={fullWidth}
-                                      className='image-width'
-                                    />
+                                  <div className='w-100 d-flex justify-content-center'>
+                                    <div
+                                      className='my-md-5 my-2 display-center image-ref-div'
+                                      ref={divRef}
+                                    >
+                                      <img
+                                        src={image.properties.src}
+                                        alt={image.properties.alt}
+                                        maxWidth={fullWidth}
+                                        className='image-width'
+                                      />
+                                    </div>
                                   </div>
                                 )
                               }
@@ -685,9 +698,9 @@ const TutorialScreenPage = () => {
 
                             blockquote: ({ node, ...props }) => {
                               if (
-                                node?.children[1]?.children[0]?.value?.toUpperCase() ==
+                                (node?.children[1]?.children[0]?.value  ?  node?.children[1]?.children[0]?.value?.toUpperCase() : node?.children[1]?.children[0]?.children[0]?.value.toUpperCase())  ==
                                   'INFO' ||
-                                node?.children[1]?.children[0]?.value?.toUpperCase() ==
+                                  (node?.children[1]?.children[0]?.value ?  node?.children[1]?.children[0]?.value?.toUpperCase() :node?.children[1]?.children[0]?.children[0]?.value.toUpperCase() ) ==
                                   'ERROR'
                               ) {
                                 return (
@@ -695,12 +708,12 @@ const TutorialScreenPage = () => {
                                     {...props}
                                     className={
                                       node?.children[1]?.children[0]
-                                        ?.children[0]?.value
+                                        ?.children[0]?.value?.toLowerCase()
                                     }
                                   ></blockquote>
                                 )
                               } else {
-                                return <blockquote {...props}></blockquote>
+                                return <blockquote {...props}  className='other-blockquotes'></blockquote>
                               }
                             },
 
