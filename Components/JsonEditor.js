@@ -10,12 +10,6 @@ const JsonEditor = ({
   waitAfterKeyPress,
   onKeyPressUpdate,
 }) => {
-  const [jsonData, setJsonData] = useState();
-  useEffect(() => {
-    if (json) {
-      setJsonData(json);
-    }
-  }, [json]);
 
   return (
     <AjrmJsonEditor
