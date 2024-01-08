@@ -55,17 +55,17 @@ const ApiReferences = () => {
                           className='d-flex justify-content-between flex-column h-100'
                           style={{ minHeight: 220 }}
                         >
-                          <div>
-                            <h4 className='text-center'>
-                              {api?.attributes?.Title}
-                            </h4>
-                            <p className='numberOfLinesThree'>
+                            <div>
+                              <h4 className='text-center'>
+                                {api?.attributes?.Title}
+                              </h4>
+                            </div>
+                            <p className='numberOfLinesThree text-center'>
                               <ReactMarkdown>
                                 {api?.attributes?.Description}
                               </ReactMarkdown>
                             </p>
-                          </div>
-                          <div className='d-flex gap-3 align-items-center justify-content-end'>
+                          <div className='d-flex gap-3 align-items-center justify-content-center'>
                             <Link
                               href={
                                 api?.attributes?.Title != undefined
