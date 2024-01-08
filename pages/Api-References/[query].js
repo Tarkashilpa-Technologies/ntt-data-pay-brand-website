@@ -8,6 +8,8 @@ import ApiEndpoint from '../../Components/ApiEndpoint'
 import { useLayoutEffect } from 'react'
 import Link from 'next/link'
 import ScrollToTopButton from '../../Components/ScrollToTop'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 const ApiReferenceScreen = () => {
   const apiRef = useRef(null)
@@ -227,6 +229,9 @@ const ApiReferenceScreen = () => {
                   <div className='w-100 overflow-auto'>
                     <ReactMarkdown
                       linkTarget='_blank'
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                      className='react-markdown'
                       components={{
                         p: ({ node, ...props }) => (
                           <p
@@ -235,14 +240,11 @@ const ApiReferenceScreen = () => {
                           />
                         ),
                         img: ({node, ...props} ) => (
-                          <div className='w-100 d-flex justify-content-center'>
                             <img
-                              className='image-width'
-                              maxWidth={fullWidth}
+                              className='image-width w-100 d-flex justify-content-center'
                               alt='image'
                               {...props}
                             />
-                          </div>
                         ),
                         p: ({ node, children }) => {
                           if (node.children[0].tagName == 'img') {
@@ -271,9 +273,8 @@ const ApiReferenceScreen = () => {
                           if (node.children[0].tagName == 'img') {
                             const image = node.children[0]
                             return (
-                              <div className='w-100 d-flex justify-content-center'>
                                 <div
-                                  className='my-md-5 my-3 display-center image-ref-div'
+                                  className='my-md-5 my-3 w-100 d-flex justify-content-center image-ref-div'
                                   ref={divRef}
                                 >
                                   <img
@@ -283,7 +284,6 @@ const ApiReferenceScreen = () => {
                                     className='image-width'
                                   />
                                 </div>
-                              </div>
                             )
                           }
 
@@ -294,9 +294,8 @@ const ApiReferenceScreen = () => {
                           if (node.children[0].tagName == 'img') {
                             const image = node.children[0]
                             return (
-                              <div className='w-100 d-flex justify-content-center'>
                                 <div
-                                  className='my-md-5 my-2 display-center image-ref-div'
+                                  className='my-md-5 my-2 w-100 d-flex justify-content-center image-ref-div'
                                   ref={divRef}
                                 >
                                   <img
@@ -306,7 +305,6 @@ const ApiReferenceScreen = () => {
                                     className='image-width'
                                   />
                                 </div>
-                              </div>
                             )
                           }
 
@@ -325,12 +323,7 @@ const ApiReferenceScreen = () => {
                             const image = node.children[0]
                             return (
                               <div
-                                className='my-md-5 my-3'
-                                style={{
-                                  width: '50vw',
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                }}
+                                className='my-md-5 my-3 w-100 d-flex  justify-content-center'
                                 ref={divRef}
                               >
                                 <video

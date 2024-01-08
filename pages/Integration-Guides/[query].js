@@ -233,7 +233,7 @@ const TutorialScreenPage = () => {
                               id='dropdown-autoclose-true'
                               className={`p-2 m-0 border-0 bg-primary rounded-0 border-start my-1 show ${
                                 queryData ==
-                                dropdown?.attributes?.Title.replace(/\s+/g, '-')
+                                tutorialData?.data?.attributes?.Title.replace(/\s+/g, '-')
                                   ? 'text-white fw-bold'
                                   : 'bg-primary text-white'
                               }`}
@@ -464,14 +464,11 @@ const TutorialScreenPage = () => {
                               />
                             ),
                             img: ({node, ...props} ) => (
-                              <div className='w-100 d-flex justify-content-center'>
                                 <img
-                                  className='image-width'
-                                  maxWidth={fullWidth}
+                                  className='image-width w-100 d-flex justify-content-center'
                                   alt='image'
                                   {...props}
                                 />
-                              </div>
                             ),
                             p: ({ node, children }) => {
                               if (node.children[0].tagName == 'img') {
@@ -500,9 +497,8 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div className='w-100 d-flex justify-content-center'>
                                     <div
-                                      className='my-md-5 my-3 display-center image-ref-div'
+                                      className='my-md-5 my-3 w-100 d-flex justify-content-center image-ref-div'
                                       ref={divRef}
                                     >
                                       <img
@@ -512,7 +508,6 @@ const TutorialScreenPage = () => {
                                         className='image-width'
                                       />
                                     </div>
-                                  </div>
                                 )
                               }
 
@@ -523,9 +518,8 @@ const TutorialScreenPage = () => {
                               if (node.children[0].tagName == 'img') {
                                 const image = node.children[0]
                                 return (
-                                  <div className='w-100 d-flex justify-content-center'>
                                     <div
-                                      className='my-md-5 my-2 display-center image-ref-div'
+                                      className='my-md-5 my-2 w-100 d-flex justify-content-center image-ref-div'
                                       ref={divRef}
                                     >
                                       <img
@@ -535,7 +529,6 @@ const TutorialScreenPage = () => {
                                         className='image-width'
                                       />
                                     </div>
-                                  </div>
                                 )
                               }
 
@@ -554,12 +547,7 @@ const TutorialScreenPage = () => {
                                 const image = node.children[0]
                                 return (
                                   <div
-                                    className='my-md-5 my-3'
-                                    style={{
-                                      width: '50vw',
-                                      display: 'flex',
-                                      justifyContent: 'center',
-                                    }}
+                                    className='my-md-5 my-3 w-100 d-flex  justify-content-center'
                                     ref={divRef}
                                   >
                                     <video
