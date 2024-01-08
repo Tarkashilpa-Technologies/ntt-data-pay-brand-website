@@ -14,7 +14,7 @@ const ApiReferenceScreen = () => {
   const router = useRouter()
   const queryData = router.query?.query
   const [headersData, setHeadersData] = useState([])
-  const [selectedTitle, setSelectedTitle] = useState(0)
+  const [selectedTitle, setSelectedTitle] = useState(null)
   const [apisListData, setApisListData] = useState([])
   const [apiData, setApiData] = useState()
   const divRef = useRef(null)
@@ -39,10 +39,11 @@ const ApiReferenceScreen = () => {
 
   useEffect(() => {
     if (apisListData && queryData) {
-      apisListData?.map((data) => {
+      apisListData?.map((data,index) => {
+        console.log(data?.attributes?.Title.replace(/\s+/g, '-') == queryData,"condition")
         if (data?.attributes?.Title.replace(/\s+/g, '-') == queryData) {
           return data?.attributes != undefined
-            ? singleApisDataApiCall(data?.id)
+            ?(singleApisDataApiCall(data?.id) ,setSelectedTitle(index))
             : router.push('/404')
         }
       })
