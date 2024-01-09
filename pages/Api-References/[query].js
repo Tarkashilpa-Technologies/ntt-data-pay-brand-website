@@ -57,13 +57,20 @@ const ApiReferenceScreen = () => {
     singleApiDataApi(id)
       .then((res) => {
         console.log('res: ', res)
-
+        scrollToTop();
         setApiData(res?.data?.data)
       })
       .catch((err) => {
         console.log('err', err)
       })
   }
+
+  const scrollToTop = () => {
+    apiRef?.current?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+ }
 
   useEffect(() => {
     window.addEventListener('resize', () => {
