@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 import { apisDataApi } from "../services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
-import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
+import { NO_DATA_FOUND, REQUIRED, SELECT_FUNCTION_MESSAGE } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
 import axios from "axios";
 import {
@@ -19,6 +19,7 @@ import ApiEndpoint from "../Components/ApiEndpoint";
 import { updateSelectedApi } from "../utils/utils";
 import JsonEditor from "../Components/JsonEditor";
 import HeaderTwo from "../Components/HeaderTwo";
+import Loader from "../Components/Loader";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -227,7 +228,6 @@ const TryItOutApiScreen = () => {
   return (
     <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
       <HeaderTwo />
-      <img src="https://tenor.com/bdvef.gif" alt="loadfing-gif"/>
       <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 pt-4 h-100">
@@ -360,6 +360,8 @@ const TryItOutApiScreen = () => {
               </div>
             </div>
           </div>
+          <div>
+            {selectedAPI && selectedFunction ? (
           <Form onSubmit={handleSendRequestClick}>
             <div className="container_1300">
               <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 gap-4 px-2 ">
@@ -367,7 +369,7 @@ const TryItOutApiScreen = () => {
                 <div className="w-lg-50 w-100"></div>
               </div>
             </div>
-
+            
             {/* divider section start here */}
             <div className="container_1300">
               <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 px-3">
@@ -657,7 +659,13 @@ const TryItOutApiScreen = () => {
                 </div>
               </div>
             </div>
-          </Form>
+          </Form> ) : (
+            <div className="w-100 py-5 d-flex justify-content-center align-items-center fw-bold">
+              {SELECT_FUNCTION_MESSAGE}
+            </div>
+          )
+        }
+        </div>
         </div>
       </div>
     </div>

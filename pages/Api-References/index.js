@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { apisDataApi } from '../../services/services'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import Loader from '../../Components/Loader'
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([])
@@ -43,6 +44,7 @@ const ApiReferences = () => {
             </div>
 
             <div className='pb-3'>
+              {apisData ? (
               <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
                 {apisData?.length > 0 &&
                   apisData?.map((api, index) => {
@@ -85,7 +87,8 @@ const ApiReferences = () => {
                       </div>
                     )
                   })}
-              </div>
+              </div>)
+              : <Loader show={true} />}
               <div className='pt-4 mt-3'>
                 <h3 className='text-center'>
                   If you prefer exploring API while trying it out, visit our API

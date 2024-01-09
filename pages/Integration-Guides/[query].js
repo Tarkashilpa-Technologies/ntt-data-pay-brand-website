@@ -12,6 +12,7 @@ import {
 } from '../../services/services'
 import Link from 'next/link'
 import ScrollToTopButton from '../../Components/ScrollToTop'
+import Loader from '../../Components/Loader'
 
 const TutorialScreenPage = () => {
   const router = useRouter()
@@ -416,6 +417,7 @@ const TutorialScreenPage = () => {
                     position: 'relative',
                   }}
                 >
+                  {tutorialData ? (
                   <div
                     className='shadow p-xl-5 pb-3 middle-section-shadow'
                     style={{ maxHeight: fullHeight - 90 }}
@@ -967,6 +969,7 @@ const TutorialScreenPage = () => {
                       {showHelpfulData && <hr className='text-secondary'></hr>}
                     </div>
                   </div>
+                  ) : <Loader show={true} /> }
                 </div>
                 {/* last section */}
                 <div

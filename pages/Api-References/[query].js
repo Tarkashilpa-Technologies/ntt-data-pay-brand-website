@@ -10,6 +10,7 @@ import Link from 'next/link'
 import ScrollToTopButton from '../../Components/ScrollToTop'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
+import Loader from '../../Components/Loader'
 
 const ApiReferenceScreen = () => {
   const apiRef = useRef(null)
@@ -172,7 +173,8 @@ const ApiReferenceScreen = () => {
               </div>
             </div>
             {/* mid section starts */}
-            <div className='col-12 col-lg-8  '>
+            <div className='col-12 col-lg-8'>
+              {apiData ? (
               <div
                 className='shadow p-xl-5 pb-3 middle-section-shadow overflow-y-auto'
                 style={{ maxHeight: fullHeight - 90 }}
@@ -658,6 +660,7 @@ const ApiReferenceScreen = () => {
                   </div>
                 </div>
               </div>
+              ) : <Loader show={true}/>}
             </div>
 
             <div

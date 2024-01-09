@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { tutorialGroupDataApi } from '../../services/services'
+import Loader from '../../Components/Loader'
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([])
@@ -56,8 +57,8 @@ const IntegrationGuides = () => {
 
               <div className='pb-4 '>
                 <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
-                  {tutorialsData &&
-                    tutorialsData?.map((tutorial, index) => {
+                  {tutorialsData ?
+                    (tutorialsData?.map((tutorial, index) => {
                       return (
                         <div
                           className='card p-4 m-2 col-lg-3 col-md-4 col-sm-6 col-12 border-0 shadow h-100'
@@ -107,7 +108,8 @@ const IntegrationGuides = () => {
                           </div>
                         </div>
                       )
-                    })}
+                    }) )
+                    : <Loader show={true} />}
                 </div>
               </div>
             </div>
