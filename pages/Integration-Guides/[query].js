@@ -70,6 +70,7 @@ const TutorialScreenPage = () => {
     useCaseDataApi(id)
       .then((res) => {
         if (res?.data) {
+          scrollToTop();
           setTutorialData(res?.data?.data?.attributes)
         } else {
           setTutorialData([])
@@ -134,6 +135,13 @@ const TutorialScreenPage = () => {
       </div>
     )
   }
+
+  const scrollToTop = () => {
+    containerRef?.current?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+ }
 
   // submit page helpful form
   const handleSubmit = async (event) => {
