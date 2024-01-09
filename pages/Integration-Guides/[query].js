@@ -235,8 +235,9 @@ const TutorialScreenPage = () => {
                   </button>
                   <div className='d-flex'>
                     {tutorialsListData?.map((dropdown, index) => {
+                      console.log(queryData,"queryData")
                       return (
-                        <div key={`k + ${index}`}>
+                        <div key={index}>
                           <Dropdown className='bg-primary'>
                             <Dropdown.Toggle
                               id='dropdown-autoclose-true'

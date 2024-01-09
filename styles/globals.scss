@@ -2510,11 +2510,11 @@ a {
 /* Abhijeet css end */
 
 ol li {
-  font-size: 1em;
+  font-size: 18px;
   line-height: 150%;
   font-weight: 400;
   color: #000;
-  // margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .minus-top-40 {
@@ -3008,7 +3008,7 @@ ol li {
 
   ul {
     li {
-      font-size: 1em;
+      font-size: 18px;
       line-height: 158%;
       font-weight: 400;
       color: #000;
@@ -5961,10 +5961,7 @@ html {
 }
 
 .image-width {
-  // max-width: 600px !important;
   min-height: 15rem;
-  max-height: 22rem;
-  min-width: 60%;
   max-width: 100%;
   object-position: center;
   object-fit: contain !important;
@@ -6028,6 +6025,7 @@ blockquote.error > div > strong {
 }
 
 .react-markdown {
+  font-size: 1em !important;
   div {
     padding: 10px !important;
     margin: 0px;
@@ -6040,10 +6038,13 @@ blockquote.error > div > strong {
   }
   ul,
   ol {
+    font-size: 1em !important;
     margin-left: 20px;
     padding: 10px 5px 10px 5px;
     li {
-      padding: 5px;
+      font-size: 1em !important;
+      padding-bottom: 10px;
+      margin-bottom: 0px;
       div {
         padding: 0px !important;
       }
