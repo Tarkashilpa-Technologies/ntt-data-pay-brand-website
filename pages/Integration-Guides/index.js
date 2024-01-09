@@ -56,9 +56,10 @@ const IntegrationGuides = () => {
               </div>
 
               <div className='pb-4 '>
+              {tutorialsData?.length  > 0 ?
                 <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
-                  {tutorialsData ?
-                    (tutorialsData?.map((tutorial, index) => {
+                  {
+                    tutorialsData?.map((tutorial, index) => {
                       return (
                         <div
                           className='card p-4 m-2 col-lg-3 col-md-4 col-sm-6 col-12 border-0 shadow h-100'
@@ -108,9 +109,10 @@ const IntegrationGuides = () => {
                           </div>
                         </div>
                       )
-                    }) )
-                    : <Loader show={true} />}
+                    })
+                  }
                 </div>
+                : <Loader show={true}/>}
               </div>
             </div>
           </div>

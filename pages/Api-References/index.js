@@ -44,7 +44,7 @@ const ApiReferences = () => {
             </div>
 
             <div className='pb-3'>
-              {apisData ? (
+              {apisData?.length > 0  ? 
               <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
                 {apisData?.length > 0 &&
                   apisData?.map((api, index) => {
@@ -87,7 +87,7 @@ const ApiReferences = () => {
                       </div>
                     )
                   })}
-              </div>)
+              </div>
               : <Loader show={true} />}
               <div className='pt-4 mt-3'>
                 <h3 className='text-center'>
