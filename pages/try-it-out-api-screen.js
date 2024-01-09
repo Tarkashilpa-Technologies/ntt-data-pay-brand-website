@@ -225,8 +225,9 @@ const TryItOutApiScreen = () => {
   }, [])
   
   return (
-    <div className='position-relative d-flex  flex-column' style={{maxHeight: fullHeight}}>
+    <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
       <HeaderTwo />
+      <img src="https://tenor.com/bdvef.gif" alt="loadfing-gif"/>
       <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 pt-4 h-100">

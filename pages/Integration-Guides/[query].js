@@ -465,7 +465,7 @@ const TutorialScreenPage = () => {
                             ),
                             img: ({node, ...props} ) => (
                                 <img
-                                  className='image-width w-100 d-flex justify-content-center'
+                                  className='w-100 d-flex justify-content-center object-fit-contain'
                                   alt='image'
                                   {...props}
                                 />
