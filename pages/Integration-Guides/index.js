@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { tutorialGroupDataApi } from '../../services/services'
+import Loader from '../../Components/Loader'
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([])
@@ -55,8 +56,9 @@ const IntegrationGuides = () => {
               </div>
 
               <div className='pb-4 '>
+              {tutorialsData?.length  > 0 ?
                 <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
-                  {tutorialsData &&
+                  {
                     tutorialsData?.map((tutorial, index) => {
                       return (
                         <div
@@ -65,7 +67,7 @@ const IntegrationGuides = () => {
                           style={{ width: 300 }}
                         >
                           <div
-                            className='d-flex flex-column justify-content-between'
+                            className='d-flex flex-column justify-content-between  h-100'
                             style={{ minHeight: 200 }}
                           >
                             <div>
@@ -74,7 +76,7 @@ const IntegrationGuides = () => {
                               </h4>
                             </div>
                             <div>
-                              <p className='numberOfLinesThree'>
+                              <p className='numberOfLinesThree text-center'>
                                 {/* <MarkdownPreview
                                 source={tutorial?.attributes?.Content}
                               /> */}
@@ -83,7 +85,7 @@ const IntegrationGuides = () => {
                                 </ReactMarkdown>
                               </p>
                             </div>
-                            <div className='d-flex gap-3 align-items-center justify-content-end'>
+                            <div className='d-flex gap-3 align-items-center justify-content-center'>
                               <Link
                                 href={
                                   tutorial?.attributes?.tutorials?.data[0]
@@ -107,8 +109,10 @@ const IntegrationGuides = () => {
                           </div>
                         </div>
                       )
-                    })}
+                    })
+                  }
                 </div>
+                : <Loader show={true}/>}
               </div>
             </div>
           </div>

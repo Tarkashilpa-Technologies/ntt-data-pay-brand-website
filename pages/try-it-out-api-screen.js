@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 import { apisDataApi } from "../services/services";
 import AjrmJsonEditor from "react-json-editor-ajrm";
-import { NO_DATA_FOUND, REQUIRED } from "../utils/messages";
+import { NO_DATA_FOUND, REQUIRED, SELECT_FUNCTION_MESSAGE } from "../utils/messages";
 import { generateExampleFromSchema } from "../utils/apiUtils";
 import axios from "axios";
 import {
@@ -18,6 +18,8 @@ import {
 import ApiEndpoint from "../Components/ApiEndpoint";
 import { updateSelectedApi } from "../utils/utils";
 import JsonEditor from "../Components/JsonEditor";
+import HeaderTwo from "../Components/HeaderTwo";
+import Loader from "../Components/Loader";
 const TryItOutApiScreen = () => {
   // hardcoded Variables
   const envList = [
@@ -77,6 +79,13 @@ const TryItOutApiScreen = () => {
   const [selectedFunctionResetData, setSelectedFunctionResetData] = useState(
     {}
   );
+  const [copyText,  setCopyText]  = useState(false);
+  const[copyTextResponse,setCopyTextResponse] =  useState(false);
+
+  const [fullHeight, setFullHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight
+  )
+  const [fullWidth, setFullWidth] = useState()
 
   //Handler Function
   function handleFunctionItemClick(item) {
@@ -112,15 +121,20 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
+      console.log(res?.data,"response");
       setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
     }
     setLoader(false)
   }
+  
   function handleReset(e) {
     e.preventDefault(); // Prevent the default form submission
-    setJson(selectedFunctionResetData);
+    const promise = setJson({});
+    Promise?.all([promise]).then(() => { 
+       setJson(selectedFunctionResetData)
+    })
     setResponseJSON();
   }
 
@@ -166,17 +180,27 @@ const TryItOutApiScreen = () => {
       setFunctionList();
     }
   }, [selectedAPI]);
+
   useEffect(() => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
-
+  
   return (
-    <div className="api-reference-page bg-white">
+    <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
+      <HeaderTwo />
+      <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
+        <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+          <h2 className="common-ttle ">API  Explorer</h2>
+          <p className="common-desc">
+            {SELECT_FUNCTION_MESSAGE}
+          </p>
+        </div>
         <div className="w-100 pt-4 h-100">
           <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <label>Environment</label>
+              <div className="border border-primary ps-2 env-style">UAT</div>
               <div>
                 <Dropdown
                   size="full"
@@ -216,7 +240,7 @@ const TryItOutApiScreen = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex-1 ">
               <label>API</label>
@@ -244,10 +268,11 @@ const TryItOutApiScreen = () => {
                           <Dropdown.Item
                             className="me-4"
                             onClick={() => {
-                              setSelectedAPI(item)
-                              setSelectedFunction()
-                              setJson(null)
-                              setResponseJSON(null)
+                              setSelectedAPI(item);
+                              setSelectedFunction();
+                              setJson(null);
+                              setCopyText(false);
+                              setResponseJSON(null);
                             }}
                           >
                             {item?.attributes?.Title}
@@ -301,6 +326,8 @@ const TryItOutApiScreen = () => {
               </div>
             </div>
           </div>
+          <div>
+         
           <Form onSubmit={handleSendRequestClick}>
             <div className="container_1300">
               <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 gap-4 px-2 ">
@@ -308,11 +335,11 @@ const TryItOutApiScreen = () => {
                 <div className="w-lg-50 w-100"></div>
               </div>
             </div>
-
+            
             {/* divider section start here */}
             <div className="container_1300">
-              <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 px-3">
-                <div className="w-lg-50 w-100 overflow-auto">
+              <div className="d-flex flex-md-row flex-column justify-content-center w-100 h-100 pt-4 px-3">
+                <div className="w-100 overflow-auto api-explorer-page-size">
                   <Row className="gap-1 gap-lg-0">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
@@ -479,7 +506,7 @@ const TryItOutApiScreen = () => {
                   </Row>
                   <div className="py-2 w-100">
                     <div className="pb-2 fw-bold">Request</div>
-                    <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50">
+                    <div className="text-white d-flex flex-column justify-content-center  w-100 w-md-50  position-relative">
                       <JsonEditor
                         width="100%"
                         height="320px"
@@ -492,6 +519,19 @@ const TryItOutApiScreen = () => {
                         waitAfterKeyPress={2000}
                         viewOnly={false}
                       />
+                     
+                      <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                        onClick={(e) =>  {
+                          e.preventDefault();
+                          navigator.clipboard.writeText(JSON.stringify(json));
+                          setCopyText(true);
+                        }} 
+                        disabled={json ? false: true}
+                        > 
+                          <span class={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
+                          <img src="images/paste.png" width={20}/>  
+                      </div>
+                    
                     </div>
                     <div className="pt-3 me-md-4 me-0">
                       <div className="d-flex justify-content-end gap-3">
@@ -520,11 +560,53 @@ const TryItOutApiScreen = () => {
                         </button>
                       </div>
                     </div>
+                          {json &&  (<>
+                      <div className="w-100 overflow-auto">
+                      <p className="d-inline-flex gap-1 w-100 pt-4">
+                        <a
+                          className="btn bg-primary text-white w-100 d-flex justify-content-between"
+                          data-bs-toggle="collapse"
+                          href="#collapseExample"
+                          role="button"
+                          aria-expanded={isCollapsed ? 'false' : 'true'}
+                          aria-controls="collapseExample"
+                          onClick={() => {
+                            setIsCollapsed(!isCollapsed)
+                          }}
+                        >
+                          API Documentation
+                          <img
+                            src={`/images/${arrowClass}-arrow.svg`}
+                            alt={`Arrow ${arrowClass}`}
+                          />
+                        </a>
+                      </p>
+                      <div
+                        className={`collapse ${isCollapsed ? '' : 'show'} mb-4 `}
+                        id="collapseExample"
+                      >
+                        <ApiEndpoint apiData={apiSpecification} />
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsCollapsed(!isCollapsed)
+                            }}
+                            className="btn bg-primary rounded-1 text-white px-3 py-1"
+                          >
+                            Hide
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    </>)}
+                    
+
                     <div className="mt-4">
                       <div className="pb-2 fw-bold">
                         <label> Response</label>
                       </div>
-                      <div className="text-white d-flex flex-column justify-content-center">
+                      <div className="text-white d-flex flex-column justify-content-center  position-relative">
                         <JsonEditor
                           width="100%"
                           height="320px"
@@ -536,59 +618,29 @@ const TryItOutApiScreen = () => {
                           waitAfterKeyPress={2000}
                           viewOnly={true}
                         />
+                        <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                          onClick={(e) =>  {
+                            e.preventDefault();
+                            navigator.clipboard.writeText(JSON.stringify(responseJSON));
+                            setCopyTextResponse(true);
+                          }} 
+                          disabled={responseJSON ? false: true}
+                          > 
+                            <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
+                            <img src="images/paste.png" width={20}/>  
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="d-block d-md-none w-100 overflow-auto">
-                  <p className="d-inline-flex gap-1 w-100">
-                    <a
-                      className="btn bg-primary text-white w-100 d-flex justify-content-between"
-                      data-bs-toggle="collapse"
-                      href="#collapseExample"
-                      role="button"
-                      aria-expanded={isCollapsed ? 'false' : 'true'}
-                      aria-controls="collapseExample"
-                      onClick={() => {
-                        setIsCollapsed(!isCollapsed)
-                      }}
-                    >
-                      API Documentation
-                      <img
-                        src={`/images/${arrowClass}-arrow.svg`}
-                        alt={`Arrow ${arrowClass}`}
-                      />
-                    </a>
-                  </p>
-                  <div
-                    className={`collapse ${isCollapsed ? '' : 'show'} mb-4 `}
-                    id="collapseExample"
-                  >
-                    <ApiEndpoint apiData={apiSpecification} />
-                    <div className="d-flex justify-content-end">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsCollapsed(!isCollapsed)
-                        }}
-                        className="btn bg-primary rounded-1 text-white px-3 py-1"
-                      >
-                        Hide
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="w-lg-50 w-100 ps-md-3 overflow-auto d-none d-md-block  mb-4 pe-2"
-                  style={{ maxHeight: 925 }}
-                >
-                  <ApiEndpoint apiData={apiSpecification} />
-                </div>
+                
               </div>
             </div>
           </Form>
         </div>
+        </div>
       </div>
+    </div>
     </div>
   )
 };

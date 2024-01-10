@@ -3017,7 +3017,7 @@ ol li {
 
   ol {
     li {
-      font-size: 18px;
+      font-size: 1em;
       line-height: 158%;
       font-weight: 400;
       color: #000;
@@ -5961,10 +5961,7 @@ html {
 }
 
 .image-width {
-  // max-width: 600px !important;
   min-height: 15rem;
-  max-height: 20rem;
-  min-width: 60%;
   max-width: 100%;
   object-position: center;
   object-fit: contain !important;
@@ -6022,12 +6019,13 @@ blockquote.error > div > strong {
 }
 @media (min-width: 2560px) {
   .image-width {
-    max-width: 800px !important;
+    max-width: 850px !important;
     max-height: 500px !important;
   }
 }
 
 .react-markdown {
+  font-size: 1em !important;
   div {
     padding: 10px !important;
     margin: 0px;
@@ -6040,10 +6038,13 @@ blockquote.error > div > strong {
   }
   ul,
   ol {
+    font-size: 1em !important;
     margin-left: 20px;
     padding: 10px 5px 10px 5px;
     li {
-      padding: 5px;
+      font-size: 1em !important;
+      padding-bottom: 10px;
+      margin-bottom: 0px;
       div {
         padding: 0px !important;
       }
@@ -6393,4 +6394,29 @@ input[type='number']::-webkit-outer-spin-button {
   .product-pos-bnr{
     background-image: none !important;
   }
+}
+
+.other-blockquotes {
+  padding: 10px;
+  background-color: rgb(247, 244, 244);
+  border: 0px solid;
+  border-left-width: 4px;
+}
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+tooltip-btn {
+  .tooltiptext {
+    display: none  !important;
+  }
+}
+
+tooltip-btn:hover  {
+  .tooltiptext{
+    display: block  !important;
+  }
+}
+.api-explorer-page-size{
+  max-width: 786px;
 }
