@@ -189,43 +189,6 @@ const TryItOutApiScreen = () => {
   useEffect(() => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
-
-  const useResize = (myRef) => {
-    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef])
-
-    const [width, setWidth] = useState(undefined)
-
-    useEffect(() => {
-      const handleResize = () => {
-        setWidth(getWidth())
-      }
-
-      if (myRef.current) {
-        setWidth(getWidth())
-      }
-
-      window.addEventListener('resize', handleResize)
-
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
-    }, [myRef, getWidth])
-
-    return width && width > 25 ? width - 25 : width
-  }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setFullHeight(window.innerHeight);
-      setFullWidth(window.innerWidth-500);
-    }
-    console.log(fullWidth,window.innerWidth,"full width")
-
-    window.addEventListener('resize', () => {
-      setFullHeight(window.innerHeight)
-      setFullWidth(window.innerWidth)
-    })
-  }, [])
   
   return (
     <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
@@ -562,7 +525,7 @@ const TryItOutApiScreen = () => {
                         viewOnly={false}
                       />
                      
-                      <button type="button" className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                      <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
                         onClick={(e) =>  {
                           e.preventDefault();
                           navigator.clipboard.writeText(JSON.stringify(json));
@@ -572,7 +535,7 @@ const TryItOutApiScreen = () => {
                         > 
                           <span class={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
                           <img src="images/paste.png" width={20}/>  
-                        </button>
+                        </div>
                     
                     </div>
                     <div className="pt-3 me-md-4 me-0">
