@@ -120,7 +120,7 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
-      console.log(JSON.parse(res?.data),"response");
+      console.log(res?.data,"response");
       setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
@@ -232,6 +232,12 @@ const TryItOutApiScreen = () => {
       <HeaderTwo />
       <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
+        <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+          <h2 className="common-ttle ">API  Explorer</h2>
+          <p className="common-desc">
+            {SELECT_FUNCTION_MESSAGE}
+          </p>
+        </div>
         <div className="w-100 pt-4 h-100">
           <div className="d-flex flex-wrap justify-content-center gap-4 w-100">
             {/* <div className="flex-1">
@@ -363,7 +369,7 @@ const TryItOutApiScreen = () => {
             </div>
           </div>
           <div>
-            {selectedAPI && selectedFunction ? (
+         
           <Form onSubmit={handleSendRequestClick}>
             <div className="container_1300">
               <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 gap-4 px-2 ">
@@ -659,12 +665,7 @@ const TryItOutApiScreen = () => {
                 
               </div>
             </div>
-          </Form> ) : (
-            <div className="w-100 py-5 d-flex justify-content-center align-items-center fw-bold">
-              {SELECT_FUNCTION_MESSAGE}
-            </div>
-          )
-        }
+          </Form>
         </div>
         </div>
       </div>
