@@ -80,6 +80,7 @@ const TryItOutApiScreen = () => {
     {}
   );
   const [copyText,  setCopyText]  = useState(false);
+  const[copyTextResponse,setCopyTextResponse] =  useState(false);
 
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
@@ -529,7 +530,7 @@ const TryItOutApiScreen = () => {
                         > 
                           <span class={`pe-3 ${copyText  ? "tooltiptext" : ''}`} id="myTooltip">{copyText ? 'Copied to Clipboard': 'Copy Text'}</span>
                           <img src="images/paste.png" width={20}/>  
-                        </div>
+                      </div>
                     
                     </div>
                     <div className="pt-3 me-md-4 me-0">
@@ -605,7 +606,7 @@ const TryItOutApiScreen = () => {
                       <div className="pb-2 fw-bold">
                         <label> Response</label>
                       </div>
-                      <div className="text-white d-flex flex-column justify-content-center">
+                      <div className="text-white d-flex flex-column justify-content-center  position-relative">
                         <JsonEditor
                           width="100%"
                           height="320px"
@@ -617,6 +618,17 @@ const TryItOutApiScreen = () => {
                           waitAfterKeyPress={2000}
                           viewOnly={true}
                         />
+                        <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                          onClick={(e) =>  {
+                            e.preventDefault();
+                            navigator.clipboard.writeText(JSON.stringify(responseJSON));
+                            setCopyTextResponse(true);
+                          }} 
+                          disabled={responseJSON ? false: true}
+                          > 
+                            <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
+                            <img src="images/paste.png" width={20}/>  
+                        </div>
                       </div>
                     </div>
                   </div>
