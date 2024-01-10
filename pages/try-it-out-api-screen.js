@@ -562,8 +562,9 @@ const TryItOutApiScreen = () => {
                         viewOnly={false}
                       />
                      
-                        <button className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
-                        onClick={() =>  {
+                      <button type="button" className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
+                        onClick={(e) =>  {
+                          e.preventDefault();
                           navigator.clipboard.writeText(JSON.stringify(json));
                           setCopyText(true);
                         }} 
