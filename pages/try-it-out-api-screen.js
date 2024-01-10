@@ -120,6 +120,7 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
+      console.log(JSON.parse(res?.data),"response");
       setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
@@ -184,6 +185,7 @@ const TryItOutApiScreen = () => {
       setFunctionList();
     }
   }, [selectedAPI]);
+
   useEffect(() => {
     setRefresh(!refresh);
   }, [json, responseJSON]);
@@ -372,8 +374,8 @@ const TryItOutApiScreen = () => {
             
             {/* divider section start here */}
             <div className="container_1300">
-              <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 px-3">
-                <div className="w-lg-50 w-100 overflow-auto">
+              <div className="d-flex flex-md-row flex-column justify-content-center w-100 h-100 pt-4 px-3">
+                <div className="w-100 overflow-auto api-explorer-page-size">
                   <Row className="gap-1 gap-lg-0">
                     <Col sm={12} md={12} lg={6}>
                       <Form.Group>
@@ -593,6 +595,47 @@ const TryItOutApiScreen = () => {
                         </button>
                       </div>
                     </div>
+
+                      <div className="w-100 overflow-auto">
+                      <p className="d-inline-flex gap-1 w-100 pt-4">
+                        <a
+                          className="btn bg-primary text-white w-100 d-flex justify-content-between"
+                          data-bs-toggle="collapse"
+                          href="#collapseExample"
+                          role="button"
+                          aria-expanded={isCollapsed ? 'false' : 'true'}
+                          aria-controls="collapseExample"
+                          onClick={() => {
+                            setIsCollapsed(!isCollapsed)
+                          }}
+                        >
+                          API Documentation
+                          <img
+                            src={`/images/${arrowClass}-arrow.svg`}
+                            alt={`Arrow ${arrowClass}`}
+                          />
+                        </a>
+                      </p>
+                      <div
+                        className={`collapse ${isCollapsed ? '' : 'show'} mb-4 `}
+                        id="collapseExample"
+                      >
+                        <ApiEndpoint apiData={apiSpecification} />
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsCollapsed(!isCollapsed)
+                            }}
+                            className="btn bg-primary rounded-1 text-white px-3 py-1"
+                          >
+                            Hide
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+
                     <div className="mt-4">
                       <div className="pb-2 fw-bold">
                         <label> Response</label>
@@ -613,50 +656,7 @@ const TryItOutApiScreen = () => {
                     </div>
                   </div>
                 </div>
-                <div className="d-block d-md-none w-100 overflow-auto">
-                  <p className="d-inline-flex gap-1 w-100">
-                    <a
-                      className="btn bg-primary text-white w-100 d-flex justify-content-between"
-                      data-bs-toggle="collapse"
-                      href="#collapseExample"
-                      role="button"
-                      aria-expanded={isCollapsed ? 'false' : 'true'}
-                      aria-controls="collapseExample"
-                      onClick={() => {
-                        setIsCollapsed(!isCollapsed)
-                      }}
-                    >
-                      API Documentation
-                      <img
-                        src={`/images/${arrowClass}-arrow.svg`}
-                        alt={`Arrow ${arrowClass}`}
-                      />
-                    </a>
-                  </p>
-                  <div
-                    className={`collapse ${isCollapsed ? '' : 'show'} mb-4 `}
-                    id="collapseExample"
-                  >
-                    <ApiEndpoint apiData={apiSpecification} />
-                    <div className="d-flex justify-content-end">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsCollapsed(!isCollapsed)
-                        }}
-                        className="btn bg-primary rounded-1 text-white px-3 py-1"
-                      >
-                        Hide
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="w-lg-50 w-100 ps-md-3 overflow-auto d-none d-md-block  mb-4 pe-2"
-                  style={{ maxHeight: 925 }}
-                >
-                  <ApiEndpoint apiData={apiSpecification} />
-                </div>
+                
               </div>
             </div>
           </Form> ) : (
