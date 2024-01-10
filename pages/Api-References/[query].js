@@ -248,11 +248,13 @@ const ApiReferenceScreen = () => {
                           />
                         ),
                         img: ({node, ...props} ) => (
+                          <div className='d-flex justify-content-center'>
                             <img
-                              className='image-width w-100 d-flex justify-content-center'
+                              className='image-width'
                               alt='image'
                               {...props}
                             />
+                          </div>
                         ),
                         p: ({ node, children }) => {
                           if (node.children[0].tagName == 'img') {
