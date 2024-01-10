@@ -43,7 +43,6 @@ const ApiReferenceScreen = () => {
   useEffect(() => {
     if (apisListData && queryData) {
       apisListData?.map((data,index) => {
-        console.log(data?.attributes?.Title.replace(/\s+/g, '-') == queryData,"condition")
         if (data?.attributes?.Title.replace(/\s+/g, '-') == queryData) {
           return data?.attributes != undefined
             ?(singleApisDataApiCall(data?.id) ,setSelectedTitle(index))
