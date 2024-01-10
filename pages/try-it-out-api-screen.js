@@ -153,12 +153,12 @@ const TryItOutApiScreen = () => {
 
   useEffect(() => {
     apisDataApiCall();
-      setSelectedEnv('UAT')
-      setSelectedFunction()
+      setSelectedEnv('UAT');
+      setSelectedFunction();
       setSelectedAPI()
-      setJson()
-      setResponseJSON()
-      setFormData(initialFormData)
+      setJson();
+      setResponseJSON();
+      setFormData(initialFormData);
   }, []);
 
   useEffect(() => {
@@ -565,7 +565,7 @@ const TryItOutApiScreen = () => {
                         </button>
                       </div>
                     </div>
-
+                          {json &&  (<>
                       <div className="w-100 overflow-auto">
                       <p className="d-inline-flex gap-1 w-100 pt-4">
                         <a
@@ -604,6 +604,7 @@ const TryItOutApiScreen = () => {
                         </div>
                       </div>
                     </div>
+                    </>)}
                     
 
                     <div className="mt-4">
