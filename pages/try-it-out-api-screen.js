@@ -153,12 +153,6 @@ const TryItOutApiScreen = () => {
 
   useEffect(() => {
     apisDataApiCall();
-      setSelectedEnv('UAT');
-      setSelectedFunction();
-      setSelectedAPI()
-      setJson();
-      setResponseJSON();
-      setFormData(initialFormData);
   }, []);
 
   useEffect(() => {
