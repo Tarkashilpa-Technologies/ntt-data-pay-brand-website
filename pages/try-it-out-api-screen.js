@@ -192,7 +192,8 @@ const TryItOutApiScreen = () => {
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
           <h2 className="common-ttle ">API  Explorer</h2>
-          <p className="common-desc">
+          <h4>Test our APIs right here.</h4>
+          <p className="common-desc text-center">
             {SELECT_FUNCTION_MESSAGE}
           </p>
         </div>

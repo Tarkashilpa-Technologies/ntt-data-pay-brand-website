@@ -18,5 +18,5 @@ export const ISCHECKED = 'Please Check this field';
 export const MIN_6_DIGITS = 'Your input must be at least 6 characters long.';
 export const NO_DATA_FOUND = "No Data Found";
 export const SELECT_FUNCTION_MESSAGE =
-  "Please select the API and function to load it's data and documentation";
+  "All you need to do is choose the API and Endpoint you intend to test, provide the merchant ID and keys provided to you by us during onboarding, review and update the request and hit ‘Send’. We would load the documentation of API chosen for your ready reference, you could refer to it to build the request.";
 export const NO_DESCRIPTION_AVAILABLE = "--"; 
