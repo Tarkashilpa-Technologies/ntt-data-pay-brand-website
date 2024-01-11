@@ -3,6 +3,8 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { tutorialGroupDataApi } from '../../services/services'
 import Loader from '../../Components/Loader'
+import HeaderTwo from '../../Components/HeaderTwo'
+import Footer from '../../Components/Footer'
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([])
@@ -35,7 +37,7 @@ const IntegrationGuides = () => {
   // };
 
   return (
-    <div>
+    <div className='position-relative w-100 h-100'>
       <div className='powerful-gateway overflow-hidden'>
         <div className='pb-4'>
           <div className='container_1300' style={{ minHeight: 600 }}>
@@ -118,6 +120,7 @@ const IntegrationGuides = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

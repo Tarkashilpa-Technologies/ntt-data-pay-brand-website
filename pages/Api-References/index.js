@@ -3,6 +3,8 @@ import { apisDataApi } from '../../services/services'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import Loader from '../../Components/Loader'
+import HeaderTwo from '../../Components/HeaderTwo'
+import Footer from '../../Components/Footer'
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([])
@@ -25,9 +27,13 @@ const ApiReferences = () => {
     apisDataApiCall()
   }, [])
 
+
+  const [fullHeight, setFullHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight
+  )
+
   return (
-    <div>
-      <div className='powerful-gateway ' style={{ minHeight: 600 }}>
+      <div className='powerful-gateway overflow-y-scroll'  style={{ minHeight: 600 }}>
         <div className='pb-4'>
           <div className='container_1300 d-block '>
             <div className='p-5 pb-4'>
@@ -106,8 +112,10 @@ const ApiReferences = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-    </div>
+
+  
   )
 }
 

@@ -187,7 +187,6 @@ const TryItOutApiScreen = () => {
   
   return (
     <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
-      <HeaderTwo />
       <div className='container overflow-x-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">

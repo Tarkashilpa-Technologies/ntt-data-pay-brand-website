@@ -115,7 +115,6 @@ const ApiReferenceScreen = () => {
     <>
       {fullHeight && isReady ? (
         <div className='position-relative'>
-          <HeaderTwo />
           <div className='d-flex d-block d-lg-none overflow-x-scroll'>
             <div className='d-flex bg-primary w-100'>
               {apisListData?.map((dropdown, index) => {

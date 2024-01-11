@@ -221,9 +221,6 @@ const TutorialScreenPage = () => {
         <div className='' style={{ maxHeight: fullHeight }}>
           <div className='d-flex  flex-column h-100 w-100 overflow-hidden'>
             <div>
-              <HeaderTwo />
-            </div>
-            <div>
               <div className='d-block d-lg-none overflow-auto'>
                 <div className={`d-flex w-100 bg-primary`}>
                   <button

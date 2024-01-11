@@ -10,6 +10,7 @@ import "../styles/globals.scss";
 import React, { useEffect } from "react";
 import "../styles/nextjs-jsoneditor.css";
 import { useRouter } from "next/router";
+import HeaderTwo from "../Components/HeaderTwo";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -65,12 +66,15 @@ function MyApp({ Component, pageProps }) {
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
-      {router?.pathname == '/Api-References/index' ||
-      router?.pathname == '/Integration-Guides/index' ||
+      {router?.pathname == '/Api-References' ||
+      router?.pathname == '/Integration-Guides' ||
       router?.pathname == '/Integration-Guides/[query]' ||
       router?.pathname == '/Api-References/[query]' ||
       router?.pathname == '/try-it-out-api-screen' ? (
+        <>
+        <HeaderTwo  />
         <Component {...pageProps} />
+        </>
       ) : (
         <>
           <Header />
