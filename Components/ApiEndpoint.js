@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { generateExampleFromSchema } from "../utils/schema";
 import JSONPretty from "react-json-pretty";
 import { SELECT_FUNCTION_MESSAGE } from "../utils/messages";
@@ -7,6 +7,7 @@ import { extractRequiredArrays } from "../utils/utils";
 
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
+  const[copyTextResponse,setCopyTextResponse] =  useState(false);
   function ResponsesComponent(data) {
       return (
         <div className="w-100">
@@ -18,7 +19,7 @@ const ApiEndpoint = ({ apiData }) => {
             data={data[1]?.value}
             theme={JSONPrettyMon}
             themeClassName="p-4 fixed-height-data"
-          ></JSONPretty>
+          ></JSONPretty> 
         </div>
       );
   }
@@ -141,15 +142,31 @@ const ApiEndpoint = ({ apiData }) => {
                                                         <h6 className="pt-2 m-0 mb-2">
                                                           Example
                                                         </h6>
-
-                                                        <JSONPretty
-                                                          id="json-pretty"
-                                                          data={generateExampleFromSchema(
-                                                            item[1]?.properties
-                                                          )}
-                                                          theme={JSONPrettyMon}
-                                                          themeClassName="p-4 fixed-height-data"
-                                                        ></JSONPretty>
+                                                        <div  className="position-relative">
+                                                          <JSONPretty
+                                                            id="json-pretty"
+                                                            data={generateExampleFromSchema(
+                                                              item[1]?.properties
+                                                            )}
+                                                            theme={JSONPrettyMon}
+                                                            themeClassName="p-4 fixed-height-data"
+                                                          ></JSONPretty>
+                                                          <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn`}
+                                                            onClick={(e) =>  {
+                                                            e.preventDefault();
+                                                            navigator.clipboard.writeText(JSON.stringify(generateExampleFromSchema(
+                                                              item[1]?.properties
+                                                            )));
+                                                            setCopyTextResponse(true);
+                                                            }} 
+                                                            disabled={generateExampleFromSchema(
+                                                              item[1]?.properties
+                                                            ) ? false: true}
+                                                            > 
+                                                            <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
+                                                            <img src="images/paste.png" width={20}/>  
+                                                          </div>
+                                                        </div>
                                                       </div>
                                                     );
                                                   }

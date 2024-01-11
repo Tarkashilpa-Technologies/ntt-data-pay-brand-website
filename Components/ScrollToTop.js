@@ -22,6 +22,10 @@ const ScrollToTopButton = ({ scrollContainerRef }) => {
     }
   }, [scrollContainerRef])
 
+  useEffect(()  => {
+    scrollToTop();
+  },[])
+
   return (
     <img
       className={`pointer position-fixed scroll-to-top ${

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { apisDataApi } from '../../services/services'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import Loader from '../../Components/Loader'
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([])
@@ -43,6 +44,7 @@ const ApiReferences = () => {
             </div>
 
             <div className='pb-3'>
+              {apisData?.length > 0  ? 
               <div className='d-flex gap-2 flex-wrap align-items-center justify-content-center h-100 '>
                 {apisData?.length > 0 &&
                   apisData?.map((api, index) => {
@@ -55,17 +57,17 @@ const ApiReferences = () => {
                           className='d-flex justify-content-between flex-column h-100'
                           style={{ minHeight: 220 }}
                         >
-                          <div>
-                            <h4 className='text-center'>
-                              {api?.attributes?.Title}
-                            </h4>
-                            <p className='numberOfLinesThree'>
+                            <div>
+                              <h4 className='text-center'>
+                                {api?.attributes?.Title}
+                              </h4>
+                            </div>
+                            <p className='numberOfLinesThree text-center'>
                               <ReactMarkdown>
                                 {api?.attributes?.Description}
                               </ReactMarkdown>
                             </p>
-                          </div>
-                          <div className='d-flex gap-3 align-items-center justify-content-end'>
+                          <div className='d-flex gap-3 align-items-center justify-content-center'>
                             <Link
                               href={
                                 api?.attributes?.Title != undefined
@@ -86,6 +88,7 @@ const ApiReferences = () => {
                     )
                   })}
               </div>
+              : <Loader show={true} />}
               <div className='pt-4 mt-3'>
                 <h3 className='text-center'>
                   If you prefer exploring API while trying it out, visit our API
