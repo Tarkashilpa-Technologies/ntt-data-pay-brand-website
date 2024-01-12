@@ -80,12 +80,12 @@ const TryItOutApiScreen = () => {
     {}
   );
   const [copyText,  setCopyText]  = useState(false);
-  const[copyTextResponse,setCopyTextResponse] =  useState(false);
+  const[copyTextResponse,setCopyTextResponse] = useState(false);
 
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
   )
-  const[showError,setShowError] = useState();
+  const[showError,setShowError] = useState(false);
 
   //Handler Function
   function handleFunctionItemClick(item) {
@@ -94,6 +94,7 @@ const TryItOutApiScreen = () => {
        setResponseJSON();
     });
     setSelectedFunction(item);
+    setShowError(false);
     Object.entries(
       selectedAPI?.attributes?.Defination?.components?.schemas || {}
     ).forEach(([searchString, schemaData]) => {
@@ -111,6 +112,7 @@ const TryItOutApiScreen = () => {
   async function handleSendRequestClick(e) {
     setLoader(true)
     e.preventDefault();
+    if(!showError){
     try {
       const res = await axios.post(TRY_IT_OUT_ENDOINT, {
         jsonData: json,
@@ -129,6 +131,7 @@ const TryItOutApiScreen = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+  }
     setLoader(false)
   }
   
@@ -140,6 +143,7 @@ const TryItOutApiScreen = () => {
        setJson(selectedFunctionResetData);
        setResponseJSON();
     })
+    setShowError(false);
   }
 
   // Api Calls
@@ -276,6 +280,7 @@ const TryItOutApiScreen = () => {
                               setSelectedFunction();
                               setJson(null);
                               setCopyText(false);
+                              setShowError(false);
                               const promise2 = setResponseJSON({});
                               Promise?.all([promise2]).then(() => { 
                                  setResponseJSON();
@@ -519,7 +524,11 @@ const TryItOutApiScreen = () => {
                         height="320px"
                         json={json}
                         onChange={(newJSON) => {
-                          console.log(newJSON)
+                          if(newJSON?.error)
+                          {
+                            console.log(newJSON?.error,'newJSON?.error')
+                            setShowError(true)
+                          }
                           setJson(newJSON?.jsObject)
                         }}
                         onKeyPressUpdate={true}
@@ -550,8 +559,9 @@ const TryItOutApiScreen = () => {
                         >
                           Reset
                         </button>
+                        {console.log(showError,"json.error")}
                         <button
-                          disabled={(!selectedAPI && !selectedFunction ) || showError !=  undefined}
+                          disabled={showError== true ? showError : (!selectedAPI && !selectedFunction)}
                           type="submit"
                           style={{ minWidth: 100 }}
                           className="bg-primary d-flex align-items-center justify-content-center gap-2 p-1 px-3 text-white rounded-pill border-0"

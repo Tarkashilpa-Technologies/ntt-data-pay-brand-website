@@ -9,7 +9,6 @@ const JsonEditor = ({
   onChange,
   waitAfterKeyPress,
   onKeyPressUpdate,
-  setShowError,
 }) => {
   return (
     <AjrmJsonEditor
@@ -20,7 +19,6 @@ const JsonEditor = ({
       onChange={onChange}
       waitAfterKeyPress={waitAfterKeyPress}
       onKeyPressUpdate={onKeyPressUpdate}
-      modifyErrorText={setShowError}
       colors={{
         string: '#2EDB00',
         number: '#FC9CC6',
