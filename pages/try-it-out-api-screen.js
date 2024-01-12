@@ -612,7 +612,7 @@ const TryItOutApiScreen = () => {
                           height="320px"
                           json={responseJSON}
                           onChange={(newJSON) => {
-                            setJson(newJSON?.jsObject)
+                            setResponseJSON(newJSON?.jsObject)
                           }}
                           onKeyPressUpdate={true}
                           waitAfterKeyPress={2000}
