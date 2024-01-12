@@ -6,6 +6,7 @@ export const NestedCollapse = ({
   propertyName,
   propertyValue,
   example,
+  maxLength,
   description,
   dataType,
   format,
@@ -66,6 +67,14 @@ export const NestedCollapse = ({
               <span className='text-dark text-break'>{example && example}</span>
             </p>
           )}
+          {maxLength && (
+            <p className='p-0 m-0 text-danger'>
+              maxLength :{' '}
+              <span className='text-dark text-break'>
+                {maxLength && maxLength}
+              </span>
+            </p>
+          )}
           {description && (
             <p className='p-0 m-0 text-danger'>
               description :{' '}
@@ -82,6 +91,7 @@ export const NestedCollapse = ({
                   propertyName={key}
                   propertyValue={value?.properties}
                   example={value?.example}
+                  maxLength={value?.maxLength}
                   description={value?.description}
                   dataType={value?.type}
                   format={value?.format}
