@@ -85,11 +85,14 @@ const TryItOutApiScreen = () => {
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
   )
-  const [fullWidth, setFullWidth] = useState()
+  const[showError,setShowError] = useState();
 
   //Handler Function
   function handleFunctionItemClick(item) {
-    setResponseJSON();
+    const promise2 = setResponseJSON({});
+    Promise?.all([promise2]).then(() => { 
+       setResponseJSON();
+    });
     setSelectedFunction(item);
     Object.entries(
       selectedAPI?.attributes?.Defination?.components?.schemas || {}
@@ -132,10 +135,11 @@ const TryItOutApiScreen = () => {
   function handleReset(e) {
     e.preventDefault(); // Prevent the default form submission
     const promise = setJson({});
-    Promise?.all([promise]).then(() => { 
-       setJson(selectedFunctionResetData)
+    const promise2 = setResponseJSON({});
+    Promise?.all([promise,promise2]).then(() => { 
+       setJson(selectedFunctionResetData);
+       setResponseJSON();
     })
-    setResponseJSON();
   }
 
   // Api Calls
@@ -272,7 +276,10 @@ const TryItOutApiScreen = () => {
                               setSelectedFunction();
                               setJson(null);
                               setCopyText(false);
-                              setResponseJSON(null);
+                              const promise2 = setResponseJSON({});
+                              Promise?.all([promise2]).then(() => { 
+                                 setResponseJSON();
+                              });
                             }}
                           >
                             {item?.attributes?.Title}
@@ -544,7 +551,7 @@ const TryItOutApiScreen = () => {
                           Reset
                         </button>
                         <button
-                          disabled={!selectedAPI && !selectedFunction}
+                          disabled={(!selectedAPI && !selectedFunction ) || showError !=  undefined}
                           type="submit"
                           style={{ minWidth: 100 }}
                           className="bg-primary d-flex align-items-center justify-content-center gap-2 p-1 px-3 text-white rounded-pill border-0"
@@ -617,6 +624,7 @@ const TryItOutApiScreen = () => {
                           onKeyPressUpdate={true}
                           waitAfterKeyPress={2000}
                           viewOnly={true}
+                          setShowError={setShowError}
                         />
                         <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn ${json? 'd-block':'d-none'}`}
                           onClick={(e) =>  {

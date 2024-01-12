@@ -165,7 +165,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                             ) ? false: true}
                                                             > 
                                                             <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
-                                                            <img src="images/paste.png" width={20}/>  
+                                                            <img src="/images/paste.png" width={20}/>  
                                                           </div>
                                                         </div>
                                                       </div>
