@@ -196,7 +196,7 @@ const TryItOutApiScreen = () => {
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
           <h2 className="common-ttle ">API  Explorer</h2>
           <h3 className="text-primary  pb-3">Test our APIs right here.</h3>
-          <p className="common-desc text-center">
+          <p className="common-desc text-center api-explorer-page-size">
             {SELECT_FUNCTION_MESSAGE}
           </p>
         </div>
