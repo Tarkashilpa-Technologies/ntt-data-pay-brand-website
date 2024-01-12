@@ -5899,6 +5899,9 @@ ol li {
 .bg-primary {
   background: #0072bc !important;
 }
+.bg-primary:disabled {
+  background: #939494 !important;
+}
 .text-primary {
   color: #0072bc !important;
 }
@@ -6427,4 +6430,8 @@ tooltip-btn:hover  {
 
 .dropdown-width {
   width: 250px;
+}
+
+.bg-gray{
+  background: #939494 !important;
 }

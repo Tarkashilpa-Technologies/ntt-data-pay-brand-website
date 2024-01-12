@@ -127,7 +127,7 @@ const TryItOutApiScreen = () => {
         decKey: formData?.decKey?.value,
       });
       console.log(res?.data,"response");
-      setResponseJSON(JSON.parse(res?.data?.data));
+      setResponseJSON(JSON.parse(res?.data));
     } catch (error) {
       console.error("Error:", error);
     }
@@ -564,7 +564,7 @@ const TryItOutApiScreen = () => {
                           disabled={showError== true ? showError : (!selectedAPI && !selectedFunction)}
                           type="submit"
                           style={{ minWidth: 100 }}
-                          className="bg-primary d-flex align-items-center justify-content-center gap-2 p-1 px-3 text-white rounded-pill border-0"
+                          className={`bg-primary d-flex align-items-center justify-content-center gap-2 p-1 px-3 text-white rounded-pill border-0 ${!selectedAPI && !selectedFunction ? 'bg-gray' : ''}`}
                         >
                           {loader && (
                             <Spinner
