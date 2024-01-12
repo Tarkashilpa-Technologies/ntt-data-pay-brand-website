@@ -36,9 +36,13 @@ const IntegrationGuides = () => {
   //   return contentHtml;
   // };
 
+  const [fullHeight, setFullHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight
+  );
+
   return (
-    <div className='position-relative w-100 h-100'>
-      <div className='powerful-gateway overflow-hidden'>
+    <div className='overflow-hidden w-100 api-page-background d-flex flex-column justify-content-center' style={{maxHeight: fullHeight-100}}>
+      <div className='powerful-gateway overflow-y-scroll'>
         <div className='pb-4'>
           <div className='container_1300' style={{ minHeight: 600 }}>
             <div className='pt-4 pt-md-5 pt-lg-2 mt-4'>
@@ -119,8 +123,9 @@ const IntegrationGuides = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
+      
     </div>
   )
 }

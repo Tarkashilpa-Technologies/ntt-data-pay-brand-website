@@ -186,8 +186,8 @@ const TryItOutApiScreen = () => {
   }, [json, responseJSON]);
   
   return (
-    <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight}}>
-      <div className='container overflow-x-scroll'>
+    <div className='position-relative d-flex flex-column' style={{maxHeight: fullHeight-100}}>
+      <div className='container overflow-y-scroll'>
       <div style={{ minHeight: 600 }} className="bg-white">
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
           <h2 className="common-ttle ">API  Explorer</h2>

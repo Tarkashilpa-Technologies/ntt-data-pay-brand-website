@@ -30,10 +30,11 @@ const ApiReferences = () => {
 
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
-  )
+  );
 
   return (
-      <div className='powerful-gateway overflow-y-scroll'  style={{ minHeight: 600 }}>
+    <div style={{maxHeight: fullHeight-100}} className='overflow-hidden w-100 api-page-background d-flex justify-content-center'>
+      <div className='powerful-gateway overflow-y-scroll w-100'>
         <div className='pb-4'>
           <div className='container_1300 d-block '>
             <div className='p-5 pb-4'>
@@ -114,7 +115,7 @@ const ApiReferences = () => {
         </div>
         <Footer />
       </div>
-
+    </div>
   
   )
 }
