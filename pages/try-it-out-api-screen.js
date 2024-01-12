@@ -559,7 +559,6 @@ const TryItOutApiScreen = () => {
                         >
                           Reset
                         </button>
-                        {console.log(showError,"json.error")}
                         <button
                           disabled={showError== true ? showError : (!selectedAPI && !selectedFunction)}
                           type="submit"
