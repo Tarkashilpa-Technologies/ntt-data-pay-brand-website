@@ -71,10 +71,10 @@ function MyApp({ Component, pageProps }) {
       router?.pathname == '/Integration-Guides/[query]' ||
       router?.pathname == '/Api-References/[query]' ||
       router?.pathname == '/try-it-out-api-screen' ? (
-        <>
-        <HeaderTwo  />
-        <Component {...pageProps} />
-        </>
+        <div style={{maxHeight:600}}>
+          <HeaderTwo  />
+          <Component {...pageProps} />
+        </div>
       ) : (
         <>
           <Header />

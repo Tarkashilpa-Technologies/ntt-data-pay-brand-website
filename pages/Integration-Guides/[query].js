@@ -96,30 +96,18 @@ const TutorialScreenPage = () => {
   const pageHelpfulData = [
     {
       id: 1,
-      value: 'Issue with refund',
-    },
-    {
-      id: 2,
-      value: 'Issue with activation (delay in KYC, follow-ups)',
-    },
-    {
-      id: 3,
-      value: 'Issue with settlement',
-    },
-    {
-      id: 4,
-      value: 'Issue with international payments',
-    },
-    {
-      id: 5,
       value: 'Unable to find information',
     },
     {
-      id: 6,
+      id: 2,
       value: 'Difficult to understand',
     },
     {
-      id: 7,
+      id: 3,
+      value: 'Need more details',
+    },
+    {
+      id: 4,
       value: 'Other',
     },
   ]
