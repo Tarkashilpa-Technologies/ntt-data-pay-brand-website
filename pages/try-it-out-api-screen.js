@@ -81,6 +81,7 @@ const TryItOutApiScreen = () => {
   );
   const [copyText,  setCopyText]  = useState(false);
   const[copyTextResponse,setCopyTextResponse] = useState(false);
+  const [response,setResponse]  =  useState();
 
   const [fullHeight, setFullHeight] = useState(
     typeof window !== 'undefined' && window.innerHeight
@@ -126,9 +127,14 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
-      const promise2 = setResponseJSON({});
+      const promise2 = setResponseJSON(null);
       Promise?.all([promise2]).then(() => { 
-        setResponseJSON(res?.data?.data);
+        try   {
+          setResponseJSON(JSON.parse(JSON.stringify(res?.data?.data)));
+        } catch    {
+          setResponse((res?.data?.data)?.toString())
+        }
+        
       })
       
     } catch (error) {
@@ -625,7 +631,8 @@ const TryItOutApiScreen = () => {
                       <div className="pb-2 fw-bold">
                         <label> Response</label>
                       </div>
-                      <div className="text-white d-flex flex-column justify-content-center  position-relative">
+                      {responseJSON ?  
+                      (<div className="text-white d-flex flex-column justify-content-center  position-relative">
                         <JsonEditor
                           width="100%"
                           height="320px"
@@ -649,7 +656,13 @@ const TryItOutApiScreen = () => {
                             <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
                             <img src="images/paste.png" width={20}/>  
                         </div>
-                      </div>
+                      </div>)  :  
+                      (
+                        <div>
+                          {response}
+                        </div>
+                      )
+                      }
                     </div>
                   </div>
                 </div>

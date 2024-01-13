@@ -27,9 +27,11 @@ module.exports = async (req, res) => {
         throw new Error("Invalid HTTP method");
       }
       const responseData = response?.data;
+     
       const searchParams = new URLSearchParams(responseData);
       const decryptData = searchParams?.get("encData");
       const dec = decrypt(decryptData, decKey, decKey);
+      console.log(dec,"data decripted")
       return dec;
     } catch (error) {
       return error
