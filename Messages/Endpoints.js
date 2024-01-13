@@ -33,6 +33,6 @@ export const DEFAULT_API_CONFIG = {
 };
 
 export const TUTORIAL_API_ENDPOINT = "/tutorials";
-export const TUTORIAL_GROUPS_API_ENDPOINT = "/tutorial-groups?populate=*";
-export const APIS_API_ENDPOINT = "/apis";
+export const TUTORIAL_GROUPS_API_ENDPOINT = "/tutorial-groups?populate=*&sort[0]=order:asc";
+export const APIS_API_ENDPOINT = "/apis?sort[0]=order:asc";
 export const TRY_IT_OUT_ENDOINT = "/api/try-it-out";
