@@ -126,8 +126,7 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
-      console.log(res?.data,"response");
-      setResponseJSON(JSON.parse(res?.data));
+      setResponseJSON(JSON.parse(res?.data?.data));
     } catch (error) {
       console.error("Error:", error);
     }
