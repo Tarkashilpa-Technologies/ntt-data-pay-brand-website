@@ -126,7 +126,11 @@ const TryItOutApiScreen = () => {
         encKey: formData?.encKey?.value,
         decKey: formData?.decKey?.value,
       });
-      setResponseJSON(JSON.parse(res?.data?.data));
+      const promise2 = setResponseJSON({});
+      Promise?.all([promise2]).then(() => { 
+        setResponseJSON(res?.data?.data);
+      })
+      
     } catch (error) {
       console.error("Error:", error);
     }
