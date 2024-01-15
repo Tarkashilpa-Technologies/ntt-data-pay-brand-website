@@ -181,6 +181,7 @@ const TryItOutApiScreen = () => {
     Promise?.all([promise, promise2]).then(() => {
       setJson(selectedFunctionResetData);
       setResponseJSON();
+      setResponse(null);
     });
     setShowError(false);
   }
