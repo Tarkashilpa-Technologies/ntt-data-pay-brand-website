@@ -237,7 +237,7 @@ const TryItOutApiScreen = () => {
       className="overflow-hidden w-100 d-flex flex-column justify-content-center"
       style={{ maxHeight: fullHeight - 100 }}
     >
-      <div className="container overflow-y-scroll">
+      <div className="overflow-y-scroll">
         <div style={{ minHeight: 600 }} className="bg-white">
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
             <h2 className="common-ttle ">API Explorer</h2>
@@ -382,7 +382,7 @@ const TryItOutApiScreen = () => {
             </div>
             <div>
               <Form onSubmit={handleSendRequestClick}>
-                <div className="container_1300">
+                <div className="">
                   <div className="d-flex flex-md-row flex-column w-100 h-100 pt-4 gap-4 px-2 ">
                     <div className="w-lg-50 w-100"></div>
                     <div className="w-lg-50 w-100"></div>
@@ -390,9 +390,9 @@ const TryItOutApiScreen = () => {
                 </div>
 
                 {/* divider section start here */}
-                <div className="container_1300">
+                <div className="">
                   <div className="d-flex flex-md-row flex-column justify-content-center w-100 h-100 pt-4 px-3">
-                    <div className="w-100 overflow-auto api-explorer-page-size">
+                    <div className="w-100 api-explorer-page-size">
                       <Row className="gap-1 gap-lg-0">
                         <Col sm={12} md={12} lg={6}>
                           <Form.Group>
@@ -646,11 +646,7 @@ const TryItOutApiScreen = () => {
                               Reset
                             </button>
                             <button
-                              disabled={
-                                showError == true
-                                  ? showError
-                                  : !selectedAPI && !selectedFunction
-                              }
+                              disabled={showError || !selectedFunction}
                               type="submit"
                               style={{ minWidth: 100 }}
                               className={`bg-primary d-flex align-items-center justify-content-center gap-2 p-1 px-3 text-white rounded-pill border-0 ${
@@ -676,7 +672,7 @@ const TryItOutApiScreen = () => {
                         </div>
                         {json && (
                           <>
-                            <div className="w-100 overflow-auto">
+                            <div className="w-100">
                               <p className="d-inline-flex gap-1 w-100 pt-4">
                                 <a
                                   className="btn bg-primary text-white w-100 d-flex justify-content-between"
@@ -719,7 +715,7 @@ const TryItOutApiScreen = () => {
                           </>
                         )}
 
-                        <div className="mt-4">
+                        <div className="mt-4 mb-100">
                           <div className="pb-2 fw-bold">
                             <label> Response</label>
                           </div>
