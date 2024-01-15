@@ -27,19 +27,22 @@ module.exports = async (req, res) => {
         throw new Error("Invalid HTTP method");
       }
       const responseData = response?.data;
-     
+
       const searchParams = new URLSearchParams(responseData);
       const decryptData = searchParams?.get("encData");
       const dec = decrypt(decryptData, decKey, decKey);
-      console.log(dec,"data decripted")
-      return dec;
+      console.log(dec, "data decripted");
+      return {
+        message: "Success",
+        data: dec,
+      };
     } catch (error) {
-      return error
+      return {
+        message: "Error",
+        data: error,
+      };
     }
   }
   const responseData = await httpAPICall(url, merchId, enc, method);
-  res.json({
-    message: "Success",
-    data: responseData,
-  });
+  res.json(responseData);
 };
