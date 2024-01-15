@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   APIS_API_ENDPOINT,
+  GET_API_ENDPOINT,
   TUTORIAL_API_ENDPOINT,
   TUTORIAL_GROUPS_API_ENDPOINT,
 } from "../Messages/Endpoints";
@@ -35,7 +36,9 @@ export const apisDataApi = async () => {
 
 export const useCaseDataApi = async (id) => {
   try {
-    const response = await instance?.get(`${TUTORIAL_API_ENDPOINT}/${id}?populate=*`);
+    const response = await instance?.get(
+      `${TUTORIAL_API_ENDPOINT}/${id}?populate=*`
+    );
     return response;
   } catch (error) {
     return error;
@@ -74,7 +77,7 @@ export const makeAnyMethodAPICall = async (
 };
 export const singleApiDataApi = async (id) => {
   try {
-    const response = await instance?.get(`${APIS_API_ENDPOINT}/${id}`);
+    const response = await instance?.get(`${GET_API_ENDPOINT}/${id}`);
     return response;
   } catch (error) {
     return error;
