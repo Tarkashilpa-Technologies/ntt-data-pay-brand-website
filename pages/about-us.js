@@ -268,7 +268,7 @@ export default function About() {
                   </p>
                 </div>
               </SwiperSlide>
-              {/* <SwiperSlide>
+              <SwiperSlide>
                 <div className="journo-card">
                   <h2>2017</h2>
                   <p>
@@ -276,7 +276,7 @@ export default function About() {
                     payment acceptance over smartphones.{" "}
                   </p>
                 </div>
-              </SwiperSlide> */}
+              </SwiperSlide>
               <SwiperSlide>
                 <div className="journo-card">
                   <h2>2016</h2>
