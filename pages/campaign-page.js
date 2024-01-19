@@ -262,15 +262,14 @@ modules={[Autoplay ]}
 
 
         <div className='spacer-30'></div>
-        
-        <div className="card-style card-style3 card-bg4">
-          <h2 className="ttle">Payouts</h2>
-          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
-          {/* <a href="" className="btn_style_white"></a> */}
+
+
+        <div className="card-style card-style2 card-bg2">
+          <h2 className="ttle white-clr">IVR Payments</h2>
+          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
+         
+
         </div>
-
-
-      
 
 
        </div>
@@ -286,14 +285,13 @@ modules={[Autoplay ]}
 
         <div className='spacer-30'></div>
 
-        <div className="card-style card-style2 card-bg2">
-          <h2 className="ttle white-clr">IVR Payments</h2>
-          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
-         
-
+        <div className="card-style card-style3 card-bg4">
+          <h2 className="ttle">Payouts</h2>
+          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
+          {/* <a href="" className="btn_style_white"></a> */}
         </div>
-{/* 
-        <div className='spacer-30'></div> */}
+
+        <div className='spacer-30'></div>
 
 
         {/* <div className="card-style card-style1 card-bg5">
