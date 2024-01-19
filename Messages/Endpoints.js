@@ -3,7 +3,8 @@
 // Or just specify it directly like this:
 
 // export const HOST = "http://65.0.181.24:1337";
-export const HOST = "https://cms-uat.nttdatapay.com";
+// export const HOST = "https://cms-uat.nttdatapay.com";
+export const HOST = "https://cms.nttdatapay.com";
 
 export const API_URL = `${HOST}/api`;
 export const UAT_ATOM_TECH_URL = `https://caller.atomtech.in`;
