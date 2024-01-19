@@ -20,7 +20,7 @@ export default function About() {
         </title>
         <meta
           name="description"
-          content="NTT DATA is a leading payment service provider in India. We offer secure and efficient online payment gateway across India. NTT DATA is the best payment gateway India which offers POS machine,  Mobile App-mGalla and IVR payment solutions."
+          content="NTT DATA is a leading payment service provider in India. We offer secure and efficient online payment gateway across India. NTT DATA is the best payment gateway India which offers POS machine and IVR payment solutions."
         />
       </Head>
 
@@ -268,7 +268,7 @@ export default function About() {
                   </p>
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
+              {/* <SwiperSlide>
                 <div className="journo-card">
                   <h2>2017</h2>
                   <p>
@@ -276,7 +276,7 @@ export default function About() {
                     payment acceptance over smartphones.{" "}
                   </p>
                 </div>
-              </SwiperSlide>
+              </SwiperSlide> */}
               <SwiperSlide>
                 <div className="journo-card">
                   <h2>2016</h2>

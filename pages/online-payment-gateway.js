@@ -1054,7 +1054,7 @@ PCI DSS 3.2.1v complied payment system.</p>
 </div>  
 </div>  
 
-<div className="col-md-3">
+{/* <div className="col-md-3">
 <div className="explore-card explore3">
 <h2>mGalla
 <span>Payment App For Merchants</span></h2>  
@@ -1063,7 +1063,7 @@ PCI DSS 3.2.1v complied payment system.</p>
 <a href="">Know More</a>
 </Link>
 </div>  
-</div>  
+</div>   */}
 
 {/* <div className="col-md-3">
 <div className="explore-card explore4">

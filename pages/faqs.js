@@ -103,7 +103,7 @@ export default function Contact() {
        <li>Payment Gateway</li>
        <li>Point of Sale</li>
        <li>Interactive Voice Response</li>
-       <li>mGalla – Merchant Mobile Payment App.</li>   
+       {/* <li>mGalla – Merchant Mobile Payment App.</li>    */}
       </ul>
       <p>Apart from these, NTT DATA Payment Services also lets you accept payments through new-age payment options like Link-based payments, UPI, QR Scan and Pay, Invoices, BNPL, among others.  </p>
       </div>

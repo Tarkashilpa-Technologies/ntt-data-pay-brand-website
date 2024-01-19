@@ -96,8 +96,8 @@ Officer
 <h6 className="mt-4"> <strong className="blue_green">d)	Helpline number</strong> </h6> 
 <p>Complainants may reach out to the number: 18602664959 between business hours i.e. 8 AM to 8 PM every working day of the week. </p>
 
-<h6> <strong className="blue_green">e)	Mobile application (App)</strong>  </h6> 
-<p>Complainants may lodge a Complaint / Grievance on the App “mGalla” launched by the Company. </p>
+{/* <h6> <strong className="blue_green">e)	Mobile application (App)</strong>  </h6> 
+<p>Complainants may lodge a Complaint / Grievance on the App “mGalla” launched by the Company. </p> */}
 
 <p>All the complaints received via the above-mentioned modes will be registered on the Complaint Resolution Management (“CRM”) system of the Company and will be addressed by the Customer Service team which will consist of trained employees experienced to handle such complaints. A Unique Ticket Number (“UTN”) will be generated in the Company’s CRM system for all types of complaints.  </p>
 
