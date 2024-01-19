@@ -231,7 +231,7 @@ modules={[Autoplay ]}
            <option value="Payment Gateway">Payment Gateway</option> 
            <option value="POS Terminal">POS Machine</option> 
            <option value="Reseller">Reseller</option> 
-           <option value="mGalla">mGalla</option> 
+           {/* <option value="mGalla">mGalla</option>  */}
             </select>  
             </div> 
             <div className="col-md-6 mb-10">

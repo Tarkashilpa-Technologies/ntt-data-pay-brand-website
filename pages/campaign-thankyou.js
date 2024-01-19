@@ -67,7 +67,7 @@ export default function Home() {
     <div className="homepage">
       <Head>
         <title>India&#39;s Leading Payment Solution Provider| NTT DATA Payment Services India </title>
-        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways, mGalla-Mobile App for Merchants and IVR payment solution." />
+        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways and IVR payment solution." />
      
         <script
             dangerouslySetInnerHTML={{

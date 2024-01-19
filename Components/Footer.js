@@ -66,9 +66,9 @@ export default function Footer() {
                 <Link href="/ivr-payment-system">
                   <a className={styles.ftrlnks}>IVR Payment</a>
                 </Link>
-                <Link href="/mgalla-payment-app">
+                {/* <Link href="/mgalla-payment-app">
                   <a className={styles.ftrlnks}>mGalla</a>
-                </Link>
+                </Link> */}
 
                 {/* <a href="" className={styles.ftrlnks}>Careers</a>
    <a href="" className={styles.ftrlnks}>Investors</a> */}

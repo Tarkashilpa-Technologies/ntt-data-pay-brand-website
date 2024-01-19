@@ -68,7 +68,7 @@ export default function Home() {
     <div className="homepage">
       <Head>
         <title>India&#39;s Leading Payment Solution Provider| NTT DATA Payment Services India </title>
-        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways, mGalla-Mobile App for Merchants and IVR payment solution." />
+        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways and IVR payment solution." />
      
         <script strategy="lazyOnload"
             dangerouslySetInnerHTML={{
@@ -294,12 +294,12 @@ modules={[Autoplay ]}
         <div className='spacer-30'></div>
 
 
-        <div className="card-style card-style1 card-bg5">
+        {/* <div className="card-style card-style1 card-bg5">
           <h2 className="ttle">The mGalla app</h2>
           <p className="common-desc">Turn your smartphone into a smart payment accepting device.</p>
          
 
-        </div>
+        </div> */}
 
 
      </div>

@@ -20,7 +20,7 @@ export default function About() {
         </title>
         <meta
           name="description"
-          content="NTT DATA is a leading payment service provider in India. We offer secure and efficient online payment gateway across India. NTT DATA is the best payment gateway India which offers POS machine,  Mobile App-mGalla and IVR payment solutions."
+          content="NTT DATA is a leading payment service provider in India. We offer secure and efficient online payment gateway across India. NTT DATA is the best payment gateway India which offers POS machine and IVR payment solutions."
         />
       </Head>
 

@@ -777,7 +777,7 @@ Our ready to deploy POS helps meet the digital demands and offers several value-
 </div>  
 </div>  
 
-<div className="col-md-3">
+{/* <div className="col-md-3">
 <div className="explore-card explore3">
 <h3>mGalla
 <span>Payment App For Merchants</span></h3>  
@@ -786,7 +786,7 @@ Our ready to deploy POS helps meet the digital demands and offers several value-
 <a href="">Know More</a>
 </Link>
 </div>  
-</div>  
+</div>   */}
 
 <div className="col-md-3">
 <div className="explore-card explore4">

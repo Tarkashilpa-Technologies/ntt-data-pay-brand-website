@@ -300,9 +300,9 @@ export default function Header() {
             <Link href="/ivr-payment-system">
             <a onClick={handleMenuClick}>IVR Payment</a>
             </Link>
-            <Link href="/mgalla-payment-app">
+            {/* <Link href="/mgalla-payment-app">
             <a onClick={handleMenuClick} >mGalla</a>
-            </Link>
+            </Link> */}
           </div>
         </li>
         {/* <li  className={`${styles.dropdown} ${router.pathname  == "/about-us" ? "active" : ""}`}>

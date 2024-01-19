@@ -16,7 +16,7 @@ export default function Home() {
     <div className="homepage">
       <Head>
         <title>India&#39;s Leading Payment Solution Provider| NTT DATA Payment Services India </title>
-        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways, mGalla-Mobile App for Merchants and IVR payment solution." />
+        <meta name="description" content="Servicing over 6 million+ businesses in India, NTT DATA Payment Services offers a vast range of secure payment services through POS machines, Payment Gateways and IVR payment solution." />
         <link rel="canonical" href="https://www.nttdatapay.com" />	
       
       </Head>
@@ -146,21 +146,12 @@ autoplay={{
 
         <div className='spacer-30'></div>
 
-
-        <div className="card-style card-style2 card-bg2">
-          <h3 className="ttle white-clr">IVR Payments</h3>
-          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
-          <Link href="/ivr-payment-system">
-          <a  className="btn_style1">Know More</a>
-           </Link>
-          <div className="card-link-cvr">
-          <a href="" className="card-links white-clr">Inbound IVR</a> <span>|</span>
-          <a href="" className="card-links white-clr">Outbound IVR</a> 
-          </div>
-
+        <div className="card-style card-style3 card-bg4">
+          <h3 className="ttle white-clr">Payouts</h3>
+          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
+          {/* <a href="" className="btn_style_white">Know More</a> */}
         </div>
-
-
+       
        </div>
      </div>
      <div className="col-md-6">
@@ -183,16 +174,24 @@ autoplay={{
 
         <div className='spacer-30'></div>
 
-        <div className="card-style card-style3 card-bg4">
-          <h3 className="ttle white-clr">Payouts</h3>
-          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
-          {/* <a href="" className="btn_style_white">Know More</a> */}
+      
+        <div className="card-style card-style2 card-bg2">
+          <h3 className="ttle white-clr">IVR Payments</h3>
+          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
+          <Link href="/ivr-payment-system">
+          <a  className="btn_style1">Know More</a>
+           </Link>
+          <div className="card-link-cvr">
+          <a href="" className="card-links white-clr">Inbound IVR</a> <span>|</span>
+          <a href="" className="card-links white-clr">Outbound IVR</a> 
+          </div>
+
         </div>
 
         <div className='spacer-30'></div>
 
 
-        <div className="card-style card-style1 card-bg5">
+        {/* <div className="card-style card-style1 card-bg5">
           <h3 className="ttle">The mGalla app</h3>
           <p className="common-desc">Turn your smartphone into a smart payment accepting device.</p>
           <Link href="/mgalla-payment-app">
@@ -205,7 +204,7 @@ autoplay={{
           <a href="" className="card-links">mPOS</a>
           </div>
 
-        </div>
+        </div> */}
 
 
      </div>

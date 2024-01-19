@@ -536,7 +536,7 @@ white">Sign up</a>
 </div>  
 </div>   */}
 
-<div className="col-xl-3 col-md-4 col-sm-6">
+{/* <div className="col-xl-3 col-md-4 col-sm-6">
 <div className="explore-card explore3">
 <h3>mGalla
 <span>Payment App For Merchants</span></h3>  
@@ -545,7 +545,7 @@ white">Sign up</a>
 <a href="">Know More</a>
 </Link>
 </div>  
-</div>  
+</div>   */}
 
 <div className="col-xl-3 col-md-4 col-sm-6">
 <div className="explore-card explore4">
