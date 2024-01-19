@@ -146,21 +146,12 @@ autoplay={{
 
         <div className='spacer-30'></div>
 
-
-        <div className="card-style card-style2 card-bg2">
-          <h3 className="ttle white-clr">IVR Payments</h3>
-          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
-          <Link href="/ivr-payment-system">
-          <a  className="btn_style1">Know More</a>
-           </Link>
-          <div className="card-link-cvr">
-          <a href="" className="card-links white-clr">Inbound IVR</a> <span>|</span>
-          <a href="" className="card-links white-clr">Outbound IVR</a> 
-          </div>
-
+        <div className="card-style card-style3 card-bg4">
+          <h3 className="ttle white-clr">Payouts</h3>
+          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
+          {/* <a href="" className="btn_style_white">Know More</a> */}
         </div>
-
-
+       
        </div>
      </div>
      <div className="col-md-6">
@@ -183,10 +174,18 @@ autoplay={{
 
         <div className='spacer-30'></div>
 
-        <div className="card-style card-style3 card-bg4">
-          <h3 className="ttle white-clr">Payouts</h3>
-          <p className="common-desc">Concrete solutions for multiple businesses with a diverse range of services.</p>
-          {/* <a href="" className="btn_style_white">Know More</a> */}
+      
+        <div className="card-style card-style2 card-bg2">
+          <h3 className="ttle white-clr">IVR Payments</h3>
+          <p className="common-desc white-clr">Accept payments securely<br/> through this voice-based<br/> payment solution!</p>
+          <Link href="/ivr-payment-system">
+          <a  className="btn_style1">Know More</a>
+           </Link>
+          <div className="card-link-cvr">
+          <a href="" className="card-links white-clr">Inbound IVR</a> <span>|</span>
+          <a href="" className="card-links white-clr">Outbound IVR</a> 
+          </div>
+
         </div>
 
         <div className='spacer-30'></div>
