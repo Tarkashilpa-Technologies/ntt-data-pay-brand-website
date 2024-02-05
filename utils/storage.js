@@ -1,4 +1,3 @@
-
 export const getLocalStorage = (key) => {
   if (localStorage) {
     return localStorage.getItem(key);
@@ -8,14 +7,13 @@ export const getLocalStorage = (key) => {
 };
 export const setLocalStorage = (key, data) => {
   if (localStorage) {
-    return  localStorage.setItem(key, data);
+    return localStorage.setItem(key, data);
   } else {
     return null;
   }
- 
 };
 export const clearLocalStorage = () => {
-  if (localStorage ) {
+  if (localStorage) {
     window?.localStorage?.clear();
   }
 };

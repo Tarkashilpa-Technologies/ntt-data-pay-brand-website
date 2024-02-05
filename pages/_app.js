@@ -17,24 +17,24 @@ function MyApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap");
   }, []);
 
-  const  router = useRouter();
-  console.log(router.pathname,"pathname")
+  const router = useRouter();
+  console.log(router.pathname, "pathname");
   return (
     <>
       <Head>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='shortcut icon' href='/favicon.ico' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link
-          href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional'
-          rel='stylesheet'
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional"
+          rel="stylesheet"
         />
         <link
-          href='https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap'
-          rel='stylesheet'
+          href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+          rel="stylesheet"
         ></link>
         <script
           async
-          src='https://www.googletagmanager.com/gtag/js?id=UA-223921365-1'
+          src="https://www.googletagmanager.com/gtag/js?id=UA-223921365-1"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -60,19 +60,19 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <noscript>
         <iframe
-          src='https://www.googletagmanager.com/ns.html?id=GTM-NRTMWRN'
-          height='0'
-          width='0'
-          style={{ display: 'none', visibility: 'hidden' }}
+          src="https://www.googletagmanager.com/ns.html?id=GTM-NRTMWRN"
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
         ></iframe>
       </noscript>
-      {router?.pathname == '/Api-References' ||
-      router?.pathname == '/Integration-Guides' ||
-      router?.pathname == '/Integration-Guides/[query]' ||
-      router?.pathname == '/Api-References/[query]' ||
-      router?.pathname == '/try-it-out-api-screen' ? (
+      {router?.pathname == "/Api-References" ||
+      router?.pathname == "/Integration-Guides" ||
+      router?.pathname == "/Integration-Guides/[query]" ||
+      router?.pathname == "/Api-References/[query]" ||
+      router?.pathname == "/try-it-out-api-screen" ? (
         <>
-          <HeaderTwo  />
+          <HeaderTwo />
           <Component {...pageProps} />
         </>
       ) : (
@@ -83,7 +83,7 @@ function MyApp({ Component, pageProps }) {
         </>
       )}
     </>
-  )
+  );
 }
 
 export default MyApp;

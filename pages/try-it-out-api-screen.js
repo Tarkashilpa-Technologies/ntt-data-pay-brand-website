@@ -81,14 +81,14 @@ const TryItOutApiScreen = () => {
   const [json, setJson] = useState();
   const [responseJSON, setResponseJSON] = useState();
   const [selectedFunctionResetData, setSelectedFunctionResetData] = useState(
-    {}
+    {},
   );
   const [copyText, setCopyText] = useState(false);
   const [copyTextResponse, setCopyTextResponse] = useState(false);
   const [response, setResponse] = useState();
 
   const [fullHeight, setFullHeight] = useState(
-    typeof window !== "undefined" && window.innerHeight
+    typeof window !== "undefined" && window.innerHeight,
   );
   const [showError, setShowError] = useState(false);
 
@@ -101,14 +101,14 @@ const TryItOutApiScreen = () => {
     setSelectedFunction(item);
     setShowError(false);
     Object.entries(
-      selectedAPI?.attributes?.Defination?.components?.schemas || {}
+      selectedAPI?.attributes?.Defination?.components?.schemas || {},
     ).forEach(([searchString, schemaData]) => {
       const url =
         item?.requestBody?.content?.["application/json"]?.schema?.$ref;
       if (url?.includes(searchString)) {
         setJson(generateExampleFromSchema(schemaData?.properties));
         setSelectedFunctionResetData(
-          generateExampleFromSchema(schemaData?.properties)
+          generateExampleFromSchema(schemaData?.properties),
         );
       }
     });
@@ -156,7 +156,7 @@ const TryItOutApiScreen = () => {
                 }
               } else {
                 setResponse(
-                  data?.message ? data?.message : "Something went wrong!"
+                  data?.message ? data?.message : "Something went wrong!",
                 );
               }
             } else {
@@ -411,14 +411,14 @@ const TryItOutApiScreen = () => {
                                 enableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               onFocus={($event) => {
                                 disableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               className={
@@ -431,7 +431,7 @@ const TryItOutApiScreen = () => {
                                 onFormFeildsChange(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                             />
@@ -460,14 +460,14 @@ const TryItOutApiScreen = () => {
                                 enableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               onFocus={($event) => {
                                 disableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               className={
@@ -480,7 +480,7 @@ const TryItOutApiScreen = () => {
                                 onFormFeildsChange(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                             />
@@ -511,14 +511,14 @@ const TryItOutApiScreen = () => {
                                 enableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               onFocus={($event) => {
                                 disableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               className={
@@ -531,7 +531,7 @@ const TryItOutApiScreen = () => {
                                 onFormFeildsChange(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                             />
@@ -560,14 +560,14 @@ const TryItOutApiScreen = () => {
                                 enableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               onFocus={($event) => {
                                 disableShouldErrorShow(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                               className={
@@ -580,7 +580,7 @@ const TryItOutApiScreen = () => {
                                 onFormFeildsChange(
                                   $event,
                                   formData,
-                                  setFormData
+                                  setFormData,
                                 );
                               }}
                             />
@@ -621,7 +621,7 @@ const TryItOutApiScreen = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               navigator.clipboard.writeText(
-                                JSON.stringify(json)
+                                JSON.stringify(json),
                               );
                               setCopyText(true);
                             }}
@@ -741,7 +741,7 @@ const TryItOutApiScreen = () => {
                                 onClick={(e) => {
                                   e.preventDefault();
                                   navigator.clipboard.writeText(
-                                    JSON.stringify(responseJSON)
+                                    JSON.stringify(responseJSON),
                                   );
                                   setCopyTextResponse(true);
                                 }}

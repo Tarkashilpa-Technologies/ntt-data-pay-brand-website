@@ -1,7 +1,7 @@
 function createFcn(nm) {
   window.freshsales[nm] = function () {
     window.freshsales.push(
-      [nm].concat(Array.prototype.slice.call(arguments, 0))
+      [nm].concat(Array.prototype.slice.call(arguments, 0)),
     );
   };
 }
@@ -21,7 +21,7 @@ function createFcn(nm) {
     freshsales.init(
       "https://nttdatapay.myfreshworks.com/crm/sales",
       "2e01c8cd9f52aab8ebc4e821232d2e960007634e4e705a24e233bf3cd821cd82",
-      true
+      true,
     );
   }
 })();

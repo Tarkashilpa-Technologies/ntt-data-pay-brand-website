@@ -5,24 +5,23 @@ import { SELECT_FUNCTION_MESSAGE } from "../utils/messages";
 import NestedCollapse from "./NestedCollapse";
 import { extractRequiredArrays } from "../utils/utils";
 
-
 const ApiEndpoint = ({ apiData }) => {
   const JSONPrettyMon = require("react-json-pretty/dist/monikai");
-  const[copyTextResponse,setCopyTextResponse] =  useState(false);
+  const [copyTextResponse, setCopyTextResponse] = useState(false);
   function ResponsesComponent(data) {
-      return (
-        <div className="w-100">
-          <p>
-            <b>{data[0]}</b>
-          </p>
-          <JSONPretty
-            id="json-pretty"
-            data={data[1]?.value}
-            theme={JSONPrettyMon}
-            themeClassName="p-4 fixed-height-data"
-          ></JSONPretty> 
-        </div>
-      );
+    return (
+      <div className="w-100">
+        <p>
+          <b>{data[0]}</b>
+        </p>
+        <JSONPretty
+          id="json-pretty"
+          data={data[1]?.value}
+          theme={JSONPrettyMon}
+          themeClassName="p-4 fixed-height-data"
+        ></JSONPretty>
+      </div>
+    );
   }
   return (
     <div>
@@ -67,7 +66,7 @@ const ApiEndpoint = ({ apiData }) => {
                             <div>
                               {apiName[1]?.requestBody?.content &&
                                 Object?.entries(
-                                  apiName[1]?.requestBody?.content
+                                  apiName[1]?.requestBody?.content,
                                 )?.map((item, index) => {
                                   if (item[0] == "application/json") {
                                     return (
@@ -80,12 +79,12 @@ const ApiEndpoint = ({ apiData }) => {
                                                 Object?.entries(item[1])
                                                   ?.map((item, index) => {
                                                     return `${Object?.entries(
-                                                      item[1]
+                                                      item[1],
                                                     )
                                                       ?.map((item, index) => {
                                                         return `${item[1]?.replace(
                                                           / \n/g,
-                                                          ""
+                                                          "",
                                                         )}`;
                                                       })
                                                       ?.join("")}`;
@@ -95,7 +94,7 @@ const ApiEndpoint = ({ apiData }) => {
                                               const finalResult =
                                                 result?.replace(
                                                   /#\/components\/schemas\//g,
-                                                  ""
+                                                  "",
                                                 );
                                               const data =
                                                 apiData?.attributes?.Defination
@@ -103,7 +102,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                 Object.entries(
                                                   apiData?.attributes
                                                     ?.Defination?.components
-                                                    ?.schemas
+                                                    ?.schemas,
                                                 )?.map((item, index) => {
                                                   if (finalResult === item[0]) {
                                                     return (
@@ -117,11 +116,11 @@ const ApiEndpoint = ({ apiData }) => {
                                                         </h6>
                                                         <div className=" bg-lightblue p-3">
                                                           {Object?.entries(
-                                                            item[1]?.properties
+                                                            item[1]?.properties,
                                                           )?.map((key1) => {
                                                             let requireList =
                                                               extractRequiredArrays(
-                                                                item
+                                                                item,
                                                               );
                                                             return (
                                                               <NestedCollapse
@@ -143,29 +142,55 @@ const ApiEndpoint = ({ apiData }) => {
                                                         <h6 className="pt-2 m-0 mb-2">
                                                           Example
                                                         </h6>
-                                                        <div  className="position-relative">
+                                                        <div className="position-relative">
                                                           <JSONPretty
                                                             id="json-pretty"
                                                             data={generateExampleFromSchema(
-                                                              item[1]?.properties
+                                                              item[1]
+                                                                ?.properties,
                                                             )}
-                                                            theme={JSONPrettyMon}
+                                                            theme={
+                                                              JSONPrettyMon
+                                                            }
                                                             themeClassName="p-4 fixed-height-data"
                                                           ></JSONPretty>
-                                                          <div className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn`}
-                                                            onClick={(e) =>  {
-                                                            e.preventDefault();
-                                                            navigator.clipboard.writeText(JSON.stringify(generateExampleFromSchema(
-                                                              item[1]?.properties
-                                                            )));
-                                                            setCopyTextResponse(true);
-                                                            }} 
-                                                            disabled={generateExampleFromSchema(
-                                                              item[1]?.properties
-                                                            ) ? false: true}
-                                                            > 
-                                                            <span class={`pe-3 ${copyTextResponse  ? "tooltiptext" : ''}`} id="myTooltip">{copyTextResponse ? 'Copied to Clipboard': 'Copy Text'}</span>
-                                                            <img src="/images/paste.png" width={20}/>  
+                                                          <div
+                                                            className={`position-absolute bottom-0 end-0 m-3 btn p-1  border-0 cursor-pointer tooltip-btn`}
+                                                            onClick={(e) => {
+                                                              e.preventDefault();
+                                                              navigator.clipboard.writeText(
+                                                                JSON.stringify(
+                                                                  generateExampleFromSchema(
+                                                                    item[1]
+                                                                      ?.properties,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                              setCopyTextResponse(
+                                                                true,
+                                                              );
+                                                            }}
+                                                            disabled={
+                                                              generateExampleFromSchema(
+                                                                item[1]
+                                                                  ?.properties,
+                                                              )
+                                                                ? false
+                                                                : true
+                                                            }
+                                                          >
+                                                            <span
+                                                              class={`pe-3 ${copyTextResponse ? "tooltiptext" : ""}`}
+                                                              id="myTooltip"
+                                                            >
+                                                              {copyTextResponse
+                                                                ? "Copied to Clipboard"
+                                                                : "Copy Text"}
+                                                            </span>
+                                                            <img
+                                                              src="/images/paste.png"
+                                                              width={20}
+                                                            />
                                                           </div>
                                                         </div>
                                                       </div>
@@ -173,7 +198,7 @@ const ApiEndpoint = ({ apiData }) => {
                                                   }
                                                 });
                                               return <div>{data}</div>;
-                                            }
+                                            },
                                           )}
                                       </div>
                                     );
@@ -185,7 +210,7 @@ const ApiEndpoint = ({ apiData }) => {
                             <h4
                               id={`Responses-${apiName[1]?.summary?.replace(
                                 /\s+/g,
-                                "-"
+                                "-",
                               )}`}
                             >
                               Responses
@@ -199,38 +224,42 @@ const ApiEndpoint = ({ apiData }) => {
                                       "application/json"
                                     ]?.schema?.["$ref"]?.replace(
                                       /#\/components\/schemas\//g,
-                                      ""
+                                      "",
                                     );
                                     const data =
                                       apiData?.attributes?.Defination
                                         ?.components?.schemas &&
                                       Object.entries(
                                         apiData?.attributes?.Defination
-                                          ?.components?.schemas
+                                          ?.components?.schemas,
                                       )?.map((schemaEntry, schemaIndex) => {
                                         if (schemaEntry[0] == result) {
-                                          return Object?.entries(schemaEntry[1])?.map((schema1, idx1) => {
-                                            if (schema1[0] == 'properties') {
+                                          return Object?.entries(
+                                            schemaEntry[1],
+                                          )?.map((schema1, idx1) => {
+                                            if (schema1[0] == "properties") {
                                               let requireList =
                                                 extractRequiredArrays(schema1);
                                               return Object?.entries(
-                                                schema1[1]
+                                                schema1[1],
                                               )?.map((schema2, idx1) => {
-                                                  return (
-                                                    <NestedCollapse
-                                                      isOpen={true}
-                                                      propertyName={schema2[0]}
-                                                      propertyValue={schema2[1]?.properties}
-                                                      requiredList={requireList}
-                                                    />
-                                                  );
+                                                return (
+                                                  <NestedCollapse
+                                                    isOpen={true}
+                                                    propertyName={schema2[0]}
+                                                    propertyValue={
+                                                      schema2[1]?.properties
+                                                    }
+                                                    requiredList={requireList}
+                                                  />
+                                                );
                                               });
                                             }
-                                          })
+                                          });
                                         }
                                       });
                                     return <div>{data}</div>;
-                                  }
+                                  },
                                 )}
                             </div>
                             <p>{apiName[1]?.responses?.description}</p>
@@ -239,23 +268,25 @@ const ApiEndpoint = ({ apiData }) => {
                                 (apiResponse, index) => {
                                   return (
                                     <div key={index}>
-                                      {apiResponse[1]?.content && apiResponse[1]?.content?.[
-                                            "application/json"
-                                          ] && apiResponse[1]?.content?.[
-                                            "application/json"
-                                          ]?.examples &&
+                                      {apiResponse[1]?.content &&
+                                        apiResponse[1]?.content?.[
+                                          "application/json"
+                                        ] &&
+                                        apiResponse[1]?.content?.[
+                                          "application/json"
+                                        ]?.examples &&
                                         Object.entries(
                                           apiResponse[1]?.content?.[
                                             "application/json"
-                                          ]?.examples
-                                      )?.map((successItem, index) => {
+                                          ]?.examples,
+                                        )?.map((successItem, index) => {
                                           return ResponsesComponent(
-                                            successItem
+                                            successItem,
                                           );
                                         })}
                                     </div>
                                   );
-                                }
+                                },
                               )}
                           </div>
                         </div>
@@ -263,7 +294,7 @@ const ApiEndpoint = ({ apiData }) => {
                     })}
                   </div>
                 );
-              }
+              },
             )
           : SELECT_FUNCTION_MESSAGE}
       </div>

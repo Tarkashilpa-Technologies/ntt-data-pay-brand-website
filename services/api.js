@@ -53,7 +53,7 @@ instance.interceptors.response.use(
   },
   async (err) => {
     return err;
-  }
+  },
 );
 
 export default instance;

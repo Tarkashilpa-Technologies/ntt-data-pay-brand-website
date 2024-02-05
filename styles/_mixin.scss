@@ -1,32 +1,29 @@
 @mixin breakpoint($point) {
-    @if $point == large {
-       @media only screen and (min-width: 1366px) {
-          @content;
-       }
-    } 
-    @else if $point == desktop {
-       @media only screen and (min-width: 1024px) {
-          @content;
-       }
-    } 
-    @else if $point == tablet {
-       @media only screen and (min-width: 600px) {
-          @content;
-       }
+  @if $point == large {
+    @media only screen and (min-width: 1366px) {
+      @content;
+    }
+  } @else if $point == desktop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media only screen and (min-width: 600px) {
+      @content;
     }
   }
-
-
-  @mixin anim1 {
-   -webkit-transition: all 0.3s ease-out;
-   -moz-transition: all 0.3s ease-out;
-   -o-transition: all 0.3s ease-out;
-   transition: all 0.3s ease-out;
 }
-  
-  // @include breakpoint(large) {
-  //   div {
-  //      font-size: 2rem;
-  //      line-height: 1.4;
-  //   }
-  // }
+
+@mixin anim1 {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+// @include breakpoint(large) {
+//   div {
+//      font-size: 2rem;
+//      line-height: 1.4;
+//   }
+// }

@@ -9,9 +9,11 @@ const HeaderTwo = () => {
   let menubox = React.createRef();
   let ham = React.createRef();
   let checkboxmenu = React.createRef();
-  const[fullHeight,setFullHeight]= useState();
-  const[fullWidth,setFullWidth] = useState(typeof window !== 'undefined' && window.innerWidth);
-  const[hamClicked,setHamClicked]= useState();
+  const [fullHeight, setFullHeight] = useState();
+  const [fullWidth, setFullWidth] = useState(
+    typeof window !== "undefined" && window.innerWidth,
+  );
+  const [hamClicked, setHamClicked] = useState();
 
   function handleMenuToggle(e) {
     e.preventDefault();
@@ -30,72 +32,74 @@ const HeaderTwo = () => {
   }
   const dataArray = [
     {
-      label: 'Integration Guides',
-      url: '/Integration-Guides',
-      class: 'header-btn',
+      label: "Integration Guides",
+      url: "/Integration-Guides",
+      class: "header-btn",
     },
     {
-      label: 'API References',
-      url: '/Api-References',
-      class: 'header-btn',
+      label: "API References",
+      url: "/Api-References",
+      class: "header-btn",
     },
     {
-      label: 'API Explorer',
-      url: '/try-it-out-api-screen',
-      class: 'header-btn',
+      label: "API Explorer",
+      url: "/try-it-out-api-screen",
+      class: "header-btn",
     },
     {
-      label: 'Contact Us',
-      url: '/contact-us',
-      class: 'header-btn',
+      label: "Contact Us",
+      url: "/contact-us",
+      class: "header-btn",
     },
     {
-      label: 'Sign Up',
-      url: '/sign-up',
-      class: 'btn_style2',
+      label: "Sign Up",
+      url: "/sign-up",
+      class: "btn_style2",
     },
     {
-      label: 'Login',
-      url: 'https://pgreports.atomtech.in/titan_merchant_console/home#no-back-button',
-      class: 'btn_style2',
+      label: "Login",
+      url: "https://pgreports.atomtech.in/titan_merchant_console/home#no-back-button",
+      class: "btn_style2",
     },
-  ]
+  ];
 
-
-  function handleMenuClick(e){
+  function handleMenuClick(e) {
     //  e.preventDefault();
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-      menubox.current.classList.add('hide')
-      menubox.current.classList.remove('show')
-      ham.current.classList.remove('open')
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent,
+      )
+    ) {
+      menubox.current.classList.add("hide");
+      menubox.current.classList.remove("show");
+      ham.current.classList.remove("open");
       document.getElementById("checkbox4").checked = false;
     }
-    }
-    useEffect(()=> {
-      window.addEventListener('resize', ()=> {
-        setFullHeight(window.innerHeight);
-        setFullWidth(window.innerWidth);
-      });  
-   }, [])
+  }
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setFullHeight(window.innerHeight);
+      setFullWidth(window.innerWidth);
+    });
+  }, []);
 
-    useEffect(() => {
-      if(fullWidth > '1200px')
-      {
-       menubox?.current?.classList?.add("show");
+  useEffect(() => {
+    if (fullWidth > "1200px") {
+      menubox?.current?.classList?.add("show");
       menubox?.current?.classList?.remove("hide");
       ham?.current?.classList?.add("open");
       document.getElementById("checkbox4").checked = true;
-      }
-    },[fullWidth])
+    }
+  }, [fullWidth]);
 
   return (
     <div className="py-lg-3 py-2 px-3 d-flex align-items-center header">
       <div className="logo">
-        <Link href="/" className='pointer'>
+        <Link href="/" className="pointer">
           <Image
             priority
             src="/images/logo.png"
-            className={'pointer'}
+            className={"pointer"}
             width={183}
             height={52}
             alt="Logo"
@@ -103,8 +107,14 @@ const HeaderTwo = () => {
           {/* <img className="img-fluid" src="/images/logo.svg" alt="Logo" /> */}
         </Link>
 
-        <span className="ham-menu d-lg-none" ref={ham} onClick={(e) => {handleMenuToggle(e);
-        setHamClicked(!hamClicked);}}>
+        <span
+          className="ham-menu d-lg-none"
+          ref={ham}
+          onClick={(e) => {
+            handleMenuToggle(e);
+            setHamClicked(!hamClicked);
+          }}
+        >
           <input
             type="checkbox"
             id="checkbox4"
@@ -122,35 +132,41 @@ const HeaderTwo = () => {
           </label>
         </span>
       </div>
-        <div className="menubox-header-two d-lg-block d-none">
-          {dataArray?.map((data,index) => {
-            return(
-              <ul className="menubox m-0 ps-0" key={index}>
+      <div className="menubox-header-two d-lg-block d-none">
+        {dataArray?.map((data, index) => {
+          return (
+            <ul className="menubox m-0 ps-0" key={index}>
               <li key={index} className={styles.dropbtn}>
                 <Link href={data?.url}>
-                  <a onClick={handleMenuClick} className={data.class}>{data?.label}</a>
+                  <a onClick={handleMenuClick} className={data.class}>
+                    {data?.label}
+                  </a>
                 </Link>
               </li>
-              </ul>
-            )
-          })}
-          
-        </div>
-        <div className={`d-lg-none ${hamClicked ? 'd-block' : 'd-none'} hamburger-show d-flex flex-column align-items-center`}>
-          {dataArray?.map((data,index) => {
-            return(
-              <ul className="menubox  w-100 m-0 p-2" key={index}>
-                <li key={index} className={`${styles.dropbtn} w-100`}>
-                  <Link href={data?.url}>
-                    <a onClick={handleMenuClick} className={`${data.class} w-100`}>{data?.label}</a>
-                  </Link>
-                </li>
-              </ul>
-            )
-          })}
-          
-        </div>
-        
+            </ul>
+          );
+        })}
+      </div>
+      <div
+        className={`d-lg-none ${hamClicked ? "d-block" : "d-none"} hamburger-show d-flex flex-column align-items-center`}
+      >
+        {dataArray?.map((data, index) => {
+          return (
+            <ul className="menubox  w-100 m-0 p-2" key={index}>
+              <li key={index} className={`${styles.dropbtn} w-100`}>
+                <Link href={data?.url}>
+                  <a
+                    onClick={handleMenuClick}
+                    className={`${data.class} w-100`}
+                  >
+                    {data?.label}
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          );
+        })}
+      </div>
     </div>
   );
 };

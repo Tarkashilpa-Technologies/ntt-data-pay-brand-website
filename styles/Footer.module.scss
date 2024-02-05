@@ -1,62 +1,103 @@
-
 @import "variables";
 @import "mixin";
 
+.container_1300 {
+  max-width: 1300px;
+  margin: 0 auto;
+}
 
-.container_1300{ max-width: 1300px; margin: 0 auto;}
-
-.footer{
-
-    &{ padding: 60px 0px 0px; background-color: #0F1C50;}
-  
-    .ftrcard1{
-  
-      .ftrlogo{ display: inline-block; margin-bottom: 50px; width: 180px;} 
-      .ftrtele{
-  
-        &{ display: block;color: $white-clr; font-weight: $fw-bold; font-size: $fs-18; line-height: 24px;}
-        span{ font-weight: $fw-regular;}
-  
-  
-      }
-  
-    }
-  
-    .ftlnkscvr{
-  
-      .ttle{ color: $white-clr; font-weight: $fw-bold; font-size: $fs-14;}
-      .ftrlnks{ display: block; font-size: $fs-14; font-weight: $fw-regular; line-height: 30px; color: $white-clr;}
-      .ftrlnkbold{ display: block; font-size: $fs-14; font-weight: $fw-regular; line-height: 30px; color: $white-clr; font-weight: $fw-bold; margin-top: 30px; text-decoration: underline;}
-  
-    }
-  
-    .copyrightwrp{
-  
-      &{ width: 100%; border-top: 1px solid #3B486F; margin-top: 30px; padding: 20px 0px;}
-  
-      .copyrightdesc{
-  
-        p{ color: $white-clr; font-size: $fs-14; font-weight: $fw-semi-bold; margin: 0; padding: 25px 0px;}
-  
-  
-      }
-  
-      .securedlogowrp{
-  
-        p{ color: $white-clr; font-size: $fs-14; font-weight: $fw-semi-bold; margin: 0px 0px 15px;}
-        span{ margin-right: 1rem;}
-  
-      }
-  
-      .socialftrcvr{
-  
-        &{ text-align: right; margin-top: 25px;}
-        a{ margin: 0 0.2rem;}
-        a:hover{ color: $white-clr;}
-  
-      }
-  
-    }
-  
-  
+.footer {
+  & {
+    padding: 60px 0px 0px;
+    background-color: #0f1c50;
   }
+
+  .ftrcard1 {
+    .ftrlogo {
+      display: inline-block;
+      margin-bottom: 50px;
+      width: 180px;
+    }
+    .ftrtele {
+      & {
+        display: block;
+        color: $white-clr;
+        font-weight: $fw-bold;
+        font-size: $fs-18;
+        line-height: 24px;
+      }
+      span {
+        font-weight: $fw-regular;
+      }
+    }
+  }
+
+  .ftlnkscvr {
+    .ttle {
+      color: $white-clr;
+      font-weight: $fw-bold;
+      font-size: $fs-14;
+    }
+    .ftrlnks {
+      display: block;
+      font-size: $fs-14;
+      font-weight: $fw-regular;
+      line-height: 30px;
+      color: $white-clr;
+    }
+    .ftrlnkbold {
+      display: block;
+      font-size: $fs-14;
+      font-weight: $fw-regular;
+      line-height: 30px;
+      color: $white-clr;
+      font-weight: $fw-bold;
+      margin-top: 30px;
+      text-decoration: underline;
+    }
+  }
+
+  .copyrightwrp {
+    & {
+      width: 100%;
+      border-top: 1px solid #3b486f;
+      margin-top: 30px;
+      padding: 20px 0px;
+    }
+
+    .copyrightdesc {
+      p {
+        color: $white-clr;
+        font-size: $fs-14;
+        font-weight: $fw-semi-bold;
+        margin: 0;
+        padding: 25px 0px;
+      }
+    }
+
+    .securedlogowrp {
+      p {
+        color: $white-clr;
+        font-size: $fs-14;
+        font-weight: $fw-semi-bold;
+        margin: 0px 0px 15px;
+      }
+      span {
+        margin-right: 1rem;
+      }
+    }
+
+    .socialftrcvr {
+      & {
+        text-align: right;
+        margin-top: 25px;
+      }
+      a {
+        margin: 0 0.2rem;
+      }
+      a:hover {
+        color: $white-clr;
+      }
+    }
+  }
+}

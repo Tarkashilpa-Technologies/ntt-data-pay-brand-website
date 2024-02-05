@@ -1,8 +1,20 @@
-import isEmpty from './isempty';
-import {isValidNumber, formatNumber, AsYouType} from 'libphonenumber-js';
-import { CONFIRMED, CONFIRM_EMAIL_ERROR, CONFIRM_PASSWORD_ERROR, EMAIL, EMAIL_ERROR, ISCHECKED, ISVERIFIED, MIN_6_DIGITS, PHONE, PHONE_ERROR, REQUIRED } from './messages';
+import isEmpty from "./isempty";
+import { isValidNumber, formatNumber, AsYouType } from "libphonenumber-js";
+import {
+  CONFIRMED,
+  CONFIRM_EMAIL_ERROR,
+  CONFIRM_PASSWORD_ERROR,
+  EMAIL,
+  EMAIL_ERROR,
+  ISCHECKED,
+  ISVERIFIED,
+  MIN_6_DIGITS,
+  PHONE,
+  PHONE_ERROR,
+  REQUIRED,
+} from "./messages";
 
-export const validateEmail = input => {
+export const validateEmail = (input) => {
   const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
   return regEx.test(input);
 };
@@ -15,11 +27,11 @@ export const validateSameValue = (value1, value2) => {
   }
 };
 
-export const validatePhone = input => {
+export const validatePhone = (input) => {
   const isValid = isValidNumber(input);
   return isValid;
 };
-export const checkIsCharGreaterThan6Digit = input => {
+export const checkIsCharGreaterThan6Digit = (input) => {
   if (input.length > 5) {
     return true;
   } else {
@@ -27,13 +39,13 @@ export const checkIsCharGreaterThan6Digit = input => {
   }
 };
 
-export const isPasswordValidate = input => {
+export const isPasswordValidate = (input) => {
   var regEx = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   return regEx.test(input);
 };
 
 export const onFormFeildsChange = (event, formData, setFormData) => {
-  const { name,value } = event.target;
+  const { name, value } = event.target;
   const newFormData = { ...formData };
   newFormData[name]["value"] = value;
   validateField(name, newFormData, setFormData);
@@ -49,8 +61,8 @@ export const enableShouldErrorShow = (event, formData, setFormData) => {
 
 export const disableShouldErrorShow = (event, formData, setFormData) => {
   const { name } = event?.target;
-  const newFormData = {...formData};
-  newFormData[name]['shouldShowError'] = false;
+  const newFormData = { ...formData };
+  newFormData[name]["shouldShowError"] = false;
   setFormData(newFormData);
 };
 
@@ -58,15 +70,15 @@ export const validateField = (fieldName, formDataOrignal, setFormData) => {
   const formData = {
     ...formDataOrignal,
   };
-  const checkValidationArray = formData[fieldName]['check'];
-  const fieldValue = formData[fieldName]['value'];
+  const checkValidationArray = formData[fieldName]["check"];
+  const fieldValue = formData[fieldName]["value"];
   let isValid = true;
 
   if (checkValidationArray?.includes(REQUIRED) && isEmpty(fieldValue)) {
-    formData[fieldName]['error'] = REQUIRED;
+    formData[fieldName]["error"] = REQUIRED;
     isValid = false;
   } else {
-    formData[fieldName]['error'] = '';
+    formData[fieldName]["error"] = "";
   }
 
   if (checkValidationArray.includes(PHONE)) {
@@ -74,14 +86,13 @@ export const validateField = (fieldName, formDataOrignal, setFormData) => {
       if (!isEmpty(fieldValue)) {
         if (validatePhone(fieldValue)) {
           isValid = true;
-          formData[fieldName]['error'] = '';
+          formData[fieldName]["error"] = "";
         } else {
-          formData[fieldName]['error'] = PHONE_ERROR;
+          formData[fieldName]["error"] = PHONE_ERROR;
           isValid = false;
         }
-      }
-      else {
-        formData[fieldName]['error'] = REQUIRED;
+      } else {
+        formData[fieldName]["error"] = REQUIRED;
         isValid = false;
       }
     }
@@ -92,25 +103,25 @@ export const validateField = (fieldName, formDataOrignal, setFormData) => {
       if (validateEmail(fieldValue)) {
         isValid = true;
       } else {
-        formData[fieldName]['error'] = EMAIL_ERROR;
+        formData[fieldName]["error"] = EMAIL_ERROR;
         isValid = false;
       }
     } else {
-      formData[fieldName]['error'] = REQUIRED;
+      formData[fieldName]["error"] = REQUIRED;
       isValid = false;
     }
   }
 
   if (checkValidationArray.includes(ISCHECKED)) {
     if (!isEmpty(fieldValue)) {
-      if (formData[fieldName]['value'] === 'False') {
-        formData[fieldName]['error'] = ISCHECKED;
+      if (formData[fieldName]["value"] === "False") {
+        formData[fieldName]["error"] = ISCHECKED;
         isValid = false;
       } else {
         isValid = true;
       }
     } else {
-      formData[fieldName]['error'] = ISCHECKED;
+      formData[fieldName]["error"] = ISCHECKED;
       isValid = false;
     }
   }
@@ -119,24 +130,24 @@ export const validateField = (fieldName, formDataOrignal, setFormData) => {
       if (checkIsCharGreaterThan6Digit(fieldValue)) {
         isValid = true;
       } else {
-        formData[fieldName]['error'] = MIN_6_DIGITS;
+        formData[fieldName]["error"] = MIN_6_DIGITS;
         isValid = false;
       }
     } else {
-      formData[fieldName]['error'] = REQUIRED;
+      formData[fieldName]["error"] = REQUIRED;
       isValid = false;
     }
   }
   if (checkValidationArray.includes(ISVERIFIED)) {
-    if (formData[fieldName]['IsVerified'] === true) {
-      formData[fieldName]['error'] = '';
+    if (formData[fieldName]["IsVerified"] === true) {
+      formData[fieldName]["error"] = "";
       isValid = true;
     } else if (
-      formData[fieldName]['IsVerified'] === false &&
+      formData[fieldName]["IsVerified"] === false &&
       isEmpty(fieldValue)
     ) {
       if (isEmpty(fieldValue)) {
-        formData[fieldName]['error'] = REQUIRED;
+        formData[fieldName]["error"] = REQUIRED;
         isValid = false;
       }
     }
@@ -146,11 +157,11 @@ export const validateField = (fieldName, formDataOrignal, setFormData) => {
   return isValid;
 };
 
-export const formatPhoneNumber = value => {
-  if (!value) return '';
+export const formatPhoneNumber = (value) => {
+  if (!value) return "";
   value = value.toString();
-  if (value.includes('(') && !value.includes(')')) {
-    return value.replace('(', '');
+  if (value.includes("(") && !value.includes(")")) {
+    return value.replace("(", "");
   }
-  return new AsYouType('US').input(value);
+  return new AsYouType("US").input(value);
 };

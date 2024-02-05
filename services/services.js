@@ -37,7 +37,7 @@ export const apisDataApi = async () => {
 export const useCaseDataApi = async (id) => {
   try {
     const response = await instance?.get(
-      `${TUTORIAL_API_ENDPOINT}/${id}?populate=*`
+      `${TUTORIAL_API_ENDPOINT}/${id}?populate=*`,
     );
     return response;
   } catch (error) {
@@ -50,7 +50,7 @@ export const makeAnyMethodAPICall = async (
   method,
   url,
   data = null,
-  headers = {}
+  headers = {},
 ) => {
   const config = {
     method, // HTTP method (GET, POST, PUT, DELETE, etc.)
