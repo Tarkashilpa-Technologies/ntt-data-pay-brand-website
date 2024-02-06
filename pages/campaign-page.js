@@ -23,11 +23,12 @@ export default function Home() {
       mobile: event.target.mobile.value,
       email: event.target.email.value,
       products_required: event.target.products_required.value,
+      subject: "NTTDATA - Campaign Sign Up User Details",
     };
     email = event.target.email.value;
     //mycontact(new_contact,email);
 
-    await fetch("/api/campaignformemail", {
+    await fetch("/api/formemail", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -35,15 +36,16 @@ export default function Home() {
       },
       body: JSON.stringify(new_contact),
     }).then((res) => {
-      document.getElementById("first_name").value = "";
-      document.getElementById("last_name").value = "";
-      document.getElementById("mobile").value = "";
-      document.getElementById("email").value = "";
-      //  document.getElementById("tymessage").style.display = 'inline-block';
-      console.log("Response received");
-      console.log(res.json());
       if (res.status === 200) {
+        document.getElementById("first_name").value = "";
+        document.getElementById("last_name").value = "";
+        document.getElementById("mobile").value = "";
+        document.getElementById("email").value = "";
         window.location.href = "campaign-thankyou";
+      } else {
+        res.json().then((body) => {
+          alert(body?.message ? body.message : "Something went wrong!");
+        });
       }
     });
 
@@ -168,7 +170,7 @@ export default function Home() {
                   htmlFor="exampleFormControlInput1"
                   className="form-label"
                 >
-                  Mobile
+                  Mobile (with country code)
                 </label>
                 <input
                   type="text"

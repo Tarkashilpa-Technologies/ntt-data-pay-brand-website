@@ -12,42 +12,42 @@ import "swiper/css/autoplay";
 export default function Home() {
   var new_contact;
   var email;
-  const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   // Stop the form from submitting and refreshing the page.
+  //   event.preventDefault();
 
-    // Get data from the form.
-    new_contact = {
-      first_name: event.target.first_name.value,
-      last_name: event.target.last_name.value,
-      mobile: event.target.mobile.value,
-      email: event.target.email.value,
-      products_required: event.target.products_required.value,
-    };
-    email = event.target.email.value;
-    //mycontact(new_contact,email);
+  //   // Get data from the form.
+  //   new_contact = {
+  //     first_name: event.target.first_name.value,
+  //     last_name: event.target.last_name.value,
+  //     mobile: event.target.mobile.value,
+  //     email: event.target.email.value,
+  //     products_required: event.target.products_required.value,
+  //   };
+  //   email = event.target.email.value;
+  //   //mycontact(new_contact,email);
 
-    await fetch("/api/campaignformemail", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(new_contact),
-    }).then((res) => {
-      document.getElementById("first_name").value = "";
-      document.getElementById("last_name").value = "";
-      document.getElementById("mobile").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("tymessage").style.display = "inline-block";
-      console.log("Response received");
-      console.log(res.json());
-      if (res.status === 200) {
-      }
-    });
+  //   await fetch("/api/campaignformemail", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(new_contact),
+  //   }).then((res) => {
+  //     document.getElementById("first_name").value = "";
+  //     document.getElementById("last_name").value = "";
+  //     document.getElementById("mobile").value = "";
+  //     document.getElementById("email").value = "";
+  //     document.getElementById("tymessage").style.display = "inline-block";
+  //     console.log("Response received");
+  //     console.log(res.json());
+  //     if (res.status === 200) {
+  //     }
+  //   });
 
-    return false;
-  };
+  //   return false;
+  // };
 
   return (
     <div className="homepage">
