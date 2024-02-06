@@ -15,6 +15,7 @@ export default function SignUp() {
   var new_contact;
   var email;
   const [tokenData, setTokenData] = useState();
+  const [formSubmissionMessage, setFormSubmissionMessage] = useState();
   const recaptcha = useRef(null);
 
   const handleSubmit = async (event) => {
@@ -33,6 +34,10 @@ export default function SignUp() {
       email = event.target.email.value;
       mycontact(new_contact, email);
 
+      // Clear messages before submission
+      document.getElementById("errormessage").style.display = "none";
+      document.getElementById("tymessage").style.display = "none";
+
       await fetch("/api/formemail", {
         method: "POST",
         headers: {
@@ -41,15 +46,27 @@ export default function SignUp() {
         },
         body: JSON.stringify(new_contact),
       }).then((res) => {
-        console.log("Response received");
-        console.log(res.json());
         if (res.status === 200) {
           setTokenData(null);
-          document.getElementById("errormessage")?.style.display = "none";
+          document.getElementById("errormessage").style.display = "none";
           recaptcha?.current?.reset();
+          document.getElementById("first_name").value = "";
+          document.getElementById("last_name").value = "";
+          document.getElementById("mobile").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("tymessage").style.display = "inline-block";
+        } else {
+          res.json().then((body) => {
+            setFormSubmissionMessage(
+              body?.message ? body.message : "Something went wrong!"
+            );
+            document.getElementById("errormessage").style.display =
+              "inline-block";
+          });
         }
       });
     } else {
+      setFormSubmissionMessage("Please select valid captcha value.");
       document.getElementById("errormessage").style.display = "inline-block";
       // alert("invalid Captcha value")
     }
@@ -82,6 +99,7 @@ export default function SignUp() {
                                 (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments, 0)))
                             };
                         }(function(url, appToken, formCapture) {
+                          console.log('entry');
                             window.freshsales = window.freshsales || [];
                             if (window.freshsales.length == 0) {
                                 list = 'init identify trackPageView trackEvent set'.split(' ');
@@ -98,15 +116,10 @@ export default function SignUp() {
                             }
                         })();
                         
+                        console.log('Initializing my contact');
                         function mycontact(new_contact, email) {
                             const identifier = email;
                             freshsales.identify(identifier, new_contact);
-                            document.getElementById("first_name").value = "";
-                            document.getElementById("last_name").value = "";
-                            document.getElementById("mobile").value = "";
-                            document.getElementById("email").value = "";
-                            document.getElementById("tymessage").style.display = 'inline-block';
-                            document.getElementById("errormessage").style.display = 'none';
                         }
               `,
         }}
@@ -287,14 +300,13 @@ export default function SignUp() {
                   htmlFor="exampleFormControlInput1"
                   className="form-label"
                 >
-                  Mobile
+                  Mobile (with country code like +91773881119)
                 </label>
                 <input
                   type="tel"
                   className="form-control"
                   required
                   id="mobile"
-                  pattern="\d{10}"
                 />
               </div>
 
@@ -333,7 +345,7 @@ export default function SignUp() {
             Thank you for submitting details.
           </div>
           <div className="error-message" id="errormessage">
-            Please select valid captcha value.
+            {formSubmissionMessage}
           </div>
         </div>
       </div>
