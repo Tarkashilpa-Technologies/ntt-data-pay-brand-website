@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 //import styles from "../styles/Home.module.scss";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 //import {Tabs, Tab, Nav} from "bootstrap";
 import { Modal, Button } from "react-bootstrap";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import {
   clearLocalStorage,
@@ -35,6 +36,8 @@ export default function product1() {
   const [isShowEcomModal, setIsShowEcomModal] = React.useState(false);
   const [modalOpen, setModalOpen] = useState(null);
   const [selectedValue, setSelectedValue] = useState();
+  const [tokenData,setTokenData] = useState()
+  const recaptcha = useRef(null);
 
   useEffect(() => {
     // Perform localStorage action
@@ -223,33 +226,42 @@ export default function product1() {
     });
 
     if (isValid) {
-      setLocalStorage("first_name", formData.Firstname.value);
-      setLocalStorage("last_name", formData.Lastname.value);
-      setLocalStorage("Phone_no", formData.MobilePhone.value);
-      setLocalStorage("email", formData.Email.value);
+      if(tokenData){
+        setLocalStorage("first_name", formData.Firstname.value);
+        setLocalStorage("last_name", formData.Lastname.value);
+        setLocalStorage("Phone_no", formData.MobilePhone.value);
+        setLocalStorage("email", formData.Email.value);
 
-      await fetch("/api/formemail", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(new_contact),
-      }).then((res) => {
-        if (res.status === 200) {
-          console.log("download the file");
-          download(
-            data?.href2
-              ? selectedValue == data.text2
-                ? data.href2
-                : data?.href
-              : data?.href,
-          );
-          setIsShow(false);
-          setIsShowMobileModal(false);
-          setIsShowEcomModal(false);
-        }
-      });
+        await fetch("/api/formemail", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(new_contact),
+        }).then((res) => {
+          if (res.status === 200) {
+            console.log("download the file");
+            download(
+              data?.href2
+                ? selectedValue == data.text2
+                  ? data.href2
+                  : data?.href
+                : data?.href,
+            );
+            setTokenData(null);
+            document.getElementById("errormessage")?.style.display = 'none'; 
+            recaptcha?.current?.reset();
+            setIsShow(false);
+            setIsShowMobileModal(false);
+            setIsShowEcomModal(false);
+          }
+        });
+      }
+      else {
+        document.getElementById("errormessage")?.style.display = 'inline-block'; 
+        alert("invalid Captcha value")
+      }
     }
     return false;
   };
@@ -268,6 +280,14 @@ export default function product1() {
   const handleSelectedOption = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  const onCaptchaChange = (token) => {
+    if (token) {
+      setTokenData(token);
+    }
+    // console.log(token);
+  };
+
 
   return (
     isBrowser && (
@@ -698,7 +718,14 @@ export default function product1() {
                                         </div>
                                       )}
                                   </div>
-
+                                  <div className="pb-3 pt-2"> 
+                                    <ReCAPTCHA
+                                      size="normal"
+                                      sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                                      onChange={onCaptchaChange}
+                                      ref={recaptcha}
+                                    />
+                                  </div>
                                   {/* <div className="col-md-12 mb-10">
                             <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                             </div> */}
@@ -1009,6 +1036,14 @@ export default function product1() {
                                       </select>
                                     </div>
                                   )}
+                                  <div className="pb-3 pt-2"> 
+                                    <ReCAPTCHA
+                                      size="normal"
+                                      sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                                      onChange={onCaptchaChange}
+                                      ref={recaptcha}
+                                    />
+                                  </div>
                                   <div className="d-flex justify-content-end mt-3">
                                     <button
                                       type="submit"
@@ -1028,6 +1063,7 @@ export default function product1() {
                                 >
                                   Thank you for submitting details.
                                 </div>
+                                <div className="error-message" id="errormessage">Invalid captcha value.</div>
                               </Modal.Body>
                             </Modal>
                           )}
@@ -1292,7 +1328,14 @@ export default function product1() {
                                         </div>
                                       )}
                                   </div>
-
+                                  <div className="pb-3 pt-2"> 
+                                    <ReCAPTCHA
+                                      size="normal"
+                                      sitekey="6LdhLH8oAAAAALkszca8vWrQw7Ml78z6y-kvKbVP"
+                                      onChange={onCaptchaChange}
+                                      ref={recaptcha}
+                                    />
+                                  </div>
                                   {/* <div className="col-md-12 mb-10">
                           <button type="submit" className="btn btn-primary mb-3">Sign Up</button>
                           </div> */}
