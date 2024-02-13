@@ -7,7 +7,12 @@ export default function (req, res) {
     // Valiating inputs
     if (req?.body?.mobile && isValidPhoneNumber(req?.body?.mobile)) {
       if (req?.body?.email && isEmailValid(req?.body?.email)) {
-        const products = ["Payment Gateway", "POS Terminal", "Reseller"];
+        const products = [
+          "Payment Gateway",
+          "POS Terminal",
+          "Reseller",
+          "Integration Assistance",
+        ];
         if (
           req?.body?.products_required &&
           products?.includes(req?.body?.products_required)
