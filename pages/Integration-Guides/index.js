@@ -37,7 +37,7 @@ const IntegrationGuides = () => {
   // };
 
   const [fullHeight, setFullHeight] = useState(
-    typeof window !== "undefined" && window.innerHeight,
+    typeof window !== "undefined" && window.innerHeight
   );
 
   return (
@@ -59,7 +59,7 @@ const IntegrationGuides = () => {
                 </h3>
                 <p className="pt-2">
                   Our solutions could help you achieve your every business
-                  neeed. Choose your sed case below and we would help you get
+                  neeed. Choose your used case below and we would help you get
                   started with step by step tutorial for the same
                 </p>
               </div>
@@ -103,7 +103,7 @@ const IntegrationGuides = () => {
                                     ? {
                                         pathname: `/Integration-Guides/${tutorial?.attributes?.tutorials?.data[0]?.attributes?.Title.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`,
                                       }
                                     : { pathname: "/404" }
