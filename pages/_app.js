@@ -52,11 +52,11 @@ function MyApp({ Component, pageProps }) {
           }}
         />
 
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `setTimeout(function(){var e,t;e=document,(t=e.createElement("script")).type="text/javascript",t.async=!0,t.setAttribute("data-botid","fGo9pl7_YuHE"),t.src="https://botbuilder.engagely.ai/engagelyscripts/engagely_bots.js?v="+Date.parse(new Date()),e.getElementsByTagName("body")[0].appendChild(t)},3e3);`,
           }}
-        />
+        /> */}
       </Head>
       <noscript>
         <iframe
