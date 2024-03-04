@@ -55,7 +55,7 @@ export default function product1() {
               Maharashtra, 400059, (hereinafter referred to as “NDPS”, which
               expression shall unless repugnant to the subject or context shall
               mean and include its successors and assigns) of the One Part; And
-              you, the signatory to the Letter of Engagement (hereinafter
+              you, the signatory to the Merchant Application Form (hereinafter
               referred to as “Merchant/Seller” which expression shall unless
               repugnant to the subject or context shall mean and include its
               successors and assigns) of the Other Part. NDPS and the
@@ -72,8 +72,8 @@ export default function product1() {
             </p>
             <p>
               B. Merchant/Seller having entered into and accepted the terms of
-              the Letter of Engagement with NDPS has requested NDPS, and NDPS
-              has agreed to provide it’s payment related services more
+              the Merchant Application Form with NDPS has requested NDPS, and
+              NDPS has agreed to provide it’s payment related services more
               specifically mentioned hereinbelow, in order to enable
               Customer/Buyers to purchase the products and/or services of the
               Merchant/Seller in accordance with the terms and conditions
@@ -137,7 +137,7 @@ export default function product1() {
             <p>
               <b>1.7. Fees:</b> shall mean such fee and/or charges payable by
               the Merchant/Seller to NDPS for NDPS Services and as specified in
-              the Letter of Engagement and/or the purchase order
+              the Merchant Application Form and/or the purchase order
               (&ldquo;PO&rdquo;).
             </p>
             <p>
@@ -273,11 +273,11 @@ export default function product1() {
             </h4>
             <p>
               3.1. The Merchant/Seller agrees to pay to NDPS, the fees and/or
-              charges (“Fees”) as mentioned in the Letter of Engagement and/or
-              PO. for the services along with any other sums including but not
-              limited to, reimbursable expenses for the implementation of the
-              NDPS Services, if any, and any and all applicable statutory taxes,
-              including without limitation, goods service tax.
+              charges (“Fees”) as mentioned in the Merchant Application Form
+              and/or PO. for the services along with any other sums including
+              but not limited to, reimbursable expenses for the implementation
+              of the NDPS Services, if any, and any and all applicable statutory
+              taxes, including without limitation, goods service tax.
             </p>
             <p>
               3.2. GST as governed by the Tax Authorities and applicability will
@@ -479,12 +479,19 @@ export default function product1() {
               any demur or protest
             </p>
             <p>
-              5.3. Seller or the unsettled Transactions in the pipeline in the
-              event of failure by the Merchant/Seller in providing as per Clause
-              2.6 the necessary valid proof of Transaction to the retrieval
-              request / Chargeback / suspicious Transaction received from the
-              issuer/acquirer through the card schemes (VISA / MasterCard / NPCI
-              / Amex or Others).
+              5.3. Merchant/Seller hereby authorises NDPS/Bank to recover from
+              its bank account towards any outstanding recoveries due and
+              payable to NDPS.
+            </p>
+            <p>
+              5.4 The Merchant/Seller acknowledges that NDPS is entitled to
+              exercise its right to set off a lien on the credit value in the
+              account of the Merchant/ Seller or the unsettled Transactions in
+              the pipeline in the event of failure by the Merchant/Seller in
+              providing as per Clause 2.6 the necessary valid proof of
+              Transaction to the retrieval request / Chargeback / suspicious
+              Transaction received from the issuer/acquirer through the card
+              schemes (VISA / MasterCard / NPCI / Amex or Others).
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">
               6. REPRESENTATIONS AND WARRANTIES:
@@ -504,9 +511,9 @@ export default function product1() {
               contemplated hereby.
             </p>
             <p>
-              6.1.3. NDPS shall manage the security of cardholder data that is
-              captured by it or is otherwise, processed, or transmitted by it on
-              behalf of the Customer/Buyer.
+              6.1.3. NDPS shall ensure the security of payment information that
+              is captured by it or is otherwise, processed, or transmitted by it
+              on behalf of the Customer/Buyer.
             </p>
             <p className="font-bold">
               6.2. Merchant/Seller represents, warrants, and covenants that:
@@ -569,11 +576,11 @@ export default function product1() {
               6.2.9. it shall at all times during the subsistence of these Terms
               and Conditions observe and comply with all applicable laws,
               regulations, and guidelines, including, but not limited to all
-              applicable FEMA, AML, CFT, anti-money laundering laws and
-              anti-bribery laws prescribed by any regulatory and/or statutory
-              authorities from time to time. Merchant / Seller shall be
-              responsible for all liabilities arising out of its breach of the
-              aforesaid and shall indemnify NDPS towards the same in each
+              applicable data storage, FEMA, AML, CFT, anti-money laundering
+              laws and anti-bribery laws prescribed by any regulatory and/or
+              statutory authorities from time to time. Merchant / Seller shall
+              be responsible for all liabilities arising out of its breach of
+              the aforesaid and shall indemnify NDPS towards the same in each
               applicable jurisdiction.
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">
@@ -581,8 +588,8 @@ export default function product1() {
             </h4>
             <p>
               7.1. These Terms and Conditions shall be valid from the Effective
-              Date of the Letter of Engagement for a period of one (01) year
-              (“Term”). Thereafter the Term shall automatically be renewed
+              Date of the Merchant Application Form for a period of one (01)
+              year (“Term”). Thereafter the Term shall automatically be renewed
               annually and shall extend for successive twelve (12) month terms,
               until unless terminated by the Parties.
             </p>
@@ -843,23 +850,22 @@ export default function product1() {
               18. ENTIRE AGREEMENT:
             </h4>
             <p>
-              These Terms and Conditions, together with the Letter of Engagement
-              and/or PO and all Attachments, constitutes the entire agreement
-              between the Parties regarding the subject matter of these Terms
-              and Conditions and will supersede all prior oral or written
-              representations and Terms and Conditions. These Terms and
-              Conditions are co-terminus with the Letter of Engagement and in
-              case of online services, the commercials mentioned in the PO,
-              between the Parties. Save and except as specifically stated herein
-              above all other terms, conditions and covenants contained in the
-              Letter of Engagement and/or PO shall remain unchanged and shall be
-              fully applicable, enforceable and binding on the Parties. As of
-              the date of the Letter of Engagement, all the provisions of these
-              Terms and Conditions and in case of online services, the
-              commercials mentioned in the PO, shall be deemed to be
-              incorporated in, and made the part and parcel of the Letter of
-              Engagement and shall be read taken and construed as one and the
-              same instrument except as modified hereinbefore.
+              These Terms and Conditions, together with the Merchant Application
+              Form and/or PO and all Attachments, constitutes the entire
+              agreement between the Parties regarding the subject matter of
+              these Terms and Conditions and will supersede all prior oral or
+              written representations and Terms and Conditions. These Terms and
+              Conditions are co-terminus with the Merchant Application Form the
+              commercials mentioned in the PO, between the Parties. Save and
+              except as specifically stated herein above all other terms,
+              conditions and covenants contained in the Merchant Application
+              Form and/or PO shall remain unchanged and shall be fully
+              applicable, enforceable and binding on the Parties. As of the date
+              of the Merchant Application Form, all the provisions of these
+              Terms and Conditions commercials mentioned in the PO, shall be
+              deemed to be incorporated in, and made the part and parcel of the
+              Merchant Application Form and shall be read taken and construed as
+              one and the same instrument except as modified hereinbefore.
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">19. SEVERABILITY:</h4>
             <p>
@@ -933,8 +939,8 @@ export default function product1() {
               shall be in writing and shall be delivered by a Party to the other
               by 'Hand Delivery', 'Registered Post Acknowledgement Due', 'Speed
               Post', 'Courier', or 'Email', to their address as mentioned in the
-              Letter of Engagement, or to the last known address of the Parties.
-              All notices shall be deemed served once delivered.
+              Merchant Application Form, or to the last known address of the
+              Parties. All notices shall be deemed served once delivered.
             </p>
             <h4 className="font-weight-bold mt-4 pt-2">25. COUNTERPARTS:</h4>
             <p>
@@ -1082,11 +1088,11 @@ export default function product1() {
             <p>
               27.1.6. Merchant/Seller shall ensure confidentiality of all
               information submitted by the Customers/Buyers at the Site.
-              Merchant/Seller undertakes to ensure that the amount of
-              transaction shall be hidden and not visible in the URL sent to and
-              received by NDPS/Partner Bank from the Merchant/Seller site and
-              the change in the system and /or software, if required, shall be
-              done by Merchant/Seller at its own costs.
+              Merchant/Seller undertakes to ensure that all details shall be
+              hidden and not visible in the URL sent to and received by
+              NDPS/Partner Bank from the Merchant/Seller site and the change in
+              the system and /or software, if required, shall be done by
+              Merchant/Seller at its own costs.
             </p>
             <p>
               27.1.7. Merchant/Seller is acting in compliance with and shall at
@@ -1155,9 +1161,10 @@ export default function product1() {
               NDPS/Partner Bank.
             </p>
             <p>
-              27.1.16. Merchant/Seller shall disclose its return policy and
-              privacy policy on the Site and ensure that Merchant/Seller
-              conducts its business in accordance with the same.
+              27.1.16. Merchant/Seller shall disclose its terms of service,
+              cancellation policy, return policy and privacy policy on the Site
+              and ensure that Merchant/Seller conducts its business in
+              accordance with the same.
             </p>
             <p>
               27.1.17. The Merchant/Seller shall be solely responsible for the
@@ -1175,20 +1182,11 @@ export default function product1() {
               of NDPS/Partner Bank.
             </p>
             <p>
-              27.1.19. Merchant/Seller shall ensure that for the processing of
-              any instruction from a Customer relating to the transfer of funds
-              from the Customer’s Bank Account to Merchant/Seller’s Current
-              Account, all such information as may be required by the Bank from
-              time to time is provided from the Site to Partner Bank at the time
-              of processing any instructions towards this end.
-            </p>
-            <p>
-              27.1.20. Without prejudice to the generality of clause(b) above,
-              Merchant/Seller shall ensure that Merchant/Seller has captured the
-              account number details of the Customer’s Bank Account (currently
-              being a 14 digit number) that the Customer is desirous of using
-              for processing payments to Merchant/Seller and at the time the
-              Customer chooses to use the Customer’s Bank Account for the
+              27.1.19. Merchant/Seller – (Broking) shall ensure that
+              Merchant/Seller has securely captured the account number details
+              of the Customer’s Bank Account that the Customer is desirous of
+              using for processing payments to Merchant/Seller and at the time
+              the Customer chooses to use the Customer’s Bank Account for the
               purpose of making fund transfers to Merchant/Seller, the details
               for the Customer’s Bank Account are also automatically reflected
               in the details forwarded by the Merchant/Seller to NDPS/Partner
@@ -1197,6 +1195,27 @@ export default function product1() {
               the Customer Bank Account. Merchant/Seller will also be
               responsible to ensure the correctness of the information obtained
               from the Customer in this regard.
+            </p>
+            <p>
+              27.1.20. The Merchant/Seller hereby agrees that the Customer’s
+              card, information, and related data shall not be captured and/ or
+              stored on its website and that the Merchant/Seller shall not be
+              entitled to view, store, access or utilise any such Customer’s
+              information. Merchant/Seller will also ensure secrecy and
+              confidentiality of all Customers/Buyers information details and
+              will establish sufficient safety measures to prevent any loss or
+              misuse of such information. Merchant/Seller shall adopt adequate
+              encryption and security measures to prevent any hacking of/
+              unauthorised access/ alteration to the Customer’s information or
+              the systems of the Merchant/Seller. Merchant/Seller shall ensure
+              that only authorised personnel bound by adequate confidentiality
+              obligations shall have access to the Customer’s information
+              strictly on a ‘need to know’ basis. Merchant/Seller shall also
+              comply to PCI-DSS &amp; PA-DSS wherever applicable.
+              Merchant/Seller agrees and acknowledges that NDPS/Partner Bank
+              reserves the right to call upon periodic security assessment
+              reports from the Merchant/Seller pertaining to Merchant/Seller’s
+              compliance of the aforesaid provisions.
             </p>
             <p>
               27.1.21. The Merchant/Seller hereby agrees that the Customer’s
@@ -1221,11 +1240,17 @@ export default function product1() {
               provisions.
             </p>
             <p>
-              27.1.22. Merchant/Seller shall appraise NDPS in case of any
-              hacking of/ unauthorised access/ alteration to the systems of the
-              Merchant/Seller or in case of any cyber security or infra level
-              incidents and shall provide root cause analysis of any such
-              incidents.
+              27.1.22. Merchant/Seller is aware that in the event the details
+              provided by the Merchant/Seller to NDPS/Partner Bank are not in
+              accordance with the records of NDPS/Partner Bank in relation to
+              such Customer’s user credentials and other checks that may be
+              provided by NDPS/Partner Bank from time to time, NDPS/Partner Bank
+              may reject transfer instructions, without any responsibility
+              accruing to NDPS/Partner Bank in this regard. Any claim arising
+              out of such rejection or non - execution of transfer will be the
+              sole responsibility of Merchant/Seller and no liability will
+              devolve on NDPS/Partner Bank in this regard including for breach
+              by the Merchant/Seller of the covenants contained above.
             </p>
             <p>
               27.1.23. Merchant/Seller is aware that in the event the Customer’s
@@ -1242,9 +1267,10 @@ export default function product1() {
               Merchant/Seller of the covenants contained above.
             </p>
             <p>
-              27.1.24. Merchant/Seller shall ensure that all Customers/Buyers
-              upon accessing the link and mapping are truly and properly
-              directed to the Payment Mechanism.
+              27.1.24. Merchant/Seller shall not seek and/or retain any of the
+              confidential details of the Customer in relation to the Payment
+              Mechanism, including without prejudice the user credentials of the
+              Customer in relation to the Payment mechanism.
             </p>
             <p>
               27.1.25. Merchant/Seller shall not seek and/or retain any of the
