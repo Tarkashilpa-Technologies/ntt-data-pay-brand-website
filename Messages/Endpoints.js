@@ -2,8 +2,7 @@
 // const { API_URL } = require("../../config/env")
 // Or just specify it directly like this:
 
-// export const HOST = "http://65.0.181.24:1337";
-export const HOST = "https://cms-uat.nttdatapay.com";
+export const HOST = process.env.NEXT_PUBLIC_HOST;
 // export const HOST = "https://www.nttdatapay.com";
 
 export const API_URL = `${HOST}/api`;
