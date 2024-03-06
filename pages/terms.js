@@ -855,14 +855,14 @@ export default function product1() {
               agreement between the Parties regarding the subject matter of
               these Terms and Conditions and will supersede all prior oral or
               written representations and Terms and Conditions. These Terms and
-              Conditions are co-terminus with the Merchant Application Form the
+              Conditions are co-terminus with the Merchant Application Form/
               commercials mentioned in the PO, between the Parties. Save and
               except as specifically stated herein above all other terms,
               conditions and covenants contained in the Merchant Application
               Form and/or PO shall remain unchanged and shall be fully
               applicable, enforceable and binding on the Parties. As of the date
               of the Merchant Application Form, all the provisions of these
-              Terms and Conditions commercials mentioned in the PO, shall be
+              Terms and Conditions/ commercials mentioned in the PO, shall be
               deemed to be incorporated in, and made the part and parcel of the
               Merchant Application Form and shall be read taken and construed as
               one and the same instrument except as modified hereinbefore.
