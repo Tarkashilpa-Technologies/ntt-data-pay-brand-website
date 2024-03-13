@@ -8,18 +8,26 @@ import Footer from "../../Components/Footer";
 
 const ApiReferences = () => {
   const [apisData, setApisData] = useState([]);
+  const [showLoader, setShowLoader] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const apisDataApiCall = () => {
-    // setShowLoader(true);
+    setShowLoader(true);
     apisDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        setApisData(res?.data?.data);
-        // setShowLoader(false);
+        if (res && res.data && res.data.data) {
+          setApisData(res?.data?.data);
+          setErrorMessage(null);
+        } else {
+          setErrorMessage("Failed to load! Something went wrong...");
+        }
+        setShowLoader(false);
       })
       .catch((err) => {
         console.log("err", err);
-        // setShowLoader(false);
+        setShowLoader(false);
+        setErrorMessage("Failed to load! Something went wrong...");
       });
   };
 
@@ -83,7 +91,7 @@ const ApiReferences = () => {
                                     ? {
                                         pathname: `/Api-References/${api?.attributes?.Title.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`,
                                       }
                                     : { pathname: "/404" }
@@ -100,7 +108,12 @@ const ApiReferences = () => {
                     })}
                 </div>
               ) : (
-                <Loader show={true} />
+                <>
+                  {showLoader ? <Loader show={true} /> : null}
+                  {errorMessage ? (
+                    <div class="text-center text-danger">{errorMessage}</div>
+                  ) : null}
+                </>
               )}
               <div className="pt-4 mt-3">
                 <h3 className="text-center">

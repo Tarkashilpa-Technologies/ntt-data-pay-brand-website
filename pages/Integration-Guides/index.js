@@ -8,18 +8,26 @@ import Footer from "../../Components/Footer";
 
 const IntegrationGuides = () => {
   const [tutorialsData, setTutorialsData] = useState([]);
+  const [showLoader, setShowLoader] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const tutorialDataApiCall = () => {
-    // setShowLoader(true);
+    setShowLoader(true);
     tutorialGroupDataApi()
       .then((res) => {
         // setPageNumber(pageNo ? pageNo : pageNumber);
-        setTutorialsData(res?.data?.data);
-        // setShowLoader(false);
+        if (res && res.data && res.data.data) {
+          setTutorialsData(res?.data?.data);
+          setErrorMessage(null);
+        } else {
+          setErrorMessage("Failed to load! Something went wrong...");
+        }
+        setShowLoader(false);
       })
       .catch((err) => {
         console.log("err", err);
-        // setShowLoader(false);
+        setShowLoader(false);
+        setErrorMessage("Failed to load! Something went wrong...");
       });
   };
 
@@ -120,7 +128,12 @@ const IntegrationGuides = () => {
                     })}
                   </div>
                 ) : (
-                  <Loader show={true} />
+                  <>
+                    {showLoader ? <Loader show={true} /> : null}
+                    {errorMessage ? (
+                      <div class="text-center text-danger">{errorMessage}</div>
+                    ) : null}
+                  </>
                 )}
               </div>
             </div>
