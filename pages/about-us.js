@@ -378,7 +378,7 @@ export default function About() {
                     <p className="team-bio">
                       Takeo Ueno takes a vision and makes it reality through
                       sound strategy development. He intuitively sees the
-                      threads of opportunity
+                      threads of opportunity that wind...
                     </p>
                     <a
                       className="our-team-more"
@@ -402,7 +402,7 @@ export default function About() {
                     <p className="team-bio">
                       Rahul Jain became an indispensable asset to our
                       organization in October 2019 as its Chief Financial
-                      Officer (CFO).{" "}
+                      Officer (CFO). Originally, he was associated with the...
                     </p>
                     <a
                       className="our-team-more"
@@ -423,11 +423,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Navpreet Kaur, Senior VP - Corporate Sales
+                      Ajay Surana, CISO and Senior Vice President – Digital
+                      Onboarding
                     </p>
                     <p className="team-bio">
-                      Navpreet has over 18 years of hands-on experience across
-                      the financial Banking sector
+                      With more than 16 years of hands-on experience in creating
+                      solutions across...
                     </p>
                     <a
                       className="our-team-more"
@@ -448,11 +449,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Manjunath Udyavar, VP - Retail POS
+                      ASM Subramanian, CRO and Senior Vice President – Business
+                      Operations
                     </p>
                     <p className="team-bio">
-                      With 15 years of experience working in the FinTech world,
-                      Manjunath aims to make the payments world better{" "}
+                      ASM has more than 18 years of experience in cards, payment
+                      operations...
                     </p>
                     <a
                       className="our-team-more"
@@ -472,11 +474,14 @@ export default function About() {
                     <img src="images/team.jpg" />
                   </div>
                   <div className="team-description bg-white">
-                    <p className="team-title">
-                      ASM Subramanian, CRO and Senior VP – Business Operations{" "}
-                    </p>
+                    <p className="team-title">Hiroki Kobayashi, CTO</p>
                     <p className="team-bio">
-                      ASM has more than 18 years of experience in cards, payment
+                      Accomplished, goal-driven and result-oriented, Hiroki
+                      Kobayashi has more than 15 years Accomplished, goal-
+                      driven and result-oriented, Hiroki Kobayashi has more than
+                      15 years’ extensive experience with management and
+                      tactical business leadership. Hiro’s expertise includes
+                      achieving optimal results with...
                     </p>
                     <a
                       className="our-team-more"
@@ -497,11 +502,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Vivek Taneja, Senior VP – Sales and Product
+                      Vivek Taneja, Senior Vice President– Sales and Product
                     </p>
                     <p className="team-bio">
                       Vivek has more than 20 years of hands-on experience in
-                      sales, pre-sales, and solution ideation
+                      sales, pre-sales, and solution ideation in the Payments
+                      domain with competencies and expertise in Merchant...
                     </p>
                     <a
                       className="our-team-more"
@@ -522,11 +528,11 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Ajay Surana, CISO and Senior VP – Digital Onboarding
+                      Manjunath Udyavar, Vice President– POS Business
                     </p>
                     <p className="team-bio">
-                      With more than 16 years of hands-on experience in creating
-                      solutions across
+                      With 15 years of experience working in the FinTech world,
+                      Manjunath aims to make the payments world better, one...
                     </p>
                     <a
                       className="our-team-more"
@@ -547,11 +553,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Alok Yadav, VP – Human Resources
+                      Rajasekhar K, Vice President -Sales
                     </p>
                     <p className="team-bio">
-                      He possesses over 26 years of expertise in Offshore
-                      Development, Program Management and Delivery
+                      With over 18 years of experience in the sales industry,
+                      Rajasekhar holds extensive experience in lead generation,
+                      building and nurturing relationship and...
                     </p>
                     <a
                       className="our-team-more"
@@ -572,11 +579,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Hiroki Kobayashi, Vice President- PMO
+                      Vishal Sharma, Vice President -Sales
                     </p>
                     <p className="team-bio">
-                      Accomplished, goal-driven and result-oriented, Hiroki
-                      Kobayashi has more than 15 years
+                      Vishal has an expertise in strategic client development,
+                      nurturing business and constructing and facilitating
+                      cohesive relationship with consumers across...
                     </p>
                     <a
                       className="our-team-more"
@@ -597,11 +605,12 @@ export default function About() {
                   </div>
                   <div className="team-description bg-white">
                     <p className="team-title">
-                      Rajasekhar K, Vice President-Sales
+                      Alok Yadav, Vice President – IT Services
                     </p>
                     <p className="team-bio">
-                      With over 18 years of experience in the sales industry,
-                      Rajasekhar holds extensive experience
+                      He possesses over 26 years of expertise in Offshore
+                      Development, Program Management and Delivery of
+                      Interactive Software solutions. He has worked...
                     </p>
                     <a
                       className="our-team-more"
@@ -615,7 +624,7 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="col-md-4">
+              {/* <div className="col-md-4">
                 <div className="team-container">
                   <div className="team-image">
                     <img src="images/team.jpg" />
@@ -638,7 +647,7 @@ export default function About() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -737,7 +746,7 @@ export default function About() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="bodLabel">
-                Navpreet Kaur, Senior VP - Corporate Sales
+                Ajay Surana, CISO and Senior Vice President – Digital Onboarding
               </h5>
               <button
                 type="button"
@@ -748,13 +757,14 @@ export default function About() {
             </div>
             <div className="modal-body">
               <p className="common-desc">
-                Navpreet has over 18 years of hands-on experience across the
-                financial Banking sector, serving customers across all
-                demography, psychographic &amp; economic sections with customer
-                retention and relationship management as core competency,
-                analysis &amp; understanding customer’s 360-degrees needs &amp;
-                fulfilling it with appropriate products. Being a Globetrotter,
-                she loves to travel and enjoys a nice bike ride.
+                With more than 16 years of hands-on experience in creating
+                solutions across different domains, Ajay is the Technical
+                Delivery Head and has an expertise in Multi-Channel Payment
+                Systems like Interactive Voice Response (IVR), Internet and
+                Mobile Applications, Mobile Banking and Smart Card Payments and
+                managing different infrastructure compliance like PCI-DSS. He
+                has been an essential part of our family since 2011. Ajay is a
+                Cinephile and is an occasional traveler.
               </p>
             </div>
           </div>
@@ -774,48 +784,8 @@ export default function About() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="bodLabel">
-                Manjunath Udyavar, VP - Retail POS
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p className="common-desc">
-                With 15 years of experience working in the FinTech world,
-                Manjunath aims to make the payments world better, one innovation
-                at a time. Before bringing his A-game to NTT DATA Payment
-                Services, he leveraged decades of experience in sales management
-                and technology through his prior associations with mega-
-                corporations like ITC, ICICI, First Data, and Pine Labs. During
-                his tenure with Pine Labs, he was also responsible for managing
-                Malaysia business for 2 years, which was Pine Labs’ first
-                international foray in SEA. Manjunath holds an MBA in Marketing
-                and is a passionate marathoner and an ardent cricket lover.
-                Sometimes we wonder about how many aces he has up his sleeves.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="modal fade"
-        id="bod5"
-        data-bs-backdrop="bod"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="bodLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="bodLabel">
-                ASM Subramanian, CRO and Senior VP – Business Operations
+                ASM Subramanian, CRO and Senior Vice President – Business
+                Operations
               </h5>
               <button
                 type="button"
@@ -841,6 +811,51 @@ export default function About() {
 
       <div
         className="modal fade"
+        id="bod5"
+        data-bs-backdrop="bod"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="bodLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="bodLabel">
+                Hiroki Kobayashi, CTO
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <p className="common-desc">
+                Accomplished, goal-driven and result-oriented, Hiroki Kobayashi
+                has more than 15 years Accomplished, goal- driven and
+                result-oriented, Hiroki Kobayashi has more than 15 years’
+                extensive experience with management and tactical business
+                leadership. Hiro’s expertise includes achieving optimal results
+                with competent planning, and solutions-oriented approach while
+                driving business growth and strategic alliances. He holds MBA in
+                Corporate Finance, Marketing and Global Leadership and
+                certification in Machine Learning from Stanford University,
+                amongst several other accomplishments. Skating through life,
+                Hiro finds himself in the lost historical ruins and is on a
+                mission to explore every alley now that he’s in India. He loves
+                to grab an intellectually alluring book and can be your best
+                personal financial investment strategist while chronicling the
+                most comic anecdotes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
         id="bod8"
         data-bs-backdrop="bod"
         data-bs-keyboard="false"
@@ -852,7 +867,7 @@ export default function About() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="bodLabel">
-                Vivek Taneja, Senior VP – Sales and Product
+                Vivek Taneja, Senior Vice President– Sales and Product
               </h5>
               <button
                 type="button"
@@ -888,7 +903,7 @@ export default function About() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="bodLabel">
-                Ajay Surana, CISO and Senior VP – Digital Onboarding
+                Manjunath Udyavar, Vice President– POS Business
               </h5>
               <button
                 type="button"
@@ -899,14 +914,17 @@ export default function About() {
             </div>
             <div className="modal-body">
               <p className="common-desc">
-                With more than 16 years of hands-on experience in creating
-                solutions across different domains, Ajay is the Technical
-                Delivery Head and has an expertise in Multi-Channel Payment
-                Systems like Interactive Voice Response (IVR), Internet and
-                Mobile Applications, Mobile Banking and Smart Card Payments and
-                managing different infrastructure compliance like PCI-DSS. He
-                has been an essential part of our family since 2011. Ajay is a
-                Cinephile and is an occasional traveler.
+                With 15 years of experience working in the FinTech world,
+                Manjunath aims to make the payments world better, one innovation
+                at a time. Before bringing his A-game to NTT DATA Payment
+                Services, he leveraged decades of experience in sales management
+                and technology through his prior associations with mega-
+                corporations like ITC, ICICI, First Data, and Pine Labs. During
+                his tenure with Pine Labs, he was also responsible for managing
+                Malaysia business for 2 years, which was Pine Labs’ first
+                international foray in SEA. Manjunath holds an MBA in Marketing
+                and is a passionate marathoner and an ardent cricket lover.
+                Sometimes we wonder about how many aces he has up his sleeves.
               </p>
             </div>
           </div>
@@ -926,89 +944,7 @@ export default function About() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="bodLabel">
-                Alok Yadav, VP – Human Resources
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p className="common-desc">
-                He possesses over 26 years of expertise in Offshore Development,
-                Program Management and Delivery of Interactive Software
-                solutions. He has worked with several start-ups in the Telecom
-                and Media- Entertainment space scaling up Operations and
-                delivering Enterprise-wide applications. He delves into Movies
-                and Music in his spare time.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="modal fade"
-        id="bod10"
-        data-bs-backdrop="bod"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="bodLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="bodLabel">
-                Hiroki Kobayashi, Vice President- PMO
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p className="common-desc">
-                Accomplished, goal-driven and result-oriented, Hiroki Kobayashi
-                has more than 15 years Accomplished, goal-driven and
-                result-oriented, Hiroki Kobayashi has more than 15 years’
-                extensive experience with management and tactical business
-                leadership. Hiro’s expertise includes achieving optimal results
-                with competent planning, and solutions-oriented approach while
-                driving business growth and strategic alliances. He holds MBA in
-                Corporate Finance, Marketing and Global Leadership and
-                certification in Machine Learning from Stanford
-                <br></br>
-                University, amongst several other accomplishments. Skating
-                through life, Hiro finds himself in the lost historical ruins
-                and is on a mission to explore every alley now that he’s in
-                India. He loves to grab an intellectually alluring book and can
-                be your best personal financial investment strategist while
-                chronicling the most comic anecdotes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="modal fade"
-        id="bod11"
-        data-bs-backdrop="bod"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="bodLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="bodLabel">
-                Rajasekhar K, Vice President-Sales
+                Rajasekhar K, Vice President -Sales
               </h5>
               <button
                 type="button"
@@ -1030,7 +966,83 @@ export default function About() {
                 Digital Payments domain, Rajasekhar’s contributions have been
                 instrumental for NTT DATA Payment Services. Apart from finding
                 solace in shaking hands when closing a deal, he loves exploring
-                and voyaging to newer locations.{" "}
+                and voyaging to newer locations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
+        id="bod10"
+        data-bs-backdrop="bod"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="bodLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="bodLabel">
+                Vishal Sharma, Vice President -Sales
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <p className="common-desc">
+                Vishal has an expertise in strategic client development,
+                nurturing business and constructing and facilitating cohesive
+                relationship with consumers across North and East India. He is
+                passionate about achieving results and making a difference
+                within the company by accomplishing targets. His key strength
+                lies in his ability to procure new and repeat business,
+                effective liaising, and enterprise sales strategy for Education
+                and Government verticals. His versatile personality and knack
+                for making friends has always been an ace up his sleeve when it
+                comes to cracking a deal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
+        id="bod11"
+        data-bs-backdrop="bod"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="bodLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="bodLabel">
+                Alok Yadav, Vice President – IT Services
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <p className="common-desc">
+                He possesses over 26 years of expertise in Offshore Development,
+                Program Management and Delivery of Interactive Software
+                solutions. He has worked with several start-ups in the Telecom
+                and Media- Entertainment space scaling up Operations and
+                delivering Enterprise-wide applications. He delves into Movies
+                and Music in his spare time.
               </p>
             </div>
           </div>
