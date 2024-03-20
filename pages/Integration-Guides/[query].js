@@ -200,6 +200,20 @@ const TutorialScreenPage = () => {
     });
   }, []);
 
+  const checkFileType = (fileName) => {
+    // Get the file extension
+    var extension = fileName.split(".").pop().toLowerCase();
+    console.log("Extension", extension);
+    // Check if the extension corresponds to an image or video format
+    if (["jpg", "jpeg", "png", "gif"].includes(extension)) {
+      return "image";
+    } else if (["mp4", "avi", "mov", "mkv"].includes(extension)) {
+      return "video";
+    } else {
+      return "other";
+    }
+  };
+
   return (
     <>
       {fullHeight && fullWidth && (
@@ -227,7 +241,7 @@ const TutorialScreenPage = () => {
                                 queryData ==
                                 tutorialData?.data?.attributes?.Title.replace(
                                   /\s+/g,
-                                  "-",
+                                  "-"
                                 )
                                   ? "text-white fw-bold"
                                   : "bg-primary text-white"
@@ -248,7 +262,7 @@ const TutorialScreenPage = () => {
                                             queryData ==
                                             tutorial?.attributes?.Title.replace(
                                               /\s+/g,
-                                              "-",
+                                              "-"
                                             )
                                               ? "fw-bold text-primary"
                                               : "fw-normal"
@@ -258,8 +272,8 @@ const TutorialScreenPage = () => {
                                             router.push(
                                               `/Integration-Guides/${tutorial?.attributes?.Title.replace(
                                                 /\s+/g,
-                                                "-",
-                                              )}`,
+                                                "-"
+                                              )}`
                                             );
                                           }}
                                         >
@@ -267,7 +281,7 @@ const TutorialScreenPage = () => {
                                         </div>
                                       </Dropdown.Item>
                                     );
-                                  },
+                                  }
                                 )}
                             </Dropdown.Menu>
                           </Dropdown>
@@ -314,7 +328,7 @@ const TutorialScreenPage = () => {
                                   queryData ==
                                   dropdown?.attributes?.Title.replace(
                                     /\s+/g,
-                                    "",
+                                    ""
                                   )
                                     ? "bg-white text-primary"
                                     : "bg-primary text-white"
@@ -328,7 +342,7 @@ const TutorialScreenPage = () => {
                                     queryData ==
                                     dropdown?.attributes?.Title.replace(
                                       /\s+/g,
-                                      "-",
+                                      "-"
                                     )
                                       ? "fw-bold"
                                       : "bg-primary text-white"
@@ -373,7 +387,7 @@ const TutorialScreenPage = () => {
                                               queryData ==
                                               tutorial?.attributes?.Title.replace(
                                                 /\s+/g,
-                                                "-",
+                                                "-"
                                               )
                                                 ? "fw-bold"
                                                 : "bg-primary fw-normal"
@@ -383,15 +397,15 @@ const TutorialScreenPage = () => {
                                               router.push(
                                                 `/Integration-Guides/${tutorial?.attributes?.Title.replace(
                                                   /\s+/g,
-                                                  "-",
-                                                )}`,
+                                                  "-"
+                                                )}`
                                               );
                                             }}
                                           >
                                             {tutorial?.attributes?.Title}
                                           </div>
                                         );
-                                      },
+                                      }
                                     )}
                                 </Accordion.Body>
                                 <hr className="p-0 m-0"></hr>
@@ -461,11 +475,29 @@ const TutorialScreenPage = () => {
                               ),
                               img: ({ node, ...props }) => (
                                 <div className="d-flex justify-content-center">
-                                  <img
-                                    className="image-width"
-                                    alt="image"
-                                    {...props}
-                                  />
+                                  {checkFileType(node?.properties?.src) ===
+                                  "image" ? (
+                                    <img
+                                      className="image-width"
+                                      alt="image"
+                                      {...props}
+                                    />
+                                  ) : null}
+
+                                  {checkFileType(node?.properties?.src) ===
+                                  "video" ? (
+                                    <video
+                                      controls
+                                      poster={node.properties.src}
+                                      maxWidth={fullWidth}
+                                      className="overflow-hidden"
+                                    >
+                                      <source
+                                        src={node.properties.src}
+                                        maxWidth={fullWidth}
+                                      />
+                                    </video>
+                                  ) : null}
                                 </div>
                               ),
                               p: ({ node, children }) => {
@@ -540,49 +572,49 @@ const TutorialScreenPage = () => {
                                 />
                               ),
 
-                              a: ({ node, ...props }) => {
-                                if (node.children[0].tagName == "img") {
-                                  const image = node.children[0];
-                                  return (
-                                    <div
-                                      className="my-md-5 my-3 w-100 d-flex  justify-content-center"
-                                      ref={divRef}
-                                    >
-                                      <video
-                                        controls
-                                        poster={image.properties.src}
-                                        maxWidth={fullWidth}
-                                        className="overflow-hidden"
-                                      >
-                                        <source
-                                          src={node.properties.href}
-                                          maxWidth={fullWidth}
-                                        />
-                                      </video>
-                                    </div>
-                                  );
-                                } else if (
-                                  node.properties.href.indexOf("youtube.com") !=
-                                  -1
-                                ) {
-                                  return (
-                                    <div className="display-center w-100 h-100">
-                                      <iframe
-                                        src={node.properties.href}
-                                        maxWidth={fullWidth}
-                                        className="image-width"
-                                      ></iframe>
-                                    </div>
-                                  );
-                                } else {
-                                  return (
-                                    <a
-                                      className="fst-italic text-primary text-decoration-underline"
-                                      {...props}
-                                    />
-                                  );
-                                }
-                              },
+                              // a: ({ node, ...props }) => {
+                              //   if (node.children[0].tagName == "img") {
+                              //     const image = node.children[0];
+                              //     return (
+                              //       <div
+                              //         className="my-md-5 my-3 w-100 d-flex  justify-content-center"
+                              //         ref={divRef}
+                              //       >
+                              //         <video
+                              //           controls
+                              //           poster={image.properties.src}
+                              //           maxWidth={fullWidth}
+                              //           className="overflow-hidden"
+                              //         >
+                              //           <source
+                              //             src={node.properties.href}
+                              //             maxWidth={fullWidth}
+                              //           />
+                              //         </video>
+                              //       </div>
+                              //     );
+                              //   } else if (
+                              //     node.properties.href.indexOf("youtube.com") !=
+                              //     -1
+                              //   ) {
+                              //     return (
+                              //       <div className="display-center w-100 h-100">
+                              //         <iframe
+                              //           src={node.properties.href}
+                              //           maxWidth={fullWidth}
+                              //           className="image-width"
+                              //         ></iframe>
+                              //       </div>
+                              //     );
+                              //   } else {
+                              //     return (
+                              //       <a
+                              //         className="fst-italic text-primary text-decoration-underline"
+                              //         {...props}
+                              //       />
+                              //     );
+                              //   }
+                              // },
                               table: ({ node, ...props }) => (
                                 <table
                                   className="table table-hover p-2"
@@ -604,14 +636,14 @@ const TutorialScreenPage = () => {
                                       className="pt-md-4 pb-md-2 heading-styles"
                                       id={`${node?.children[0]?.value.replace(
                                         /\s+/g,
-                                        "-",
+                                        "-"
                                       )}`}
                                     >
                                       <a
                                         {...props}
                                         href={`#${node?.children[0]?.value.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`}
                                         target="_self"
                                         className="pe-1"
@@ -646,14 +678,14 @@ const TutorialScreenPage = () => {
                                       className="pt-md-4 pb-md-2 heading-styles"
                                       id={`${node?.children[0]?.value.replace(
                                         /\s+/g,
-                                        "-",
+                                        "-"
                                       )}`}
                                     >
                                       <a
                                         {...props}
                                         href={`#${node?.children[0]?.value.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`}
                                         target="_self"
                                         className="pe-1"
@@ -716,14 +748,14 @@ const TutorialScreenPage = () => {
                                       className="pt-md-4 pb-md-2 heading-styles"
                                       id={`${node?.children[0]?.value.replace(
                                         /\s+/g,
-                                        "-",
+                                        "-"
                                       )}`}
                                     >
                                       <a
                                         {...props}
                                         href={`#${node?.children[0]?.value.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`}
                                         target="_self"
                                         className="pe-1"
@@ -758,14 +790,14 @@ const TutorialScreenPage = () => {
                                       className="pt-md-4 pb-md-2 heading-styles"
                                       id={`${node?.children[0]?.value.replace(
                                         /\s+/g,
-                                        "-",
+                                        "-"
                                       )}`}
                                     >
                                       <a
                                         {...props}
                                         href={`#${node?.children[0]?.value.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`}
                                         target="_self"
                                         className="pe-1"
@@ -800,14 +832,14 @@ const TutorialScreenPage = () => {
                                       className="pt-md-4 pb-md-2 heading-styles"
                                       id={`${node?.children[0]?.value.replace(
                                         /\s+/g,
-                                        "-",
+                                        "-"
                                       )}`}
                                     >
                                       <a
                                         {...props}
                                         href={`#${node?.children[0]?.value.replace(
                                           /\s+/g,
-                                          "-",
+                                          "-"
                                         )}`}
                                         target="_self"
                                         className="pe-1"
@@ -862,7 +894,7 @@ const TutorialScreenPage = () => {
                                           <a
                                             href={`/Integration-Guides/${tutorial?.attributes?.Title.replace(
                                               /\s+/g,
-                                              "-",
+                                              "-"
                                             )}`}
                                             className="text-primary text-decoration-underline"
                                           >
@@ -871,7 +903,7 @@ const TutorialScreenPage = () => {
                                         </div>
                                       </li>
                                     );
-                                  },
+                                  }
                                 )}
                               </ul>
                             </div>
@@ -925,7 +957,7 @@ const TutorialScreenPage = () => {
                                             key={index}
                                             id={data?.value?.replace(
                                               /\s+/g,
-                                              "-",
+                                              "-"
                                             )}
                                           >
                                             <input
@@ -933,7 +965,7 @@ const TutorialScreenPage = () => {
                                               onClick={(e) => {
                                                 // e.preventDefault();
                                                 reasonSelectionFunction(
-                                                  data.value,
+                                                  data.value
                                                 );
                                               }}
                                             />
