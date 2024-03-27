@@ -477,11 +477,9 @@ export default function About() {
                     <p className="team-title">Hiroki Kobayashi, CTO</p>
                     <p className="team-bio">
                       Accomplished, goal-driven and result-oriented, Hiroki
-                      Kobayashi has more than 15 years Accomplished, goal-
-                      driven and result-oriented, Hiroki Kobayashi has more than
-                      15 years’ extensive experience with management and
+                      Kobayashi has more than 15 years extensive experience with management and
                       tactical business leadership. Hiro’s expertise includes
-                      achieving optimal results with...
+                      achieving optimal results with competent planning,and solutions-oriented approach while driving....
                     </p>
                     <a
                       className="our-team-more"
