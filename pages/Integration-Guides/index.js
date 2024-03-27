@@ -56,7 +56,7 @@ const IntegrationGuides = () => {
       <div className="powerful-gateway overflow-y-scroll">
         <div className="pb-4">
           <div className="container_1300" style={{ minHeight: 600 }}>
-            <div className="pt-4 pt-md-5 pt-lg-2 mt-4">
+            <div className="pt-4 pt-md-5 pt-lg-2 mt-4 mt-lg-0">
               <div className="p-5 pb-4 w-100">
                 <h1 className="text-center title-font">
                   Integrate Our Payment Solution
