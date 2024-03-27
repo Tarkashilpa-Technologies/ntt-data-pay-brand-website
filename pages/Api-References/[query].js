@@ -11,6 +11,7 @@ import ScrollToTopButton from "../../Components/ScrollToTop";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import Loader from "../../Components/Loader";
+import WasThisPageHelpful from "../../Components/WasThisPageHelpful";
 
 const ApiReferenceScreen = () => {
   const apiRef = useRef(null);
@@ -63,6 +64,9 @@ const ApiReferenceScreen = () => {
         console.log("err", err);
       });
   };
+
+
+
 
   const scrollToTop = () => {
     apiRef?.current?.scrollTo({
@@ -672,6 +676,10 @@ const ApiReferenceScreen = () => {
                     )}
                     <div className="mb-5 pb-5">
                       <ApiEndpoint apiData={apiData} />
+                    </div>
+
+                    <div>
+                    <WasThisPageHelpful />
                     </div>
                   </div>
                 </div>

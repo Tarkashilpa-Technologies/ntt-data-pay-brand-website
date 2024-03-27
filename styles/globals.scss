@@ -6399,6 +6399,29 @@ input[type="number"]::-webkit-outer-spin-button {
   .customer-care-bnr {
     background-position: bottom center !important;
   }
+
+::-webkit-scrollbar {
+-webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+width: 8px;
+}
+
+::-webkit-scrollbar:horizontal {
+height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: rgba(68, 67, 67, 0.5);
+border-radius: 10px;
+border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+border-radius: 10px; 
+background-color: #ffffff; 
+}
 }
 
 @media screen and (max-width: 800px) {
