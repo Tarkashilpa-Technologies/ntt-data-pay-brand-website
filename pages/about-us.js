@@ -378,7 +378,7 @@ export default function About() {
                     <p className="team-bio">
                       Takeo Ueno takes a vision and makes it reality through
                       sound strategy development. He intuitively sees the
-                      threads of opportunity that wind...
+                       ...
                     </p>
                     <a
                       className="our-team-more"
@@ -402,7 +402,7 @@ export default function About() {
                     <p className="team-bio">
                       Rahul Jain became an indispensable asset to our
                       organization in October 2019 as its Chief Financial
-                      Officer (CFO). Originally, he was associated with the...
+                      Officer (CFO) ...
                     </p>
                     <a
                       className="our-team-more"
@@ -428,7 +428,8 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       With more than 16 years of hands-on experience in creating
-                      solutions across...
+                      solutions across different domains, Ajay is the
+                      ...
                     </p>
                     <a
                       className="our-team-more"
@@ -454,7 +455,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       ASM has more than 18 years of experience in cards, payment
-                      operations...
+                      operations, authorization, issuance, risk ...
                     </p>
                     <a
                       className="our-team-more"
@@ -477,9 +478,7 @@ export default function About() {
                     <p className="team-title">Hiroki Kobayashi, CTO</p>
                     <p className="team-bio">
                       Accomplished, goal-driven and result-oriented, Hiroki
-                      Kobayashi has more than 15 years extensive experience with management and
-                      tactical business leadership. Hiro’s expertise includes
-                      achieving optimal results with competent planning,and solutions-oriented approach while driving....
+                      Kobayashi has more than 15 years extensive exp...
                     </p>
                     <a
                       className="our-team-more"
@@ -504,8 +503,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       Vivek has more than 20 years of hands-on experience in
-                      sales, pre-sales, and solution ideation in the Payments
-                      domain with competencies and expertise in Merchant...
+                      sales, pre-sales, and solution ideation in the Payments ...
                     </p>
                     <a
                       className="our-team-more"
@@ -555,8 +553,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       With over 18 years of experience in the sales industry,
-                      Rajasekhar holds extensive experience in lead generation,
-                      building and nurturing relationship and...
+                      Rajasekhar holds extensive experience in lead genera...
                     </p>
                     <a
                       className="our-team-more"
@@ -581,8 +578,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       Vishal has an expertise in strategic client development,
-                      nurturing business and constructing and facilitating
-                      cohesive relationship with consumers across...
+                      nurturing business and constructing and facilitating ...
                     </p>
                     <a
                       className="our-team-more"
@@ -607,8 +603,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       He possesses over 26 years of expertise in Offshore
-                      Development, Program Management and Delivery of
-                      Interactive Software solutions. He has worked...
+                      Development, Program Management and Delivery of ...
                     </p>
                     <a
                       className="our-team-more"

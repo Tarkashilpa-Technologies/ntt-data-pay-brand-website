@@ -1139,11 +1139,16 @@ a {
 
 .powerful-gateway {
   & {
-    padding: 100px 0px 0px;
+    padding:100px 0px 0px;
     background-color: #f4f7fb;
   }
 }
 
+.developer-pages-list-top-space {
+  & {
+    padding:30px 0px 0px !important;
+  }
+}
 .product-feature-wrp {
   & {
     padding: 70px 0px;
@@ -2396,6 +2401,7 @@ a {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     border-radius: 10px 10px 10px 10px;
     margin-bottom: 40px;
+    
   }
   .team-image img {
     width: 100%;
@@ -2405,12 +2411,14 @@ a {
   .team-title {
     font-weight: $fw-semi-bold;
     font-size: 24px;
+    height: 4.8em; overflow: hidden;
   }
 
   .team-description {
     min-height: 270px;
     padding: 30px;
     border-radius: 10px 10px 10px 10px;
+    
   }
 
   .team-bio {
@@ -6399,6 +6407,32 @@ input[type="number"]::-webkit-outer-spin-button {
   .customer-care-bnr {
     background-position: bottom center !important;
   }
+
+  .horizontal-scrollbar-visible {
+      ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      }
+      
+      ::-webkit-scrollbar:vertical {
+      width: 8px;
+      }
+      
+      ::-webkit-scrollbar:horizontal {
+      height: 8px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+      background-color: rgba(68, 67, 67, 0.5);
+      border-radius: 10px;
+      border: 2px solid #ffffff;
+      }
+      
+      ::-webkit-scrollbar-track {
+      border-radius: 10px; 
+      background-color: #ffffff; 
+      }
+  }
+
 }
 
 @media screen and (max-width: 800px) {

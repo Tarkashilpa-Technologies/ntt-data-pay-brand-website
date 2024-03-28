@@ -11,6 +11,7 @@ import ScrollToTopButton from "../../Components/ScrollToTop";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import Loader from "../../Components/Loader";
+import WasThisPageHelpful from "../../Components/WasThisPageHelpful";
 
 const ApiReferenceScreen = () => {
   const apiRef = useRef(null);
@@ -64,6 +65,9 @@ const ApiReferenceScreen = () => {
       });
   };
 
+
+
+
   const scrollToTop = () => {
     apiRef?.current?.scrollTo({
       top: 0,
@@ -115,7 +119,7 @@ const ApiReferenceScreen = () => {
     <>
       {fullHeight && isReady ? (
         <div className="position-relative">
-          <div className="d-flex d-block d-lg-none overflow-x-scroll">
+          <div className="d-flex d-block d-lg-none overflow-x-scroll horizontal-scrollbar-visible">
             <div className="d-flex bg-primary w-100">
               {apisListData?.map((dropdown, index) => {
                 return (
@@ -672,6 +676,10 @@ const ApiReferenceScreen = () => {
                     )}
                     <div className="mb-5 pb-5">
                       <ApiEndpoint apiData={apiData} />
+                    </div>
+
+                    <div>
+                    <WasThisPageHelpful />
                     </div>
                   </div>
                 </div>
