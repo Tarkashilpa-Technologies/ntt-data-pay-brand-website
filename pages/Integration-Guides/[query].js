@@ -145,31 +145,31 @@ const TutorialScreenPage = () => {
 
 
 
-    useEffect(() => {
-      const handleScroll = () => {
+    // useEffect(() => {
+    //   const handleScroll = () => {
 
-        console.log("function getting ca;lled")
-        const sections = document.querySelectorAll('div[id^="section"]');
+    //     console.log("function getting ca;lled")
+    //     const sections = document.querySelectorAll('div[id^="section"]');
 
-        console.log(sections,"sections")
-        sections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-            document.querySelectorAll('#sidebar a').forEach(item => item.classList.remove('highlighted'));
-            const sidebarItem = document.querySelector(`#sidebar a[href="#${section.id}"]`);
-            if (sidebarItem) sidebarItem.classList.add('highlighted');
-          }
-        });
-      };
+    //     console.log(sections,"sections")
+    //     sections.forEach(section => {
+    //       const rect = section.getBoundingClientRect();
+    //       if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+    //         document.querySelectorAll('#sidebar a').forEach(item => item.classList.remove('highlighted'));
+    //         const sidebarItem = document.querySelector(`#sidebar a[href="#${section.id}"]`);
+    //         if (sidebarItem) sidebarItem.classList.add('highlighted');
+    //       }
+    //     });
+    //   };
   
-      window.addEventListener('scroll', handleScroll);
+    //   window.addEventListener('scroll', handleScroll);
       
       
-      // Cleanup function to remove event listener on component unmount
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
+    //   // Cleanup function to remove event listener on component unmount
+    //   return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    //   };
+    // }, []);
 
 
   return (
