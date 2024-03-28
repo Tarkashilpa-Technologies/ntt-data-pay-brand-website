@@ -372,7 +372,7 @@ export default function About() {
                     <img src="images/team.jpg" />
                   </div>
                   <div className="team-description bg-white">
-                    <p className="team-title text-truncate">
+                    <p className="team-title">
                       Take Ueno, Whole-time Director and CEO
                     </p>
                     <p className="team-bio">

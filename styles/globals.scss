@@ -1139,11 +1139,16 @@ a {
 
 .powerful-gateway {
   & {
-    padding: 30px 0px 0px;
+    padding:100px 0px 0px;
     background-color: #f4f7fb;
   }
 }
 
+.developer-pages-list-top-space {
+  & {
+    padding:30px 0px 0px !important;
+  }
+}
 .product-feature-wrp {
   & {
     padding: 70px 0px;
