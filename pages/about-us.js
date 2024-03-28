@@ -553,7 +553,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       With over 18 years of experience in the sales industry,
-                      Rajasekhar holds extensive experience in lead ...
+                      Rajasekhar holds extensive experience in lead genera...
                     </p>
                     <a
                       className="our-team-more"
