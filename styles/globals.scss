@@ -2396,6 +2396,7 @@ a {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     border-radius: 10px 10px 10px 10px;
     margin-bottom: 40px;
+    
   }
   .team-image img {
     width: 100%;
@@ -2405,12 +2406,14 @@ a {
   .team-title {
     font-weight: $fw-semi-bold;
     font-size: 24px;
+    height: 4.8em; overflow: hidden;
   }
 
   .team-description {
     min-height: 270px;
     padding: 30px;
     border-radius: 10px 10px 10px 10px;
+    
   }
 
   .team-bio {

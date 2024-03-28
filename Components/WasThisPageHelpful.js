@@ -54,7 +54,6 @@ const WasThisPageHelpful = () => {
       // }
       setIsPageHelpful(null);
       setShowHelpfulData(true);
-      console.log(res,"res")
       setShowSuccess(true);
       setShowLoader(false);
       // alert('Response Submitted Successfully !!!')
@@ -85,7 +84,6 @@ const WasThisPageHelpful = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      console.log("function getting called timeout")
         setShowSuccess(false);
     }, 5000); // 10 seconds
 
