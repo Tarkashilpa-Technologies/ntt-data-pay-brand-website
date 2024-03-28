@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Loader from './Loader';
 
 const WasThisPageHelpful = () => {
-    const [showHelpfulData, setShowHelpfulData] = useState([]);
+  const [showHelpfulData, setShowHelpfulData] = useState([]);
   const [pageHelpfulFalseData, setPageHelpfulFalseData] = useState([]);
   const [isPageHelpful, setIsPageHelpful] = useState();
+  const[showSuccess,setShowSuccess] = useState();
+  const [showLoader, setShowLoader] = useState(false);
 
 
   const pageHelpfulData = [
@@ -28,6 +31,7 @@ const WasThisPageHelpful = () => {
 
 
   const handleSubmit = async (event) => {
+    setShowLoader(true);
     event.preventDefault();
     const new_contact = {
       subject: isPageHelpful
@@ -51,11 +55,15 @@ const WasThisPageHelpful = () => {
       setIsPageHelpful(null);
       setShowHelpfulData(true);
       console.log(res,"res")
-      alert('Response Submitted Successfully !!!')
+      setShowSuccess(true);
+      setShowLoader(false);
+      // alert('Response Submitted Successfully !!!')
     },(err) =>{
       setShowHelpfulData(true);
       setIsPageHelpful(null);
-      alert(err)
+      setShowSuccess(false);
+      alert(err);
+      setShowLoader(false);
     });
   };
 
@@ -75,8 +83,18 @@ const WasThisPageHelpful = () => {
     );
   }
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      console.log("function getting called timeout")
+        setShowSuccess(false);
+    }, 5000); // 10 seconds
+
+    return () => clearTimeout(timeout);
+  }, [showSuccess]);
+
   return (
-    <div>{showHelpfulData &&
+    <div> {showLoader ? <Loader show={showLoader} /> :
+      showHelpfulData &&
         (isPageHelpful == null ? (
           <div className="d-flex flex-sm-row flex-column gap-3 align-items-center w-100">
             <label className="fw-bold fs-6">
@@ -170,9 +188,16 @@ const WasThisPageHelpful = () => {
             </form>
           </div>
         ))}
+        {showSuccess && 
+        (<div className="text-primary pt-4" >
+            Response Submitted Successfully !!!
+        </div>)
+        }
       {showHelpfulData && (
         <hr className="text-secondary"></hr>
-      )}</div>
+      )}
+     
+    </div>
   )
 }
 
