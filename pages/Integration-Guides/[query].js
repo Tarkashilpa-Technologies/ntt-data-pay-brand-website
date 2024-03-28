@@ -176,7 +176,7 @@ const TutorialScreenPage = () => {
     <>
       {fullHeight && fullWidth && (
         <div className="" style={{ maxHeight: fullHeight }}>
-          <div className="d-flex  flex-column h-100 w-100 ">
+          <div className="d-flex  flex-column h-100 w-100 horizontal-scrollbar-visible">
             <div>
               <div className="d-block d-lg-none">
                 <div className={`d-flex w-100 bg-primary`}>

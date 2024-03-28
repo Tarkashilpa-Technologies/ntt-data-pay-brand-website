@@ -119,7 +119,7 @@ const ApiReferenceScreen = () => {
     <>
       {fullHeight && isReady ? (
         <div className="position-relative">
-          <div className="d-flex d-block d-lg-none overflow-x-scroll">
+          <div className="d-flex d-block d-lg-none overflow-x-scroll horizontal-scrollbar-visible">
             <div className="d-flex bg-primary w-100">
               {apisListData?.map((dropdown, index) => {
                 return (
