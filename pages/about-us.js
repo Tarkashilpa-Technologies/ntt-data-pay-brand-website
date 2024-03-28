@@ -377,8 +377,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       Takeo Ueno takes a vision and makes it reality through
-                      sound strategy development. He intuitively sees the
-                       ...
+                      sound strategy development. He intuitively sees the ...
                     </p>
                     <a
                       className="our-team-more"
@@ -428,8 +427,7 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       With more than 16 years of hands-on experience in creating
-                      solutions across different domains, Ajay is the
-                      ...
+                      solutions across different domains, Ajay is the ...
                     </p>
                     <a
                       className="our-team-more"
@@ -503,7 +501,8 @@ export default function About() {
                     </p>
                     <p className="team-bio">
                       Vivek has more than 20 years of hands-on experience in
-                      sales, pre-sales, and solution ideation in the Payments ...
+                      sales, pre-sales, and solution ideation in the Payments
+                      ...
                     </p>
                     <a
                       className="our-team-more"
@@ -826,21 +825,19 @@ export default function About() {
             </div>
             <div className="modal-body">
               <p className="common-desc">
-                Accomplished, goal-driven and result-oriented, Hiroki Kobayashi
-                has more than 15 years Accomplished, goal- driven and
-                result-oriented, Hiroki Kobayashi has more than 15 years’
-                extensive experience with management and tactical business
-                leadership. Hiro’s expertise includes achieving optimal results
-                with competent planning, and solutions-oriented approach while
-                driving business growth and strategic alliances. He holds MBA in
-                Corporate Finance, Marketing and Global Leadership and
-                certification in Machine Learning from Stanford University,
-                amongst several other accomplishments. Skating through life,
-                Hiro finds himself in the lost historical ruins and is on a
-                mission to explore every alley now that he’s in India. He loves
-                to grab an intellectually alluring book and can be your best
-                personal financial investment strategist while chronicling the
-                most comic anecdotes.
+                Accomplished, goal- driven and result-oriented, Hiroki Kobayashi
+                has more than 15 years’ extensive experience with management and
+                tactical business leadership. Hiro’s expertise includes
+                achieving optimal results with competent planning, and
+                solutions-oriented approach while driving business growth and
+                strategic alliances. He holds MBA in Corporate Finance,
+                Marketing and Global Leadership and certification in Machine
+                Learning from Stanford University, amongst several other
+                accomplishments. Skating through life, Hiro finds himself in the
+                lost historical ruins and is on a mission to explore every alley
+                now that he’s in India. He loves to grab an intellectually
+                alluring book and can be your best personal financial investment
+                strategist while chronicling the most comic anecdotes.
               </p>
             </div>
           </div>
